@@ -51,7 +51,8 @@ namespace Assets.Scripts.Controller
 
         void IPlayerInputReceiver.Fire(InputAction.CallbackContext callback)
         {
-            base.Fire();
+            if(callback.phase == InputActionPhase.Performed)
+                base.Fire();
         }
     }
 }

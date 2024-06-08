@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5660681214194514614}
   - component: {fileID: 3647479369263889037}
   - component: {fileID: 8827291772948454709}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4822724788402965468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +75,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0434b56f700e704a8c1621c3b0346e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  from:
+    rid: -2
+  bounce_count: 0
+  pierce_count: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!135 &5660681214194514614
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -82,7 +91,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6760775946932158089}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8f874dfd632e1c94ba06aed34cce6771, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

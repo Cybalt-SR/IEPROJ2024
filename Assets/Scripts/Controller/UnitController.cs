@@ -2,11 +2,15 @@ using Assets.Scripts.Data;
 using Assets.Scripts.Manager;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class UnitController : MonoBehaviour
 {
-    private Rigidbody m_rigidbody;
-    [SerializeField] private GunData Gun;
+    private Rigidbody mRigidbody;
+    private CapsuleCollider mCapsuleCollider;
+    public CapsuleCollider Collider { get { return mCapsuleCollider; } }
+
+    [SerializeField] private GunData mGun;
+    public GunData Gun { get { return mGun; } }
 
     //Moving
     [SerializeField] private float acceleration = 1;
@@ -18,10 +22,16 @@ public class UnitController : MonoBehaviour
     [SerializeField] private Transform shooting_reference;
     public Vector3 AimDir { get; private set; }
     private float lateral_distance;
+    //shooting
+    private int shots_before_reload = 0;
+    private bool reloading = false;
+    private float time_last_shot = 0;
+    private float time_last_reload = 0;
 
     protected virtual void Awake()
     {
-        m_rigidbody = GetComponent<Rigidbody>();
+        mRigidbody = GetComponent<Rigidbody>();
+        mCapsuleCollider = GetComponent<CapsuleCollider>();
     }
     protected virtual void Start()
     {
@@ -61,14 +71,41 @@ public class UnitController : MonoBehaviour
 
     protected void Fire()
     {
-        ProjectileManager.Instance.Shoot(shooting_reference.transform.position, AimDir.normalized, this.Gun);
+        if(shots_before_reload == 0)
+        {
+            reloading = true;
+            return;
+        }
+
+        if (time_last_shot >= 1.0f / mGun.shots_per_second)
+        {
+            ProjectileManager.Instance.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
+            time_last_shot = 0;
+            shots_before_reload -= 0;
+        }
     }
 
-    private void FixedUpdate()
+    protected virtual void Update()
     {
-        if (m_rigidbody.velocity.sqrMagnitude < Speed * Speed)
+        time_last_shot += Time.deltaTime;
+
+        if (reloading)
         {
-            m_rigidbody.AddForce(acceleration * Time.fixedDeltaTime * MoveDir, ForceMode.VelocityChange);
+            time_last_reload += Time.deltaTime;
+
+            if(time_last_reload >= mGun.reload_time)
+            {
+                reloading = false;
+                shots_before_reload = mGun.clip_size;
+            }
+        }
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if (mRigidbody.velocity.sqrMagnitude < Speed * Speed)
+        {
+            mRigidbody.AddForce(acceleration * Time.fixedDeltaTime * MoveDir, ForceMode.VelocityChange);
         }
     }
 }
