@@ -1,12 +1,9 @@
 using Assets.Scripts.Controller;
-using Assets.Scripts.Data;
-using Assets.Scripts.Gameplay.Manager;
-using Assets.Scripts.Library;
 using UnityEngine;
 
 namespace Assets.Scripts.Manager
 {
-    public class ProjectileManager : Manager_Base<ProjectileManager>
+    public class ProjectileManager : PoolManager<ProjectileManager, ProjectileController>
     {
         public void Shoot(Vector3 from, Vector3 dir, UnitController shooter)
         {
@@ -19,16 +16,14 @@ namespace Assets.Scripts.Manager
             for (int i = 0; i < gunData.projectiles_per_shot; i++)
             {
                 var raw_angle = starting_angle + half_quadrant_angle + (i * quadrant_angle);
+                var error_angle = (Random.value * gunData.error_angle) - (gunData.error_angle / 2);
+                var final_dir = Quaternion.AngleAxis(raw_angle + error_angle, Vector3.up) * dir;
 
-                var newprojectile = Instantiate(ProjectileDictionary.Instance.DefaultProjectile, ISingleton<ProjectileParent>.Instance.transform);
+                var newprojectile = RequestOrCreate(gunData.projectile_id);
 
                 newprojectile.transform.position = from;
 
-                var error_angle = (Random.value * gunData.error_angle) - (gunData.error_angle / 2);
-                var final_dir = Quaternion.AngleAxis(raw_angle + error_angle, Vector3.up) * dir;
-                var projectileController = newprojectile.GetComponent<ProjectileController>();
-                projectileController.Shoot(final_dir, shooter);
-                Physics.IgnoreCollision(projectileController.Collider, shooter.Collider);
+                newprojectile.Shoot(final_dir, shooter);
             }
         }
     }

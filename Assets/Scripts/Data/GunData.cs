@@ -21,5 +21,7 @@ namespace Assets.Scripts.Data
         public int bounce_count = 0;
         public int split_count = 0;
         public int pierce_count = 0;
+        [Header("Visuals")]
+        public string projectile_id;
     }
 }

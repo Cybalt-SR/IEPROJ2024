@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Gameplay.Manager
 {
-    public class Manager_Base<T> : MonoBehaviour, ISingleton<T> where T : class
+    public class Manager_Base<T> : MonoBehaviour, ISingleton<T> where T : MonoBehaviour
     {
         public static T Instance { get => ISingleton<T>.Instance; private set => ISingleton<T>.Instance = value; }
 

@@ -64,16 +64,21 @@
     <Compile Include="Assets\Scripts\Manager\ProjectileManager.cs" />
     <Compile Include="Assets\Scripts\Library\GetAttributeValue.cs" />
     <Compile Include="Assets\Scripts\Constants\EventNames.cs" />
+    <Compile Include="Assets\Scripts\Manager\Interfaces\IPickupHandler.cs" />
     <Compile Include="Assets\Scripts\Input\IPlayerInputReceiver.cs" />
+    <Compile Include="Assets\Scripts\Manager\EffectManager.cs" />
     <Compile Include="Assets\Scripts\Controller\UiController.cs" />
+    <Compile Include="Assets\Scripts\Manager\PickupManager.cs" />
     <Compile Include="Assets\Scripts\Library\ISingleton.cs" />
     <Compile Include="Assets\Scripts\Manager\Manager_Base.cs" />
     <Compile Include="Assets\Scripts\Data\InventoryData.cs" />
     <Compile Include="Assets\Scripts\Controller\UnitController.cs" />
+    <Compile Include="Assets\Scripts\Manager\PoolManager.cs" />
     <Compile Include="Assets\Scripts\Input\InputDebugger.cs" />
     <Compile Include="Assets\Scripts\Library\SerializableDictionary.cs" />
-    <Compile Include="Assets\Scripts\Data\ProjectileDictionary.cs" />
     <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Controller\PoolParent.cs" />
+    <Compile Include="Assets\Scripts\Data\ScriptableObjects\Attachment.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\ProjectileHittable.cs" />
     <Compile Include="Assets\Scripts\Input\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\Data\EquipmentDictionary.cs" />
@@ -81,14 +86,18 @@
     <Compile Include="Assets\Scripts\Library\IConsistentDataHolder.cs" />
     <Compile Include="Assets\Scripts\Input\InputSystemBroadcaster.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\Controller\GlobalEffectController.cs" />
     <Compile Include="Assets\Scripts\Input\IUiInputReceiver.cs" />
+    <Compile Include="Assets\Scripts\Data\ScriptableObjects\ProjectileDictionary.cs" />
     <Compile Include="Assets\Scripts\Manager\EquipmentManager.cs" />
-    <Compile Include="Assets\Scripts\Controller\ProjectileParent.cs" />
+    <Compile Include="Assets\Scripts\Controller\PooledBehaviour.cs" />
     <Compile Include="Assets\Scripts\Data\GunData.cs" />
+    <Compile Include="Assets\Scripts\Controller\EffectController.cs" />
     <Compile Include="Assets\Scripts\Library\EventBroadcasting\EventBroadcasting.cs" />
+    <Compile Include="Assets\Scripts\Data\ScriptableObjects\EffectDictionary.cs" />
     <Compile Include="Assets\Scripts\Library\SingletonResource.cs" />
     <Compile Include="Assets\Scripts\Controller\ProjectileController.cs" />
-    <Compile Include="Assets\Scripts\Data\Attachment.cs" />
+    <Compile Include="Assets\Scripts\Data\ScriptableObjects\SingletonDictionary.cs" />
     <Compile Include="Assets\Scripts\Manager\ManagerManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -563,10 +572,6 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@2.0.5\net40\unity-custom\nunit.framework.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
@@ -1093,20 +1098,8 @@
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Updater">
@@ -1115,10 +1108,6 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
@@ -1141,16 +1130,8 @@
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor">
@@ -1167,10 +1148,6 @@
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
@@ -1191,10 +1168,6 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
@@ -1233,20 +1206,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Rendering.LightTransport.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.Rendering.LightTransport.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.InputSystem">

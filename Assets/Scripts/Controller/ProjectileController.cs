@@ -1,37 +1,77 @@
 using Assets.Scripts.Controller.Attachments;
-using Assets.Scripts.Data;
 using Assets.Scripts.Library;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Controller
 {
     [RequireComponent(typeof(Rigidbody), typeof(SphereCollider))]
-    public class ProjectileController : MonoBehaviour
+    public class ProjectileController : PooledBehaviour<ProjectileController>
     {
         private Rigidbody mRigidbody;
         private SphereCollider mSphereCollider;
-        public SphereCollider Collider { get { return mSphereCollider; } }
+        private TrailRenderer optional_trail;
 
-        [SerializeReference] private UnitController from;
-        [SerializeField] private int bounce_count = 0;
-        [SerializeField] private int pierce_count = 0;
-        [SerializeField] private bool already_split = false;
+        [SerializeField] private string ondeath_effect_id;
+
+        public readonly Queue<Collider> ignore_list = new();
+
+        private UnitController from = null;
+        private int bounce_count = 0;
+        private int pierce_count = 0;
+        private bool already_split = false;
 
         private Vector3 late_velocity;
+
 
         private void Awake()
         {
             mRigidbody = GetComponent<Rigidbody>();
             mSphereCollider = GetComponent<SphereCollider>();
+            optional_trail = GetComponent<TrailRenderer>();
+        }
+        private void IgnoreCollider(Collider other)
+        {
+            ignore_list.Enqueue(other);
+            Physics.IgnoreCollision(mSphereCollider, other);
         }
 
-        public void Shoot(Vector3 dir, UnitController from)
+        private void ResetIgnores()
+        {
+            while (ignore_list.TryDequeue(out var ignoredCollider))
+            {
+                Physics.IgnoreCollision(mSphereCollider, ignoredCollider, false);
+            }
+            IgnoreCollider(from.Collider);
+        }
+
+        public void Shoot(Vector3 dir, UnitController from, ProjectileController parent = null, ProjectileHittable split_from = null)
         {
             this.from = from;
+            ResetIgnores();
+
+            if (split_from != null)
+                IgnoreCollider(split_from.Collider);
+
+            if (optional_trail)
+                optional_trail.Clear();
+
             mRigidbody.velocity = dir * from.Gun.projectile_speed;
+
+            bounce_count = 0;
+            pierce_count = 0;
+            already_split = false;
+
+            if (parent == null)
+                return;
+
+            base.Assign(parent.Pool);
+            bounce_count = parent.bounce_count;
+            pierce_count = parent.pierce_count;
+            already_split = true;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             late_velocity = mRigidbody.velocity;
         }
@@ -45,35 +85,53 @@ namespace Assets.Scripts.Controller
 
             if (objectToCheck.TryGetComponent(out ProjectileHittable projectileHittable))
             {
+                projectileHittable.GetHit();
+
                 if (pierce_count < from.Gun.pierce_count)
                 {
-                    Physics.IgnoreCollision(mSphereCollider, collision.collider);
+                    IgnoreCollider(collision.collider);
                     mRigidbody.velocity = late_velocity;
                 }
 
-                projectileHittable.GetHit();
                 pierce_count++;
             }
             else
             {
+                ResetIgnores();
+
                 bounce_count++;
             }
 
-            if (pierce_count > from.Gun.pierce_count)
-            {
-                Kill();
-                return;
-            }
-            if (bounce_count > from.Gun.bounce_count)
-            {
-                Kill();
-                return;
-            }
+            if (already_split)
+                Kill(projectileHittable);
+            else if (pierce_count > from.Gun.pierce_count)
+                Kill(projectileHittable);
+            else if (bounce_count > from.Gun.bounce_count)
+                Kill(projectileHittable);
         }
 
-        private void Kill()
+        private ProjectileController RequestOrDuplicate()
         {
-            this.gameObject.SetActive(false);
+            ProjectileController Duplicate()
+            {
+                var newobject = Instantiate(gameObject, ISingleton<PoolParent>.Instance.transform);
+                return newobject.GetComponent<ProjectileController>();
+            }
+
+            ProjectileController toreturn;
+            if (base.Pool.TryDequeue(out ProjectileController projectileController))
+                toreturn = projectileController;
+            else
+                toreturn = Duplicate();
+
+            toreturn.gameObject.SetActive(true);
+
+            return toreturn;
+        }
+
+        private void Kill(ProjectileHittable hit = null)
+        {
+            gameObject.SetActive(false);
 
             if (already_split)
                 return;
@@ -87,18 +145,14 @@ namespace Assets.Scripts.Controller
             for (int i = 0; i < from.Gun.split_count; i++)
             {
                 var raw_angle = starting_angle + half_quadrant_angle + (i * quadrant_angle);
-
-                var newprojectile = Instantiate(this, ISingleton<ProjectileParent>.Instance.transform);
-
-                newprojectile.gameObject.SetActive(true);
-                newprojectile.transform.position = this.transform.position;
-
                 var error_angle = (Random.value * from.Gun.error_angle) - (from.Gun.error_angle / 2);
                 var final_dir = Quaternion.AngleAxis(raw_angle + error_angle, Vector3.up) * basis;
-                var projectileController = newprojectile.GetComponent<ProjectileController>();
-                projectileController.Shoot(final_dir, from);
-                projectileController.already_split = true;
-                Physics.IgnoreCollision(from.Collider, projectileController.Collider);
+
+                var newprojectile = RequestOrDuplicate();
+
+                newprojectile.transform.position = transform.position;
+
+                newprojectile.Shoot(final_dir, from, parent: this, hit);
             }
         }
     }

@@ -12,11 +12,30 @@ namespace Assets.Scripts.Gameplay.Manager
         private void Awake()
         {
             Type parentType = typeof(Manager_Base<>);
+
             Assembly assembly = Assembly.GetExecutingAssembly();
             IEnumerable<Type> types = assembly.GetTypes();
 
-            types = types.Where(t => t.BaseType != null && t.BaseType.IsConstructedGenericType);
-            types = types.Where(t => t.BaseType.GetGenericTypeDefinition() == parentType);
+            bool predicate(Type t)
+            {
+                Type b = t;
+
+                while (b.BaseType != null)
+                {
+                    b = b.BaseType;
+
+                    if (b.IsGenericType == false)
+                        continue;
+
+                    if (b.GetGenericTypeDefinition() == parentType)
+                        return true;
+                }
+
+                return false;
+            }
+
+            types = types.Where(t => t.IsGenericType == false);
+            types = types.Where(predicate);
 
             var selectedTypes = types.ToArray();
             var requiredTypes = new Type[3];

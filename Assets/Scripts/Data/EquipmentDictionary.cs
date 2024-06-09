@@ -1,3 +1,4 @@
+using Assets.Scripts.Data.ScriptableObjects;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Data

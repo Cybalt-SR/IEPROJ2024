@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4986a0c0fae2e443b3019119fd121fb, type: 3}
   m_Name: Projectile Dictionary
   m_EditorClassIdentifier: 
-  DefaultProjectile: {fileID: 6760775946932158089, guid: 8f789f245703183459e26ba54095e480,
+  fallback: {fileID: 4822724788402965468, guid: 8f789f245703183459e26ba54095e480,
     type: 3}
+  dictionary:
+    structs: []

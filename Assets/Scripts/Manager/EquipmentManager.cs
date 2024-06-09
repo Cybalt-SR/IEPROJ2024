@@ -1,4 +1,5 @@
 using Assets.Scripts.Data;
+using Assets.Scripts.Data.ScriptableObjects;
 using Assets.Scripts.Gameplay.Manager;
 using Assets.Scripts.Library;
 
@@ -15,8 +16,6 @@ namespace Assets.Scripts.Manager
 
         public bool AddAttachment(string playerId, Attachment attachment)
         {
-
-
             return false;
         }
     }

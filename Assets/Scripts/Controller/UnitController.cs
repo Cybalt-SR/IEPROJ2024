@@ -71,7 +71,7 @@ public class UnitController : MonoBehaviour
 
     protected void Fire()
     {
-        if(shots_before_reload == 0)
+        if (shots_before_reload == 0)
         {
             reloading = true;
             return;
@@ -93,7 +93,7 @@ public class UnitController : MonoBehaviour
         {
             time_last_reload += Time.deltaTime;
 
-            if(time_last_reload >= mGun.reload_time)
+            if (time_last_reload >= mGun.reload_time)
             {
                 reloading = false;
                 shots_before_reload = mGun.clip_size;
