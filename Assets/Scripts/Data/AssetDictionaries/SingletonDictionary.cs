@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Library;
 using UnityEngine;
 
-namespace Assets.Scripts.Data.ScriptableObjects
+namespace Assets.Scripts.Data.AssetDictionaries
 {
     public class SingletonDictionary<T> : SingletonResource<SingletonDictionary<T>> where T : MonoBehaviour
     {

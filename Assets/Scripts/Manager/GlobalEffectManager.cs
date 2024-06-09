@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Controller;
-using Assets.Scripts.Data.ScriptableObjects;
+using Assets.Scripts.Data.AssetDictionaries;
 using Assets.Scripts.Gameplay.Manager;
 using System;
 using System.Collections.Generic;
