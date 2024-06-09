@@ -8,7 +8,10 @@ namespace Assets.Scripts.Controller
     public class PlayerController : UnitController, IPlayerInputReceiver
     {
         [SerializeField] private string playerId;
+        [SerializeField] private Collider aiming_blanket;
         public string PlayerId { get { return playerId; } }
+
+        bool IPlayerInputReceiver.IsFire { get; set; }
 
         //input
         private Vector2 late_aimpos;
@@ -28,7 +31,7 @@ namespace Assets.Scripts.Controller
         {
             late_aimpos = callback.ReadValue<Vector2>();
 
-            if (Physics.Raycast(ISingleton<CameraController>.Instance.Camera.ScreenPointToRay(late_aimpos), out RaycastHit hitinfo))
+            if (aiming_blanket.Raycast(ISingleton<CameraController>.Instance.Camera.ScreenPointToRay(late_aimpos), out RaycastHit hitinfo, float.PositiveInfinity))
             {
                 AimAt(hitinfo.point);
             }
@@ -51,7 +54,13 @@ namespace Assets.Scripts.Controller
 
         void IPlayerInputReceiver.Fire(InputAction.CallbackContext callback)
         {
-            if(callback.phase == InputActionPhase.Performed)
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            if ((this as IPlayerInputReceiver).IsFire)
                 base.Fire();
         }
     }

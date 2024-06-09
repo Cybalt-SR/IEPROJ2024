@@ -42,7 +42,7 @@ public class UnitController : MonoBehaviour
 
     protected void AimAt(Vector3 pos)
     {
-        var delta = pos - transform.position;
+        var delta = transform.InverseTransformPoint(pos);
         Vector3 normalized_delta = Vector3.zero;
 
         if (Mathf.Abs(delta.x) > Mathf.Abs(delta.z))
@@ -81,7 +81,7 @@ public class UnitController : MonoBehaviour
         {
             ProjectileManager.Instance.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
             time_last_shot = 0;
-            shots_before_reload -= 0;
+            shots_before_reload--;
         }
     }
 
@@ -97,6 +97,7 @@ public class UnitController : MonoBehaviour
             {
                 reloading = false;
                 shots_before_reload = mGun.clip_size;
+                time_last_reload = 0;
             }
         }
     }

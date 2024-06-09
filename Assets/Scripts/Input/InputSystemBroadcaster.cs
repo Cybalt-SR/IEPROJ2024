@@ -54,6 +54,7 @@ namespace Assets.Scripts.Input
                     continue;
 
                 foreach (var mapping in receiver_mapping[receiverType])
+                {
                     foreach (var methods in receiver_types[receiverType].GetMethods())
                         foreach (var inputaction in mPlayerInput.actions.actionMaps[mapping].actions)
                         {
@@ -72,6 +73,33 @@ namespace Assets.Scripts.Input
                             inputaction.performed += onAction;
                             inputaction.canceled += onAction;
                         }
+                    foreach (var property in receiver_types[receiverType].GetProperties())
+                        foreach (var inputaction in mPlayerInput.actions.actionMaps[mapping].actions)
+                        {
+                            if (property.PropertyType != typeof(bool))
+                                continue;
+                            if (property.Name != "Is" + inputaction.name)
+                                continue;
+
+                            void onAction(InputAction.CallbackContext callback)
+                            {
+                                inputReceivers[receiverType].ForEach((receiver) =>
+                                {
+                                    property.SetValue(receiver, true);
+                                });
+                            }
+                            void offAction(InputAction.CallbackContext callback)
+                            {
+                                inputReceivers[receiverType].ForEach((receiver) =>
+                                {
+                                    property.SetValue(receiver, false);
+                                });
+                            }
+
+                            inputaction.performed += onAction;
+                            inputaction.canceled += offAction;
+                        }
+                }
             }
         }
     }
