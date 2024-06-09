@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414f876310b653040bffdd6035b83039, type: 3}
+  m_Name: Global Effect Dictionary
+  m_EditorClassIdentifier: 
+  fallback: {fileID: 1161053065132040166, guid: 78d05b6b81248be41b353c03ba8f22e5,
+    type: 3}
+  dictionary:
+    structs:
+    - Key: default_die
+      Value: {fileID: 1161053065132040166, guid: 78d05b6b81248be41b353c03ba8f22e5,
+        type: 3}
+    - Key: default_hit
+      Value: {fileID: 8252033151417013444, guid: 19df5a965d376fb49abdd21b32f2a3a9,
+        type: 3}
+    - Key: default_bounce
+      Value: {fileID: 7430430827942484949, guid: b5ba62e6079dfa44f81dd46d262d7dad,
+        type: 3}

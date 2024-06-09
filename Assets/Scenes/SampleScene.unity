@@ -2503,7 +2503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 552938357}
   - component: {fileID: 552938358}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Aiming blanket
   m_TagString: Untagged
   m_Icon: {fileID: 0}

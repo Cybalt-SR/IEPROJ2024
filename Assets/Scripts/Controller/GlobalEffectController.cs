@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class GlobalEffectController : MonoBehaviour
+namespace Assets.Scripts.Controller
 {
-    // Start is called before the first frame update
-    private void Start()
+    [RequireComponent(typeof(ParticleSystem))]
+    public class GlobalEffectController : MonoBehaviour
     {
+        private ParticleSystem mParticleSystem;
 
-    }
+        private void Awake()
+        {
+            mParticleSystem = GetComponent<ParticleSystem>();
+        }
 
-    // Update is called once per frame
-    private void Update()
-    {
-
+        public void Spawn(Vector3 position, Vector3 direction)
+        {
+            transform.position = position;
+            transform.forward = direction;
+            mParticleSystem.Play();
+        }
     }
 }

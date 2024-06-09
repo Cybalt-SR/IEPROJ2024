@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Manager\ProjectileManager.cs" />
     <Compile Include="Assets\Scripts\Library\GetAttributeValue.cs" />
+    <Compile Include="Assets\Scripts\Data\ScriptableObjects\GlobalEffectDictionary.cs" />
     <Compile Include="Assets\Scripts\Constants\EventNames.cs" />
     <Compile Include="Assets\Scripts\Manager\Interfaces\IPickupHandler.cs" />
     <Compile Include="Assets\Scripts\Input\IPlayerInputReceiver.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\Manager\PoolManager.cs" />
     <Compile Include="Assets\Scripts\Input\InputDebugger.cs" />
     <Compile Include="Assets\Scripts\Library\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\Manager\GlobalEffectManager.cs" />
     <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
     <Compile Include="Assets\Scripts\Controller\PoolParent.cs" />
     <Compile Include="Assets\Scripts\Data\ScriptableObjects\Attachment.cs" />

@@ -76,7 +76,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0434b56f700e704a8c1621c3b0346e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  die_effect_id: 
+  ondeath_globaleffect_id: default_die
+  onhit_globaleffect_id: default_hit
+  onbounce_globaleffect_id: default_bounce
 --- !u!135 &5660681214194514614
 SphereCollider:
   m_ObjectHideFlags: 0

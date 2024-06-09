@@ -1,5 +1,6 @@
 using Assets.Scripts.Controller.Attachments;
 using Assets.Scripts.Library;
+using Assets.Scripts.Manager;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,9 @@ namespace Assets.Scripts.Controller
         private SphereCollider mSphereCollider;
         private TrailRenderer optional_trail;
 
-        [SerializeField] private string ondeath_effect_id;
+        [SerializeField] private string ondeath_globaleffect_id;
+        [SerializeField] private string onhit_globaleffect_id;
+        [SerializeField] private string onbounce_globaleffect_id;
 
         public readonly Queue<Collider> ignore_list = new();
 
@@ -94,12 +97,15 @@ namespace Assets.Scripts.Controller
                 }
 
                 pierce_count++;
+                if (onhit_globaleffect_id != "")
+                    GlobalEffectManager.Instance.Spawn(onhit_globaleffect_id, transform.position, collision.GetContact(0).normal);
             }
             else
             {
-                ResetIgnores();
-
                 bounce_count++;
+                ResetIgnores();
+                if (onbounce_globaleffect_id != "")
+                    GlobalEffectManager.Instance.Spawn(onbounce_globaleffect_id, transform.position, collision.GetContact(0).normal);
             }
 
             if (already_split)
@@ -131,6 +137,9 @@ namespace Assets.Scripts.Controller
 
         private void Kill(ProjectileHittable hit = null)
         {
+            if(ondeath_globaleffect_id != "")
+                GlobalEffectManager.Instance.Spawn(ondeath_globaleffect_id, transform.position, late_velocity);
+
             gameObject.SetActive(false);
 
             if (already_split)
