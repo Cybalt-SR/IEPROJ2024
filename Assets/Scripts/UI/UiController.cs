@@ -6,7 +6,20 @@ namespace Assets.Scripts.Controller
 {
     public class UiController : MonoBehaviour, IUiInputReceiver
     {
+        [SerializeField] private string owner;
         [SerializeField] private GameObject Attachment_screen;
+
+        private void Awake()
+        {
+            void PropagateOwnership(Transform parent)
+            {
+                foreach (Transform child in parent)
+                    foreach (var comp in child.gameObject.GetComponents<IPlayerSpecificUi>())
+                        comp.PlayerAssigned = owner;
+            }
+
+            PropagateOwnership(this.transform);
+        }
 
         void IUiInputReceiver.Toggle_Attachement(InputAction.CallbackContext callback)
         {

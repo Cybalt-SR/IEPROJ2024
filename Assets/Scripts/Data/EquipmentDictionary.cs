@@ -1,4 +1,4 @@
-using Assets.Scripts.Data.ScriptableObjects;
+using Assets.Scripts.Data.Pickup;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Data

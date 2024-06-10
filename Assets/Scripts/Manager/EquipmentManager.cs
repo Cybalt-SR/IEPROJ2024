@@ -1,5 +1,5 @@
+using Assets.Scripts.Data.Pickup;
 using Assets.Scripts.Data;
-using Assets.Scripts.Data.ScriptableObjects;
 using Assets.Scripts.Gameplay.Manager;
 using Assets.Scripts.Library;
 

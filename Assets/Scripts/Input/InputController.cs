@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 namespace Assets.Scripts.Input
 {
     [RequireComponent(typeof(PlayerInput))]
-    public class InputSystemBroadcaster : MonoBehaviour, ISingleton<InputSystemBroadcaster>
+    public class InputController : MonoBehaviour, ISingleton<InputController>
     {
         private PlayerInput mPlayerInput;
+        public PlayerInput PlayerInput { get { return mPlayerInput; } }
 
         private enum ReceiverType { GENERIC, PLAYER, UI };
 

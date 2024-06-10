@@ -1,8 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Data.ScriptableObjects
+namespace Assets.Scripts.Data.Pickup
 {
-    public class Attachment : ScriptableObject
+    [CreateAssetMenu(menuName = "Game/Item/Attachment")]
+    public class Attachment : Pickup
     {
         public enum Part
         {

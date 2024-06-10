@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Controller;
 using Assets.Scripts.Data.AssetDictionaries;
-using Assets.Scripts.Data.ScriptableObjects;
+using Assets.Scripts.Data.Pickup;
 using Assets.Scripts.Gameplay.Manager;
 using Assets.Scripts.Library;
 using System.Collections.Generic;
