@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,7 @@ namespace Assets.Scripts.Controller.Attachments
     {
         private Collider mCollider;
         public Collider Collider { get { return mCollider; } }
-        [SerializeField] private UnityEvent onHit;
+        [SerializeField] private Action<ProjectileController> onHit;
 
         private void Awake()
         {
@@ -16,9 +17,9 @@ namespace Assets.Scripts.Controller.Attachments
         }
 
 
-        public void GetHit()
+        public void GetHit(ProjectileController projectile)
         {
-            onHit.Invoke();
+            onHit.Invoke(projectile);
         }
     }
 }

@@ -14,6 +14,9 @@ namespace Assets.Scripts.Controller
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.isTrigger)
+                return;
+
             if (other.attachedRigidbody == null)
                 return;
 
@@ -25,6 +28,9 @@ namespace Assets.Scripts.Controller
 
         private void OnTriggerExit(Collider other)
         {
+            if (other.isTrigger)
+                return;
+
             if (other.attachedRigidbody == null)
                 return;
 

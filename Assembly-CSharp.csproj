@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Controller\PoolParent.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\ProjectileHittable.cs" />
+    <Compile Include="Assets\Scripts\Controller\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Input\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\Manager\ProjectileManager.cs" />
     <Compile Include="Assets\Scripts\Library\GetAttributeValue.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\Controller\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Library\IConsistentDataHolder.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\Controller\Attachments\IOnPlayerNear.cs" />
     <Compile Include="Assets\Scripts\UI\IPlayerSpecificUi.cs" />
     <Compile Include="Assets\Scripts\Input\InputController.cs" />
     <Compile Include="Assets\Scripts\Manager\Interfaces\IBroadcastListener.cs" />
@@ -99,12 +101,14 @@
     <Compile Include="Assets\Scripts\Controller\UnitController.cs" />
     <Compile Include="Assets\Scripts\Manager\PoolManager.cs" />
     <Compile Include="Assets\Scripts\Input\InputDebugger.cs" />
+    <Compile Include="Assets\Scripts\Controller\Attachments\HealthObject.cs" />
     <Compile Include="Assets\Scripts\Library\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\Manager\GlobalEffectManager.cs" />
     <Compile Include="Assets\Scripts\Manager\ManagerManager.cs" />
     <Compile Include="Assets\Scripts\UI\PickupPanel.cs" />
     <Compile Include="Assets\Scripts\Data\AssetDictionaries\ProjectileDictionary.cs" />
     <Compile Include="Assets\Scripts\UI\InputLabel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Attachments\TriggerSphere.cs" />
     <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>

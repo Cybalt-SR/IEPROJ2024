@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class UnitController : MonoBehaviour
 {
-    private Rigidbody mRigidbody;
+    protected Rigidbody mRigidbody;
     private CapsuleCollider mCapsuleCollider;
     public CapsuleCollider Collider { get { return mCapsuleCollider; } }
 
@@ -16,10 +16,11 @@ public class UnitController : MonoBehaviour
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float speed_base = 1;
     public float Speed { get => speed_base; }
-    public Vector3 MoveDir { get; protected set; }
+    [SerializeField] private Vector3 movedir;
+    public Vector3 MoveDir { get => movedir; protected set => movedir = value; }
 
     //Looking
-    [SerializeField] private Transform shooting_reference;
+    [SerializeField] protected Transform shooting_reference;
     public Vector3 AimDir { get; private set; }
     private float lateral_distance;
     //shooting
@@ -35,7 +36,7 @@ public class UnitController : MonoBehaviour
     }
     protected virtual void Start()
     {
-        var shooting_reference_delta = shooting_reference.transform.position;
+        var shooting_reference_delta = shooting_reference.transform.localPosition;
         shooting_reference_delta.y = 0;
         lateral_distance = shooting_reference_delta.magnitude;
     }
@@ -106,6 +107,9 @@ public class UnitController : MonoBehaviour
     {
         if (mRigidbody.velocity.sqrMagnitude < Speed * Speed)
         {
+            if (MoveDir.sqrMagnitude > 1.1 || MoveDir.sqrMagnitude < 0.9)
+                MoveDir = MoveDir.normalized;
+
             mRigidbody.AddForce(acceleration * Time.fixedDeltaTime * MoveDir, ForceMode.VelocityChange);
         }
     }

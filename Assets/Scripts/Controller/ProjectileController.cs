@@ -88,7 +88,7 @@ namespace Assets.Scripts.Controller
 
             if (objectToCheck.TryGetComponent(out ProjectileHittable projectileHittable))
             {
-                projectileHittable.GetHit();
+                projectileHittable.GetHit(this);
 
                 if (pierce_count < from.Gun.pierce_count)
                 {
