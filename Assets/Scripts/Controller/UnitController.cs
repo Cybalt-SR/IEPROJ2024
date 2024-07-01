@@ -8,8 +8,8 @@ public class UnitController : MonoBehaviour
     private Rigidbody mRigidbody;
     private CapsuleCollider mCapsuleCollider;
     public CapsuleCollider Collider { get { return mCapsuleCollider; } }
-
-    [SerializeField] private GunData mGun;
+    //formerly private
+    [SerializeField] public GunData mGun;
     public GunData Gun { get { return mGun; } }
 
     //Moving
@@ -23,10 +23,10 @@ public class UnitController : MonoBehaviour
     public Vector3 AimDir { get; private set; }
     private float lateral_distance;
     //shooting
-    private int shots_before_reload = 0;
-    private bool reloading = false;
+    public int shots_before_reload = 0; // formerly private
+    public bool reloading = false; // formerly private
     private float time_last_shot = 0;
-    private float time_last_reload = 0;
+    public float time_last_reload = 0; // formerly private
 
     protected virtual void Awake()
     {
