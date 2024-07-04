@@ -50,7 +50,7 @@ namespace Assets.Scripts.Controller
             {
                 oldtarget_pos = target.transform.position;
 
-                if (mNavMesh.SetDestination(target.transform.position) == false)
+                if (this.gameObject.activeInHierarchy == false || mNavMesh.SetDestination(target.transform.position) == false)
                     return;
 
                 cachedcorners = mNavMesh.path.corners;

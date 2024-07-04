@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\Data\Pickup\Pickup.cs" />
     <Compile Include="Assets\Scripts\Controller\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Library\IConsistentDataHolder.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\IOnPlayerNear.cs" />
     <Compile Include="Assets\Scripts\UI\IPlayerSpecificUi.cs" />
     <Compile Include="Assets\Scripts\Input\InputController.cs" />
@@ -110,6 +109,7 @@
     <Compile Include="Assets\Scripts\UI\InputLabel.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\TriggerSphere.cs" />
     <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Attachments\DieEffectObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

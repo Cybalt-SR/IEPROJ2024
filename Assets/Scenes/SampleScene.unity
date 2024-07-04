@@ -3657,6 +3657,8 @@ GameObject:
   - component: {fileID: 909659588}
   - component: {fileID: 909659587}
   - component: {fileID: 909659586}
+  - component: {fileID: 909659593}
+  - component: {fileID: 909659594}
   m_Layer: 0
   m_Name: Enemy (2)
   m_TagString: Untagged
@@ -3816,9 +3818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa0fc084f6e62e459d7ccb8940959aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &909659592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3854,6 +3853,32 @@ MonoBehaviour:
   lateral_randomness: 4
   parallel_randomness: 0.7
   random_tick_length: 2
+--- !u!114 &909659593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909659584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f6dcd68c07c0c4d9636b5eb513da7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+--- !u!114 &909659594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909659584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8360f7778992b49b19b049ae9eaed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect_id: default_unit_die
 --- !u!1 &941975725
 GameObject:
   m_ObjectHideFlags: 0
@@ -4990,6 +5015,8 @@ GameObject:
   - component: {fileID: 1166032618}
   - component: {fileID: 1166032617}
   - component: {fileID: 1166032616}
+  - component: {fileID: 1166032623}
+  - component: {fileID: 1166032624}
   m_Layer: 0
   m_Name: Enemy (3)
   m_TagString: Untagged
@@ -5149,9 +5176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa0fc084f6e62e459d7ccb8940959aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1166032622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5187,6 +5211,32 @@ MonoBehaviour:
   lateral_randomness: 4
   parallel_randomness: 0.7
   random_tick_length: 2
+--- !u!114 &1166032623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166032614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f6dcd68c07c0c4d9636b5eb513da7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+--- !u!114 &1166032624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166032614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8360f7778992b49b19b049ae9eaed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect_id: default_unit_die
 --- !u!1 &1206494161
 GameObject:
   m_ObjectHideFlags: 0
@@ -6375,6 +6425,8 @@ GameObject:
   - component: {fileID: 1575843215}
   - component: {fileID: 1575843214}
   - component: {fileID: 1575843219}
+  - component: {fileID: 1575843221}
+  - component: {fileID: 1575843222}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -6512,9 +6564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa0fc084f6e62e459d7ccb8940959aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!195 &1575843219
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6572,6 +6621,32 @@ MonoBehaviour:
   lateral_randomness: 4
   parallel_randomness: 0.7
   random_tick_length: 2
+--- !u!114 &1575843221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575843211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f6dcd68c07c0c4d9636b5eb513da7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+--- !u!114 &1575843222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575843211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8360f7778992b49b19b049ae9eaed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect_id: default_unit_die
 --- !u!1 &1606496252
 GameObject:
   m_ObjectHideFlags: 0
@@ -7751,6 +7826,8 @@ GameObject:
   - component: {fileID: 1778500276}
   - component: {fileID: 1778500275}
   - component: {fileID: 1778500274}
+  - component: {fileID: 1778500281}
+  - component: {fileID: 1778500282}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Untagged
@@ -7910,9 +7987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa0fc084f6e62e459d7ccb8940959aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1778500280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7948,6 +8022,32 @@ MonoBehaviour:
   lateral_randomness: 4
   parallel_randomness: 0.7
   random_tick_length: 2
+--- !u!114 &1778500281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778500272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f6dcd68c07c0c4d9636b5eb513da7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+--- !u!114 &1778500282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778500272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8360f7778992b49b19b049ae9eaed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect_id: default_unit_die
 --- !u!1 &1782639435
 GameObject:
   m_ObjectHideFlags: 0
@@ -8659,9 +8759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa0fc084f6e62e459d7ccb8940959aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!195 &1878664023
 NavMeshAgent:
   m_ObjectHideFlags: 0

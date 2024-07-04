@@ -25,3 +25,6 @@ MonoBehaviour:
     - Key: default_bounce
       Value: {fileID: 7430430827942484949, guid: b5ba62e6079dfa44f81dd46d262d7dad,
         type: 3}
+    - Key: default_unit_die
+      Value: {fileID: 8252033151417013444, guid: 428325359b2879d4c867f41c4327aa93,
+        type: 3}

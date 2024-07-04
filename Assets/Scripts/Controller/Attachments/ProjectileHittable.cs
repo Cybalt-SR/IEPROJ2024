@@ -9,16 +9,23 @@ namespace Assets.Scripts.Controller.Attachments
     {
         private Collider mCollider;
         public Collider Collider { get { return mCollider; } }
-        [SerializeField] private Action<ProjectileController> onHit;
+        private Action<ProjectileController> onHit;
 
         private void Awake()
         {
             mCollider = GetComponent<Collider>();
         }
 
+        public void Subscribe(Action<ProjectileController> newaction)
+        {
+            onHit += newaction;
+        }
 
         public void GetHit(ProjectileController projectile)
         {
+            if (onHit == null)
+                return;
+
             onHit.Invoke(projectile);
         }
     }

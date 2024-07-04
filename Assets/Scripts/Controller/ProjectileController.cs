@@ -1,4 +1,5 @@
 using Assets.Scripts.Controller.Attachments;
+using Assets.Scripts.Data;
 using Assets.Scripts.Library;
 using Assets.Scripts.Manager;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Assets.Scripts.Controller
         public readonly Queue<Collider> ignore_list = new();
 
         private UnitController from = null;
+        public GunData Data => from.Gun;
         private int bounce_count = 0;
         private int pierce_count = 0;
         private bool already_split = false;
