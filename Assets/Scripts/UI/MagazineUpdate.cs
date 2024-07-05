@@ -18,18 +18,18 @@ public class MagazineUpdate : MonoBehaviour
     {
         player = FindFirstObjectByType<PlayerController>();
         reloadInfo.SetActive(false);
-        bulletInfo.GetComponent<Text>().text = player.shots_before_reload.ToString() + "/" + player.mGun.clip_size.ToString();
+        bulletInfo.GetComponent<Text>().text = player.Shots_before_reload.ToString() + "/" + player.Gun.clip_size.ToString();
     }
 
     private void Update()
     {
 
-        bulletInfo.GetComponent<Text>().text = player.shots_before_reload.ToString() + "/" + player.mGun.clip_size.ToString();
+        bulletInfo.GetComponent<Text>().text = player.Shots_before_reload.ToString() + "/" + player.Gun.clip_size.ToString();
        
-            if (player.reloading)
+            if (player.Reloading)
             {
                 reloadInfo.SetActive(true);
-                reloadInfo.GetComponent<Text>().text = Math.Round(player.mGun.reload_time - player.time_last_reload, 2).ToString();
+                reloadInfo.GetComponent<Text>().text = Math.Round(((player.Gun.reload_time - player.Time_last_reload)/player.Gun.reload_time*100),0).ToString() + "%";
             }
             else reloadInfo.SetActive(false);
        
