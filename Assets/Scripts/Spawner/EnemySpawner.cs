@@ -1,38 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Serializable]
-    public class Pool
-    {
-        public int size;
-        public int index;
-        public GameObject EFab;
-    }
 
     public GameObject Enem;
-    public List<Pool> pools;
-     [Range(0,10)] public int EnemyNumbers=0;
-    public Dictionary<int, Queue<GameObject>> EnemyPool;
-    
-     void Start()
+   // private NavMeshSurface NSurface;
+    public int EnemCount;
+   public NavMeshSurface bnd;
+
+    void Start()
     {
-        EnemyPool = new Dictionary<int, Queue<GameObject>>();
 
-        foreach (Pool pool in pools)
-        {
-            Queue<GameObject> queue = new Queue<GameObject>();
-
-
-            for(int i = 0; i<pool.size;i++)
-            {
-
-            }
-        }
+      bnd=GameObject.Find("NavMesh Surface").GetComponent<NavMeshSurface>();
+            this.createWave();
     }
+
+    private void createWave()
+    {
+    //    NSurface.
+
+        for (int i = 0; i < EnemCount; i++)
+        {
+            float rx = UnityEngine.Random.Range(bnd.navMeshData.sourceBounds.min.x, bnd.navMeshData.sourceBounds.max.x);
+            float rz = UnityEngine.Random.Range(bnd.navMeshData.sourceBounds.min.z, bnd.navMeshData.sourceBounds.max.z);
+            Vector3 random=new Vector3(rx,1,rz);
+            Instantiate(Enem,random,Quaternion.identity);
+        }  
+    }
+}
     // Update is called once per frame
 
-}
+
