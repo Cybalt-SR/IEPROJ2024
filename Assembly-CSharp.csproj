@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Controller\PoolParent.cs" />
+    <Compile Include="Assets\Scripts\UI\DragDropTemp\Attachment_UI_Hook.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\ProjectileHittable.cs" />
     <Compile Include="Assets\Scripts\Controller\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Input\IInputReceiver.cs" />
@@ -115,11 +116,8 @@
     <Compile Include="Assets\Scripts\UI\InputLabel.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\TriggerSphere.cs" />
     <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Controller\Attachments\DieEffectObject.cs" />
-=======
     <Compile Include="Assets\Scripts\UI\DragDropTemp\DragDrop.cs" />
->>>>>>> origin/Tolentino
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

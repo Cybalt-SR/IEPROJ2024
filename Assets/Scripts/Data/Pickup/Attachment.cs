@@ -8,7 +8,8 @@ namespace Assets.Scripts.Data.Pickup
         public enum Part
         {
             Mag,
-            Core,
+            Core1,
+            Core2,
             Scope,
             Stock,
             Foregrip,
@@ -16,6 +17,7 @@ namespace Assets.Scripts.Data.Pickup
             Muzzle
         }
 
+        public Part part;
         [Header("Basic")]
         public int damage_added = 0;
         public int shots_per_second_added = 0;

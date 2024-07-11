@@ -9,8 +9,47 @@ namespace Assets.Scripts.Data
     public class EquipmentDictionary
     {
         public int storage_limit = 3;
-        public SerializableDictionary<string, List<Attachment>> owner_attachments_equipped_dictionary = new("");
+        public SerializableDictionary<string, SerializableDictionary<Attachment.Part, Attachment>> owner_attachments_equipped_dictionary = new("");
         public SerializableDictionary<string, List<Attachment>> owner_attachments_storage_dictionary = new("");
         public SerializableDictionary<string, string> owner_secondary_dictionary = new("");
+
+        public void Equip(string playerId, int storageindex)
+        {
+            var attachmentstorage = owner_attachments_storage_dictionary[playerId];
+            var attachmentequipped = owner_attachments_equipped_dictionary[playerId];
+
+            if (storageindex >= attachmentstorage.Count)
+                return;
+
+            var to_equip = attachmentstorage[storageindex];
+
+            if (attachmentequipped.ContainsKey(to_equip.part) == false)
+                attachmentequipped.Add(to_equip.part, to_equip);
+            else
+            {
+                var alr_equipped = attachmentequipped[to_equip.part];
+
+                if (alr_equipped != null)
+                    attachmentstorage.Add(alr_equipped);
+
+                attachmentequipped[to_equip.part] = to_equip;
+            }
+
+            attachmentstorage.RemoveAt(storageindex);
+        }
+
+        public void UnEquip(string playerId, Attachment.Part part)
+        {
+            var attachmentstorage = owner_attachments_storage_dictionary[playerId];
+            var attachmentequipped = owner_attachments_equipped_dictionary[playerId];
+
+            if (attachmentstorage.Count >= 3)
+                return;
+
+            if(attachmentequipped.Remove(part, out var unequipped))
+            {
+                attachmentstorage.Add(unequipped);
+            }
+        }
     }
 }
