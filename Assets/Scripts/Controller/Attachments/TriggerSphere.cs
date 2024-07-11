@@ -23,6 +23,8 @@ namespace Assets.Scripts.Controller.Attachments
 
         private void Update()
         {
+            inside.RemoveAll(go => go == null);
+
             foreach (GameObject go in inside)
                 foreach (var iface in go.GetComponents<IOnPlayerNear>())
                     iface.OnPlayerNear(triggerer);

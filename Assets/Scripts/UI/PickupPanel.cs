@@ -15,7 +15,7 @@ namespace Assets.Scripts.UI
 
         private void Update()
         {
-            var nearby = PickupManager.Instance.Nearest((this as IPlayerSpecificUi).PlayerAssigned);
+            var nearby = PickupManager.Nearest((this as IPlayerSpecificUi).PlayerAssigned);
 
             if (nearby == null)
             {

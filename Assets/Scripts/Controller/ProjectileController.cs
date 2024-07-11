@@ -100,14 +100,14 @@ namespace Assets.Scripts.Controller
 
                 pierce_count++;
                 if (onhit_globaleffect_id != "")
-                    GlobalEffectManager.Instance.Spawn(onhit_globaleffect_id, transform.position, collision.GetContact(0).normal);
+                    GlobalEffectManager.Spawn(onhit_globaleffect_id, transform.position, collision.GetContact(0).normal);
             }
             else
             {
                 bounce_count++;
                 ResetIgnores();
                 if (onbounce_globaleffect_id != "")
-                    GlobalEffectManager.Instance.Spawn(onbounce_globaleffect_id, transform.position, collision.GetContact(0).normal);
+                    GlobalEffectManager.Spawn(onbounce_globaleffect_id, transform.position, collision.GetContact(0).normal);
             }
 
             if (already_split)
@@ -140,7 +140,7 @@ namespace Assets.Scripts.Controller
         private void Kill(ProjectileHittable hit = null)
         {
             if(ondeath_globaleffect_id != "")
-                GlobalEffectManager.Instance.Spawn(ondeath_globaleffect_id, transform.position, late_velocity);
+                GlobalEffectManager.Spawn(ondeath_globaleffect_id, transform.position, late_velocity);
 
             gameObject.SetActive(false);
 

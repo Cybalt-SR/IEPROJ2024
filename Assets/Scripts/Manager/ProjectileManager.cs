@@ -5,7 +5,7 @@ namespace Assets.Scripts.Manager
 {
     public class ProjectileManager : PoolManager<ProjectileManager, ProjectileController>
     {
-        public void Shoot(Vector3 from, Vector3 dir, UnitController shooter)
+        public static void Shoot(Vector3 from, Vector3 dir, UnitController shooter)
         {
             var gunData = shooter.Gun;
 
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Manager
                 var error_angle = (Random.value * gunData.error_angle) - (gunData.error_angle / 2);
                 var final_dir = Quaternion.AngleAxis(raw_angle + error_angle, Vector3.up) * dir;
 
-                var newprojectile = RequestOrCreate(gunData.projectile_id);
+                var newprojectile = Instance.RequestOrCreate(gunData.projectile_id);
 
                 newprojectile.transform.position = from;
 

@@ -1,5 +1,6 @@
 using Assets.Scripts.Input;
 using Assets.Scripts.Library;
+using Assets.Scripts.Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -62,6 +63,11 @@ namespace Assets.Scripts.Controller
 
             if ((this as IPlayerInputReceiver).IsFire)
                 base.Fire();
+        }
+
+        void IPlayerInputReceiver.Pickup(InputAction.CallbackContext callback)
+        {
+            PickupManager.Pickup(this.PlayerId);
         }
     }
 }

@@ -80,7 +80,7 @@ public class UnitController : MonoBehaviour
 
         if (time_last_shot >= 1.0f / mGun.shots_per_second)
         {
-            ProjectileManager.Instance.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
+            ProjectileManager.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
             time_last_shot = 0;
             shots_before_reload--;
         }

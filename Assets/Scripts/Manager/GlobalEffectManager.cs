@@ -14,18 +14,18 @@ namespace Assets.Scripts.Manager
     {
         private readonly Dictionary<string, GlobalEffectController> globaleffects = new();
 
-        public void Spawn(string id, Vector3 position, Vector3 direction)
+        public static void Spawn(string id, Vector3 position, Vector3 direction)
         {
-            if (globaleffects.ContainsKey(id) == false) {
+            if (Instance.globaleffects.ContainsKey(id) == false) {
                 var neweffect = GlobalEffectDictionary.Instance.Get(id);
 
                 if (neweffect == null)
                     return;
 
-                globaleffects.Add(id, Instantiate(neweffect.gameObject, this.transform).GetComponent<GlobalEffectController>());
+                Instance.globaleffects.Add(id, Instantiate(neweffect.gameObject, Instance.transform).GetComponent<GlobalEffectController>());
             }
 
-            globaleffects[id].Spawn(position, direction);
+            Instance.globaleffects[id].Spawn(position, direction);
         }
     }
 }

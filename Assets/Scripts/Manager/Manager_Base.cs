@@ -5,7 +5,7 @@ namespace Assets.Scripts.Gameplay.Manager
 {
     public class Manager_Base<T> : MonoBehaviour, ISingleton<T> where T : MonoBehaviour
     {
-        public static T Instance { get => ISingleton<T>.Instance; private set => ISingleton<T>.Instance = value; }
+        protected private static T Instance { get => ISingleton<T>.Instance; private set => ISingleton<T>.Instance = value; }
 
         protected virtual void Awake()
         {
