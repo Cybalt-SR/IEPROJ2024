@@ -15,12 +15,26 @@ namespace Assets.Scripts.Library
         }
 
         [SerializeField]
-        private List<KeyValueClass> structs = new List<KeyValueClass>();
-        private TKey default_key;
+        private List<KeyValueClass> structs = new();
+        private readonly TKey default_key;
+        private readonly Func<TValue> default_creater;
 
-        public SerializableDictionary(TKey default_key)
+        public TValue GetOrCreate(TKey key)
+        {
+            if (this.ContainsKey(key) == false)
+            {
+                if (this.default_creater != null)
+                    this.Add(key, default_creater.Invoke());
+                else
+                    this.Add(key, default);
+            }
+            return this[key];
+        }
+
+        public SerializableDictionary(TKey default_key, Func<TValue> default_creater = null)
         {
             this.default_key = default_key;
+            this.default_creater = default_creater;
         }
 
         public void OnBeforeSerialize()

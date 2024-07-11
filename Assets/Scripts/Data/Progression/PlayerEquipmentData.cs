@@ -3,20 +3,20 @@ using Assets.Scripts.Library;
 using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Data
+namespace Assets.Scripts.Data.Progression
 {
     [Serializable]
-    public class EquipmentDictionary
+    public class PlayerEquipmentData
     {
         public int storage_limit = 3;
-        public SerializableDictionary<string, SerializableDictionary<Attachment.Part, Attachment>> owner_attachments_equipped_dictionary = new("");
-        public SerializableDictionary<string, List<Attachment>> owner_attachments_storage_dictionary = new("");
-        public SerializableDictionary<string, string> owner_secondary_dictionary = new("");
+        public SerializableDictionary<string, SerializableDictionary<Attachment.Part, Attachment>> owner_attachments_equipped_dictionary = new("", () => new(Attachment.Part.Core1));
+        public SerializableDictionary<string, List<Attachment>> owner_attachments_storage_dictionary = new("", () => new());
+        public SerializableDictionary<string, string> owner_secondary_dictionary = new("", () => "");
 
         public void Equip(string playerId, int storageindex)
         {
-            var attachmentstorage = owner_attachments_storage_dictionary[playerId];
-            var attachmentequipped = owner_attachments_equipped_dictionary[playerId];
+            var attachmentstorage = owner_attachments_storage_dictionary.GetOrCreate(playerId);
+            var attachmentequipped = owner_attachments_equipped_dictionary.GetOrCreate(playerId);
 
             if (storageindex >= attachmentstorage.Count)
                 return;
@@ -40,8 +40,8 @@ namespace Assets.Scripts.Data
 
         public void UnEquip(string playerId, Attachment.Part part)
         {
-            var attachmentstorage = owner_attachments_storage_dictionary[playerId];
-            var attachmentequipped = owner_attachments_equipped_dictionary[playerId];
+            var attachmentstorage = owner_attachments_storage_dictionary.GetOrCreate(playerId);
+            var attachmentequipped = owner_attachments_equipped_dictionary.GetOrCreate(playerId);
 
             if (attachmentstorage.Count >= 3)
                 return;

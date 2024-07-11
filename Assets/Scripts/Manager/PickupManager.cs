@@ -29,16 +29,8 @@ namespace Assets.Scripts.Manager
             if (pickup == null)
                 return;
 
-            switch (pickup.pickup_type)
-            {
-                case Data.Pickup.Pickup.PickupType.attachment:
-                    EquipmentManager.PickupAttachment(player, pickup.data_attachment);
-                    break;
-                case Data.Pickup.Pickup.PickupType.secondary:
-                    break;
-                default:
-                    break;
-            }
+            if(pickup is Attachment attachment)
+                    EquipmentManager.PickupAttachment(player, attachment);
 
             Instance.nearby_per_player[player].Find(nearby => nearby.Pickup == pickup).PickedUp();
             Instance.nearby_per_player[player].RemoveAll(x => x == null);

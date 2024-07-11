@@ -1,5 +1,6 @@
 using Assets.Scripts.Data;
 using Assets.Scripts.Data.Pickup;
+using Assets.Scripts.Data.Progression;
 using Assets.Scripts.Library;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,14 +15,14 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
 
     private void OnEnable()
     {
-        var attachmentstorage = IConsistentDataHolder<EquipmentDictionary>.Data.owner_attachments_storage_dictionary[PlayerAssigned];
+        var attachmentstorage = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_storage_dictionary.GetOrCreate(PlayerAssigned);
 
         foreach (var stored_attachment in attachmentstorage)
         {
             //load attachment storage here
         }
 
-        var attachmentequipped = IConsistentDataHolder<EquipmentDictionary>.Data.owner_attachments_equipped_dictionary[PlayerAssigned];
+        var attachmentequipped = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_equipped_dictionary.GetOrCreate(PlayerAssigned);
 
         foreach (var equipped_attachment in attachmentequipped)
         {
@@ -36,11 +37,11 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
 
     public void Equip(int index)
     {
-        IConsistentDataHolder<EquipmentDictionary>.Data.Equip(PlayerAssigned, index);
+        IConsistentDataHolder<PlayerEquipmentData>.Data.Equip(PlayerAssigned, index);
     }
 
     public void UnEquip(Attachment.Part part)
     {
-        IConsistentDataHolder<EquipmentDictionary>.Data.UnEquip(PlayerAssigned, part);
+        IConsistentDataHolder<PlayerEquipmentData>.Data.UnEquip(PlayerAssigned, part);
     }
 }
