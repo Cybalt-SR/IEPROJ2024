@@ -12,7 +12,11 @@ EditorUserSettings:
       value: 5a08575f5207595a0f5d59741173094444164f7d7d2a23317c7a4465bbe1646d
       flags: 0
     RecentlyUsedSceneGuid-2:
+<<<<<<< HEAD
       value: 0107045550540f0a0956082140710d44444e402e7e7b763174794d6bb2e33639
+=======
+      value: 5107075656565f080f08097b44275d441216197e7f2a7f6075711e66b4b3356a
+>>>>>>> origin/Agasen
       flags: 0
     lightmappingBakingProfile:
       value: 51

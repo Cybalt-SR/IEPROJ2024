@@ -25,9 +25,15 @@ public class UnitController : MonoBehaviour
     private float lateral_distance;
     //shooting
     private int shots_before_reload = 0;
-    private bool reloading = false;
+    public int Shots_before_reload { get { return shots_before_reload; } }
+
+    private bool reloading = false; // formerly private
+    public bool Reloading {  get { return reloading; } }
+
     private float time_last_shot = 0;
-    private float time_last_reload = 0;
+
+    public float time_last_reload = 0; // formerly private
+    public float Time_last_reload {  get { return time_last_reload; } }
 
     protected virtual void Awake()
     {
