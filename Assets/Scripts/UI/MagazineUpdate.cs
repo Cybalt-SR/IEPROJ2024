@@ -5,14 +5,19 @@ using Assets.Scripts.Input;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Assets.Scripts.Library;
 
-public class MagazineUpdate : MonoBehaviour
+public class MagazineUpdate : MonoBehaviour, ISingleton<MagazineUpdate>
 {
 
     [SerializeField] private GameObject bulletInfo;
     [SerializeField] private GameObject reloadInfo;
     private PlayerController player;
 
+    private void Awake()
+    {
+        ISingleton<MagazineUpdate>.Instance = this;
+    }
 
     private void Start()
     {
@@ -25,15 +30,12 @@ public class MagazineUpdate : MonoBehaviour
     {
 
         bulletInfo.GetComponent<Text>().text = player.Shots_before_reload.ToString() + "/" + player.Gun.clip_size.ToString();
-       
-            if (player.Reloading)
-            {
-                reloadInfo.SetActive(true);
-                reloadInfo.GetComponent<Text>().text = Math.Round(((player.Gun.reload_time - player.Time_last_reload)/player.Gun.reload_time*100),0).ToString() + "%";
-            }
-            else reloadInfo.SetActive(false);
-       
 
-
+        if (player.Reloading)
+        {
+            reloadInfo.SetActive(true);
+            reloadInfo.GetComponent<Text>().text = Math.Round(((player.Gun.reload_time - player.Time_last_reload) / player.Gun.reload_time * 100), 0).ToString() + "%";
+        }
+        else reloadInfo.SetActive(false);
     }
 }
