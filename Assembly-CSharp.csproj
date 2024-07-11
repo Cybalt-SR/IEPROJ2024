@@ -76,8 +76,10 @@
     <Compile Include="Assets\Scripts\Controller\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Library\IConsistentDataHolder.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\IOnPlayerNear.cs" />
+    <Compile Include="Assets\Scripts\UI\DragDropTemp\AttachmentSlot.cs" />
     <Compile Include="Assets\Scripts\UI\IPlayerSpecificUi.cs" />
     <Compile Include="Assets\Scripts\Input\InputController.cs" />
+    <Compile Include="Assets\Scripts\UI\DragDropTemp\DragDropUI.cs" />
     <Compile Include="Assets\Scripts\Manager\Interfaces\IBroadcastListener.cs" />
     <Compile Include="Assets\Scripts\Input\IPlayerInputReceiver.cs" />
     <Compile Include="Assets\Scripts\Controller\GlobalEffectController.cs" />
@@ -99,8 +101,10 @@
     <Compile Include="Assets\Scripts\Data\AssetDictionaries\SingletonDictionary.cs" />
     <Compile Include="Assets\Scripts\Controller\PickupController.cs" />
     <Compile Include="Assets\Scripts\Controller\UnitController.cs" />
+    <Compile Include="Assets\Scripts\UI\CustomScrollrect.cs" />
     <Compile Include="Assets\Scripts\Manager\PoolManager.cs" />
     <Compile Include="Assets\Scripts\Input\InputDebugger.cs" />
+    <Compile Include="Assets\Scripts\UI\DragDropTemp\CloneDataHolder.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\HealthObject.cs" />
     <Compile Include="Assets\Scripts\Library\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\Manager\GlobalEffectManager.cs" />
@@ -111,7 +115,11 @@
     <Compile Include="Assets\Scripts\UI\InputLabel.cs" />
     <Compile Include="Assets\Scripts\Controller\Attachments\TriggerSphere.cs" />
     <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Controller\Attachments\DieEffectObject.cs" />
+=======
+    <Compile Include="Assets\Scripts\UI\DragDropTemp\DragDrop.cs" />
+>>>>>>> origin/Tolentino
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -1185,6 +1193,10 @@
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
