@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using Assets.Scripts.Gameplay.Manager;
 using Assets.Scripts.Data.Progression;
+using Assets.Scripts.Data.Pickup;
 
 public class TestGUI : MonoBehaviour, IPlayerSpecificUi
 {
@@ -13,7 +14,7 @@ public class TestGUI : MonoBehaviour, IPlayerSpecificUi
     private void OnGUI()
     {
         float scaler = Screen.height * (1.0f / 480.0f);
-        int font_size = 13;
+        int font_size = 11;
 
         var buttonstyle = new GUIStyle("button");
         buttonstyle.fontSize = font_size * (int)scaler;
@@ -44,20 +45,37 @@ public class TestGUI : MonoBehaviour, IPlayerSpecificUi
             height_this_line = 0;
         }
 
-        GUI.Label(GetNextRect(150, 30), "Attachment Inventory:");
+        GUI.Label(GetNextRect(150, 20), "Attachment Inventory:");
         MakeLine();
 
-        var equipped = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_equipped_dictionary.GetOrCreate(PlayerAssigned);
-        var storage = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_storage_dictionary.GetOrCreate(PlayerAssigned);
+        var data = IConsistentDataHolder<PlayerEquipmentData>.Data;
+        var equipped = new Dictionary<Attachment.Part, Attachment>(data.owner_attachments_equipped_dictionary.GetOrCreate(PlayerAssigned));
+        var storage = new List<Attachment>(data.owner_attachments_storage_dictionary.GetOrCreate(PlayerAssigned));
 
+        int storage_index = 0;
         foreach (var stored_item in storage)
         {
-            GUI.Label(GetNextRect(100, 30), stored_item.name);
+            GUI.Label(GetNextRect(100, 20), stored_item.name);
 
-            if (GUI.Button(GetNextRect(50, 30), "EQUIP"))
-                continue;
-            if (GUI.Button(GetNextRect(50, 30), "DESTROY"))
-                continue;
+            if (GUI.Button(GetNextRect(50, 20), "EQUIP"))
+                data.Equip(PlayerAssigned, storage_index);
+            if (GUI.Button(GetNextRect(50, 20), "DESTROY"))
+                data.Destroy(PlayerAssigned, storage_index);
+
+            MakeLine();
+            storage_index++;
+        }
+
+        MakeLine();
+        GUI.Label(GetNextRect(150, 20), "Attachments Equipped:");
+
+        MakeLine();
+        foreach (var equipped_item in equipped)
+        {
+            GUI.Label(GetNextRect(200, 20), Enum.GetName(typeof(Attachment.Part), equipped_item.Key) + " => " + equipped_item.Value.name);
+
+            if (GUI.Button(GetNextRect(50, 20), "UNEQUIP"))
+                data.UnEquip(PlayerAssigned, equipped_item.Key);
 
             MakeLine();
         }

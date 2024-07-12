@@ -1,6 +1,8 @@
+using Assets.Scripts.Data.Progression;
 using Assets.Scripts.Input;
 using Assets.Scripts.Library;
 using Assets.Scripts.Manager;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +10,15 @@ namespace Assets.Scripts.Controller
 {
     public class PlayerController : UnitController, IPlayerInputReceiver
     {
+        public static void SetGunChanged(string id)
+        {
+           var player = FindObjectsByType<PlayerController>(FindObjectsSortMode.None).Where(player => player.playerId == id).FirstOrDefault();
+
+            if (player == null) return;
+
+            player.GunChanged = true;
+        }
+
         [SerializeField] private string playerId;
         [SerializeField] private Collider aiming_blanket;
         public string PlayerId { get { return playerId; } }
@@ -17,6 +28,16 @@ namespace Assets.Scripts.Controller
         //input
         private Vector2 late_aimpos;
         private Vector2 screenpos;
+
+        protected override void UpdateFinalGun()
+        {
+            base.UpdateFinalGun();
+
+            foreach (var item in IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_equipped_dictionary.GetOrCreate(PlayerId))
+            {
+                item.Value.ApplyThis(ref mFinalGun);
+            }
+        }
 
         void IPlayerInputReceiver.Move(InputAction.CallbackContext callback)
         {

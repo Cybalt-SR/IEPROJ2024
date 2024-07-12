@@ -8903,6 +8903,7 @@ GameObject:
   - component: {fileID: 1325387916}
   - component: {fileID: 1325387915}
   - component: {fileID: 1325387914}
+  - component: {fileID: 1325387917}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -8969,6 +8970,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1222, y: 1081.9426}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1325387917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325387913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b1fb5352fc41048acd4e60f0612abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReceiver: {fileID: 1833214513}
 --- !u!1 &1328598163
 GameObject:
   m_ObjectHideFlags: 0
@@ -10542,13 +10556,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1612660133}
   - component: {fileID: 1612660134}
+  - component: {fileID: 1612660135}
   m_Layer: 5
   m_Name: Test GUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1612660133
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10580,6 +10595,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffcf1860e439e164b93b413b93d03aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1612660135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612660132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b1fb5352fc41048acd4e60f0612abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReceiver: {fileID: 1833214513}
 --- !u!1 &1620188471
 GameObject:
   m_ObjectHideFlags: 0
@@ -12550,7 +12578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: Player1
-  Attachment_screen: {fileID: 1325387913}
+  Attachment_screen: {fileID: 1612660132}
 --- !u!1 &1865396652
 GameObject:
   m_ObjectHideFlags: 0
@@ -12814,18 +12842,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067b97f4cd3d002498322e4e445b88bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mGun:
+  mBaseGun:
     damage: 1
-    shots_per_second: 15
-    clip_size: 10
-    reload_time: 1
+    shots_per_second: 2
+    clip_size: 6
+    reload_time: 2
     projectile_speed: 20
     error_angle: 15
-    projectiles_per_shot: 3
+    projectiles_per_shot: 1
     spread_angle: 45
-    bounce_count: 2
+    bounce_count: 0
     split_count: 0
-    pierce_count: 2
+    pierce_count: 0
     projectile_id: 
   acceleration: 40
   speed_base: 5

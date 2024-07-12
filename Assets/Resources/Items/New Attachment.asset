@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5aff60252352e42997472544d37e42, type: 3}
   m_Name: New Attachment
   m_EditorClassIdentifier: 
+  part: 0
   damage_added: 0
   shots_per_second_added: 0
-  clip_size_added: 0
-  reload_time_percent_deduction: 0
+  clip_size_added: 3
+  reload_time_percent_deduction: 0.7
   projectile_speed_added: 0
   error_angle_percent_deduction: 0
   projectiles_per_shot_added: 0

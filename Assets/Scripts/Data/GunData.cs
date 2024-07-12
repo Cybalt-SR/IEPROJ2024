@@ -1,26 +1,27 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Data
 {
     [Serializable]
-    public class GunData
+    public struct GunData
     {
         [Header("Basic")]
-        public int damage = 1;
-        public int shots_per_second = 3;
-        public int clip_size = 10;
-        public float reload_time = 2;
+        public int damage;
+        public int shots_per_second;
+        public int clip_size;
+        public float reload_time;
         [Header("Accuracy")]
-        public float projectile_speed = 20;
-        public float error_angle = 15;
+        public float projectile_speed;
+        public float error_angle;
         [Header("Spread")]
-        public int projectiles_per_shot = 1;
-        public float spread_angle = 45;
+        public int projectiles_per_shot;
+        public float spread_angle;
         [Header("Collision")]
-        public int bounce_count = 0;
-        public int split_count = 0;
-        public int pierce_count = 0;
+        public int bounce_count;
+        public int split_count;
+        public int pierce_count;
         [Header("Visuals")]
         public string projectile_id;
     }

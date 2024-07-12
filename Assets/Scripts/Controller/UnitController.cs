@@ -9,8 +9,23 @@ public class UnitController : MonoBehaviour
     private CapsuleCollider mCapsuleCollider;
     public CapsuleCollider Collider { get { return mCapsuleCollider; } }
 
-    [SerializeField] private GunData mGun;
-    public GunData Gun { get { return mGun; } }
+    [SerializeField] private GunData mBaseGun;
+    private bool gunchanged = false;
+    public bool GunChanged { get { return gunchanged; } set => gunchanged = value; }
+    protected virtual void UpdateFinalGun() { mFinalGun = mBaseGun; }
+    protected GunData mFinalGun;
+    public GunData Gun
+    {
+        get
+        {
+            if(this.gunchanged)
+                UpdateFinalGun();
+
+            gunchanged = false;
+
+            return mFinalGun;
+        }
+    }
 
     //Moving
     [SerializeField] private float acceleration = 1;
@@ -45,6 +60,8 @@ public class UnitController : MonoBehaviour
         var shooting_reference_delta = shooting_reference.transform.localPosition;
         shooting_reference_delta.y = 0;
         lateral_distance = shooting_reference_delta.magnitude;
+
+        UpdateFinalGun();
     }
 
     protected void AimAt(Vector3 pos)
@@ -84,7 +101,7 @@ public class UnitController : MonoBehaviour
             return;
         }
 
-        if (time_last_shot >= 1.0f / mGun.shots_per_second)
+        if (time_last_shot >= 1.0f / Gun.shots_per_second)
         {
             ProjectileManager.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
             time_last_shot = 0;
@@ -100,10 +117,10 @@ public class UnitController : MonoBehaviour
         {
             time_last_reload += Time.deltaTime;
 
-            if (time_last_reload >= mGun.reload_time)
+            if (time_last_reload >= Gun.reload_time)
             {
                 reloading = false;
-                shots_before_reload = mGun.clip_size;
+                shots_before_reload = Gun.clip_size;
                 time_last_reload = 0;
             }
         }

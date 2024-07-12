@@ -1,3 +1,4 @@
+using Assets.Scripts.Controller;
 using Assets.Scripts.Data.Pickup;
 using Assets.Scripts.Library;
 using System;
@@ -13,6 +14,14 @@ namespace Assets.Scripts.Data.Progression
         public SerializableDictionary<string, List<Attachment>> owner_attachments_storage_dictionary = new("", () => new());
         public SerializableDictionary<string, string> owner_secondary_dictionary = new("", () => "");
 
+        public void Destroy(string playerId, int storageindex)
+        {
+            var attachmentstorage = owner_attachments_storage_dictionary.GetOrCreate(playerId);
+
+            attachmentstorage.RemoveAt(storageindex);
+
+            
+        }
         public void Equip(string playerId, int storageindex)
         {
             var attachmentstorage = owner_attachments_storage_dictionary.GetOrCreate(playerId);
@@ -36,6 +45,8 @@ namespace Assets.Scripts.Data.Progression
             }
 
             attachmentstorage.RemoveAt(storageindex);
+
+            PlayerController.SetGunChanged(playerId);
         }
 
         public void UnEquip(string playerId, Attachment.Part part)
@@ -50,6 +61,8 @@ namespace Assets.Scripts.Data.Progression
             {
                 attachmentstorage.Add(unequipped);
             }
+
+            PlayerController.SetGunChanged(playerId);
         }
     }
 }

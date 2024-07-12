@@ -1,5 +1,6 @@
 using Assets.Scripts.Library;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,6 @@ namespace Assets.Scripts.Input
     public class InputController : MonoBehaviour, ISingleton<InputController>
     {
         private PlayerInput mPlayerInput;
-        public PlayerInput PlayerInput { get { return mPlayerInput; } }
 
         private enum ReceiverType { GENERIC, PLAYER, UI };
 
@@ -23,9 +23,49 @@ namespace Assets.Scripts.Input
             {ReceiverType.UI, typeof(IUiInputReceiver) },
         };
 
+        private readonly Stack<InputBlocker> blockers = new();
+        private readonly List<InputBlocker> blockersToPop = new();
+
+        public static void BlockerEnabled(InputBlocker blocker)
+        {
+            ISingleton<InputController>.Instance.blockers.Push(blocker);
+        }
+
+        public static void BlockerDisabled(InputBlocker blocker)
+        {
+            var stack = ISingleton<InputController>.Instance.blockers;
+            var list = ISingleton<InputController>.Instance.blockersToPop;
+
+            if (stack.TryPeek(out var top) == false)
+                return;
+
+            if (top != blocker)
+            {
+                list.Add(blocker);
+                return;
+            }
+                
+            stack.Pop();
+
+            while (stack.TryPeek(out top))
+            {
+                if (list.Contains(top))
+                {
+                    list.Remove(top);
+                    stack.Pop();
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
         private void Awake()
         {
+            ISingleton<InputController>.Instance = this;
             mPlayerInput = GetComponent<PlayerInput>();
+
             foreach (var mapid in autoEnabledMaps)
             {
                 mPlayerInput.actions.actionMaps[mapid].Enable();
@@ -64,8 +104,13 @@ namespace Assets.Scripts.Input
 
                             void onAction(InputAction.CallbackContext callback)
                             {
+                                var blocked = blockers.TryPeek(out var top);
+
                                 inputReceivers[receiverType].ForEach((receiver) =>
                                 {
+                                    if (blocked && top.inputReceiver != (receiver as MonoBehaviour))
+                                        return;
+
                                     methods.Invoke(receiver, new object[] { callback });
                                 });
                             }
@@ -84,15 +129,24 @@ namespace Assets.Scripts.Input
 
                             void onAction(InputAction.CallbackContext callback)
                             {
+                                var blocked = blockers.TryPeek(out var top);
+
                                 inputReceivers[receiverType].ForEach((receiver) =>
                                 {
+                                    if (blocked && top.inputReceiver != (receiver as MonoBehaviour))
+                                        return;
+
                                     property.SetValue(receiver, true);
                                 });
                             }
                             void offAction(InputAction.CallbackContext callback)
                             {
+                                var blocked = blockers.TryPeek(out var top);
+
                                 inputReceivers[receiverType].ForEach((receiver) =>
                                 {
+                                    if (blocked && top.inputReceiver != (receiver as MonoBehaviour))
+                                        return;
                                     property.SetValue(receiver, false);
                                 });
                             }

@@ -31,6 +31,7 @@ namespace Assets.Scripts.Library
             return this[key];
         }
 
+
         public SerializableDictionary(TKey default_key, Func<TValue> default_creater = null)
         {
             this.default_key = default_key;
