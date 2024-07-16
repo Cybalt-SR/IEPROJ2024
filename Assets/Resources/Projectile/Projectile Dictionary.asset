@@ -15,4 +15,7 @@ MonoBehaviour:
   fallback: {fileID: 4822724788402965468, guid: 8f789f245703183459e26ba54095e480,
     type: 3}
   dictionary:
-    structs: []
+    structs:
+    - Key: green
+      Value: {fileID: 4822724788402965468, guid: e8c831afd9000a34f962c05a1bc632f9,
+        type: 3}

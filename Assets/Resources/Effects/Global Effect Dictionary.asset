@@ -28,3 +28,12 @@ MonoBehaviour:
     - Key: default_unit_die
       Value: {fileID: 8252033151417013444, guid: 428325359b2879d4c867f41c4327aa93,
         type: 3}
+    - Key: green_hit
+      Value: {fileID: 8252033151417013444, guid: 728253fa344fef74ba909bc142c4e085,
+        type: 3}
+    - Key: green_bounce
+      Value: {fileID: 7430430827942484949, guid: 869546e3064586442b52dcad3232cac4,
+        type: 3}
+    - Key: green_die
+      Value: {fileID: 1161053065132040166, guid: 1d1a73ee80c26e443b66220861a5c757,
+        type: 3}
