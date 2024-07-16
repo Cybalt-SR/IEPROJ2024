@@ -15,9 +15,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-
-      bnd=GameObject.Find("NavMesh Surface").GetComponent<NavMeshSurface>();
+        if (GameObject.Find("Map").GetComponent<NavMeshSurface>() != null)
+        {
+            bnd = GameObject.Find("Map").GetComponent<NavMeshSurface>();
             this.createWave();
+        }
     }
 
     private void createWave()
