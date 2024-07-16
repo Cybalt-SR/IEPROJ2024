@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5939109299263342653}
   - component: {fileID: 1742625443284175486}
   - component: {fileID: 1605362885978331551}
+  - component: {fileID: -3659257103871336071}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -53,10 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a32e0295b8a764db52f7cdbb436d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mGun:
+  mBaseGun:
     damage: 1
-    shots_per_second: 3
-    clip_size: 10
+    shots_per_second: 2
+    clip_size: 6
     reload_time: 2
     projectile_speed: 20
     error_angle: 15
@@ -160,7 +161,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -225,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f6dcd68c07c0c4d9636b5eb513da7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 5
 --- !u!114 &1605362885978331551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +240,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect_id: default_unit_die
+--- !u!114 &-3659257103871336071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8bd0b9c90d95f43aa9cccf9aa9015c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
+    chance: 100
+  - item: {fileID: 11400000, guid: 53322f5c69fd85046ae59f03c8391801, type: 2}
+    chance: 5
+  - item: {fileID: 11400000, guid: e432218d5c575e74aaecf871fcd36f0e, type: 2}
+    chance: 5
+  - item: {fileID: 11400000, guid: cddd7a647a5b2464d8fc2854c6fe3f0c, type: 2}
+    chance: 5
+  - item: {fileID: 11400000, guid: ee0e8c3f0fefc0449bac9fbe13227236, type: 2}
+    chance: 5
 --- !u!1 &7673579176970084753
 GameObject:
   m_ObjectHideFlags: 0

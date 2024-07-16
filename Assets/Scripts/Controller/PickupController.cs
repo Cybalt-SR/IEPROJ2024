@@ -12,6 +12,11 @@ namespace Assets.Scripts.Controller
         [SerializeField] private Pickup pickup;
         public Pickup Pickup { get { return pickup; } }
 
+        public void SetPickup(Pickup pickup)
+        {
+            this.pickup = pickup;
+        }
+
         public void PickedUp()
         {
             Destroy(this.gameObject);

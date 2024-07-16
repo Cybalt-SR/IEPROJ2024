@@ -1,3 +1,4 @@
+using Assets.Scripts.Controller;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,31 +9,29 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
 
-    public GameObject Enem;
-   // private NavMeshSurface NSurface;
-    public int EnemCount;
-   public NavMeshSurface bnd;
+    [SerializeField] private GameObject Enem;
+    // private NavMeshSurface NSurface;
+    [SerializeField] private int EnemCount;
+
+    [SerializeField] private float spawn_interval;
 
     void Start()
     {
-        if (GameObject.Find("Map").GetComponent<NavMeshSurface>() != null)
-        {
-            bnd = GameObject.Find("Map").GetComponent<NavMeshSurface>();
-            this.createWave();
-        }
+        InvokeRepeating(nameof(createWave), 0, spawn_interval);
     }
 
     private void createWave()
     {
-    //    NSurface.
+        //    NSurface.
+
+        var anchorlist = FindObjectsByType<SpawnerAnchor>(FindObjectsSortMode.None);
 
         for (int i = 0; i < EnemCount; i++)
         {
-            float rx = UnityEngine.Random.Range(bnd.navMeshData.sourceBounds.min.x, bnd.navMeshData.sourceBounds.max.x);
-            float rz = UnityEngine.Random.Range(bnd.navMeshData.sourceBounds.min.z, bnd.navMeshData.sourceBounds.max.z);
-            Vector3 random=new Vector3(rx,1,rz);
-            Instantiate(Enem,random,Quaternion.identity);
-        }  
+            int a_i = (i + UnityEngine.Random.Range(0, 3)) % anchorlist.Length;
+
+            Instantiate(Enem, anchorlist[a_i].transform.position, Quaternion.identity);
+        }
     }
 }
     // Update is called once per frame

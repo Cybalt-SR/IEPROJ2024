@@ -86,8 +86,10 @@ namespace Assets.Scripts.Controller
             var objectToCheck = collision.collider.gameObject;
 
             if (collision.rigidbody != null)
+            {
                 objectToCheck = collision.rigidbody.gameObject;
-
+                collision.rigidbody.AddExplosionForce(Data.projectile_speed * 2, this.transform.position, mSphereCollider.radius + 3);
+            }
             if (objectToCheck.TryGetComponent(out ProjectileHittable projectileHittable))
             {
                 projectileHittable.GetHit(this);
@@ -101,6 +103,7 @@ namespace Assets.Scripts.Controller
                 pierce_count++;
                 if (onhit_globaleffect_id != "")
                     GlobalEffectManager.Spawn(onhit_globaleffect_id, transform.position, collision.GetContact(0).normal);
+
             }
             else
             {

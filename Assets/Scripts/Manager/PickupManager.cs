@@ -1,6 +1,7 @@
 using Assets.Scripts.Controller;
 using Assets.Scripts.Data.Pickup;
 using Assets.Scripts.Gameplay.Manager;
+using Assets.Scripts.Library;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -11,6 +12,14 @@ namespace Assets.Scripts.Manager
     {
         [SerializeField] private SerializedDictionary<string, List<PickupController>> nearby_per_player = new();
         [SerializeField] private SerializedDictionary<string, Pickup> nearest_per_player = new();
+        [SerializeField] private GameObject pickup_prefab = null;
+
+        public static void CreatePickup(Pickup pickup, Vector3 position)
+        {
+            var newobj = Instantiate(Instance.pickup_prefab, position, Quaternion.identity, ISingleton<PoolParent>.Instance.transform);
+            newobj.GetComponent<PickupController>().SetPickup(pickup);
+        }
+
         public static Pickup Nearest(string player)
         {
             if (Instance.nearest_per_player.ContainsKey(player) == false)
@@ -29,8 +38,9 @@ namespace Assets.Scripts.Manager
             if (pickup == null)
                 return;
 
-            if(pickup is Attachment attachment)
-                    EquipmentManager.PickupAttachment(player, attachment);
+            if (pickup is Attachment attachment)
+                if (EquipmentManager.PickupAttachment(player, attachment) == false)
+                    return;
 
             Instance.nearby_per_player[player].Find(nearby => nearby.Pickup == pickup).PickedUp();
             Instance.nearby_per_player[player].RemoveAll(x => x == null);
@@ -56,6 +66,8 @@ namespace Assets.Scripts.Manager
 
             float nearest_distance = float.PositiveInfinity;
             Pickup nearest = null;
+
+            nearby_list.RemoveAll(x => x == null);
 
             foreach (var nearby_object in nearby_list)
             {
