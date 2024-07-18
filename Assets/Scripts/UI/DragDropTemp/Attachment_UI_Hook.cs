@@ -17,9 +17,18 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
     {
         var attachmentstorage = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_storage_dictionary.GetOrCreate(PlayerAssigned);
 
+        //DragDropController.Instance.ReleaseAll();
+        ISingleton<DragDropController>.Instance.ReleaseAll();
         foreach (var stored_attachment in attachmentstorage)
         {
-            //load attachment storage here
+            GameObject container = ISingleton<DragDropController>.Instance.RequestOrCreate();
+            DragDrop draggable = container.GetComponent<DragDrop>();
+
+            if (draggable == null)
+                continue;
+
+            draggable.AssignedAttachment = stored_attachment;
+
         }
 
         var attachmentequipped = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_equipped_dictionary.GetOrCreate(PlayerAssigned);

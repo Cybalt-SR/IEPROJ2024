@@ -18,6 +18,13 @@ namespace Assets.Scripts.Data.Pickup
         }
 
         public Part part;
+
+        [Header("Sprite")]
+        public Sprite attachment_icon = null;
+        public string attachment_name;
+        [TextArea(1, 5)]
+        public string attachment_description;
+
         [Header("Basic")]
         public int damage_added = 0;
         public int shots_per_second_added = 0;
