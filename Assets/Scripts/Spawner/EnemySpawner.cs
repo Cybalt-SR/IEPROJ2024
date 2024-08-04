@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject Enem;
     // private NavMeshSurface NSurface;
     [SerializeField] private int EnemCount;
+    [SerializeField] private int limit = 20;
+    [SerializeField] private int spawned_alr = 0;
 
     [SerializeField] private float spawn_interval;
 
@@ -22,18 +24,19 @@ public class EnemySpawner : MonoBehaviour
 
     private void createWave()
     {
-        //    NSurface.
-
         var anchorlist = FindObjectsByType<SpawnerAnchor>(FindObjectsSortMode.None);
 
         for (int i = 0; i < EnemCount; i++)
         {
+            if (spawned_alr >= limit)
+                return;
+
             int a_i = (i + UnityEngine.Random.Range(0, 3)) % anchorlist.Length;
 
-            Instantiate(Enem, anchorlist[a_i].transform.position, Quaternion.identity);
+            Instantiate(Enem, anchorlist[a_i].transform.position, Quaternion.Euler(0, -45, 0));
+
+            spawned_alr++;
         }
     }
 }
-    // Update is called once per frame
-
 

@@ -19,8 +19,8 @@ MonoBehaviour:
   reload_time_percent_deduction: 0
   projectile_speed_added: 0
   error_angle_percent_deduction: 0
-  projectiles_per_shot_added: 0
+  projectiles_per_shot_added: 2
   spread_angle_percent_difference: 0
   bounce_count_added: 0
-  split_count_added: 1
+  split_count_added: 0
   pierce_count_added: 0
