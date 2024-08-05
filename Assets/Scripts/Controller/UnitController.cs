@@ -1,6 +1,7 @@
 using Assets.Scripts.Data;
 using Assets.Scripts.Manager;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class UnitController : MonoBehaviour
@@ -32,11 +33,26 @@ public class UnitController : MonoBehaviour
     [SerializeField] private float speed_base = 1;
     public float Speed { get => speed_base; }
     [SerializeField] private Vector3 movedir;
-    public Vector3 MoveDir { get => movedir; protected set => movedir = value; }
+    public Vector3 MoveDir {
+        get => movedir;
+        protected set{
+            OnMove.Invoke(value);
+            movedir = value;
+        }
+    }
 
     //Looking
     [SerializeField] protected Transform shooting_reference;
-    public Vector3 AimDir { get; private set; }
+    [SerializeField] private Vector3 aimdir;
+    public Vector3 AimDir
+    {
+        get => aimdir;
+        private set
+        {
+            OnAim.Invoke(value);
+            aimdir = value;
+        }
+    }
     private float lateral_distance;
     //shooting
     private int shots_before_reload = 0;
@@ -49,6 +65,9 @@ public class UnitController : MonoBehaviour
 
     public float time_last_reload = 0; // formerly private
     public float Time_last_reload {  get { return time_last_reload; } }
+
+    [SerializeField] private UnityEvent<Vector3> OnMove;
+    [SerializeField] private UnityEvent<Vector3> OnAim;
 
     protected virtual void Awake()
     {
@@ -134,6 +153,8 @@ public class UnitController : MonoBehaviour
                 MoveDir = MoveDir.normalized;
 
             mRigidbody.AddForce(acceleration * Time.fixedDeltaTime * MoveDir, ForceMode.VelocityChange);
+
+            var vel = mRigidbody.velocity;
         }
     }
 }
