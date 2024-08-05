@@ -24,45 +24,50 @@ public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
         i.sprite = held.attachment_icon;
     }
 
+    private void UnEquip()
+    {
+        //Call UnEquip Attachment UI Hook here
+
+        DragDropController d = (DragDropController)DragDropController.instance;
+        d.InsertAttachmentToUI(held);
+  
+        i.sprite = null;
+        held = null;
+    }
     public void OnDrop(PointerEventData eventData)
     {
+
         GameObject dragged = eventData.pointerDrag;
 
         if (dragged == null || dragged.GetComponent<DragDrop>() == null) 
             return;
 
-        dragged.SetActive(false);
-
+        print(part);
 
         Attachment toHold = CloneDataHolder.instance.Data;
 
 
-        if(held.part == part)
-        {
-            holdAttachment(toHold);
-            CloneDataHolder.instance.Data = null;
-            DragDropController.instance.Release(dragged);
-            //call attachment ui hook here
-        }
+        if (toHold.part != part)
+            return;
 
+        //if an attachment is equipped, unequip it first
+        if(held != null)
+            UnEquip();
+       
+        holdAttachment(toHold);
+        CloneDataHolder.instance.Data = null;
 
+        DragDropController.instance.Release(dragged);
+        // call attachment ui hook here
+       
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Right)
-            return;
-
-            //unequip
-
-
-        i.sprite = null;
-
-        DragDropController d = (DragDropController)DragDropController.instance;
-        d.InsertAttachmentToUI(held);
-        held = null;
-
-        //Call UnEquip Attachment UI Hook here
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            UnEquip();
+        }
 
     }
 }

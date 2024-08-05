@@ -28,6 +28,9 @@ public class DragDropController : GameObjectPoolManager
     public void InsertAttachmentToUI(Attachment data)
     {
         GameObject poolable = RequestOrCreate();
-        poolable.GetComponent<DragDrop>().Data = data;
+        DragDrop d = poolable.GetComponent<DragDrop>();
+        d.Data = data;
+        d.injectToUI();
+
     }
 }
