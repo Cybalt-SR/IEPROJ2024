@@ -68,8 +68,9 @@ public class GameObjectPoolManager: MonoBehaviour
     protected GameObject create()
     {
         GameObject toCreate = Instantiate(poolable);
+        toCreate.transform.SetParent(transform, false);
         toCreate.name = poolable.name;
-        toCreate.transform.SetParent(transform);
+ 
         toCreate.SetActive(true);
         attachComponents(toCreate);
         pool.Add(toCreate);

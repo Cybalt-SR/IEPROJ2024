@@ -25,6 +25,7 @@ public class DragDrop : AttachmentDataHolder, IDragHandler, IPointerDownHandler,
 
 
         CloneDataHolder.instance.Data = Data;
+        CloneDataHolder.instance.injectToUI();
     }
 
     public void OnPointerUp(PointerEventData eventData)

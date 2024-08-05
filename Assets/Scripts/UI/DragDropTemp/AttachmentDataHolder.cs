@@ -7,6 +7,11 @@ using TMPro;
 
 public class AttachmentDataHolder : MonoBehaviour
 {
+
+    private int index = -1;
+
+    public int Index { get { return index; } set { index = value; } }
+
     private Attachment _data = null;
     public Attachment Data { get { return _data; } set { _data = value; } }
 

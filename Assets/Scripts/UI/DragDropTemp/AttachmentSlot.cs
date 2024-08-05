@@ -27,6 +27,7 @@ public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
     private void UnEquip()
     {
         //Call UnEquip Attachment UI Hook here
+        Attachment_UI_Hook.instance.UnEquip(part);
 
         DragDropController d = (DragDropController)DragDropController.instance;
         d.InsertAttachmentToUI(held);
@@ -57,9 +58,12 @@ public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
         holdAttachment(toHold);
         CloneDataHolder.instance.Data = null;
 
+        int index = Attachment_UI_Hook.instance.getIndex(toHold);
+        print(index);
+        Attachment_UI_Hook.instance.Equip(index);
+
         DragDropController.instance.Release(dragged);
-        // call attachment ui hook here
-       
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
