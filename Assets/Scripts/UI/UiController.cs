@@ -14,8 +14,12 @@ namespace Assets.Scripts.Controller
             void PropagateOwnership(Transform parent)
             {
                 foreach (Transform child in parent)
+                {
+                    PropagateOwnership(child);
+
                     foreach (var comp in child.gameObject.GetComponents<IPlayerSpecificUi>())
                         comp.PlayerAssigned = owner;
+                }
             }
 
             PropagateOwnership(this.transform);
