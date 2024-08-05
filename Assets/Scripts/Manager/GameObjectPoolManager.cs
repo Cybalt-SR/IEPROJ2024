@@ -3,80 +3,98 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Manager
+
+public class GameObjectPoolManager: MonoBehaviour
 {
-    public class GameObjectPoolManager : Manager_Base<GameObjectPoolManager>
+    [Header("References")]
+    [SerializeField] protected List<GameObject> pool;
+    [SerializeField] protected GameObject poolable;
+
+    [Header("Config")]
+    [SerializeField] protected int poolSize = 10;
+    [SerializeField] protected bool expandable = true;
+
+    public int totalPoolSize { get { return pool.Count; } }
+    public int available { get { int i = 0; pool.ForEach(p => { if (p.activeInHierarchy) ++i; }); return i; } }
+
+      
+
+    public GameObject RequestOrCreate()
     {
-        [Header("References")]
-        [SerializeField] protected List<GameObject> pool;
-        [SerializeField] protected GameObject poolable;
 
-        [Header("Config")]
-        [SerializeField] protected int poolSize = 10;
-        [SerializeField] protected bool expandable = true;
-
-        public int totalPoolSize { get { return pool.Count; } }
-        public int available { get { int i = 0; pool.ForEach(p => { if (p.activeInHierarchy) ++i; }); return i; } }
-
-        protected override void Awake()
+        bool isPoolEmpty()
         {
-            base.Awake();
-            pool = new List<GameObject>();
-            for (int i = 0; i < poolSize; i++)
-                create();
-        }
-
-        public GameObject RequestOrCreate()
-        {
-
-            bool isPoolEmpty()
-            {
-                foreach (var i in pool)
-                    if (i.activeInHierarchy)
-                        return false;
-                return true;
-            }
-
-            GameObject get = null;
-
-            if (isPoolEmpty())
-                return expandable ? create() : null;
-
             foreach (var i in pool)
+                if (i.activeInHierarchy)
+                    return false;
+            return true;
+        }
+
+        GameObject get = null;
+
+        if (isPoolEmpty())
+            return expandable ? create() : null;
+
+        foreach (var i in pool)
+        {
+            if (!i.activeInHierarchy)
             {
-                if (!i.activeInHierarchy)
-                {
-                    get = i;
-                    i.SetActive(true);
-                    break;
-                }
+                get = i;
+                i.SetActive(true);
+                break;
             }
-
-            return get;
         }
 
-        public void Release(GameObject toRelease)
-        {
-            if (pool.Contains(toRelease))
-                toRelease.SetActive(false);
-        }
+        return get;
+    }
 
-        public virtual void ReleaseAll()
-        {
-            foreach(var i in pool)
-                Release(i);
-        }
+    public void Release(GameObject toRelease)
+    {
+        if (pool.Contains(toRelease))
+            toRelease.SetActive(false);
+    }
 
-        protected GameObject create()
-        {
-            GameObject toCreate = Instantiate(poolable);
-            toCreate.name = poolable.name;
-            toCreate.transform.parent = transform;
-            toCreate.SetActive(true);
-            pool.Add(toCreate);
-
-            return toCreate;
-        }
+    public virtual void ReleaseAll()
+    {
+        foreach(var i in pool)
+            Release(i);
+    }
+        
+    protected virtual void attachComponents(GameObject go)
+    {
 
     }
+        
+    protected GameObject create()
+    {
+        GameObject toCreate = Instantiate(poolable);
+        toCreate.name = poolable.name;
+        toCreate.transform.SetParent(transform);
+        toCreate.SetActive(true);
+        attachComponents(toCreate);
+        pool.Add(toCreate);
+
+        return toCreate;
+    }
+
+
+    #region tempSingleton
+
+    public static GameObjectPoolManager instance { get; private set; } = null;
+    private void Awake()
+    {
+
+        if (instance == null)
+            instance = this;
+        else Destroy(gameObject);
+
+        pool = new List<GameObject>();
+        for (int i = 0; i < poolSize; i++)
+            create();
+    }
+
+
+    #endregion
+
 }
+

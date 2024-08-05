@@ -17,18 +17,15 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
     {
         var attachmentstorage = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_storage_dictionary.GetOrCreate(PlayerAssigned);
 
-        //DragDropController.Instance.ReleaseAll();
-        ISingleton<DragDropController>.Instance.ReleaseAll();
+        DragDropController.instance.ReleaseAll();
+  
+
         foreach (var stored_attachment in attachmentstorage)
         {
-            GameObject container = ISingleton<DragDropController>.Instance.RequestOrCreate();
-            DragDrop draggable = container.GetComponent<DragDrop>();
 
-            if (draggable == null)
-                continue;
-
-            draggable.AssignedAttachment = stored_attachment;
-
+            DragDropController d = (DragDropController)DragDropController.instance;
+            d.InsertAttachmentToUI(stored_attachment);
+            
         }
 
         var attachmentequipped = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_equipped_dictionary.GetOrCreate(PlayerAssigned);
@@ -39,6 +36,8 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
 
             var which = equipped_attachment.Key;
             var attachment = equipped_attachment.Value;
+
+            SlotManager.instance.slots[which].holdAttachment(attachment);
         }
     }
 
