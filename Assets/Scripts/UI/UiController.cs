@@ -25,5 +25,10 @@ namespace Assets.Scripts.Controller
         {
             Attachment_screen.SetActive(!Attachment_screen.activeSelf);
         }
+
+        private void Start()
+        {
+            Attachment_screen.SetActive(false);
+        }
     }
 }
