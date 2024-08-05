@@ -52,6 +52,7 @@ public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
     {
         if (eventData.button != PointerEventData.InputButton.Right)
             return;
+
             //unequip
 
 
@@ -61,7 +62,7 @@ public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
         d.InsertAttachmentToUI(held);
         held = null;
 
-        //Call Attachment UI Hook here
+        //Call UnEquip Attachment UI Hook here
 
     }
 }
