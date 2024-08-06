@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3662049985447976674}
   - component: {fileID: 1808911917274529789}
+  - component: {fileID: 6524139451864435066}
+  - component: {fileID: 1846884527900547577}
   m_Layer: 0
   m_Name: Boss Door
   m_TagString: Untagged
@@ -86,3 +88,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6524139451864435066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2199565427310670185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9693d63fc9987f340a62a49493c2166a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  to_disable:
+  - {fileID: 1808911917274529789}
+--- !u!65 &1846884527900547577
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2199565427310670185}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 11.206326, y: 5.8158965, z: 4.780476}
+  m_Center: {x: 0, y: 0, z: -0}

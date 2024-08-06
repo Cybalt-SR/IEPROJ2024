@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
     [SerializeField] private TutorialProgress mData = new();
 
     private Transform current_reference = null;
+    private bool dismissed = false;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
     {
         current_reference = null;
 
+        dismissed = true;
         mData.prompt_index++;
 
         if (mData.prompt_index >= TutorialDictionary.Instance.prompts.Count)
@@ -39,17 +41,18 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
 
         ActionBroadcaster.Subscribe((actionname, reference) =>
         {
-            if (reference == null)
-                reference = PlayerController.GetFirst().transform;
-
             if (mData.prompt_index >= TutorialDictionary.Instance.prompts.Count)
                 return;
-
+            
             var next_prompt = TutorialDictionary.Instance.prompts[mData.prompt_index];
 
             if (actionname == next_prompt.trigger_broadcast)
             {
+                if (reference == null)
+                    reference = PlayerController.GetFirst().transform;
+
                 current_reference = reference;
+                dismissed = false;
                 TutorialPopUp_text.text = next_prompt.message;
             }
         });
@@ -57,9 +60,11 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
 
     private void Update()
     {
-        if (current_reference != null)
+        if (dismissed == false)
         {
-            TutorialPopUp.position = current_reference.position;
+            if (current_reference != null)
+                TutorialPopUp.position = current_reference.position;
+
             TutorialPopUp.localScale = Vector3.Lerp(TutorialPopUp.localScale, Vector3.one, Time.deltaTime * animation_speed);
         }
         else
