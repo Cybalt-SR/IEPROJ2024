@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   condition_name: enemies_killed
-  condition_threshold: 1
+  condition_threshold: 20
 --- !u!114 &-7410347523252904920
 MonoBehaviour:
   m_ObjectHideFlags: 0

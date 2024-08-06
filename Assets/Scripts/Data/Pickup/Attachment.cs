@@ -60,5 +60,38 @@ namespace Assets.Scripts.Data.Pickup
             data.split_count += split_count_added;
             data.pierce_count += pierce_count_added;
         }
+
+        public override string ToString()
+        {
+            var ret = "";
+
+            if (damage_added != 0)
+                ret += "+(" + damage_added + ") damage" + System.Environment.NewLine;
+            if (shots_per_second_added != 0)
+                ret += "+(" + shots_per_second_added + ") shots/sec" + System.Environment.NewLine;
+            if (clip_size_added != 0)
+                ret += "+(" + clip_size_added + ") clip size" + System.Environment.NewLine;
+            if (reload_time_percent_deduction != 0)
+                ret += "(" + Mathf.RoundToInt(reload_time_percent_deduction * 100) + "%) reload speed" + System.Environment.NewLine;
+            
+            if (projectile_speed_added != 0)
+                ret += "+(" + projectile_speed_added + ") fly speed" + System.Environment.NewLine;
+            if (error_angle_percent_deduction != 0)
+                ret += "(" + Mathf.RoundToInt(error_angle_percent_deduction * 100) + "%) accuracy" + System.Environment.NewLine;
+
+            if (projectiles_per_shot_added != 0)
+                ret += "+(" + projectiles_per_shot_added + ") bullets/shot" + System.Environment.NewLine;
+            if (spread_angle_percent_difference != 0)
+                ret += "(" + Mathf.RoundToInt(spread_angle_percent_difference * 100) + "%) spread" + System.Environment.NewLine;
+
+            if (bounce_count_added != 0)
+                ret += "+(" + bounce_count_added + ") bounces" + System.Environment.NewLine;
+            if (split_count_added != 0)
+                ret += "+(" + split_count_added + ") split" + System.Environment.NewLine;
+            if (pierce_count_added != 0)
+                ret += "+(" + pierce_count_added + ") pierce" + System.Environment.NewLine;
+
+            return ret;
+        }
     }
 }
