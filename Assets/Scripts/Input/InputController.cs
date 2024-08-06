@@ -1,7 +1,8 @@
 using Assets.Scripts.Library;
+using System;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Input
@@ -25,6 +26,8 @@ namespace Assets.Scripts.Input
 
         private readonly Stack<InputBlocker> blockers = new();
         private readonly List<InputBlocker> blockersToPop = new();
+
+        private Action reset_action;
 
         public static void BlockerEnabled(InputBlocker blocker)
         {
@@ -119,6 +122,13 @@ namespace Assets.Scripts.Input
                             inputaction.started += onAction;
                             inputaction.performed += onAction;
                             inputaction.canceled += onAction;
+
+                            reset_action += () =>
+                            {
+                                inputaction.started -= onAction;
+                                inputaction.performed -= onAction;
+                                inputaction.canceled -= onAction;
+                            };
                         }
                     foreach (var property in receiver_types[receiverType].GetProperties())
                         foreach (var inputaction in mPlayerInput.actions.actionMaps[mapping].actions)
@@ -154,9 +164,20 @@ namespace Assets.Scripts.Input
 
                             inputaction.performed += onAction;
                             inputaction.canceled += offAction;
+
+                            reset_action += () =>
+                            {
+                                inputaction.performed -= onAction;
+                                inputaction.canceled -= offAction;
+                            };
                         }
                 }
             }
+        }
+
+        private void OnDestroy()
+        {
+            reset_action.Invoke();
         }
     }
 }

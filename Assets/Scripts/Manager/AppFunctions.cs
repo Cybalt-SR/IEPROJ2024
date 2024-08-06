@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class AppFunctions : MonoBehaviour
 {
+    public void Die()
+    {
+        SceneManager.LoadScene("lose");
+    }
     public void EnterGame()
     {
         SceneManager.LoadScene("main");

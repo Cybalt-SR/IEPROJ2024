@@ -1,4 +1,5 @@
 using Assets.Scripts.Gameplay.Manager;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -9,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class AreaManager : Manager_Base<AreaManager>
 {
+    [Serializable]
     class AutonextConditionTracker
     {
         public string condition_name;
@@ -17,7 +19,6 @@ public class AreaManager : Manager_Base<AreaManager>
     }
 
     [SerializeField] private List<AutonextConditionTracker> tracked_conditions = new();
-    [SerializeField] private UnityEvent<string> update_text;
 
     public static void Next()
     {
@@ -39,30 +40,21 @@ public class AreaManager : Manager_Base<AreaManager>
                 count = 1,
                 threshold = threshold
             });
+
+            Instance.UpdateText();
+
             return true;
         }
 
         tracked_condition.count++;
-        return false;
-    }
 
-    public static bool Track(string condition_name)
-    {
-        var tracked_condition = Instance.tracked_conditions.Find(condition => condition.condition_name == condition_name);
-
-        if (tracked_condition == null)
-            return false;
-
-        tracked_condition.count++;
+        Instance.UpdateText();
 
         if (tracked_condition.count >= tracked_condition.threshold)
         {
             Next();
         }
-
-        Instance.UpdateText();
-
-        return true;
+        return false;
     }
 
     private void UpdateText()
@@ -74,6 +66,8 @@ public class AreaManager : Manager_Base<AreaManager>
             ret += condition.condition_name + " = " + condition.count + "/" + condition.threshold + System.Environment.NewLine;
         }
 
-        update_text.Invoke(ret);
+        ret = ret.Replace("_", " ");
+
+        GoalText.SetText(ret);
     }
 }

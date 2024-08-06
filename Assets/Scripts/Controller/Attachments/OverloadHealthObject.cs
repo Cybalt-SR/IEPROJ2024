@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(ProjectileHittable))]
 public class OverloadHealthObject : MonoBehaviour
@@ -14,10 +15,14 @@ public class OverloadHealthObject : MonoBehaviour
     public float Heat { get => heat; }
     private ProjectileHittable mProjectileHittable;
 
-    private Action<ProjectileController> onDie;
+    [SerializeField] private UnityEvent<ProjectileController> onDie;
+
+    [SerializeField] private UnityEvent<float> OnChangeHeatRatio = new();
+    [SerializeField] private UnityEvent<float> OnChangeHeatRatio_reversed = new();
+
     public void SubscribeOnDie(Action<ProjectileController> newaction)
     {
-        onDie += newaction;
+        onDie.AddListener(newaction.Invoke);
     }
 
     private void Awake()
@@ -35,5 +40,8 @@ public class OverloadHealthObject : MonoBehaviour
     {
         heat -= Time.deltaTime * cooldown_speed;
         heat = MathF.Max(heat, 0);
+
+        OnChangeHeatRatio.Invoke(heat / max_heat);
+        OnChangeHeatRatio_reversed.Invoke(1.0f - (heat / max_heat));
     }
 }

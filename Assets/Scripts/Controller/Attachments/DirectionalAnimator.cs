@@ -28,7 +28,8 @@ public class DirectionalAnimator : MonoBehaviour
             int axesabovethreshold = 0;
             void CountAboveThreshold(float value) { if (Mathf.Abs(value) < 0.7f) axesabovethreshold++; }
             void FlattenMinorAxes(ref float value) { if (Mathf.Abs(value) < 1.0f) value = 0; }
-            void ImposeMinorAxes(ref float value) {
+            void ImposeMinorAxes(ref float value)
+            {
                 if (Mathf.Abs(value) > 0.5f)
                     value = 0.7f * Mathf.Sign(value);
                 else
@@ -42,7 +43,7 @@ public class DirectionalAnimator : MonoBehaviour
             CountAboveThreshold(direction.y);
             CountAboveThreshold(direction.z);
 
-            if(axesabovethreshold == 1)
+            if (axesabovethreshold == 1)
             {
                 FlattenMinorAxes(ref direction.x);
                 FlattenMinorAxes(ref direction.y);
@@ -56,8 +57,11 @@ public class DirectionalAnimator : MonoBehaviour
             }
         }
 
-        animator.SetFloat(x_name, direction.x);
-        animator.SetFloat(y_name, direction.y);
-        animator.SetFloat(z_name, direction.z);
+        if (x_name.Length > 0)
+            animator.SetFloat(x_name, direction.x);
+        if (y_name.Length > 0)
+            animator.SetFloat(y_name, direction.y);
+        if (z_name.Length > 0)
+            animator.SetFloat(z_name, direction.z);
     }
 }
