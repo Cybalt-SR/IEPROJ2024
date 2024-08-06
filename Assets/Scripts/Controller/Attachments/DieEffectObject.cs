@@ -22,7 +22,6 @@ namespace Assets.Scripts.Controller.Attachments
             mHealthObject.SubscribeOnDie(projectile =>
             {
                 GlobalEffectManager.Spawn(effect_id, transform.position, Vector3.up);
-                this.gameObject.SetActive(false);
             });
         }
     }

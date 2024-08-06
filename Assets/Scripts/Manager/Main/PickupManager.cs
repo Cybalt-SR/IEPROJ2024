@@ -14,6 +14,13 @@ namespace Assets.Scripts.Manager
         [SerializeField] private SerializedDictionary<string, Pickup> nearest_per_player = new();
         [SerializeField] private GameObject pickup_prefab = null;
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            pickup_prefab = RuntimePrefabsDictionary.Instance.Get("pickup");
+        }
+
         public static void CreatePickup(Pickup pickup, Vector3 position)
         {
             var newobj = Instantiate(Instance.pickup_prefab, position, Quaternion.identity, PoolParent.Instance.transform);

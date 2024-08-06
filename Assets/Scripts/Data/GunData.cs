@@ -22,7 +22,11 @@ namespace Assets.Scripts.Data
         public int bounce_count;
         public int split_count;
         public int pierce_count;
-        [Header("Visuals")]
+        [Header("Assets")]
         public string projectile_id;
+        public string sound_id;
+        public bool play_reload;
+        public string start_reload_sound_id;
+        public string end_reload_sound_id;
     }
 }

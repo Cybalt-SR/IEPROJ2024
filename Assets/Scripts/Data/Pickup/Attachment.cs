@@ -22,8 +22,19 @@ namespace Assets.Scripts.Data.Pickup
         [Header("Sprite")]
         public Sprite attachment_icon = null;
         public string attachment_name;
+        public bool use_stats_as_desc = true;
         [TextArea(1, 5)]
-        public string attachment_description;
+        [SerializeField] string _attachment_description;
+        public string attachment_description
+        {
+            get
+            {
+                if (use_stats_as_desc)
+                    return this.ToString();
+                else
+                    return _attachment_description;
+            }
+        }
 
         [Header("Basic")]
         public int damage_added = 0;

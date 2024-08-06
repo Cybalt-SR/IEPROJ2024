@@ -7,11 +7,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller
 {
-    [RequireComponent(typeof(Rigidbody), typeof(SphereCollider))]
+    [RequireComponent(typeof(Rigidbody), typeof(SphereCollider), typeof(AudioSource))]
     public class ProjectileController : PooledBehaviour<ProjectileController>
     {
         private Rigidbody mRigidbody;
         private SphereCollider mSphereCollider;
+        private AudioSource mAudioSource;
         private TrailRenderer optional_trail;
 
         [SerializeField] private string ondeath_globaleffect_id;
@@ -34,6 +35,7 @@ namespace Assets.Scripts.Controller
             mRigidbody = GetComponent<Rigidbody>();
             mSphereCollider = GetComponent<SphereCollider>();
             optional_trail = GetComponent<TrailRenderer>();
+            mAudioSource = GetComponent<AudioSource>();
         }
         private void IgnoreCollider(Collider other)
         {
@@ -119,6 +121,9 @@ namespace Assets.Scripts.Controller
             else
             {
                 bounce_count++;
+
+                mAudioSource.PlayOneShot(HitSoundDictionary.Instance.Get("bounce"));
+
                 ResetIgnores();
                 if (onbounce_globaleffect_id != "")
                     GlobalEffectManager.Spawn(onbounce_globaleffect_id, transform.position, collision.GetContact(0).normal);

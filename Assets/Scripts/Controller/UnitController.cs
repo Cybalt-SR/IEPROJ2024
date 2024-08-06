@@ -3,11 +3,12 @@ using Assets.Scripts.Manager;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
+[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider), typeof(AudioSource))]
 public class UnitController : MonoBehaviour
 {
     protected Rigidbody mRigidbody;
     private CapsuleCollider mCapsuleCollider;
+    private AudioSource mAudioSource;
     public CapsuleCollider Collider { get { return mCapsuleCollider; } }
 
     [SerializeField] private GunData mBaseGun;
@@ -57,7 +58,6 @@ public class UnitController : MonoBehaviour
     //shooting
     [SerializeField] private string team_id = "";
     public string TeamId => team_id;
-
     [SerializeField] private bool clip_full_at_start = true;
     private int shots_before_reload = 0;
     public int Shots_before_reload { get { return shots_before_reload; } }
@@ -77,6 +77,7 @@ public class UnitController : MonoBehaviour
     {
         mRigidbody = GetComponent<Rigidbody>();
         mCapsuleCollider = GetComponent<CapsuleCollider>();
+        mAudioSource = GetComponent<AudioSource>();
     }
     protected virtual void Start()
     {
@@ -123,6 +124,9 @@ public class UnitController : MonoBehaviour
     {
         if (shots_before_reload == 0)
         {
+            if(reloading == false && Gun.play_reload)
+                mAudioSource.PlayOneShot(UtilSoundDictionary.Instance.Get(Gun.start_reload_sound_id));
+
             reloading = true;
             return;
         }
@@ -130,6 +134,7 @@ public class UnitController : MonoBehaviour
         if (time_last_shot >= 1.0f / Gun.shots_per_second)
         {
             ProjectileManager.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
+            mAudioSource.PlayOneShot(ShotSoundDictionary.Instance.Get(Gun.sound_id));
             time_last_shot = 0;
             shots_before_reload--;
         }
@@ -145,6 +150,9 @@ public class UnitController : MonoBehaviour
 
             if (time_last_reload >= Gun.reload_time)
             {
+                if (reloading == true && Gun.play_reload)
+                    mAudioSource.PlayOneShot(UtilSoundDictionary.Instance.Get(Gun.end_reload_sound_id));
+
                 reloading = false;
                 shots_before_reload = Gun.clip_size;
                 time_last_reload = 0;

@@ -15,7 +15,8 @@ MonoBehaviour:
   part: 3
   attachment_icon: {fileID: 21300000, guid: 9de4df649da46ce4bb35ee1f0ef735d7, type: 3}
   attachment_name: 
-  attachment_description: 
+  use_stats_as_desc: 1
+  _attachment_description: 
   damage_added: 0
   shots_per_second_added: 0
   clip_size_added: 0
