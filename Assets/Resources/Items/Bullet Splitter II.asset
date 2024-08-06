@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Bullet Splitter II
   m_EditorClassIdentifier: 
   part: 7
+  attachment_icon: {fileID: 21300000, guid: 3f93c47e6a5053c44b8150942f33724f, type: 3}
+  attachment_name: 
+  attachment_description: 
   damage_added: 0
   shots_per_second_added: 0
   clip_size_added: 3

@@ -11,7 +11,7 @@ public class UnitController : MonoBehaviour
     public CapsuleCollider Collider { get { return mCapsuleCollider; } }
 
     [SerializeField] private GunData mBaseGun;
-    private bool gunchanged = false;
+    private bool gunchanged = true;
     public bool GunChanged { get { return gunchanged; } set => gunchanged = value; }
     protected virtual void UpdateFinalGun() { mFinalGun = mBaseGun; }
     protected GunData mFinalGun;
@@ -55,6 +55,7 @@ public class UnitController : MonoBehaviour
     }
     private float lateral_distance;
     //shooting
+    [SerializeField] private bool clip_full_at_start = true;
     private int shots_before_reload = 0;
     public int Shots_before_reload { get { return shots_before_reload; } }
 
@@ -76,6 +77,9 @@ public class UnitController : MonoBehaviour
     }
     protected virtual void Start()
     {
+        if (clip_full_at_start)
+            shots_before_reload = Gun.clip_size;
+
         var shooting_reference_delta = shooting_reference.transform.localPosition;
         shooting_reference_delta.y = 0;
         lateral_distance = shooting_reference_delta.magnitude;

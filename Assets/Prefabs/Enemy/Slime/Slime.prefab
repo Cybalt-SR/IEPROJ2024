@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: -3659257103871336071}
   - component: {fileID: 208611065096640190}
   - component: {fileID: 6704210107015524959}
+  - component: {fileID: -7410347523252904920}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -59,10 +60,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mBaseGun:
     damage: 1
-    shots_per_second: 2
-    clip_size: 6
+    shots_per_second: 3
+    clip_size: 3
     reload_time: 2
-    projectile_speed: 20
+    projectile_speed: 10
     error_angle: 15
     projectiles_per_shot: 1
     spread_angle: 45
@@ -75,6 +76,7 @@ MonoBehaviour:
   movedir: {x: 0, y: 0, z: 0}
   shooting_reference: {fileID: 5395496293833332456}
   aimdir: {x: 0, y: 0, z: 0}
+  clip_full_at_start: 1
   time_last_reload: 0
   OnMove:
     m_PersistentCalls:
@@ -248,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f6dcd68c07c0c4d9636b5eb513da7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 2
 --- !u!114 &1605362885978331551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +322,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   condition_name: enemies_killed
-  condition_threshold: 20
+  condition_threshold: 1
+--- !u!114 &-7410347523252904920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f77d27c38b1ee042a0b1f7e56dec2c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  see_: enemy
+  only_when_waiting: 1
+  only_once: 0
 --- !u!1 &3906182589777987327
 GameObject:
   m_ObjectHideFlags: 0

@@ -125,7 +125,7 @@ namespace Assets.Scripts.Controller
         {
             ProjectileController Duplicate()
             {
-                var newobject = Instantiate(gameObject, ISingleton<PoolParent>.Instance.transform);
+                var newobject = Instantiate(gameObject, PoolParent.Instance.transform);
                 return newobject.GetComponent<ProjectileController>();
             }
 

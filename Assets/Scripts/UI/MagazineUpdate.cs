@@ -7,17 +7,12 @@ using UnityEngine.UI;
 using System;
 using Assets.Scripts.Library;
 
-public class MagazineUpdate : MonoBehaviour, ISingleton<MagazineUpdate>
+public class MagazineUpdate : MonoSingleton<MagazineUpdate>
 {
 
     [SerializeField] private GameObject bulletInfo;
     [SerializeField] private GameObject reloadInfo;
     private PlayerController player;
-
-    private void Awake()
-    {
-        ISingleton<MagazineUpdate>.Instance = this;
-    }
 
     private void Start()
     {

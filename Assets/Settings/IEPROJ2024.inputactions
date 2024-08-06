@@ -824,6 +824,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Toggle_Pause",
+                    "type": "Button",
+                    "id": "a7c91427-a5f3-46d5-8ae3-2fec37b89d50",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -835,6 +844,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Toggle_Attachement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a30fb104-474e-4169-8481-7b016335fa2d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Toggle_Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

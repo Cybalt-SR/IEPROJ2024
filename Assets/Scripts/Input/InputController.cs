@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 namespace Assets.Scripts.Input
 {
     [RequireComponent(typeof(PlayerInput))]
-    public class InputController : MonoBehaviour, ISingleton<InputController>
+    public class InputController : MonoSingleton<InputController>
     {
         private PlayerInput mPlayerInput;
 
@@ -28,13 +28,13 @@ namespace Assets.Scripts.Input
 
         public static void BlockerEnabled(InputBlocker blocker)
         {
-            ISingleton<InputController>.Instance.blockers.Push(blocker);
+            Instance.blockers.Push(blocker);
         }
 
         public static void BlockerDisabled(InputBlocker blocker)
         {
-            var stack = ISingleton<InputController>.Instance.blockers;
-            var list = ISingleton<InputController>.Instance.blockersToPop;
+            var stack = Instance.blockers;
+            var list = Instance.blockersToPop;
 
             if (stack.TryPeek(out var top) == false)
                 return;
@@ -44,7 +44,7 @@ namespace Assets.Scripts.Input
                 list.Add(blocker);
                 return;
             }
-                
+
             stack.Pop();
 
             while (stack.TryPeek(out top))
@@ -61,9 +61,10 @@ namespace Assets.Scripts.Input
             }
         }
 
-        private void Awake()
+        protected override void Awake()
         {
-            ISingleton<InputController>.Instance = this;
+            base.Awake();
+
             mPlayerInput = GetComponent<PlayerInput>();
 
             foreach (var mapid in autoEnabledMaps)

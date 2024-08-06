@@ -1,10 +1,6 @@
 using Assets.Scripts.Library;
 using UnityEngine;
 
-public class PoolParent : MonoBehaviour, ISingleton<PoolParent>
+public class PoolParent : MonoSingleton<PoolParent>
 {
-    private void Awake()
-    {
-        ISingleton<PoolParent>.Instance = this;
-    }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Extended Mag I
   m_EditorClassIdentifier: 
   part: 0
-  attachment_icon: {fileID: 21300000, guid: e0d2f481b6adc4a46a68aa5dd862ae42, type: 3}
+  attachment_icon: {fileID: 21300000, guid: 2296671d5dd7da94485c6d6044f891f1, type: 3}
   attachment_name: Extended Mag I
   attachment_description: Extended Mag I description
   damage_added: 0

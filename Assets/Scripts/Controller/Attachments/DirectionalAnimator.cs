@@ -15,7 +15,7 @@ public class DirectionalAnimator : MonoBehaviour
 
     public void OnVector3Event(Vector3 direction)
     {
-        direction = Quaternion.AngleAxis(-ISingleton<CameraController>.Instance.Camera.transform.eulerAngles.y, Vector3.up) * direction;
+        direction = Quaternion.AngleAxis(-CameraController.Instance.Camera.transform.eulerAngles.y, Vector3.up) * direction;
 
         void ImposeThreshold(ref float value) { if (Mathf.Abs(value) < zero_threshold) value = 0; }
 

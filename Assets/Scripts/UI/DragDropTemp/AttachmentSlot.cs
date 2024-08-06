@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 using Assets.Scripts.Manager;
 using Assets.Scripts.Data.Pickup;
+using Assets.Scripts.Library;
+using UnityEngine.Events;
 
 public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
 {
@@ -16,8 +18,16 @@ public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
     public Attachment.Part Part { get { return part; } set { part = value; } }
 
     private Attachment held = null;
+    private Sprite empty_sprite = null;
 
+    public readonly UnityEvent<Attachment> OnUnequip = new();
+    public readonly UnityEvent<GameObject> OnValidDrop = new();
+    public readonly UnityEvent<Attachment> OnEquip = new();
 
+    private void Awake()
+    {
+        empty_sprite = i.sprite;
+    }
     public void holdAttachment(Attachment attachment)
     {
         held = attachment;
@@ -26,26 +36,21 @@ public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
 
     private void UnEquip()
     {
-        //Call UnEquip Attachment UI Hook here
-        Attachment_UI_Hook.instance.UnEquip(part);
+        OnUnequip.Invoke(held);
 
-        DragDropController d = (DragDropController)DragDropController.instance;
-        d.InsertAttachmentToUI(held);
-  
-        i.sprite = null;
+        i.sprite = empty_sprite;
         held = null;
     }
     public void OnDrop(PointerEventData eventData)
     {
-
         GameObject dragged = eventData.pointerDrag;
 
-        if (dragged == null || dragged.GetComponent<DragDrop>() == null) 
+        if (dragged == null || dragged.GetComponent<DragDrop_DataHolder>() == null) 
             return;
 
         print(part);
 
-        Attachment toHold = CloneDataHolder.instance.Data;
+        Attachment toHold = ISingleton<Clone_DataHolder>.Instance.Data;
 
 
         if (toHold.part != part)
@@ -56,14 +61,10 @@ public class AttachmentSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
             UnEquip();
        
         holdAttachment(toHold);
-        CloneDataHolder.instance.Data = null;
+        ISingleton<Clone_DataHolder>.Instance.Data = null;
 
-        int index = Attachment_UI_Hook.instance.getIndex(toHold);
-        print(index);
-        Attachment_UI_Hook.instance.Equip(index);
-
-        DragDropController.instance.Release(dragged);
-
+        OnEquip.Invoke(toHold);
+        OnValidDrop.Invoke(dragged);
     }
 
     public void OnPointerDown(PointerEventData eventData)

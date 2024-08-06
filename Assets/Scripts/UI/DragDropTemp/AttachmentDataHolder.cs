@@ -19,7 +19,6 @@ public class AttachmentDataHolder : MonoBehaviour
     //assumes that the element is an Attachment Prefab, optimize as necessary
     public void injectToUI()
     {
-
         T FindComponentInObject<T>(string name)
         {
             GameObject obj = transform.Find(name).gameObject;
@@ -40,8 +39,6 @@ public class AttachmentDataHolder : MonoBehaviour
 
         var attachment_type = FindComponentInObject<TextMeshProUGUI>("AttachmentType");
         attachment_type.text = _data.part.ToString();
-
-        
     }
 
 }

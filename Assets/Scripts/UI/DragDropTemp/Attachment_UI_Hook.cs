@@ -10,9 +10,32 @@ using UnityEngine;
 /// <summary>
 /// interface connecting dragdrop UI to the attachment data
 /// </summary>
+[RequireComponent(typeof(DragDropController))]
 public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
 {
+    [SerializeField] private DragDropController mDragDropController = null;
     public string PlayerAssigned { get; set; }
+
+    private void Awake()
+    {
+        mDragDropController = GetComponent<DragDropController>();
+    }
+
+    private void Start()
+    {
+        mDragDropController.OnEquip.AddListener(attachment =>
+        {
+            this.Equip(getIndex(attachment));
+        });
+
+        mDragDropController.OnUnequip.AddListener(attachment =>
+        {
+            if (attachment == null)
+                return;
+
+            UnEquip(attachment.part);
+        });
+    }
 
     public int getIndex(Attachment a)
     {
@@ -24,14 +47,12 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
     {
         var attachmentstorage = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_storage_dictionary.GetOrCreate(PlayerAssigned);
 
-        DragDropController.instance.ReleaseAll();
+        mDragDropController.ReleaseAll();
 
         int i = 0;
         foreach (var stored_attachment in attachmentstorage)
         {
-
-            DragDropController d = (DragDropController)DragDropController.instance;
-            d.InsertAttachmentToUI(stored_attachment);
+            mDragDropController.ReturnToUI(stored_attachment);
             i++;
             
         }
@@ -45,7 +66,7 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
             var which = equipped_attachment.Key;
             var attachment = equipped_attachment.Value;
 
-            SlotManager.instance.slots[which].holdAttachment(attachment);
+            mDragDropController.slots[which].holdAttachment(attachment);
         }
     }
 
@@ -54,27 +75,12 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
     public void Equip(int index)
     {
         IConsistentDataHolder<PlayerEquipmentData>.Data.Equip(PlayerAssigned, index);
+
+        ActionBroadcaster.Broadcast("equip_attachment", null);
     }
 
     public void UnEquip(Attachment.Part part)
     {
         IConsistentDataHolder<PlayerEquipmentData>.Data.UnEquip(PlayerAssigned, part);
     }
-
-
-    #region tempSingleton
-
-    public static Attachment_UI_Hook instance { get; private set; } = null;
-
-
-    private void Awake()
-    {
-
-        if (instance == null)
-            instance = this;
-        else Destroy(gameObject);
-    }
-
-
-    #endregion
 }

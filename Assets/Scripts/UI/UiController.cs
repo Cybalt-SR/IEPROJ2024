@@ -8,6 +8,7 @@ namespace Assets.Scripts.Controller
     {
         [SerializeField] private string owner;
         [SerializeField] private GameObject Attachment_screen;
+        [SerializeField] private GameObject Pause_screen;
 
         private void Awake()
         {
@@ -27,12 +28,19 @@ namespace Assets.Scripts.Controller
 
         void IUiInputReceiver.Toggle_Attachement(InputAction.CallbackContext callback)
         {
-            Attachment_screen.SetActive(!Attachment_screen.activeSelf);
+            if(callback.performed)
+                Attachment_screen.SetActive(!Attachment_screen.activeSelf);
         }
 
         private void Start()
         {
             Attachment_screen.SetActive(false);
+        }
+
+        public void Toggle_Pause(InputAction.CallbackContext callback)
+        {
+            if (callback.performed)
+                Pause_screen.SetActive(!Pause_screen.activeSelf);
         }
     }
 }

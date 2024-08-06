@@ -10,6 +10,11 @@ namespace Assets.Scripts.Controller
 {
     public class PlayerController : UnitController, IPlayerInputReceiver
     {
+        public static PlayerController GetFirst()
+        {
+            return FindObjectsByType<PlayerController>(FindObjectsSortMode.None).FirstOrDefault();
+        }
+
         public static void SetGunChanged(string id)
         {
            var player = FindObjectsByType<PlayerController>(FindObjectsSortMode.None).Where(player => player.playerId == id).FirstOrDefault();
@@ -47,19 +52,21 @@ namespace Assets.Scripts.Controller
             var dir2 = callback.ReadValue<Vector2>();
 
             MoveDir = transform.right * dir2.x + transform.forward * dir2.y;
+
+            ActionBroadcaster.Broadcast("player_move", this.transform);
         }
 
         void IPlayerInputReceiver.Aim(InputAction.CallbackContext callback)
         {
             late_aimpos = callback.ReadValue<Vector2>();
 
-            if (aiming_blanket.Raycast(ISingleton<CameraController>.Instance.Camera.ScreenPointToRay(late_aimpos), out RaycastHit hitinfo, float.PositiveInfinity))
+            if (aiming_blanket.Raycast(CameraController.Instance.Camera.ScreenPointToRay(late_aimpos), out RaycastHit hitinfo, float.PositiveInfinity))
             {
                 AimAt(hitinfo.point);
             }
             else
             {
-                screenpos = (Vector2)ISingleton<CameraController>.Instance.Camera.WorldToScreenPoint(transform.position);
+                screenpos = (Vector2)CameraController.Instance.Camera.WorldToScreenPoint(transform.position);
 
                 var delta2 = late_aimpos - screenpos;
                 var deltaConverted = Vector3.zero;
@@ -83,7 +90,10 @@ namespace Assets.Scripts.Controller
             base.Update();
 
             if ((this as IPlayerInputReceiver).IsFire)
+            {
+                ActionBroadcaster.Broadcast("player_shoot", this.transform);
                 base.Fire();
+            }
         }
 
         void IPlayerInputReceiver.Pickup(InputAction.CallbackContext callback)
