@@ -4,6 +4,7 @@ using Assets.Scripts.Library;
 using Assets.Scripts.Manager;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Controller
@@ -89,7 +90,7 @@ namespace Assets.Scripts.Controller
         {
             base.Update();
 
-            if ((this as IPlayerInputReceiver).IsFire)
+            if ((this as IPlayerInputReceiver).IsFire && EventSystem.current.IsPointerOverGameObject() == false)
             {
                 ActionBroadcaster.Broadcast("player_shoot", this.transform);
                 base.Fire();

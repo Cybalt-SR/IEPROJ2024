@@ -76,6 +76,7 @@ MonoBehaviour:
   movedir: {x: 0, y: 0, z: 0}
   shooting_reference: {fileID: 5395496293833332456}
   aimdir: {x: 0, y: 0, z: 0}
+  team_id: enemy
   clip_full_at_start: 1
   time_last_reload: 0
   OnMove:
@@ -185,7 +186,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.51
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

@@ -83,6 +83,12 @@ namespace Assets.Scripts.Controller
 
         private void OnCollisionEnter(Collision collision)
         {
+            void IgnoreThisCollision()
+            {
+                IgnoreCollider(collision.collider);
+                mRigidbody.velocity = late_velocity;
+            }
+
             var objectToCheck = collision.collider.gameObject;
 
             if (collision.rigidbody != null)
@@ -92,18 +98,23 @@ namespace Assets.Scripts.Controller
             }
             if (objectToCheck.TryGetComponent(out ProjectileHittable projectileHittable))
             {
+                if (this.from.TeamId.Length > 0 && this.from.TeamId == projectileHittable.Team)
+                {
+                    IgnoreThisCollision();
+
+                    return;
+                }
+
                 projectileHittable.GetHit(this);
 
                 if (pierce_count < from.Gun.pierce_count)
                 {
-                    IgnoreCollider(collision.collider);
-                    mRigidbody.velocity = late_velocity;
+                    IgnoreThisCollision();
                 }
 
                 pierce_count++;
                 if (onhit_globaleffect_id != "")
                     GlobalEffectManager.Spawn(onhit_globaleffect_id, transform.position, collision.GetContact(0).normal);
-
             }
             else
             {

@@ -55,6 +55,9 @@ public class UnitController : MonoBehaviour
     }
     private float lateral_distance;
     //shooting
+    [SerializeField] private string team_id = "";
+    public string TeamId => team_id;
+
     [SerializeField] private bool clip_full_at_start = true;
     private int shots_before_reload = 0;
     public int Shots_before_reload { get { return shots_before_reload; } }

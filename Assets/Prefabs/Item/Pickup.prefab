@@ -72,7 +72,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.9
+  m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &6343489275771180896
 MeshFilter:
@@ -271,5 +271,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   see_: attachment
-  only_when_waiting: 0
-  only_once: 1
+  only_when_waiting: 1
+  only_once: 0

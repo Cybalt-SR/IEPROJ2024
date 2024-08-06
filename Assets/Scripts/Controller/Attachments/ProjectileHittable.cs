@@ -8,12 +8,16 @@ namespace Assets.Scripts.Controller.Attachments
     public class ProjectileHittable : MonoBehaviour
     {
         private Collider mCollider;
+        private UnitController mUnitController;
+        public string Team => mUnitController == null ? "" : mUnitController.TeamId;
+
         public Collider Collider { get { return mCollider; } }
         private Action<ProjectileController> onHit;
 
         private void Awake()
         {
             mCollider = GetComponent<Collider>();
+            mUnitController = GetComponent<UnitController>();
         }
 
         public void Subscribe(Action<ProjectileController> newaction)
