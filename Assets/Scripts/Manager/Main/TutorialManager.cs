@@ -1,5 +1,6 @@
 using Assets.Scripts.Controller;
 using Assets.Scripts.Library;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,31 +29,30 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
         dismissed = true;
         mData.prompt_index++;
 
-        if (mData.prompt_index >= TutorialDictionary.Instance.prompts.Count)
+        if (mData.prompt_index >= TutorialDictionary.Instance.GetCount())
             return;
 
-        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.prompts[mData.prompt_index].trigger_broadcast);
+        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index));
     }
 
     private void Start()
     {
-        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.prompts[mData.prompt_index].trigger_broadcast);
+        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index));
 
         ActionBroadcaster.Subscribe((actionname, reference) =>
         {
-            if (mData.prompt_index >= TutorialDictionary.Instance.prompts.Count)
+            if (mData.prompt_index >= TutorialDictionary.Instance.GetCount())
                 return;
             
-            var next_prompt = TutorialDictionary.Instance.prompts[mData.prompt_index];
-
-            if (actionname == next_prompt.trigger_broadcast)
+            
+            if (actionname == TutorialDictionary.Instance.GetKey(mData.prompt_index))
             {
                 if (reference == null)
                     reference = PlayerController.GetFirst().transform;
 
                 current_reference = reference;
                 dismissed = false;
-                TutorialPopUp_text.text = next_prompt.message;
+                TutorialPopUp_text.text = TutorialDictionary.Instance.GetCompiledMessage(mData.prompt_index);
             }
         });
     }

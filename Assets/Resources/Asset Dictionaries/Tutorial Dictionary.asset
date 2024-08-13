@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414479e5ea956524fa7cbf325aedd74e, type: 3}
   m_Name: Tutorial Dictionary
   m_EditorClassIdentifier: 
+  actionStringTexts:
+  - key: move
+    actionReference: {fileID: -426620994022019407, guid: cee74a157252ce64b999e32b99bee41d,
+      type: 3}
+  - key: inventory
+    actionReference: {fileID: -7258281289540021, guid: cee74a157252ce64b999e32b99bee41d,
+      type: 3}
   prompts:
   - trigger_broadcast: see_player
     message: Good morning player! Lets start your journey by first moving around
@@ -27,7 +34,7 @@ MonoBehaviour:
     message: See this? This is an attachment, go near it and pick it up! It will
       upgrade my gun.
   - trigger_broadcast: pickup
-    message: Great, now open your inventory to drag it over to a valid attachment
-      slot!
+    message: Great, now open your inventory [inventory] to drag it over to a valid
+      attachment slot!
   - trigger_broadcast: equip_attachment
     message: Nice job! Now go shoot up some more slimes!

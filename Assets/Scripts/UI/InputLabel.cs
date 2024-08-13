@@ -21,7 +21,6 @@ namespace Assets.Scripts.UI
 
         private void OnEnable()
         {
-
             mTextMeshProUGUI.text = action_name + " (" + mInputActionReference.action.GetBindingDisplayString() + ")";
         }
     }
