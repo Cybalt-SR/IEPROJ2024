@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Launch : AbilityEffect
+{
+
+    [SerializeField] private GameObject projectile;
+    private GameObject player;
+
+    public override IEnumerator Cast(Parameters parameters)
+    {
+        GameObject player = parameters.GetObjectExtra("Player") as GameObject;
+
+        this.player = player;
+
+        int count = Random.Range(4, 8);
+        for (int i =0; i < count; i++)
+        {
+            GameObject shot = Instantiate(projectile);
+            ProjectileScript script = shot.GetComponent<ProjectileScript>();
+
+            Vector2 dir = Vector2.right;
+            dir.x *= PlayerState.Instance.directionFacing;
+
+            shot.transform.position = (Vector2)player.transform.position;
+            script.direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shot.transform.position;
+
+            yield return new WaitForSeconds(Random.Range(0.1f, 0.3f));
+        }
+    }
+
+    private void Update()
+    {
+        if (player != null)
+            Debug.DrawLine(player.transform.position, player.transform.forward);
+    }
+    protected override void Initialize()
+    {
+
+    }
+}

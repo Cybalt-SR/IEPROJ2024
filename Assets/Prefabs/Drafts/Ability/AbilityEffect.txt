@@ -1,0 +1,42 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public abstract class AbilityEffect: MonoBehaviour
+{
+
+    [SerializeField] private AbilityData abilityData;
+    public AbilityData AbilityData { get { return abilityData; } }
+
+    [Tooltip("Ability IDS to access Mechanic Dependencies and Ability Interactions")]
+    [SerializeField] protected List<string> effectDependencies;
+
+    protected Dictionary<string, System.Action> passiveHandler = new();
+
+    protected void Awake()
+    {
+        Initialize();
+    }
+
+    public void OnEnable()
+    {
+        foreach(var handler in passiveHandler)
+        {
+            EventBroadcaster.Instance.AddObserver(handler.Key, handler.Value);
+        }
+    }
+
+    public void OnDisable()
+    {
+        foreach (var handler in passiveHandler)
+        {
+            EventBroadcaster.Instance.RemoveActionAtObserver(handler.Key, handler.Value);
+        }
+    }
+
+    protected abstract void Initialize();
+    public abstract IEnumerator Cast(Parameters parameters);
+
+}

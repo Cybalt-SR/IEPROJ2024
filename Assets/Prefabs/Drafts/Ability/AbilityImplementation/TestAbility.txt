@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+
+public class TestAbility : AbilityEffect
+{
+
+    [SerializeField] private int baseMultiplier = 1;
+    [SerializeField] private int multiplier;
+    [SerializeField] private Vector2 pushVector = new Vector2(5,0);
+
+    private void Start()
+    {
+       multiplier = baseMultiplier;
+    }
+
+    protected override void Initialize()
+    {
+        passiveHandler.Add(EventNames.PLAYER_ACTIONS.ON_PLAYER_JUMP, () => multiplier++);
+    }
+
+    public override IEnumerator Cast(Parameters parameters)
+    {
+        GameObject player = parameters.GetObjectExtra("Player") as GameObject;
+
+        player.GetComponent<Rigidbody2D>().AddForce(pushVector * multiplier, ForceMode2D.Impulse);
+
+        multiplier= baseMultiplier;
+        yield break;
+    }
+}

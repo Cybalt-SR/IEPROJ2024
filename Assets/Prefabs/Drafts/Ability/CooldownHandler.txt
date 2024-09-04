@@ -1,0 +1,52 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable]
+public class CooldownHandler
+{
+    public float currentCooldown;
+    public float maxCooldown;
+
+    public CooldownHandler(float maxCooldown)
+    {
+        Reset();
+        this.maxCooldown = maxCooldown;
+    }
+
+    public float getCooldownNormal() { return currentCooldown / maxCooldown; }
+
+    public void Invoke()
+    {
+        currentCooldown = maxCooldown;
+    }
+
+    public void Reset()
+    {
+        currentCooldown = 0;
+    }
+
+    public void Update(int slotIndex)
+    {
+        if (currentCooldown <= 0)
+            return;
+
+        currentCooldown -= Time.deltaTime;
+
+        UpdateUI(slotIndex);
+
+        //if (currentCooldown <= 0)
+            //EventBroadcaster.Instance.PostEvent(EventNames.ABILITY_EVENTS.ON_COOLDOWN_ENDED, p);
+    }
+
+    public void UpdateUI(int slotIndex)
+    {
+        Parameters p = new Parameters();
+        p.PutExtra("Cooldown Normal", currentCooldown / maxCooldown);
+        p.PutExtra("Slot Index", slotIndex);
+
+        EventBroadcaster.Instance.PostEvent(EventNames.ABILITY_EVENTS.ON_COOLDOWN_TICK, p);
+    }
+
+}

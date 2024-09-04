@@ -1,0 +1,38 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable]
+public class AbilityData
+{
+
+    [SerializeField] private string abilityID;
+    [SerializeField] private string effectName;
+    [SerializeField] private Sprite effectIcon;
+
+    [SerializeField] private float startingCooldown;
+    [SerializeField] private float cooldown;
+
+    [SerializeField] private bool startCooldownAtCast = true;
+    [SerializeField] private bool isCooldownStatic = false;
+
+
+    [TextArea(1, 10)]
+    [SerializeField] private string tooltip;
+
+    [TextArea(1, 20)]
+    [SerializeField] private string longDescription;
+
+
+    public string AbilityID { get { return abilityID; } }
+    public string EffectName { get { return effectName; } }
+    public Sprite EffectIcon { get { return effectIcon; } }
+    public string Tooltip { get { return tooltip; } }
+    public string LongDescription { get { return longDescription; } }
+    public float StartingCooldown { get { return startingCooldown; } }
+    public float Cooldown { get { return cooldown; } }
+    public bool StartCooldownAtCast { get { return startCooldownAtCast; } }
+
+    public bool IsCooldownStatic { get { return isCooldownStatic; } }
+}
