@@ -15,7 +15,6 @@ public abstract class Ability : MonoBehaviour
     public CooldownHandler Cooldown { get { return cooldown; } }
 
     protected Dictionary<string, Action<Dictionary<string, object>> > passiveHandler = new();
-    [SerializeField] protected string[] effectDependencies;
 
 
     protected virtual void Update()
