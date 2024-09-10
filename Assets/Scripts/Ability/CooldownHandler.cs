@@ -10,7 +10,7 @@ public class CooldownHandler
 {
 
     [SerializeField] private string AbilityID;
-    private Dictionary<string, object> parameter;
+    private Dictionary<string, object> parameter = new();
 
     [SerializeField] private float maxCooldown;
     [SerializeField] private float currentCooldown;
@@ -21,12 +21,12 @@ public class CooldownHandler
    
     public CooldownHandler(float defaultCooldown, string abilityID)
     {
+
         Reset();
 
-        this.maxCooldown = defaultCooldown;
-        parameter = new Dictionary<string, object>();
         parameter["Ability ID"] = AbilityID;
-
+        this.maxCooldown = defaultCooldown;
+  
     }
 
     public void Start()
@@ -43,14 +43,14 @@ public class CooldownHandler
 
     public void Update()
     {
-        if (currentCooldown >= maxCooldown)
+        if (isCooldownFinished())
             return;
 
         currentCooldown -= Time.deltaTime;
 
         FireCooldownEvent(EventNames.COOLDOWN_EVENTS.ON_COOLDOWN_TICK);
 
-        if(currentCooldown <= 0)
+        if(isCooldownFinished())
             FireCooldownEvent(EventNames.COOLDOWN_EVENTS.ON_COOLDOWN_ENDED);
 
     }

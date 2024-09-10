@@ -17,17 +17,32 @@ public abstract class Ability : MonoBehaviour
     protected Dictionary<string, Action<Dictionary<string, object>> > passiveHandler = new();
     [SerializeField] protected string[] effectDependencies;
 
-    protected void Awake()
+
+    protected virtual void Update()
     {
-        foreach(var passive in passiveHandler)
-            EventBroadcasting.AddListener(passive.Key, passive.Value);
-       
+        cooldown.Update();
+    }
+
+    public void Activate()
+    {
+        if (cooldown.isCooldownFinished())
+        {
+            Cast();
+            cooldown.Start();
+        }
+    }
+
+    protected virtual void Awake()
+    {
         Initialize();
 
+        foreach (var passive in passiveHandler)
+            EventBroadcasting.AddListener(passive.Key, passive.Value);
+       
         cooldown = new CooldownHandler(abilityData.Cooldown, abilityData.AbilityID);
     }
 
     protected abstract void Initialize();
 
-    public abstract void Cast();
+    protected abstract void Cast();
 }

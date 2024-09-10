@@ -7,7 +7,7 @@ public class EventNames
 
     public class ABILITY_EVENTS
     {
-       
+        public const string ON_ABILITY_ACTIVATION = "ON_ABILITY_ACTIVATION";
     }
 
     public class COOLDOWN_EVENTS
