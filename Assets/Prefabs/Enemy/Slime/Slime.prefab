@@ -75,6 +75,9 @@ MonoBehaviour:
     pierce_count: 0
     projectile_id: 
     sound_id: 
+    play_reload: 0
+    start_reload_sound_id: 
+    end_reload_sound_id: 
   acceleration: 18
   speed_base: 2
   movedir: {x: 0, y: 0, z: 0}
