@@ -54,7 +54,8 @@ namespace Assets.Scripts.Controller
 
             MoveDir = transform.right * dir2.x + transform.forward * dir2.y;
 
-            ActionBroadcaster.Broadcast("player_move", this.transform);
+            bool received = false;
+            ActionBroadcaster.Broadcast("player_move", this.transform, ref received);
         }
 
         void IPlayerInputReceiver.Aim(InputAction.CallbackContext callback)
@@ -92,7 +93,8 @@ namespace Assets.Scripts.Controller
 
             if ((this as IPlayerInputReceiver).IsFire && EventSystem.current.IsPointerOverGameObject() == false)
             {
-                ActionBroadcaster.Broadcast("player_shoot", this.transform);
+                bool received = false;
+                ActionBroadcaster.Broadcast("player_shoot", this.transform, ref received);
                 base.Fire();
             }
         }

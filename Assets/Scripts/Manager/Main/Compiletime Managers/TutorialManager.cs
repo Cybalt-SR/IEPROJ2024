@@ -17,6 +17,8 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
     private Transform current_reference = null;
     private bool dismissed = false;
 
+    private bool currently_displaying_tutorial = false;
+
     private void Awake()
     {
         IConsistentDataHolder<TutorialProgress>.Data = mData;
@@ -24,37 +26,37 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
 
     public void DismissPrompt()
     {
-        current_reference = null;
-
         dismissed = true;
-        mData.prompt_index++;
-
-        if (mData.prompt_index >= TutorialDictionary.Instance.GetCount())
-            return;
-
-        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index));
+        current_reference = null;
     }
 
     private void Start()
     {
-        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index));
+        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index), () => currently_displaying_tutorial);
 
         ActionBroadcaster.Subscribe((actionname, reference) =>
         {
-            if (mData.prompt_index >= TutorialDictionary.Instance.GetCount())
-                return;
-            
-            
             if (actionname == TutorialDictionary.Instance.GetKey(mData.prompt_index))
             {
                 if (reference == null)
                     reference = PlayerController.GetFirst().transform;
 
                 current_reference = reference;
-                dismissed = false;
-                DialogueController.LoadMessage(new Message(){
+                var loaded = DialogueController.LoadMessage(new Message(){
                     text = TutorialDictionary.Instance.GetCompiledMessage(mData.prompt_index)
                 });
+
+                if (loaded)
+                {
+                    dismissed = false;
+                    mData.prompt_index++;
+
+                    if (mData.prompt_index >= TutorialDictionary.Instance.GetCount())
+                        return;
+
+                    var index_at_this_point = mData.prompt_index;
+                    ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index), () => mData.prompt_index > index_at_this_point);
+                }
             }
         });
     }

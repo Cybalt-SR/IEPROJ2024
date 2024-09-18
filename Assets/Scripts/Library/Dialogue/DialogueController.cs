@@ -100,8 +100,11 @@ namespace External.Dialogue
             {
                 time_already_done += Time.deltaTime;
 
-                if (time_already_done > time_till_decay)
+                if (time_already_done > time_till_decay && Current_message != null)
+                {
+                    Current_message = null;
                     OnDialogueClose.Invoke();
+                }
             }
 
             var imagepos = characterImage.rectTransform.anchoredPosition;
@@ -144,8 +147,14 @@ namespace External.Dialogue
             }
         }
 
-        public static void LoadMessage(Message message)
+        public static bool LoadMessage(Message message)
         {
+            //anti interrupt check
+            if(Instance.time_already_done <= 0)
+            {
+                return false;
+            }
+
             //cam redir
 
             if (Name_Refs != null && Name_Refs.Count > 0)
@@ -185,13 +194,15 @@ namespace External.Dialogue
             Instance.write_index = 0;
             Instance.currentlyWriting = true;
 
-            Instance.text.text += TextToShow + System.Environment.NewLine + System.Environment.NewLine;
+            Instance.text.text = TextToShow + System.Environment.NewLine + System.Environment.NewLine;
 
             //choices
             
             Current_message = message;
 
             Instance.OnDialogueOpen.Invoke();
+
+            return true;
         }
 
         public static void ResetImages()

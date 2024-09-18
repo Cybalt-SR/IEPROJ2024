@@ -18638,6 +18638,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1458604538}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: DismissPrompt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   WriteTimePerChar: 0.02
   springStartOffset: 50
   springDampening: 0.8
@@ -21669,12 +21681,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458604537}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -203.29, y: -65.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1834349069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1488160592
 PrefabInstance:
@@ -22805,7 +22817,7 @@ MonoBehaviour:
   lerp_speed: 10
   shown: 0
   normal_pos: {x: 0, y: 0}
-  hidden_pos: {x: -500, y: 0}
+  hidden_pos: {x: -700, y: 0}
 --- !u!1001 &1525952269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25017,7 +25029,7 @@ GameObject:
   - component: {fileID: 1625069254}
   - component: {fileID: 1625069253}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: Runtime managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28023,12 +28035,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830471428}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -203.29, y: -65.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1834349069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1833214508
 GameObject:
@@ -28153,6 +28165,39 @@ MonoBehaviour:
   owner: Player1
   Attachment_screen: {fileID: 214498248}
   Pause_screen: {fileID: 114533994}
+--- !u!1 &1834349068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1834349069}
+  m_Layer: 0
+  m_Name: Compiletime managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1834349069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834349068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 203.29, y: 65.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1458604539}
+  - {fileID: 1830471430}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1837758197
 GameObject:
   m_ObjectHideFlags: 0
@@ -32489,12 +32534,11 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 331328128}
   - {fileID: 1057810296}
+  - {fileID: 1834349069}
   - {fileID: 1625069254}
   - {fileID: 1833214512}
   - {fileID: 1878664018}
   - {fileID: 1547407737}
   - {fileID: 1072154949}
-  - {fileID: 1830471430}
-  - {fileID: 1458604539}
   - {fileID: 1569658499}
   - {fileID: 600626638}

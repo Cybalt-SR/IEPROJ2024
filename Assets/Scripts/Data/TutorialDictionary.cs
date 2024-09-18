@@ -32,6 +32,9 @@ public class TutorialDictionary : SingletonResource<TutorialDictionary>
 
     public string GetKey(int index)
     {
+        if (index >= prompts.Count)
+            return "";
+
         return prompts[index].trigger_broadcast;
     }
 

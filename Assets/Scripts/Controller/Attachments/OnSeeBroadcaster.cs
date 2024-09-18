@@ -16,7 +16,11 @@ public class OnSeeBroadcaster : MonoBehaviour
 
         if (CameraController.Instance.PointInCameraView(this.transform.position))
         {
-            ActionBroadcaster.Broadcast("see_" + see_, this.transform);
+            bool received = false;
+            ActionBroadcaster.Broadcast("see_" + see_, this.transform, ref received);
+
+            if (received == false)
+                return;
 
             if (only_once)
                 this.enabled = false;

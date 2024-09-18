@@ -49,7 +49,8 @@ namespace Assets.Scripts.Manager
                 if (EquipmentManager.PickupAttachment(player, attachment) == false)
                     return;
 
-            ActionBroadcaster.Broadcast("pickup", null);
+            bool received = false;
+            ActionBroadcaster.Broadcast("pickup", null, ref received);
 
             Instance.nearby_per_player[player].Find(nearby => nearby.Pickup == pickup).PickedUp();
             Instance.nearby_per_player[player].RemoveAll(x => x == null);
