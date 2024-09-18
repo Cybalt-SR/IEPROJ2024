@@ -20,15 +20,17 @@ namespace External.Dialogue
         public static int MessageIndex { get; private set; }
 
         [Header("Config")]
+        [SerializeField] private float time_till_decay = 4;
         [SerializeField] private string player_name;
         [Header("Main References")]
-        [SerializeField] private Transform gridParent;
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private Image characterImage;
+        [SerializeField] private UnityEvent OnDialogueOpen;
+        [SerializeField] private UnityEvent OnDialogueClose;
 
 
         [Header("Settings")]
-        [SerializeField] private const float WriteTimePerChar = 0.06f;
+        [SerializeField] private float WriteTimePerChar = 0.06f;
 
         //writing
         private bool currentlyWriting = false;
@@ -44,8 +46,10 @@ namespace External.Dialogue
         //For delegate
         private static Action onFinishDialogue;
 
-        [SerializeField] private UnityAction CameraResetPos;
-        [SerializeField] private UnityAction<Transform> CameraLookAt;
+        [SerializeField] private UnityEvent CameraResetPos;
+        [SerializeField] private UnityEvent<Transform> CameraLookAt;
+
+        private float time_already_done = 0;
 
         private void Awake()
         {
@@ -64,16 +68,23 @@ namespace External.Dialogue
                     text.text += Current_message.text[write_index];
                 }
             }
+            else
+            {
+                OnDialogueClose.Invoke();
+            }
         }
 
         public void Update()
         {
             if (currentlyWriting)
             {
+                time_already_done = 0;
                 TimeLast_Write += Time.deltaTime;
 
                 if (TimeLast_Write > WriteTimePerChar)
                 {
+                    TimeLast_Write = 0;
+
                     if (write_index < Current_message.text.Length)
                     {
                         text.text += Current_message.text[write_index];
@@ -84,6 +95,13 @@ namespace External.Dialogue
                         currentlyWriting = false;
                     }
                 }
+            }
+            else
+            {
+                time_already_done += Time.deltaTime;
+
+                if (time_already_done > time_till_decay)
+                    OnDialogueClose.Invoke();
             }
 
             var imagepos = characterImage.rectTransform.anchoredPosition;
@@ -126,7 +144,7 @@ namespace External.Dialogue
             }
         }
 
-        private static void LoadMessage(Message message)
+        public static void LoadMessage(Message message)
         {
             //cam redir
 
@@ -159,15 +177,21 @@ namespace External.Dialogue
             }
 
             //text
-            string TextToShow = (message.name_index == -1) ? instance.player_name : Current_Dialogue.names[message.name_index];
+            string TextToShow = "";
+
+            if (Current_Dialogue != null)
+                TextToShow += (message.name_index == -1) ? instance.player_name : Current_Dialogue.names[message.name_index];
+
             Instance.write_index = 0;
             Instance.currentlyWriting = true;
 
-            Instance.text.text = TextToShow + System.Environment.NewLine + System.Environment.NewLine;
+            Instance.text.text += TextToShow + System.Environment.NewLine + System.Environment.NewLine;
 
             //choices
             
             Current_message = message;
+
+            Instance.OnDialogueOpen.Invoke();
         }
 
         public static void ResetImages()

@@ -1,5 +1,6 @@
 using Assets.Scripts.Controller;
 using Assets.Scripts.Library;
+using External.Dialogue;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,6 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProgress>
 {
     [SerializeField] private Transform TutorialPopUp;
-    [SerializeField] private TextMeshPro TutorialPopUp_text;
     [SerializeField] private float animation_speed = 20;
 
     [SerializeField] private TutorialProgress mData = new();
@@ -52,7 +52,9 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
 
                 current_reference = reference;
                 dismissed = false;
-                TutorialPopUp_text.text = TutorialDictionary.Instance.GetCompiledMessage(mData.prompt_index);
+                DialogueController.LoadMessage(new Message(){
+                    text = TutorialDictionary.Instance.GetCompiledMessage(mData.prompt_index)
+                });
             }
         });
     }
