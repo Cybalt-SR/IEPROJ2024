@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DisableOnUnitNear : MonoBehaviour
 {
-    [SerializeField] private List<Renderer> to_disable = new();
+    [SerializeField] private List<GameObject> to_disable = new();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +19,7 @@ public class DisableOnUnitNear : MonoBehaviour
         if (other.attachedRigidbody.gameObject.TryGetComponent(out UnitController player) == false)
             return;
 
-        to_disable.ForEach(x => x.enabled = false);
+        to_disable.ForEach(x => x.SetActive(false));
     }
 
     private void OnTriggerExit(Collider other)
@@ -33,6 +33,6 @@ public class DisableOnUnitNear : MonoBehaviour
         if (other.attachedRigidbody.gameObject.TryGetComponent(out UnitController player) == false)
             return;
 
-        to_disable.ForEach(x => x.enabled = true);
+        to_disable.ForEach(x => x.SetActive(true));
     }
 }

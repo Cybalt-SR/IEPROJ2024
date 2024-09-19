@@ -8,15 +8,21 @@ using UnityEngine.Events;
 
 public class ActionBroadcaster : MonoSingleton<ActionBroadcaster>
 {
-    public readonly UnityEvent<string, Transform> onAction = new();
-    public readonly List<(string name, Func<bool> callback)> waitlist = new List<(string, Func<bool>)>();
+    public readonly List<(string name, Func<Transform, bool> callback)> waitlist = new List<(string, Func<Transform, bool>)>();
 
     public static void Broadcast(string action, Transform where, ref bool received)
     {
-        Instance.waitlist.RemoveAll(tuple => tuple.name == action);
-        Instance.onAction.Invoke(action, where);
+        Instance.waitlist.RemoveAll(tuple =>
+        {
+            if (tuple.name != action)
+                return false;
+
+            if (tuple.callback.Invoke(where))
+                return true;
+
+            return false;
+        });
     }
-    public static void Subscribe(Action<string, Transform> action) => Instance.onAction.AddListener(action.Invoke);
-    public static void WaitFor(string action_name, Func<bool> callback) => Instance.waitlist.Add((action_name, callback));
+    public static void WaitFor(string action_name, Func<Transform, bool> callback) => Instance.waitlist.Add((action_name, callback));
     public static bool CheckIfWaiting(string action_name) => Instance.waitlist.Any(tuple => tuple.name == action_name);
 }

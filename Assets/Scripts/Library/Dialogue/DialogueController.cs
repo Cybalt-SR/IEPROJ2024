@@ -155,6 +155,8 @@ namespace External.Dialogue
                 return false;
             }
 
+            Instance.time_already_done = 0;
+
             //cam redir
 
             if (Name_Refs != null && Name_Refs.Count > 0)

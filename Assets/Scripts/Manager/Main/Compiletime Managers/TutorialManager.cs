@@ -32,33 +32,31 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
 
     private void Start()
     {
-        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index), () => currently_displaying_tutorial);
-
-        ActionBroadcaster.Subscribe((actionname, reference) =>
+        for (int i = 0; i < TutorialDictionary.Instance.GetCount(); i++)
         {
-            if (actionname == TutorialDictionary.Instance.GetKey(mData.prompt_index))
+            var item = TutorialDictionary.Instance.GetKey(i);
+            var cur_i = i;
+
+            ActionBroadcaster.WaitFor(item, (Transform reference) =>
             {
+                if (cur_i != mData.prompt_index)
+                    return false;
+
                 if (reference == null)
                     reference = PlayerController.GetFirst().transform;
 
                 current_reference = reference;
-                var loaded = DialogueController.LoadMessage(new Message(){
-                    text = TutorialDictionary.Instance.GetCompiledMessage(mData.prompt_index)
+                var loaded = DialogueController.LoadMessage(new Message()
+                {
+                    text = TutorialDictionary.Instance.GetCompiledMessage(cur_i)
                 });
 
                 if (loaded)
-                {
-                    dismissed = false;
                     mData.prompt_index++;
 
-                    if (mData.prompt_index >= TutorialDictionary.Instance.GetCount())
-                        return;
-
-                    var index_at_this_point = mData.prompt_index;
-                    ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index), () => mData.prompt_index > index_at_this_point);
-                }
-            }
-        });
+                return loaded;
+            });
+        }
     }
 
     private void Update()
