@@ -1,5 +1,6 @@
 using Assets.Scripts.Controller;
 using Assets.Scripts.Library;
+using External.Dialogue;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,13 +10,14 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProgress>
 {
     [SerializeField] private Transform TutorialPopUp;
-    [SerializeField] private TextMeshPro TutorialPopUp_text;
     [SerializeField] private float animation_speed = 20;
 
     [SerializeField] private TutorialProgress mData = new();
 
     private Transform current_reference = null;
     private bool dismissed = false;
+
+    private bool currently_displaying_tutorial = false;
 
     private void Awake()
     {
@@ -24,37 +26,37 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
 
     public void DismissPrompt()
     {
-        current_reference = null;
-
         dismissed = true;
-        mData.prompt_index++;
-
-        if (mData.prompt_index >= TutorialDictionary.Instance.GetCount())
-            return;
-
-        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index));
+        current_reference = null;
     }
 
     private void Start()
     {
-        ActionBroadcaster.WaitFor(TutorialDictionary.Instance.GetKey(mData.prompt_index));
-
-        ActionBroadcaster.Subscribe((actionname, reference) =>
+        for (int i = 0; i < TutorialDictionary.Instance.GetCount(); i++)
         {
-            if (mData.prompt_index >= TutorialDictionary.Instance.GetCount())
-                return;
-            
-            
-            if (actionname == TutorialDictionary.Instance.GetKey(mData.prompt_index))
+            var item = TutorialDictionary.Instance.GetKey(i);
+            var cur_i = i;
+
+            ActionBroadcaster.WaitFor(item, (Transform reference) =>
             {
+                if (cur_i != mData.prompt_index)
+                    return false;
+
                 if (reference == null)
                     reference = PlayerController.GetFirst().transform;
 
                 current_reference = reference;
-                dismissed = false;
-                TutorialPopUp_text.text = TutorialDictionary.Instance.GetCompiledMessage(mData.prompt_index);
-            }
-        });
+                var loaded = DialogueController.LoadMessage(new Message()
+                {
+                    text = TutorialDictionary.Instance.GetCompiledMessage(cur_i)
+                });
+
+                if (loaded)
+                    mData.prompt_index++;
+
+                return loaded;
+            });
+        }
     }
 
     private void Update()
