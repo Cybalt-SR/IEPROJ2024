@@ -4,66 +4,63 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using gab_roadcasting;
+using UnityEngine.WSA;
+using UnityEditor.Playables;
 
 namespace Abilities
 {
     public class AbilityManager : Manager_Base<AbilityManager>
     {
+ 
+        private Dictionary<string, List<Ability>> abilityHolder = new();
 
-        private Dictionary<string, Ability> abilityHolder = new();
-        [SerializeField]private Ability secondaryActive;
-
-
-        private void LoadSecondary()
+        public Ability RequestAbility(string AbilityID, GameObject requester)
         {
 
-        }
-
-        protected override void Awake()
-        {
-            base.Awake();
-            EventBroadcasting.AddListener(EventNames.ABILITY_EVENTS.ON_ABILITY_ACTIVATION, Activate);
-           
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-                Activate(null);
-        }
-
-        private void Activate(Dictionary <string, object> parameters)
-        {
-            if (secondaryActive == null)
-                return;
-
-            if (secondaryActive.Cooldown.isCooldownFinished())
-                secondaryActive.Activate();
-                         
-        }
-
-
-        //will convert this into an OnSecondaryChanged event
-        private void LoadAbility(Ability prefab)
-        {
-
-            if (abilityHolder.ContainsKey(prefab.AbilityData.AbilityID) == false)
+            Ability createNew()
             {
-
-                GameObject holder = Instantiate(prefab.gameObject);
+                GameObject holder = Resources.Load("Abilities/" + AbilityID, typeof(GameObject)) as GameObject;
                 Ability ability = holder.GetComponent<Ability>();
 
                 holder.name = ability.AbilityData.EffectName;
                 holder.transform.parent = transform;
 
-                abilityHolder.Add(ability.AbilityData.AbilityID, ability);
-             
+                abilityHolder[AbilityID].Add(ability);
+
+                return ability;
             }
 
-            secondaryActive = abilityHolder[prefab.AbilityData.AbilityID];
+            Ability getUnowned(List<Ability> pool)
+            {
+                foreach (Ability ability in pool)
+                    if (ability.IsOwned == false)
+                        return ability;
+
+                return createNew();
+            }
+
+            if (abilityHolder.ContainsKey(AbilityID) == true)
+            {
+                List<Ability> poolAtKey = abilityHolder[AbilityID];
+                Ability unownedAbility = getUnowned(poolAtKey);
+                unownedAbility.SetOwner(requester);
+                return unownedAbility;
+            }
+
+            abilityHolder.Add(AbilityID, new List<Ability>());
+            Ability newAbility = createNew();     
+            newAbility.SetOwner(requester);
+            return newAbility;
 
         }
+
+        public void ReleaseAbility(Ability ability)
+        {
+            ability.SetOwner(null);
+        }
+
 
     }
 
 }
+
