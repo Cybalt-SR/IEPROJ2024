@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5579522141042908017}
   - component: {fileID: 1307335861358856531}
   - component: {fileID: 3150511203573886730}
-  - component: {fileID: 7222581570984478531}
   m_Layer: 5
   m_Name: SecondaryBox
   m_TagString: Untagged
@@ -111,7 +110,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &3150511203573886730
 MonoBehaviour:
@@ -128,18 +127,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0.054451227, g: 1, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
---- !u!114 &7222581570984478531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2757942859229203174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7941f37a1f9b6d848a7e7a78df204748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3778663255695151185
 GameObject:
   m_ObjectHideFlags: 0

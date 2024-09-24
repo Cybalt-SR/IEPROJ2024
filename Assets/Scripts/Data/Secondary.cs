@@ -16,6 +16,19 @@ public class Secondary : ScriptableObject
     [SerializeField] private Image secondaryIcon;
 
     [SerializeField] private Ability shotEffect;
+
     [SerializeField] private Ability secondaryAbility;
+
+
+    public string SecondaryName { get { return secondaryName; } }
+    public string ToolTip { get { return toolTip; } }
+    public Image SecondaryIcon { get { return secondaryIcon; } }
+
+    public Ability ShotEffect { get { return shotEffect; } }
+
+    public Ability SecondaryAbility { get { return secondaryAbility; } }
+
+   
+
 
 }

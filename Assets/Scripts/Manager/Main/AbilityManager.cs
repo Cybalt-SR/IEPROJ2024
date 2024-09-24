@@ -44,12 +44,14 @@ namespace Abilities
                 List<Ability> poolAtKey = abilityHolder[AbilityID];
                 Ability unownedAbility = getUnowned(poolAtKey);
                 unownedAbility.SetOwner(requester);
+                unownedAbility.gameObject.SetActive(true);
                 return unownedAbility;
             }
 
             abilityHolder.Add(AbilityID, new List<Ability>());
             Ability newAbility = createNew();     
             newAbility.SetOwner(requester);
+            newAbility.gameObject.SetActive(true);
             return newAbility;
 
         }
@@ -57,6 +59,7 @@ namespace Abilities
         public void ReleaseAbility(Ability ability)
         {
             ability.SetOwner(null);
+            ability.gameObject.SetActive(false);
         }
 
 
