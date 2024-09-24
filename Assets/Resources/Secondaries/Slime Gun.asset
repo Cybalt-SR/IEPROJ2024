@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d0f004f87eb5142b2eef184c3c381e, type: 3}
   m_Name: Slime Gun
   m_EditorClassIdentifier: 
-  secondaryName: 
-  toolTip: 
+  secondaryName: Slime Gun
+  toolTip: Grappling gun but with slime
   secondaryIcon: {fileID: 0}
-  shotEffect: {fileID: 0}
-  secondaryAbility: {fileID: 0}
+  shotEffect: {fileID: 5082755626913055866, guid: 675bfcc9a9f6cef4882a536c413a0d22,
+    type: 3}
+  secondaryAbility: {fileID: 7365157082942518858, guid: 3b8d55856624e714985117337bee99c7,
+    type: 3}

@@ -26,8 +26,8 @@ public class AbilityData
     public string EffectName { get { return effectName; } }
     public Sprite EffectIcon { get { return effectIcon; } }
     public string Tooltip { get { return tooltip; } }
-    public string PassiveDescription { get { return PassiveDescription; } }
-    public string ActiveDescription { get { return ActiveDescription; } }
+    public string PassiveDescription { get { return passiveDescription; } }
+    public string ActiveDescription { get { return activeDescription; } }
     public float Cooldown { get { return cooldown; } }
 
 }

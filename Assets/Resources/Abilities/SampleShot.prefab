@@ -52,7 +52,7 @@ MonoBehaviour:
     cooldown: 0.1
     tooltip: 
     passiveDescription: 
-    activeDescription: 
+    activeDescription: Broadcasts "Shot!"
   cooldown:
     AbilityID: 
     maxCooldown: 0

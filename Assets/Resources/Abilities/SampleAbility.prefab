@@ -51,8 +51,8 @@ MonoBehaviour:
     effectIcon: {fileID: 0}
     cooldown: 5
     tooltip: 
-    passiveDescription: 
-    activeDescription: 
+    passiveDescription: Increments Count by <b>1</b> each use
+    activeDescription: Broadcasts Count
   cooldown:
     AbilityID: 
     maxCooldown: 0

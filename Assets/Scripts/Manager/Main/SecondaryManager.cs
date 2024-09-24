@@ -14,6 +14,8 @@ public class SecondaryManager : Manager_Base<SecondaryManager>
     private Ability shotEffect;
     private Ability secondaryAbility;
 
+    public Secondary CurrentlyEquipped { get { return currentlyEquippedSecondary; } }
+
     public bool hasEquipped { get { return currentlyEquippedSecondary != null; } }
 
 
@@ -45,7 +47,7 @@ public class SecondaryManager : Manager_Base<SecondaryManager>
             shotEffect.Activate();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             secondaryAbility.Activate();
         }
