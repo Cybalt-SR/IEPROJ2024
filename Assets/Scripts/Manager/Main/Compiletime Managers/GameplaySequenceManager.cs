@@ -1,5 +1,6 @@
 using Assets.Scripts.Controller;
 using Assets.Scripts.Library;
+using Assets.Scripts.Library.ActionBroadcaster;
 using External.Dialogue;
 using System;
 using System.Collections;
@@ -7,12 +8,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProgress>
+public class GameplaySequenceManager : MonoBehaviour, IConsistentDataHolder<GameplayProgress>
 {
     [SerializeField] private Transform TutorialPopUp;
     [SerializeField] private float animation_speed = 20;
 
-    [SerializeField] private TutorialProgress mData = new();
+    [SerializeField] private GameplayProgress mData = new();
 
     private Transform current_reference = null;
     private bool dismissed = false;
@@ -21,7 +22,7 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
 
     private void Awake()
     {
-        IConsistentDataHolder<TutorialProgress>.Data = mData;
+        IConsistentDataHolder<GameplayProgress>.Data = mData;
     }
 
     public void DismissPrompt()
@@ -37,7 +38,7 @@ public class TutorialManager : MonoBehaviour, IConsistentDataHolder<TutorialProg
             var item = TutorialDictionary.Instance.GetKey(i);
             var cur_i = i;
 
-            ActionBroadcaster.WaitFor(item, (Transform reference) =>
+            ActionBroadcaster.RegisterWaiter(item, (Transform reference) =>
             {
                 if (cur_i != mData.prompt_index)
                     return false;

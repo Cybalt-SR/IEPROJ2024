@@ -4,6 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class TutorialProgress {
+public class GameplayProgress {
     public int prompt_index;
 }
