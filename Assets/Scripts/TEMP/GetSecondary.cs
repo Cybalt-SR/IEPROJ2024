@@ -8,7 +8,7 @@ public class GetSecondary : MonoBehaviour
 {
     [SerializeField] private Secondary secondary;
 
-    private Dictionary<string, object> param;
+    private Dictionary<string, object> param = new();
 
     private void Awake()
     {

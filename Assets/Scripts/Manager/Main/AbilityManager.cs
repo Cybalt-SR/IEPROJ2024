@@ -19,7 +19,7 @@ namespace Abilities
 
             Ability createNew()
             {
-                GameObject holder = Resources.Load("Abilities/" + AbilityID, typeof(GameObject)) as GameObject;
+                GameObject holder = Instantiate(Resources.Load("Abilities/" + AbilityID, typeof(GameObject)) as GameObject);
                 Ability ability = holder.GetComponent<Ability>();
 
                 holder.name = ability.AbilityData.EffectName;

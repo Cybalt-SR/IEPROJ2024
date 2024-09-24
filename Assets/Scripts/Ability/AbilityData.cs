@@ -16,14 +16,18 @@ public class AbilityData
     [SerializeField] private string tooltip;
 
     [TextArea(1, 20)]
-    [SerializeField] private string longDescription;
+    [SerializeField] private string passiveDescription;
+
+    [TextArea(1, 20)]
+    [SerializeField] private string activeDescription;
 
 
     public string AbilityID { get { return abilityID; } }
     public string EffectName { get { return effectName; } }
     public Sprite EffectIcon { get { return effectIcon; } }
     public string Tooltip { get { return tooltip; } }
-    public string LongDescription { get { return longDescription; } }
+    public string PassiveDescription { get { return PassiveDescription; } }
+    public string ActiveDescription { get { return ActiveDescription; } }
     public float Cooldown { get { return cooldown; } }
 
 }
