@@ -5,6 +5,7 @@ using UnityEngine;
 using Assets.Scripts.Gameplay.Manager;
 using Abilities;
 using gab_roadcasting;
+using Assets.Scripts.Controller;
 
 public class SecondaryManager : Manager_Base<SecondaryManager>
 {
@@ -32,8 +33,11 @@ public class SecondaryManager : Manager_Base<SecondaryManager>
 
         currentlyEquippedSecondary = secondary;
 
-        shotEffect = AbilityManager.Instance.RequestAbility(secondary.ShotEffect.AbilityData.AbilityID, gameObject);
-        secondaryAbility = AbilityManager.Instance.RequestAbility(secondary.SecondaryAbility.AbilityData.AbilityID, gameObject);
+
+        GameObject player = PlayerController.GetFirst().gameObject;
+
+        shotEffect = AbilityManager.Instance.RequestAbility(secondary.ShotEffect.AbilityData.AbilityID, player);
+        secondaryAbility = AbilityManager.Instance.RequestAbility(secondary.SecondaryAbility.AbilityData.AbilityID, player);
     }
 
 

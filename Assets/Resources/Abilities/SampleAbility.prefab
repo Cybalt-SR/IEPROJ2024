@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3427216975007479839}
-  - component: {fileID: 7365157082942518858}
+  - component: {fileID: 3824282653499264992}
   m_Layer: 0
   m_Name: SampleAbility
   m_TagString: Untagged
@@ -26,13 +26,14 @@ Transform:
   m_GameObject: {fileID: 7603921057294696435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.98864, y: 0.051320076, z: 2.5957003}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2222833823868231975}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7365157082942518858
+--- !u!114 &3824282653499264992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,19 +42,91 @@ MonoBehaviour:
   m_GameObject: {fileID: 7603921057294696435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbff3f2c4f7cef4891457f8d0de2f54, type: 3}
+  m_Script: {fileID: 11500000, guid: 50c198448566c5540a4e64499261dded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   abilityData:
     abilityID: SampleAbility
-    effectName: 
+    effectName: Damage Reduction
     effectIcon: {fileID: 0}
-    cooldown: 5
+    cooldown: 0
     tooltip: 
-    passiveDescription: Increments Count by <b>1</b> each use
-    activeDescription: Broadcasts Count
+    passiveDescription: 
+    activeDescription: 
   cooldown:
     AbilityID: 
     maxCooldown: 0
     currentCooldown: 0
+  damageReductionPercent: 100
+  grapplingMultiplier: 2
+  proximityChecker: {fileID: 6822011016803589086}
+--- !u!1 &8786897118212498679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2222833823868231975}
+  - component: {fileID: 3837075782465738952}
+  - component: {fileID: 6822011016803589086}
+  m_Layer: 0
+  m_Name: ProximityChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2222833823868231975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8786897118212498679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3427216975007479839}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &3837075782465738952
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8786897118212498679}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 7
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6822011016803589086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8786897118212498679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f127a67d6ab67e747b2a3f2ec869c548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionList: []
+  tagWhitelist:
+  - Enemy

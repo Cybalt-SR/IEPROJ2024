@@ -47,7 +47,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   abilityData:
     abilityID: SampleShot
-    effectName: 
+    effectName: Shot
     effectIcon: {fileID: 0}
     cooldown: 0.1
     tooltip: 

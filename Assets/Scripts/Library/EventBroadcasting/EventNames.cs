@@ -24,6 +24,12 @@ public class EventNames
     }
 
 
+    public class PLAYER_EVENTS
+    {
+        public const string ON_OVERLOAD_CHANGED = "ON_OVERLOAD_CHANGED";
+       
+    }
+
     public class UI_EVENTS
     {
 

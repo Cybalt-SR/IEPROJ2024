@@ -23,7 +23,7 @@ namespace Abilities
                 Ability ability = holder.GetComponent<Ability>();
 
                 holder.name = ability.AbilityData.EffectName;
-                holder.transform.parent = transform;
+                holder.transform.parent = requester.transform;
 
                 abilityHolder[AbilityID].Add(ability);
 
@@ -45,6 +45,7 @@ namespace Abilities
                 Ability unownedAbility = getUnowned(poolAtKey);
                 unownedAbility.SetOwner(requester);
                 unownedAbility.gameObject.SetActive(true);
+                unownedAbility.transform.parent = requester.transform;
                 return unownedAbility;
             }
 
@@ -60,6 +61,7 @@ namespace Abilities
         {
             ability.SetOwner(null);
             ability.gameObject.SetActive(false);
+            ability.transform.parent = transform;
         }
 
 

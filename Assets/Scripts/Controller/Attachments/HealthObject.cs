@@ -28,4 +28,13 @@ public class HealthObject : MonoBehaviour
                 onDie.Invoke(projectile);
             });
     }
+
+    //temp
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0) onDie?.Invoke(null);
+    }
+
 }
