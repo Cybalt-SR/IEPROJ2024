@@ -8,8 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(ProjectileHittable))]
 public class HealthObject : MonoBehaviour
 {
-    [SerializeField] private int health;
-    public int Health { get => health; }
+    [SerializeField] private float health;
+    public float Health { get => health; }
     private ProjectileHittable mProjectileHittable;
 
     private Action<ProjectileController> onDie;
@@ -31,7 +31,7 @@ public class HealthObject : MonoBehaviour
 
     //temp
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0) onDie?.Invoke(null);

@@ -9,7 +9,9 @@ public class ProximityChecker : MonoBehaviour
     [SerializeField] private List<GameObject> collisionList;
     [SerializeField] private List<string> tagWhitelist;
 
-    public List<GameObject> CollisionList { get { return collisionList; } }
+    public float MaxDistance { get => GetComponent<SphereCollider>().radius; }
+
+    public List<GameObject> CollisionList { get => collisionList; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,8 +21,19 @@ public class ProximityChecker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (tagWhitelist.Contains(other.tag) && collisionList.Contains(other.gameObject))
+        if (tagWhitelist.Contains(other.tag) == false)
+            return;
+
+        if (collisionList.Contains(other.gameObject))
             collisionList.Remove(other.gameObject);
+
     }
+
+    public void Clear()
+    {
+        collisionList.Clear();
+    }
+
+
 
 }

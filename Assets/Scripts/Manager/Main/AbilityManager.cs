@@ -23,8 +23,6 @@ namespace Abilities
                 Ability ability = holder.GetComponent<Ability>();
 
                 holder.name = ability.AbilityData.EffectName;
-                holder.transform.parent = requester.transform;
-
                 abilityHolder[AbilityID].Add(ability);
 
                 return ability;
@@ -39,20 +37,24 @@ namespace Abilities
                 return createNew();
             }
 
+            void ConfigureOwnership(Ability ability)
+            {
+                ability.SetOwner(requester);
+                ability.gameObject.SetActive(true);
+                ability.transform.parent = requester.transform;
+            }
+
             if (abilityHolder.ContainsKey(AbilityID) == true)
             {
                 List<Ability> poolAtKey = abilityHolder[AbilityID];
                 Ability unownedAbility = getUnowned(poolAtKey);
-                unownedAbility.SetOwner(requester);
-                unownedAbility.gameObject.SetActive(true);
-                unownedAbility.transform.parent = requester.transform;
+                ConfigureOwnership(unownedAbility);
                 return unownedAbility;
             }
 
             abilityHolder.Add(AbilityID, new List<Ability>());
-            Ability newAbility = createNew();     
-            newAbility.SetOwner(requester);
-            newAbility.gameObject.SetActive(true);
+            Ability newAbility = createNew();
+            ConfigureOwnership(newAbility);
             return newAbility;
 
         }

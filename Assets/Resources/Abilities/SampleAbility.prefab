@@ -60,7 +60,10 @@ MonoBehaviour:
     currentCooldown: 0
   damageReductionPercent: 100
   grapplingMultiplier: 2
+  knockStrength: 8
   proximityChecker: {fileID: 6822011016803589086}
+  puddlePrefab: {fileID: 3467994250812642890, guid: 33f68c34a86898544ba4726498cbaf01,
+    type: 3}
 --- !u!1 &8786897118212498679
 GameObject:
   m_ObjectHideFlags: 0
