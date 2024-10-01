@@ -4,6 +4,8 @@ using UnityEngine;
 
 using Abilities;
 using gab_roadcasting;
+using UnityEngine.AI;
+using Assets.Scripts.Controller;
 
 public class SlimeGunAbility : Ability
 {
@@ -23,6 +25,7 @@ public class SlimeGunAbility : Ability
     protected override void Cast()
     {
 
+
         Debug.Log("Casted Puddle");
 
         foreach (var enemy in proximityChecker.CollisionList)
@@ -37,7 +40,12 @@ public class SlimeGunAbility : Ability
             knockStrengthMultiplier *= 2;
 
             var rb = enemy.GetComponent<Rigidbody>();
-            rb.AddForce(knockDirection * knockStrengthMultiplier * knockStrength, ForceMode.Impulse);          
+            rb.AddForce(knockDirection * knockStrengthMultiplier * knockStrength, ForceMode.Impulse);
+
+
+            //temp -- not working
+            var ctrl = enemy.GetComponent<EnemyController>();
+            ctrl.StartCoroutine(ctrl.applySpeedModifier(10, 6));
         }
 
         GameObject puddle = Instantiate(puddlePrefab.gameObject);

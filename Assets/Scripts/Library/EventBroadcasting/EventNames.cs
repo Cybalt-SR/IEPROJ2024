@@ -21,6 +21,8 @@ public class EventNames
     public class SECONDARY_EVENTS
     {
         public const string ON_SECONDARY_EQUIP = "ON_SECONDARY_EQUIP";
+        public const string ON_SECONDARY_SHOT = "ON_SECONDARY_SHOT";
+        public const string ON_SECONDARY_ABILITY = "ON_SECONDARY_ABILITY";
     }
 
 
@@ -28,6 +30,11 @@ public class EventNames
     {
         public const string ON_OVERLOAD_CHANGED = "ON_OVERLOAD_CHANGED";
        
+    }
+
+    public class ENEMY_EVENTS
+    {
+        public const string ON_ENEMY_KILLED = "ON_ENEMY_KILLED";
     }
 
     public class UI_EVENTS

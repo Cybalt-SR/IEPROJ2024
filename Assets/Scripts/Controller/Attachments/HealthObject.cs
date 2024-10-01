@@ -1,5 +1,6 @@
 using Assets.Scripts.Controller;
 using Assets.Scripts.Controller.Attachments;
+using gab_roadcasting;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,10 +32,23 @@ public class HealthObject : MonoBehaviour
 
     //temp
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string source = "")
     {
         health -= damage;
-        if (health <= 0) onDie?.Invoke(null);
+
+        if (health > 0)
+            return;
+        
+        onDie?.Invoke(null);
+
+        
+        var p = new Dictionary<string, object>();
+        p.Add("Enemy", gameObject);
+        p.Add("Source", source);
+        EventBroadcasting.InvokeEvent(EventNames.ENEMY_EVENTS.ON_ENEMY_KILLED, p);
+        
+       
+        
     }
 
 }

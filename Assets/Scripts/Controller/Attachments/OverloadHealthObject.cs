@@ -14,6 +14,7 @@ public class OverloadHealthObject : MonoBehaviour
     [SerializeField] private float max_heat;
     [SerializeField] private float cooldown_speed;
     public float Heat { get => heat; }
+    public float MaxHeat { get => max_heat; }   
     private ProjectileHittable mProjectileHittable;
 
     [SerializeField] private UnityEvent<ProjectileController> onDie;
@@ -57,5 +58,13 @@ public class OverloadHealthObject : MonoBehaviour
 
         OnChangeHeatRatio.Invoke(heat / max_heat);
         OnChangeHeatRatio_reversed.Invoke(1.0f - (heat / max_heat));
+    }
+
+
+    public void DoOnHealth(Action<Wrapper<float>> doer )
+    {
+        var wrapper = new Wrapper<float>(heat);
+        doer?.Invoke(wrapper);
+        heat = Mathf.Clamp(heat, 0, max_heat);
     }
 }

@@ -1,7 +1,10 @@
 using Assets.Scripts.Data;
 using Assets.Scripts.Manager;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider), typeof(AudioSource))]
 public class UnitController : MonoBehaviour
@@ -12,6 +15,22 @@ public class UnitController : MonoBehaviour
     public CapsuleCollider Collider { get { return mCapsuleCollider; } }
 
     [SerializeField] private GunData mBaseGun;
+
+    //temp, ideally we should have something to handle stat amplification (occluded from the player)
+    protected Dictionary<string, Action<Wrapper<float>>> doOnFirerate;
+
+    //shoehorning this here for fast reference
+    public void AddFireRateMultiplier(string name, Action<Wrapper<float>> callback)
+    {
+        doOnFirerate.TryAdd(name, callback);
+    }
+
+    public void RemoveFireRateMultiplier(string name)
+    {
+        if(doOnFirerate.ContainsKey(name))
+            doOnFirerate.Remove(name);
+    }
+
     private bool gunchanged = true;
     public bool GunChanged { get { return gunchanged; } set => gunchanged = value; }
     protected virtual void UpdateFinalGun() { mFinalGun = mBaseGun; }
@@ -33,6 +52,17 @@ public class UnitController : MonoBehaviour
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float speed_base = 1;
     public float Speed { get => speed_base; }
+
+    //TEMP
+    public IEnumerator applySpeedModifier(float percent, float duration)
+    {
+        float totalSpeed = speed_base;
+        speed_base *= percent;
+        yield return new WaitForSeconds(duration);
+        speed_base = totalSpeed;
+    }
+
+
     [SerializeField] private Vector3 movedir;
     public Vector3 MoveDir {
         get => movedir;
@@ -131,7 +161,12 @@ public class UnitController : MonoBehaviour
             return;
         }
 
-        if (time_last_shot >= 1.0f / Gun.shots_per_second)
+        var wrapper = new Wrapper<float>(Gun.shots_per_second);
+        //temp
+        foreach (var callback in doOnFirerate)
+            callback.Value?.Invoke(wrapper);
+
+        if (time_last_shot >= 1.0f / wrapper.value) 
         {
             ProjectileManager.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
             mAudioSource.PlayOneShot(ShotSoundDictionary.Instance.Get(Gun.sound_id));
