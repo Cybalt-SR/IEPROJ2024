@@ -31,7 +31,7 @@ public class ProximityChecker : MonoBehaviour
 
     public void Clear()
     {
-        collisionList.Clear();
+        collisionList.RemoveAll(obj => obj.activeInHierarchy);
     }
 
 

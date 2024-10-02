@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Smokeslasher
   m_EditorClassIdentifier: 
   secondaryName: Smokeslasher
-  toolTip: Pay your vitality as a price for destruction
+  toolTip: Pay your vitality as a price for more power
   secondaryIcon: {fileID: 0}
-  shotEffect: {fileID: 5082755626913055866, guid: 675bfcc9a9f6cef4882a536c413a0d22,
+  shotEffect: {fileID: 2268565102919798127, guid: 5d5a04257c3d0174e9798bafa8833a8b,
     type: 3}
-  secondaryAbility: {fileID: 3824282653499264992, guid: 3b8d55856624e714985117337bee99c7,
+  secondaryAbility: {fileID: 5761265540348880232, guid: 054d851e21176b540b35a19ac6b12b88,
     type: 3}

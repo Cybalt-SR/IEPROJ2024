@@ -44,6 +44,7 @@ public class EventNames
         public const string ON_SECONDARY_CLICKED = "ON_SECONDARY_CLICKED";
         public const string ON_SECONDARY_EQUIP = "ON_SECONDARY_EQUIP";
 
+        public const string ON_INVISIBILITY_INVOKED = "ON_INVISIBILITY_INVOKED";
 
 
     }

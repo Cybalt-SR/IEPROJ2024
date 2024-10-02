@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7603921057294696435
+--- !u!1 &4236222208120013232
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,74 +8,77 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3427216975007479839}
-  - component: {fileID: 3824282653499264992}
+  - component: {fileID: 7898994237179874245}
+  - component: {fileID: 2268565102919798127}
   m_Layer: 0
-  m_Name: SampleAbility
+  m_Name: Smokeslasher_Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3427216975007479839
+--- !u!4 &7898994237179874245
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7603921057294696435}
+  m_GameObject: {fileID: 4236222208120013232}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2222833823868231975}
+  - {fileID: 1054421363270126812}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3824282653499264992
+--- !u!114 &2268565102919798127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7603921057294696435}
+  m_GameObject: {fileID: 4236222208120013232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c198448566c5540a4e64499261dded, type: 3}
+  m_Script: {fileID: 11500000, guid: 961ccae765f65f6429b6bbf25ffe14e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   abilityData:
-    abilityID: SampleAbility
-    effectName: Damage Reduction
+    abilityID: Smokeslasher_Shot
+    effectName: 
     effectIcon: {fileID: 0}
     cooldown: 0
-    tooltip: 
+    tooltip: Consume health to deal damage to nearby enemies
     passiveDescription: 
-    activeDescription: 
+    activeDescription: Charges overload by 20% to deal damage in a moderate AoE centered
+      around Trooper
   cooldown:
     AbilityID: 
     maxCooldown: 0
     currentCooldown: 0
-  damageReductionPercent: 100
-  grapplingMultiplier: 2
-  knockStrength: 8
-  proximityChecker: {fileID: 6822011016803589086}
-  puddlePrefab: {fileID: 3467994250812642890, guid: 33f68c34a86898544ba4726498cbaf01,
-    type: 3}
---- !u!1001 &8593259086017580672
+  healthCost: 0.2
+  attackRange: {fileID: 5681220360617211429}
+  damage_per_shot: 1
+--- !u!1001 &7438392619477427067
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3427216975007479839}
+    m_TransformParent: {fileID: 7898994237179874245}
     m_Modifications:
     - target: {fileID: 1058407226647800439, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
         type: 3}
       propertyPath: m_Name
       value: ProximityChecker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756200897147967048, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_Radius
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
         type: 3}
@@ -132,17 +135,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9, type: 3}
---- !u!4 &2222833823868231975 stripped
+--- !u!4 &1054421363270126812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
     type: 3}
-  m_PrefabInstance: {fileID: 8593259086017580672}
+  m_PrefabInstance: {fileID: 7438392619477427067}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6822011016803589086 stripped
+--- !u!114 &5681220360617211429 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3021288061848311134, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
     type: 3}
-  m_PrefabInstance: {fileID: 8593259086017580672}
+  m_PrefabInstance: {fileID: 7438392619477427067}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

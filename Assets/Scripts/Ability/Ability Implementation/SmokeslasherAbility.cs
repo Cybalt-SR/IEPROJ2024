@@ -22,6 +22,8 @@ public class SmokeslasherAbility : Ability
     [Header("Active")]
     [SerializeField] float ability_damage = 5f;
     [SerializeField] private ProximityChecker areaOfEffect;
+    [SerializeField] private float invisbilityDuration = 3f;
+
 
     protected override void Cast()
     {
@@ -38,16 +40,26 @@ public class SmokeslasherAbility : Ability
         EventBroadcasting.InvokeEvent(EventNames.SECONDARY_EVENTS.ON_SECONDARY_ABILITY, p);
 
         foreach (var enemy in areaOfEffect.CollisionList)
+        {
             enemy.GetComponent<HealthObject>().TakeDamage(damage.value, "Player");
 
+            //feedback
+            var rb = enemy.GetComponent<Rigidbody>();
+            Vector3 dir = enemy.transform.position - owner.transform.position;
+            rb.AddForce(dir.normalized * 5f);
+
+
+        }
+            
+        areaOfEffect.Clear();
+
         //Enter Invisibility
-
-
+        var stateManager = owner.GetComponent<PlayerStateHandler>();
+        stateManager.InvokeInvisibility(invisbilityDuration);
     }
 
     protected override void Initialize()
     {
-    
         EventBroadcasting.AddListener(EventNames.ENEMY_EVENTS.ON_ENEMY_KILLED, OnEnemyKilled);
         EventBroadcasting.AddListener(EventNames.SECONDARY_EVENTS.ON_SECONDARY_SHOT, AmplifySecondaryDamage);
         EventBroadcasting.AddListener(EventNames.SECONDARY_EVENTS.ON_SECONDARY_ABILITY, AmplifySecondaryDamage);
@@ -70,8 +82,10 @@ public class SmokeslasherAbility : Ability
         if (source != "Player")
             return;
 
-        if (++enemiesKilled % decreaseOnKillCount != 0)
+
+        if (++enemiesKilled % decreaseOnKillCount == 0)
         {
+            Debug.Log($"Restoring HP after {decreaseOnKillCount} kills");
             var health = owner.GetComponent<OverloadHealthObject>();
             Action<Wrapper<float>> HalfOverload = (hp) => hp.value -= health.MaxHeat * decreasePercent;
             health.DoOnHealth(HalfOverload);
@@ -93,7 +107,11 @@ public class SmokeslasherAbility : Ability
     private void AmplifyPrimaryFireRate(Wrapper<float> shots_per_second)
     {
         if (isHealthGreaterThanCertainPercentage(0.4f))
+        {
             shots_per_second.value *= 1 + primaryFirerateMultiplier;
+            Debug.Log("Increased Fire Rate");
+        }
+           
     }
 
     private void AmplifySecondaryDamage(Dictionary<string, object> p)

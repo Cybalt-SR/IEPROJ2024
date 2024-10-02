@@ -17,12 +17,12 @@ public class UnitController : MonoBehaviour
     [SerializeField] private GunData mBaseGun;
 
     //temp, ideally we should have something to handle stat amplification (occluded from the player)
-    protected Dictionary<string, Action<Wrapper<float>>> doOnFirerate;
+    protected Dictionary<string, Action<Wrapper<float>>> doOnFirerate = new();
 
     //shoehorning this here for fast reference
     public void AddFireRateMultiplier(string name, Action<Wrapper<float>> callback)
     {
-        doOnFirerate.TryAdd(name, callback);
+        doOnFirerate.Add(name, callback);
     }
 
     public void RemoveFireRateMultiplier(string name)

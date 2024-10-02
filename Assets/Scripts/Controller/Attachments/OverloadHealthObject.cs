@@ -65,6 +65,7 @@ public class OverloadHealthObject : MonoBehaviour
     {
         var wrapper = new Wrapper<float>(heat);
         doer?.Invoke(wrapper);
+        heat = wrapper.value;
         heat = Mathf.Clamp(heat, 0, max_heat);
     }
 }
