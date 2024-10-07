@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968e417edc4b3b942b03b330833cc6b0, type: 3}
+  m_Name: Tutorial 1
+  m_EditorClassIdentifier: 
+  message: 'Good evening, Ms. Trooper. Looks like we are embarking on another thrilling
+    journey. Oh? I apologize, Ms., but artificial intelligence cannot be held responsible
+    for the compromise. I was simply fulfilling my assigned duty. Perhaps you intentionally
+    activated speaker mode to showcase your professionalism. However, rest assured,
+    I will assist you in resolving this situation. I have composed a tutorial that
+    I trust you will not disregard and publish negative reviews online due to your
+    own negligence. '

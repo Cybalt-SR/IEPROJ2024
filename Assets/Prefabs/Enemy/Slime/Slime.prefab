@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 3327197383408709934}
   - component: {fileID: 976831909330655686}
   - component: {fileID: 5952065878958134233}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,6 +75,9 @@ MonoBehaviour:
     pierce_count: 0
     projectile_id: 
     sound_id: 
+    play_reload: 0
+    start_reload_sound_id: 
+    end_reload_sound_id: 
   acceleration: 18
   speed_base: 2
   movedir: {x: 0, y: 0, z: 0}

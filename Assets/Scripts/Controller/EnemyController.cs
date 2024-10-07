@@ -37,7 +37,9 @@ namespace Assets.Scripts.Controller
         {
             target = player;
 
-            if (target == null)
+            var pStateHandler = player.GetComponent<PlayerStateHandler>();
+
+            if (target == null || pStateHandler.isInvisible)
                 return;
 
             base.AimAt(player.transform.position);

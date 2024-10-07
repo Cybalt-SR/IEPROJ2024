@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136fb9688c7a40b40b98dfffbeea2edc, type: 3}
+  m_Name: Gameplay Sequence
+  m_EditorClassIdentifier: 
+  sequentialresponses:
+  - trigger_event: see_player
+    request: {fileID: 11400000, guid: f350714d48da88543bbb654ba05eeed2, type: 2}
+  - trigger_event: player_move
+    request: {fileID: 11400000, guid: 9be51a270bf895f4dae1d2fc32434339, type: 2}
+  - trigger_event: see_enemy
+    request: {fileID: 11400000, guid: 03188c8258d86ae4f91461d164725190, type: 2}
+  - trigger_event: player_shoot
+    request: {fileID: 11400000, guid: 7e38c898bb4178d41a0ebc690ba2d54a, type: 2}
+  - trigger_event: see_attachment
+    request: {fileID: 11400000, guid: 113637ab4bc6ec84fb2bb4701ba84579, type: 2}
+  - trigger_event: pickup
+    request: {fileID: 11400000, guid: 2345abe2493b7c54cb5a059aff1a9e49, type: 2}
+  - trigger_event: equip_attachment
+    request: {fileID: 11400000, guid: 7df173a2d19adab419a728b22233fe49, type: 2}

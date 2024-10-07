@@ -12,22 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414479e5ea956524fa7cbf325aedd74e, type: 3}
   m_Name: Tutorial Dictionary
   m_EditorClassIdentifier: 
+  actionStringTexts:
+  - key: move
+    actionReference: {fileID: -426620994022019407, guid: cee74a157252ce64b999e32b99bee41d,
+      type: 3}
+  - key: inventory
+    actionReference: {fileID: -7258281289540021, guid: cee74a157252ce64b999e32b99bee41d,
+      type: 3}
+  - key: pickup
+    actionReference: {fileID: -7856427944131512882, guid: cee74a157252ce64b999e32b99bee41d,
+      type: 3}
   prompts:
   - trigger_broadcast: see_player
-    message: Good morning player! Lets start your journey by first moving around
-      to avoid those lasers shot at you!
+    message: Ms. Trooper, I would like to recommend using WASD for movement. I'm
+      certain that your keyboards have it, possibly even highlighted with a distinct
+      color. However, it would probably be irrelevant since you'll be pressing it
+      without visual confirmation.
   - trigger_broadcast: player_move
-    message: Great job!
+    message: I suggest considering a change of location, Ms. Trooper. There are countless
+      reasons to keep going; life has so much to offer. For instance, you may persist
+      in your disputes with your outspoken virtual assistant.
   - trigger_broadcast: see_enemy
-    message: Those are enemies if you haven't figured yet, try shooting back by clicking
-      at them!
+    message: To unleash your bullets, simply click the left side of your mouse in
+      quick succession. You should have encountered a similar situation when you
+      repeatedly utilized the "reload page" feature of your web browser.
   - trigger_broadcast: player_shoot
-    message: Nice! Over time, your gun will improve, ill show you how!
+    message: Congratulations, Ms. Trooper. After gaining extensive experience as
+      a space law enforcement officer, you have now acquired the skill of operating
+      a firearm.
   - trigger_broadcast: see_attachment
-    message: See this? This is an attachment, go near it and pick it up! It will
-      upgrade my gun.
+    message: My sensors have detected an item that is ready for collection. In the
+      same manner as I consistently pick you up in critical situations, Ms. Trooper,
+      press the [pickup] button on your keyboard to pick up the item.
   - trigger_broadcast: pickup
-    message: Great, now open your inventory to drag it over to a valid attachment
-      slot!
+    message: You may now equip the item by pressing the [inventory] key on your keyboard
+      to access the equipment tab. And I have to admit, Ms. Trooper, it's quite remarkable
+      how you manage to carry such a substantial amount of equipment without being
+      overwhelmed by its weight.
   - trigger_broadcast: equip_attachment
-    message: Nice job! Now go shoot up some more slimes!
+    message: After you've given your equipment a test run, you may dismiss the tab
+      and return to the battlefield. Unless you are still uncertain about which item
+      to employ. In any case, you have plenty of time to simply remain still and
+      anticipate the appearance of the game over screen.

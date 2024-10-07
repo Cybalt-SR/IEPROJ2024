@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &646754894657903481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2599998801882752387}
+  - component: {fileID: 5761265540348880232}
+  m_Layer: 0
+  m_Name: Smokeslasher_Ability
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2599998801882752387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646754894657903481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8047514042152815863}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5761265540348880232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646754894657903481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07bcc8c17da1b743ae4f11c3b366b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  abilityData:
+    abilityID: Smokeslasher_Ability
+    effectName: Exit Gift
+    effectIcon: {fileID: 0}
+    cooldown: 1
+    tooltip: 
+    passiveDescription: Restores Health every other kill. Fires up Trooper when she's
+      in a pinch.
+    activeDescription: Deals damage in a massive AoE centered around trooper. She
+      then reduces her overcharge and becomes invisible.
+  cooldown:
+    AbilityID: 
+    maxCooldown: 0
+    currentCooldown: 0
+  overloadRestore: 0.5
+  decreaseOnKillCount: 8
+  decreasePercent: 0.3
+  secondaryDamageMultiplier: 0.5
+  primaryFirerateMultiplier: 0.5
+  ability_damage: 4
+  areaOfEffect: {fileID: 3448405017327711758}
+  invisbilityDuration: 3
+--- !u!1001 &447817255559291728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2599998801882752387}
+    m_Modifications:
+    - target: {fileID: 1058407226647800439, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_Name
+      value: ProximityChecker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756200897147967048, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9, type: 3}
+--- !u!114 &3448405017327711758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3021288061848311134, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 447817255559291728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f127a67d6ab67e747b2a3f2ec869c548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8047514042152815863 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7608959156314861479, guid: 719a9ab7ba0a37a46aa0cd47a229a9f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 447817255559291728}
+  m_PrefabAsset: {fileID: 0}
