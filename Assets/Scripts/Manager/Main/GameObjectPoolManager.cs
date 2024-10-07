@@ -76,7 +76,7 @@ public class GameObjectPoolManager : MonoBehaviour
 
         return toCreate;
     }
-    private void Awake()
+    protected virtual void Awake()
     {
 
         pool = new List<GameObject>();

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using gab_roadcasting;
 
 [RequireComponent(typeof(ProjectileHittable))]
 public class OverloadHealthObject : MonoBehaviour
@@ -13,6 +14,7 @@ public class OverloadHealthObject : MonoBehaviour
     [SerializeField] private float max_heat;
     [SerializeField] private float cooldown_speed;
     public float Heat { get => heat; }
+    public float MaxHeat { get => max_heat; }   
     private ProjectileHittable mProjectileHittable;
 
     [SerializeField] private UnityEvent<ProjectileController> onDie;
@@ -20,19 +22,32 @@ public class OverloadHealthObject : MonoBehaviour
     [SerializeField] private UnityEvent<float> OnChangeHeatRatio = new();
     [SerializeField] private UnityEvent<float> OnChangeHeatRatio_reversed = new();
 
+
+   
+
     public void SubscribeOnDie(Action<ProjectileController> newaction)
     {
         onDie.AddListener(newaction.Invoke);
     }
+  
 
     private void Awake()
     {
         mProjectileHittable = GetComponent<ProjectileHittable>();
 
         mProjectileHittable.Subscribe(projectile => {
-            heat += projectile.Data.damage;
+
+            var damage = new Wrapper<float>(projectile.Data.damage);
+
+            var p = new Dictionary<string, object>();
+            p.Add("Damage", damage);
+
+            EventBroadcasting.InvokeEvent(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, p);
+
+            heat += damage.value;
             if (heat >= max_heat && onDie != null)
                 onDie.Invoke(projectile);
+
         });
     }
 
@@ -43,5 +58,14 @@ public class OverloadHealthObject : MonoBehaviour
 
         OnChangeHeatRatio.Invoke(heat / max_heat);
         OnChangeHeatRatio_reversed.Invoke(1.0f - (heat / max_heat));
+    }
+
+
+    public void DoOnHealth(Action<Wrapper<float>> doer )
+    {
+        var wrapper = new Wrapper<float>(heat);
+        doer?.Invoke(wrapper);
+        heat = wrapper.value;
+        heat = Mathf.Clamp(heat, 0, max_heat);
     }
 }
