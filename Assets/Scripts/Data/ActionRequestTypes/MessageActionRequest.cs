@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Data.ActionRequestTypes
 {
-    public struct MessageActionRequest : IActionRequest
+    [CreateAssetMenu(menuName = "Game/ActionRequest/Message")]
+    public class MessageActionRequest : ActionRequest
     {
-        public string message;
+        [TextArea] public string message;
     }
 }

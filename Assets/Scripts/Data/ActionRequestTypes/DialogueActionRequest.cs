@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Data.ActionRequestTypes
 {
-    public struct DialogueActionRequest : IActionRequest
+    [CreateAssetMenu(menuName = "Game/ActionRequest/Dialogue")]
+    public class DialogueActionRequest : ActionRequest
     {
         public Dialogue dialogue;
     }

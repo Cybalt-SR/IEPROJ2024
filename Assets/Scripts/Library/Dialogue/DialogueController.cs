@@ -147,6 +147,16 @@ namespace External.Dialogue
             }
         }
 
+        public static bool LoadMessage(string message)
+        {
+            if (Instance.time_already_done <= 0)
+            {
+                return false;
+            }
+
+            return LoadMessage(new Message() { text = message });
+        }
+
         public static bool LoadMessage(Message message)
         {
             //anti interrupt check

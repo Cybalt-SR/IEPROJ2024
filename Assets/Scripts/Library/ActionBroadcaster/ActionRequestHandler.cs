@@ -9,14 +9,27 @@ namespace Assets.Scripts.Library.ActionBroadcaster
 {
     public abstract class ActionRequestHandler_Base : MonoBehaviour
     {
-        abstract public bool TryPass(IActionRequest somerequest);
+        
+        abstract public bool Request(ActionRequest somerequest);
     }
 
-    public class ActionRequestHandler<T>: ActionRequestHandler_Base where T : IActionRequest
+    public abstract class ActionRequestHandler<T>: ActionRequestHandler_Base where T : ActionRequest
     {
-        public override bool TryPass(IActionRequest somerequest)
+        private void Awake()
         {
-            return somerequest.GetType() == typeof(T);
+            ActionRequestManager.RegisterHandler(typeof(T), this);
         }
+
+        public override bool Request(ActionRequest somerequest)
+        {
+            if (somerequest.GetType() == typeof(T))
+            {
+                return this.ProcessRequest((T)somerequest);
+            }
+            else
+                return false;
+        }
+
+        protected abstract bool ProcessRequest(T somerequest);
     }
 }

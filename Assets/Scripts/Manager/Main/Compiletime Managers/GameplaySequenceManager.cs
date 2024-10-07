@@ -1,4 +1,5 @@
 using Assets.Scripts.Controller;
+using Assets.Scripts.Data.Progression;
 using Assets.Scripts.Library;
 using Assets.Scripts.Library.ActionBroadcaster;
 using External.Dialogue;
@@ -33,43 +34,26 @@ public class GameplaySequenceManager : MonoBehaviour, IConsistentDataHolder<Game
 
     private void Start()
     {
-        for (int i = 0; i < TutorialDictionary.Instance.GetCount(); i++)
+        for (int i = 0; i < GameplaySequence.Instance.Count; i++)
         {
-            var item = TutorialDictionary.Instance.GetKey(i);
+            var item = GameplaySequence.Instance.GetKey(i);
             var cur_i = i;
 
-            ActionBroadcaster.RegisterWaiter(item, (Transform reference) =>
+            ActionBroadcaster.RegisterWaiter(item.trigger_event, (Transform reference) =>
             {
                 if (cur_i != mData.prompt_index)
                     return false;
 
-                if (reference == null)
-                    reference = PlayerController.GetFirst().transform;
-
-                current_reference = reference;
-                var loaded = DialogueController.LoadMessage(new Message()
+                if (ActionRequestManager.Request(item.request))
                 {
-                    text = TutorialDictionary.Instance.GetCompiledMessage(cur_i)
-                });
-
-                if (loaded)
                     mData.prompt_index++;
-
-                return loaded;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             });
         }
-    }
-
-    private void Update()
-    {
-        if (dismissed == false)
-        {
-            if (current_reference != null)
-                TutorialPopUp.position = current_reference.position;
-
-            TutorialPopUp.localScale = Vector3.Lerp(TutorialPopUp.localScale, Vector3.one, Time.deltaTime * animation_speed);
-        }
-        else
-            TutorialPopUp.localScale = Vector3.Lerp(TutorialPopUp.localScale, Vector3.zero, Time.deltaTime * animation_speed);
     }
 }
