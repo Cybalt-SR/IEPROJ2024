@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3427216975007479839}
   - component: {fileID: 3824282653499264992}
   m_Layer: 0
-  m_Name: SampleAbility
+  m_Name: SlimeGun_Ability
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   abilityData:
-    abilityID: SampleAbility
+    abilityID: SlimeGun_Ability
     effectName: Damage Reduction
     effectIcon: {fileID: 0}
     cooldown: 0

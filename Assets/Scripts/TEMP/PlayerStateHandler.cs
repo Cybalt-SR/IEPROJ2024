@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerStateHandler : MonoBehaviour
 {
-   public bool isInvisible { get; private set; }
+    public bool isInvisible { get; private set; }
+    public bool canMove = true;
 
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private float defaultSpriteAlpha = 1f;
