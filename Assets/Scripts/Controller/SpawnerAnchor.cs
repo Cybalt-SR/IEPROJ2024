@@ -6,6 +6,5 @@ namespace Assets.Scripts.Controller
 {
     public class SpawnerAnchor : MonoBehaviour
     {
-        
     }
 }

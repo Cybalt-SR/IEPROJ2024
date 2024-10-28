@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int spawned_alr = 0;
 
     [SerializeField] private float spawn_interval;
+    
+    Collider[] overlapresults = new Collider[1];
 
     void Start()
     {
@@ -31,11 +33,18 @@ public class EnemySpawner : MonoBehaviour
             if (spawned_alr >= limit)
                 return;
 
-            int a_i = (i + UnityEngine.Random.Range(0, 3)) % anchorlist.Length;
+            foreach (var anchor in anchorlist)
+            {
+                if (Physics.OverlapSphereNonAlloc(anchor.transform.position, 0.1f, overlapresults) > 0)
+                    continue;
 
-            Instantiate(Enem, anchorlist[a_i].transform.position, Quaternion.Euler(0, -45, 0));
+                int a_i = i % anchorlist.Length;
 
-            spawned_alr++;
+                Instantiate(Enem, anchor.transform.position, Quaternion.Euler(0, -45, 0));
+
+                spawned_alr++;
+                break;
+            }
         }
     }
 }
