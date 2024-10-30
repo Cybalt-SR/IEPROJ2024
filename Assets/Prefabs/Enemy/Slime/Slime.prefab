@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 1742625443284175486}
   - component: {fileID: 1605362885978331551}
   - component: {fileID: -3659257103871336071}
-  - component: {fileID: 208611065096640190}
   - component: {fileID: 6704210107015524959}
   - component: {fileID: -7410347523252904920}
   - component: {fileID: 3327197383408709934}
@@ -295,28 +294,6 @@ MonoBehaviour:
     chance: 0.1
   - item: {fileID: 11400000, guid: ee0e8c3f0fefc0449bac9fbe13227236, type: 2}
     chance: 0.1
---- !u!95 &208611065096640190
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641835130275497612}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0b2580dbe03db2242bfe4e9d6509e463, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6704210107015524959
 MonoBehaviour:
   m_ObjectHideFlags: 0

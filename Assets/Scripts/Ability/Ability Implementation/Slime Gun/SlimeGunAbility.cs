@@ -9,12 +9,10 @@ using Assets.Scripts.Controller;
 
 public class SlimeGunAbility : Ability
 {
-    private bool isGrappling = false;
 
     [Header("Configurations")]
-    [SerializeField] private float damageReductionPercent = 40f;
-    [SerializeField] private float grapplingMultiplier = 2f;
     [SerializeField] private float knockStrength = 8f;
+    [SerializeField] private float stunDuration = .5f;
 
 
     [Header("References")]
@@ -28,8 +26,27 @@ public class SlimeGunAbility : Ability
 
         Debug.Log("Casted Puddle");
 
+
+        GameObject puddle = Instantiate(puddlePrefab.gameObject);
+
+        Vector3 pos = owner.transform.position;
+        pos.y = 0;
+        puddle.transform.position = pos;
+
+        IEnumerator tempStun(EnemyController enemy)
+        {
+            enemy.enabled = false;
+            yield return new WaitForSeconds(stunDuration);
+            enemy.enabled = true;
+        }
+
         foreach (var enemy in proximityChecker.CollisionList)
         {
+            //temp
+            var ctrl = enemy.GetComponent<EnemyController>();
+            puddle.GetComponent<MonoBehaviour>().StartCoroutine(tempStun(ctrl));
+            puddle.GetComponent<MonoBehaviour>().StartCoroutine(ctrl.applySpeedModifier(10, 3));
+
             var HealthObject = enemy.GetComponent<HealthObject>();
           
             Vector3 knockDirection = owner.transform.position-enemy.transform.position;
@@ -41,42 +58,16 @@ public class SlimeGunAbility : Ability
 
             var rb = enemy.GetComponent<Rigidbody>();
             rb.AddForce(knockDirection * knockStrengthMultiplier * knockStrength, ForceMode.Impulse);
-
-
-            //temp -- not working
-            var ctrl = enemy.GetComponent<EnemyController>();
-            ctrl.StartCoroutine(ctrl.applySpeedModifier(10, 6));
+        
         }
-
-        GameObject puddle = Instantiate(puddlePrefab.gameObject);
-
-        Vector3 pos = owner.transform.position;
-        pos.y = 0;
-        puddle.transform.position = pos;
 
 
 
         proximityChecker.Clear();
     }
 
-    protected override void Initialize()
-    {
-        EventBroadcasting.AddListener(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, DamageReduction);
-    }
+    protected override void Initialize(){}
 
-    private void DamageReduction(Dictionary<string, object> p)
-    {
-        var damage = p["Damage"] as Wrapper<float>;
-
-        float damageReductionRatio = damageReductionPercent;
-        if (isGrappling) 
-            damageReductionRatio *= grapplingMultiplier;
-        damageReductionRatio = Mathf.Clamp(damageReductionRatio, 0, 100);
-
-        damage.value *= 1 - (damageReductionRatio / 100);
-
-        Debug.Log("Damage Reduced");
-    }
 
 
 }

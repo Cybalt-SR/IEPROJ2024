@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class SlimeGun_Hook : MonoBehaviour
 
 
     public bool isLocked { get => vectorLock.HasValue; }
+    public Action onGrapplerHook;
+    public Action onGrapplerUnhooked;
 
     private void Start()
     {
@@ -23,6 +26,7 @@ public class SlimeGun_Hook : MonoBehaviour
         rb.isKinematic = true;
 
         vectorLock = collision.transform.position;
+        onGrapplerHook?.Invoke();
 
     }
 
@@ -43,6 +47,7 @@ public class SlimeGun_Hook : MonoBehaviour
     {
         vectorLock = null;
         rb.isKinematic=false;
+        onGrapplerUnhooked?.Invoke();
     }
 
 }

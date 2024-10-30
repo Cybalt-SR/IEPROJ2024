@@ -42,6 +42,7 @@ namespace Abilities
                 ability.SetOwner(requester);
                 ability.gameObject.SetActive(true);
                 ability.transform.parent = requester.transform;
+                ability.transform.localPosition = Vector3.zero;
             }
 
             if (abilityHolder.ContainsKey(AbilityID) == true)

@@ -50,7 +50,7 @@ MonoBehaviour:
     abilityID: SlimeGun_Ability
     effectName: Damage Reduction
     effectIcon: {fileID: 0}
-    cooldown: 0
+    cooldown: 5
     tooltip: 
     passiveDescription: 
     activeDescription: 
@@ -58,9 +58,8 @@ MonoBehaviour:
     AbilityID: 
     maxCooldown: 0
     currentCooldown: 0
-  damageReductionPercent: 100
-  grapplingMultiplier: 2
   knockStrength: 8
+  stunDuration: 0.5
   proximityChecker: {fileID: 6822011016803589086}
   puddlePrefab: {fileID: 3467994250812642890, guid: 33f68c34a86898544ba4726498cbaf01,
     type: 3}
