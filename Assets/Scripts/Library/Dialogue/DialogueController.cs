@@ -23,6 +23,7 @@ namespace External.Dialogue
         [SerializeField] private float time_till_decay = 4;
         [SerializeField] private string player_name;
         [Header("Main References")]
+        [SerializeField] private TextMeshProUGUI name_text;
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private Image characterImage;
         [SerializeField] private UnityEvent OnDialogueOpen;
@@ -198,15 +199,13 @@ namespace External.Dialogue
             }
 
             //text
-            string TextToShow = "";
-
             if (Current_Dialogue != null)
-                TextToShow += (message.name_index == -1) ? instance.player_name : Current_Dialogue.names[message.name_index];
+                Instance.name_text.text = (message.name_index == -1) ? instance.player_name : Current_Dialogue.names[message.name_index];
 
             Instance.write_index = 0;
             Instance.currentlyWriting = true;
 
-            Instance.text.text = TextToShow + System.Environment.NewLine + System.Environment.NewLine;
+            Instance.text.text = "";
 
             //choices
             

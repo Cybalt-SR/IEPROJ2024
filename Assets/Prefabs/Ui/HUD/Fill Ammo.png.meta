@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b3cd0c172b71f90488c653d7bcc9f448
+guid: 95a0fffa14b33f94d82b8ee0a5e732f0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Fill Ammo_0
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 0
+        width: 296
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7cc668a898b6e04cba2d1f4199ea73d
+      internalID: 1166313475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 9434f48e11d829847a407781f1bfc4e4
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fill Ammo_0: 1166313475
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

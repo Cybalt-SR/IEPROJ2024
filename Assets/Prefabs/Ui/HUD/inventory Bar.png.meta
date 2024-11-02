@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b3cd0c172b71f90488c653d7bcc9f448
+guid: 9a35d046a756ecb448f50e9eca3bff8f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: inventory Bar_0
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 0
+        width: 938
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8f9f6f61bb38684aa091f5124d6db09
+      internalID: -161837218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: a71cc1bced1a181408e0dd0080866dbe
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      inventory Bar_0: -161837218
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

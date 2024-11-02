@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b3cd0c172b71f90488c653d7bcc9f448
+guid: 955cfeee3283f2647a42a01a09691993
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Hlaf Opacity Inventory_0
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 97
+        width: 1495
+        height: 874
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 328a44df85db2934bba13f85e884015e
+      internalID: -824204026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: d710de010d1057248820e99211fec45a
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hlaf Opacity Inventory_0: -824204026
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -11,6 +11,7 @@ namespace Assets.Scripts.Controller
 {
     public class PlayerController : UnitController, IPlayerInputReceiver
     {
+
         public static PlayerController GetFirst()
         {
             return FindObjectsByType<PlayerController>(FindObjectsSortMode.None).FirstOrDefault();

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b3cd0c172b71f90488c653d7bcc9f448
+guid: 5d6f33ad97a828848b264a2a186e6eaf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Fill Health_0
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 525
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f9ac5af8948e3428805aae2bb15047
+      internalID: -663378937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: ed6f86c97c5bd6e459d550064c09de35
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fill Health_0: -663378937
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
