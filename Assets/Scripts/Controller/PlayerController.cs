@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Controller
 {
-    public class PlayerController : UnitController, IPlayerInputReceiver
+    public class PlayerController : UnitController, IPlayerInputReceiver, IOnLevelLoad
     {
 
         public static PlayerController GetFirst()
@@ -103,6 +103,11 @@ namespace Assets.Scripts.Controller
         void IPlayerInputReceiver.Pickup(InputAction.CallbackContext callback)
         {
             PickupManager.Pickup(this.PlayerId);
+        }
+
+        void IOnLevelLoad.OnLevelLoad(GameObject newLevel)
+        {
+            transform.position = new Vector3(0, 1, 0);
         }
     }
 }
