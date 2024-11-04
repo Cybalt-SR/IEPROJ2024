@@ -8,6 +8,7 @@ namespace Assets.Scripts.Data.AssetDictionaries
     {
         [SerializeField] private T fallback;
         [SerializeField] private SerializableDictionary<string, T> dictionary = new("");
+        public int Count => dictionary.Count;
 
         public T Get(string id)
         {
@@ -26,12 +27,14 @@ namespace Assets.Scripts.Data.AssetDictionaries
 
             return fallback;
         }
+        
     }
 
     public class SingletonDictionary<T> : SingletonResource<SingletonDictionary<T>> where T : class
     {
         [SerializeField] private T fallback;
         [SerializeField] private SerializableDictionary<string, T> dictionary = new("");
+        public int Count => dictionary.Count;
 
         public T Get(string id)
         {

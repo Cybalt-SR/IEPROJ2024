@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NextLevelRequestHandler : ActionRequestHandler<NextLevelActionRequest>
 {
@@ -27,6 +28,12 @@ public class NextLevelRequestHandler : ActionRequestHandler<NextLevelActionReque
             Destroy(oldmap);
 
             currentLevel++;
+            if(currentLevel == LevelDictionary.Instance.Count)
+            {
+                SceneManager.LoadScene("win");
+                return;
+            }
+
             var newmap = Instantiate(LevelDictionary.Instance.Get(currentLevel));
             
             allMonoBehaviours = FindObjectsByType<MonoBehaviour>(sortMode: FindObjectsSortMode.None);
