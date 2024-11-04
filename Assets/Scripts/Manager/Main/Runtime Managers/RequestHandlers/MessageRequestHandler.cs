@@ -14,7 +14,7 @@ namespace Assets.Scripts.Manager.Main.Compiletime_Managers.RequestHandlers
     {
         protected override bool ProcessRequest(MessageActionRequest somerequest)
         {
-            return DialogueController.LoadMessage(somerequest.message);
+            return DialogueController.LoadMessage(somerequest.message_, somerequest.CharacterSet);
         }
     }
 }

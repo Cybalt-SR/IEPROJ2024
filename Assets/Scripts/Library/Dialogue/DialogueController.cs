@@ -14,6 +14,7 @@ namespace External.Dialogue
         public static DialogueController Instance => instance;
 
         public static Dialogue Current_Dialogue { get; private set; }
+        public static CharacterSet Current_characters { get; private set; }
         public static List<Transform> Name_Refs { get; private set; }
         public static Message Current_message { get; private set; }
         public static bool Ended_currentDialogue { get; private set; }
@@ -77,37 +78,7 @@ namespace External.Dialogue
 
         public void Update()
         {
-            if (currentlyWriting)
-            {
-                time_already_done = 0;
-                TimeLast_Write += Time.deltaTime;
-
-                if (TimeLast_Write > WriteTimePerChar)
-                {
-                    TimeLast_Write = 0;
-
-                    if (write_index < Current_message.text.Length)
-                    {
-                        text.text += Current_message.text[write_index];
-                        write_index++;
-                    }
-                    else
-                    {
-                        currentlyWriting = false;
-                    }
-                }
-            }
-            else
-            {
-                time_already_done += Time.deltaTime;
-
-                if (time_already_done > time_till_decay && Current_message != null)
-                {
-                    Current_message = null;
-                    OnDialogueClose.Invoke();
-                }
-            }
-
+            //Image Updating
             var imagepos = characterImage.rectTransform.anchoredPosition;
 
             if (Mathf.Abs(imagepos.y) > 1f)
@@ -119,10 +90,60 @@ namespace External.Dialogue
             {
                 characterImage.rectTransform.anchoredPosition = new Vector2(imagepos.x, 0);
             }
+
+            //Text updating
+            if (currentlyWriting)
+            {
+                time_already_done = 0;
+                TimeLast_Write += Time.deltaTime;
+
+                if (TimeLast_Write <= WriteTimePerChar)
+                    return;
+
+                TimeLast_Write = 0;
+
+                if (write_index < Current_message.text.Length)
+                {
+                    text.text += Current_message.text[write_index];
+                    write_index++;
+
+                    return;
+                }
+                else
+                {
+                    currentlyWriting = false;
+                }
+            }
+
+            time_already_done += Time.deltaTime;
+
+            if (time_already_done < time_till_decay)
+                return;
+
+            if (Current_message == null)
+                return;
+
+            if (OnFinalMessage)
+            {
+                CloseDialogue();
+                return;
+            }
+            else
+            {
+                MessageIndex++;
+                LoadMessageInternal(Current_Dialogue.Messages[MessageIndex]);
+            }
         }
 
-        public static void LoadDialogue(Dialogue dialogue, List<Transform> nameRefs, Action onFinish)
+        public static bool OnFinalMessage => Current_Dialogue == null || (MessageIndex == Current_Dialogue.Messages.Count - 1);
+        public static bool CanWrite => Instance.time_already_done > 0 && OnFinalMessage;
+
+        public static bool LoadDialogue(Dialogue dialogue, CharacterSet characters, List<Transform> nameRefs, Action onFinish)
         {
+            //anti interrupt check
+            if (!CanWrite)
+                return false;
+
             Current_Dialogue = dialogue;
             Name_Refs.Clear();
 
@@ -140,33 +161,34 @@ namespace External.Dialogue
             }
 
             MessageIndex = 0;
-            LoadMessage(dialogue.Messages[0]);
+            Current_characters = characters;
+            LoadMessageInternal(dialogue.Messages[0]);
 
             if (nameRefs != null && nameRefs.Count > 0)
             {
                 onFinishDialogue += Instance.CameraResetPos.Invoke;
             }
+
+            return true;
         }
 
-        public static bool LoadMessage(string message)
-        {
-            if (Instance.time_already_done <= 0)
-            {
-                return false;
-            }
-
-            return LoadMessage(new Message() { text = message });
-        }
-
-        public static bool LoadMessage(Message message)
+        public static bool LoadMessage(Message message, CharacterSet characters = null)
         {
             //anti interrupt check
-            if(Instance.time_already_done <= 0)
-            {
+            if (!CanWrite)
                 return false;
-            }
 
+            Current_Dialogue = null;
+            LoadMessageInternal(message, characters);
+
+            return true;
+        }
+        private static void LoadMessageInternal(Message message, CharacterSet characters = null)
+        {
             Instance.time_already_done = 0;
+
+            if(characters != null)
+                Current_characters = characters;
 
             //cam redir
 
@@ -184,13 +206,13 @@ namespace External.Dialogue
             }
 
             //image
+            Instance.characterImage.enabled = false;
+            Instance.springSpeed = 0;
 
-            ResetImages();
-
-            if (message.character_art != null)
+            if (Current_characters.characters[message.name_index].images.Count > 0)
             {
                 Instance.characterImage.enabled = true;
-                Instance.characterImage.sprite = Current_Dialogue.GetImg(message.character_art);
+                Instance.characterImage.sprite = Current_characters.characters[message.name_index].images[message.art_variant];
             }
 
             if (Current_message != null && message.name_index == Current_message.name_index)
@@ -200,7 +222,7 @@ namespace External.Dialogue
 
             //text
             if (Current_Dialogue != null)
-                Instance.name_text.text = (message.name_index == -1) ? instance.player_name : Current_Dialogue.names[message.name_index];
+                Instance.name_text.text = (message.name_index == -1) ? instance.player_name : Current_characters.characters[message.name_index].id;
 
             Instance.write_index = 0;
             Instance.currentlyWriting = true;
@@ -212,14 +234,16 @@ namespace External.Dialogue
             Current_message = message;
 
             Instance.OnDialogueOpen.Invoke();
-
-            return true;
         }
 
-        public static void ResetImages()
+        public static void CloseDialogue()
         {
+            Current_message = null;
+
             Instance.characterImage.enabled = false;
             Instance.springSpeed = 0;
+
+            Instance.OnDialogueClose.Invoke();
         }
     }
 }

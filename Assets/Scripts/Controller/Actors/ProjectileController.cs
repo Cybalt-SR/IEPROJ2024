@@ -22,6 +22,7 @@ namespace Assets.Scripts.Controller
         public readonly Queue<Collider> ignore_list = new();
 
         private UnitController from = null;
+        public UnitController From => from;
         public GunData Data => from.Gun;
         private int bounce_count = 0;
         private int pierce_count = 0;

@@ -11,7 +11,7 @@ namespace Assets.Scripts.Controller
 {
     public class PlayerController : UnitController, IPlayerInputReceiver, IOnLevelLoad
     {
-
+        public override string BroadcastId => "player_" + PlayerId;
         public static PlayerController GetFirst()
         {
             return FindObjectsByType<PlayerController>(FindObjectsSortMode.None).FirstOrDefault();
@@ -55,8 +55,7 @@ namespace Assets.Scripts.Controller
 
             MoveDir = transform.right * dir2.x + transform.forward * dir2.y;
 
-            bool received = false;
-            ActionBroadcaster.Broadcast("player_move", this.transform, ref received);
+            ActionWaiter.Broadcast("player_move", this.transform, out _);
         }
 
         void IPlayerInputReceiver.Aim(InputAction.CallbackContext callback)
@@ -94,9 +93,8 @@ namespace Assets.Scripts.Controller
 
             if ((this as IPlayerInputReceiver).IsFire && EventSystem.current.IsPointerOverGameObject() == false)
             {
-                bool received = false;
-                ActionBroadcaster.Broadcast("player_shoot", this.transform, ref received);
-                base.Fire();
+                if(base.Fire())
+                    ActionWaiter.Broadcast("player_shoot", this.transform, out _);
             }
         }
 

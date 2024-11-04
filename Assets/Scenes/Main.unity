@@ -2771,7 +2771,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1037616609}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5fd136bf1300b4692cd9df731cfeef, type: 3}
+  m_Script: {fileID: 11500000, guid: e2eabcda12d3c6c489cd34c061fa8290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   footstep_clip: {fileID: 8300000, guid: cc9503c98f6096d479fcf06f1ee4a3bb, type: 3}
@@ -3389,7 +3389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd77ccde0b572a4aa2039913090ed2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time_till_decay: 4
+  time_till_decay: 3
   player_name: Trooper
   name_text: {fileID: 71681375}
   text: {fileID: 1901686921}
@@ -3436,7 +3436,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  WriteTimePerChar: 0.02
+  WriteTimePerChar: 0.01
   springStartOffset: 50
   springDampening: 0.8
   springFrequency: 0.3
@@ -4660,11 +4660,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1262734725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 182.4444, y: 182.9428}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 445.4719, y: 466.0276}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &1585530456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4679,7 +4679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4687,7 +4687,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -5174,7 +5174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1705391142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa682fdeff91aad4dbea2564d168b797, type: 3}
+  m_Script: {fileID: 11500000, guid: a3b8f8a90c827164c9ffb33f5135f36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggerer: {fileID: 1878664021}
@@ -5333,7 +5333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1830471428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ca74c047faa5a947a65d3cbe51690e3, type: 3}
+  m_Script: {fileID: 11500000, guid: aff92c38ec434d147b786a0397230e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1830471430
@@ -5773,7 +5773,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1878664014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa0fc084f6e62e459d7ccb8940959aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 4261a6eb6dee10144bac4df30615eb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &1878664023
@@ -5822,7 +5822,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1878664014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe0b7bf454d47744982d220a2421fddb, type: 3}
+  m_Script: {fileID: 11500000, guid: 6267e229e30e0934da5ca8890385d31f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   heat: 0
@@ -5851,7 +5851,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SetImageFillratio, Assembly-CSharp
-        m_MethodName: SetFillRatio
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5967,7 +5967,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1878664014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad9c4de54cd43842b98664007259604, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c1b776aab3c6d0498b3255d801e1cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audio_hit_id: flesh
@@ -6780,13 +6780,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118708239}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.69, z: 0.5}
+  m_LocalRotation: {x: 0.19337817, y: 0, z: 0, w: 0.9811243}
+  m_LocalPosition: {x: -0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 516600608}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.3, y: 0, z: 0}
 --- !u!114 &2118708241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6823,7 +6823,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 9.75
   m_Range: 13.6
-  m_SpotAngle: 48.96329
+  m_SpotAngle: 108.39688
   m_InnerSpotAngle: 32.638252
   m_CookieSize: 10
   m_Shadows:

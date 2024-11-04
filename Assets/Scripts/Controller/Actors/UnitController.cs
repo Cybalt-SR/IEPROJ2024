@@ -9,6 +9,8 @@ using System;
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider), typeof(AudioSource))]
 public class UnitController : MonoBehaviour
 {
+    public virtual string BroadcastId => this.name;
+
     protected Rigidbody mRigidbody;
     private CapsuleCollider mCapsuleCollider;
     private AudioSource mAudioSource;
@@ -150,7 +152,7 @@ public class UnitController : MonoBehaviour
         AimDir = true_dir;
     }
 
-    protected void Fire()
+    protected bool Fire()
     {
         if (shots_before_reload == 0)
         {
@@ -158,7 +160,7 @@ public class UnitController : MonoBehaviour
                 mAudioSource.PlayOneShot(UtilSoundDictionary.Instance.Get(Gun.start_reload_sound_id));
 
             reloading = true;
-            return;
+            return false;
         }
 
         var wrapper = new Wrapper<float>(Gun.shots_per_second);
@@ -166,13 +168,17 @@ public class UnitController : MonoBehaviour
         foreach (var callback in doOnFirerate)
             callback.Value?.Invoke(wrapper);
 
-        if (time_last_shot >= 1.0f / wrapper.value) 
+        if (time_last_shot >= 1.0f / wrapper.value)
         {
             ProjectileManager.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
             mAudioSource.PlayOneShot(ShotSoundDictionary.Instance.Get(Gun.sound_id));
             time_last_shot = 0;
             shots_before_reload--;
+
+            return true;
         }
+        else
+            return false;
     }
 
     protected virtual void Update()

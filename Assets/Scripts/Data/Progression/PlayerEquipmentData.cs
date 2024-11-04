@@ -9,7 +9,7 @@ namespace Assets.Scripts.Data.Progression
     [Serializable]
     public class PlayerEquipmentData
     {
-        public int storage_limit = 10;
+        public int storage_limit = 3;
         public SerializableDictionary<string, SerializableDictionary<Attachment.Part, Attachment>> owner_attachments_equipped_dictionary = new("", () => new(Attachment.Part.Core1));
         public SerializableDictionary<string, List<Attachment>> owner_attachments_storage_dictionary = new("", () => new());
         public SerializableDictionary<string, string> owner_secondary_dictionary = new("", () => "");
