@@ -1,4 +1,5 @@
 using Assets.Scripts.Library;
+using Assets.Scripts.Library.ActionBroadcaster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,12 @@ namespace Assets.Scripts.Gameplay.Manager
     {
         protected override void Awake()
         {
-            Type parentType = typeof(Manager_Base<>);
+            InstantiateAllInheritedClassesOf(typeof(Manager_Base<>));
+            InstantiateAllInheritedClassesOf(typeof(ActionRequestHandler<>));
+        }
 
+        private void InstantiateAllInheritedClassesOf(Type parentType)
+        {
             Assembly assembly = Assembly.GetExecutingAssembly();
             IEnumerable<Type> types = assembly.GetTypes();
 

@@ -109,5 +109,9 @@ namespace Assets.Scripts.Controller
         {
             transform.position = new Vector3(0, 1, 0);
         }
+
+        void IOnLevelLoad.OnLevelExit(GameObject curLevel)
+        {
+        }
     }
 }

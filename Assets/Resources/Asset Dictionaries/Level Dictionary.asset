@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbeedd0557749c1419bd38bafdc031bc, type: 3}
+  m_Name: Level Dictionary
+  m_EditorClassIdentifier: 
+  fallback: {fileID: 2562712494456724651, guid: 738b1f5d6734c11418c6b90d058e3aad,
+    type: 3}
+  dictionary:
+    structs:
+    - Key: tutorial map
+      Value: {fileID: 2562712494456724651, guid: 738b1f5d6734c11418c6b90d058e3aad,
+        type: 3}
+    - Key: 2nd map
+      Value: {fileID: 2562712494456724651, guid: 738b1f5d6734c11418c6b90d058e3aad,
+        type: 3}

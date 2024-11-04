@@ -7,7 +7,7 @@ using UnityEngine.AI;
 namespace Assets.Scripts.Controller
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class EnemyController : UnitController, IOnPlayerNear
+    public class EnemyController : UnitController, IOnPlayerNear, IOnLevelLoad
     {
         private NavMeshAgent mNavMesh;
         [SerializeField] private UnitController target;
@@ -135,6 +135,15 @@ namespace Assets.Scripts.Controller
             if (info.collider.attachedRigidbody.gameObject != target.gameObject) return;
 
             base.Fire();
+        }
+
+        void IOnLevelLoad.OnLevelExit(GameObject curLevel)
+        {
+            Destroy(this.gameObject);
+        }
+
+        void IOnLevelLoad.OnLevelLoad(GameObject newLevel)
+        {
         }
     }
 }

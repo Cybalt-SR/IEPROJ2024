@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IOnLevelLoad
 {
+    void OnLevelExit(GameObject curLevel);
     void OnLevelLoad(GameObject newLevel);
 }

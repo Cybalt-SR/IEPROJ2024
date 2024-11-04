@@ -18,11 +18,13 @@ public class LoadingScreen : MonoSingleton<LoadingScreen>
     [SerializeField] private AnimationClip entry_anim;
     [SerializeField] private AnimationClip exit_anim;
     [SerializeField] private GameObject signal_object;
-    
 
-    static void LoadScreen(Action do_when_loading)
+    public static void LoadScreen(Action do_when_loading)
     {
         Instance.blocker_animator.Play(Instance.entry_anim.name);
+
+        Instance.StopAllCoroutines();
+        Instance.StartCoroutine(Instance.Load(do_when_loading));
     }
 
     IEnumerator Load(Action do_when_loading)
@@ -32,7 +34,8 @@ public class LoadingScreen : MonoSingleton<LoadingScreen>
             yield return null;
         }
 
-        yield return null;
-        Instance.blocker_animator.Play(Instance.entry_anim.name);
+        do_when_loading.Invoke();
+
+        Instance.blocker_animator.Play(Instance.exit_anim.name);
     }
 }
