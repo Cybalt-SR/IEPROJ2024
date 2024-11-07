@@ -68,9 +68,12 @@ public class SlimeGun_Shot : Ability
             var agent = player.GetComponent<NavMeshAgent>();
 
             SetGrappleState(true);
-            
+
+
+            //Temp
+            Debug.Log("If Player's Nav Mesh Agent's velocity needs to be changed elsewhere, change this");
             float original_speed = agent.speed;
-            float orinal_acceleration = agent.acceleration;
+            float original_acceleration = agent.acceleration;
 
             agent.SetDestination(hook.transform.position);
             agent.speed = 20;
@@ -84,7 +87,8 @@ public class SlimeGun_Shot : Ability
             }
 
             agent.speed = original_speed;
-            agent.acceleration = orinal_acceleration;
+            agent.acceleration = original_acceleration;
+            agent.velocity = Vector3.zero;
 
             foreach (var enemy in adhesive.CollisionList)
             {

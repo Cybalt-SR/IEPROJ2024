@@ -48,7 +48,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   abilityData:
     abilityID: SlimeGun_Ability
-    effectName: Damage Reduction
+    effectName: Slimed Together
     effectIcon: {fileID: 0}
     cooldown: 5
     tooltip: 
