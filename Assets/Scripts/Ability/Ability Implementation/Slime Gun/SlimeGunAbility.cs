@@ -6,6 +6,7 @@ using Abilities;
 using gab_roadcasting;
 using UnityEngine.AI;
 using Assets.Scripts.Controller;
+using UnityEngine.InputSystem;
 
 public class SlimeGunAbility : Ability
 {
@@ -33,20 +34,12 @@ public class SlimeGunAbility : Ability
         pos.y = 0;
         puddle.transform.position = pos;
 
-        IEnumerator tempStun(EnemyController enemy)
-        {
-            enemy.enabled = false;
-            yield return new WaitForSeconds(stunDuration);
-            enemy.enabled = true;
-        }
 
         foreach (var enemy in proximityChecker.CollisionList)
         {
-            //temp
-            var ctrl = enemy.GetComponent<EnemyController>();
-            puddle.GetComponent<MonoBehaviour>().StartCoroutine(tempStun(ctrl));
-            puddle.GetComponent<MonoBehaviour>().StartCoroutine(ctrl.applySpeedModifier(10, 3));
-
+            if(!enemy.GetComponent<EnemyController>().enabled)
+                continue;
+     
             var HealthObject = enemy.GetComponent<HealthObject>();
           
             Vector3 knockDirection = owner.transform.position-enemy.transform.position;
@@ -58,7 +51,9 @@ public class SlimeGunAbility : Ability
 
             var rb = enemy.GetComponent<Rigidbody>();
             rb.AddForce(knockDirection * knockStrengthMultiplier * knockStrength, ForceMode.Impulse);
-        
+
+            enemy.GetComponent<EnemyStateHandler>().SetStun(stunDuration);
+
         }
 
 

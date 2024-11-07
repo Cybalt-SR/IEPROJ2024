@@ -10,6 +10,7 @@ using Mono.Cecil.Cil;
 public class Slime_Gun_Adhesive : ProximityChecker
 {
     [SerializeField] private float pulseForce = 5f;
+    [SerializeField] private float maxStickDuration = 12f;
 
     [Header("Stick Info")]
     [SerializeField] private Transform enemyParent = null;
@@ -20,38 +21,68 @@ public class Slime_Gun_Adhesive : ProximityChecker
     [SerializeField] private Material slimeMaterial;
 
 
+    private List<GameObject> temporaryBlacklist = new();
 
     private void OnDisable() => EjectEnemies();
-    private void Start() => OnProximityEntered += (GameObject toStick) => SetStick(toStick, true);
-    
+    private void Start()
+    {
+        OnProximityEntered += (GameObject toStick) => {
+            if (!temporaryBlacklist.Contains(toStick))
+            {
+                temporaryBlacklist.Add(toStick);
+                SetStick(toStick, true);
+            }          
+        };
+        OnProximityExit += (GameObject toStick) =>
+        {
+            if(temporaryBlacklist.Contains(toStick))
+                temporaryBlacklist.Remove(toStick);
+        };
+    }
 
+    private void Update()
+    {
+
+        //ermm
+        List<GameObject> toRemove = new();
+
+        foreach(var enemy in collisionList)
+        {
+            if (!enemy.GetComponent<EnemyStateHandler>().isStunned)
+                toRemove.Add(enemy);
+        }
+           
+        foreach(var enemy in toRemove)
+            collisionList.Remove(enemy);
+
+    }
 
     private void SetStick(GameObject toStick, bool value)
     {
-        toStick.transform.SetParent(value ? PlayerController.GetFirst().transform : enemyParent);
 
-        foreach (var item in toStick.GetComponents<MonoBehaviour>())
-            item.enabled = !value;
+        void AdditionalStunEffects(bool bvalue)
+        {
+            toStick.transform.parent = bvalue ? PlayerController.GetFirst().transform : enemyParent;
 
-        foreach (var item in toStick.GetComponentsInChildren<MonoBehaviour>())
-            item.enabled = !value;
+            var sr = toStick.GetComponentInChildren<SpriteRenderer>();
+            sr.material = bvalue ? slimeMaterial : defaultMaterial;
 
-        var sr = toStick.GetComponentInChildren<SpriteRenderer>();
-        sr.material = value ? slimeMaterial : defaultMaterial;
+            var body = toStick.GetComponent<Rigidbody>();
+            body.isKinematic = bvalue;
 
-        var body = toStick.GetComponent<Rigidbody>();
-        body.isKinematic = value;
+            var coll = toStick.GetComponentInChildren<Collider>();
+            coll.enabled = !bvalue;
 
-        var coll = toStick.GetComponentInChildren<Collider>();
-        coll.enabled = !value;
-
-        var nav = toStick.GetComponent<NavMeshAgent>();
-        nav.enabled = !value;
-
-        var anim = toStick.GetComponentInChildren<Animator>();
-        anim.enabled = !value;
-
+            var nav = toStick.GetComponent<NavMeshAgent>();
+            nav.enabled = !bvalue;
+        }
         
+        var EnemyStateHandler = toStick.GetComponent<EnemyStateHandler>();
+
+        if (value)
+            EnemyStateHandler.SetStun(maxStickDuration, AdditionalStunEffects);
+        else EnemyStateHandler.RemoveDisables();
+
     }
 
     public void EjectEnemies()
@@ -64,6 +95,7 @@ public class Slime_Gun_Adhesive : ProximityChecker
             rb.AddForce(pulseForce * dir.normalized, ForceMode.Impulse);
         }
         collisionList.Clear();
+        temporaryBlacklist.Clear();
     }
 
 }

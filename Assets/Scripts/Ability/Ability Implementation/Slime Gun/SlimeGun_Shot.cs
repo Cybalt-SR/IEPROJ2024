@@ -6,6 +6,7 @@ using Assets.Scripts.Controller;
 using UnityEngine.AI;
 using gab_roadcasting;
 using static UnityEngine.Rendering.DebugUI;
+using System.Net.Security;
 
 
 public class SlimeGun_Shot : Ability
@@ -136,6 +137,11 @@ public class SlimeGun_Shot : Ability
     private void SetGrappleState(bool value)
     {
         isPulled = value;
+
+        //temp
+        if (player == null)
+            return;
+
         player.GetComponent<PlayerStateHandler>().canMove = !value;
         player.gameObject.layer = LayerMask.NameToLayer(value ? "Ghost" : "Default");
         player.GetComponent<NavMeshAgent>().isStopped = !value;
@@ -152,8 +158,6 @@ public class SlimeGun_Shot : Ability
     {
         base.Update();
 
-
-   
         if (!hook.isLocked)
             return;
 
@@ -177,7 +181,6 @@ public class SlimeGun_Shot : Ability
 
             damage.value *= 1 - (damageReductionRatio / 100);
 
-            Debug.Log("Damage Reduced");
         }
 
         EventBroadcasting.AddListener(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, DamageReduction);

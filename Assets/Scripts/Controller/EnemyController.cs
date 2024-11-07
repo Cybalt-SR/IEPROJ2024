@@ -35,6 +35,9 @@ namespace Assets.Scripts.Controller
 
         void IOnPlayerNear.OnPlayerNear(UnitController player)
         {
+            if (!enabled)
+                return;
+
             target = player;
 
             var pStateHandler = player.GetComponent<PlayerStateHandler>();

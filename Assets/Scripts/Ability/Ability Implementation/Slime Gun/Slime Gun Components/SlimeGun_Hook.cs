@@ -32,15 +32,8 @@ public class SlimeGun_Hook : MonoBehaviour
 
     private void Update()
     {
-
-       
-
         if(vectorLock != null)
-        {
-            transform.position = vectorLock.Value;
-            Debug.Log(vectorLock.Value);
-        } 
-            
+            transform.position = vectorLock.Value;     
     }
 
     public void ClearLock()
