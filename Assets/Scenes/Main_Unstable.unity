@@ -30978,7 +30978,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1878664014}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.00001
+  m_Radius: 1
   m_Speed: 0
   m_Acceleration: 0
   avoidancePriority: 50
@@ -31177,6 +31177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881313dbb7931ab44a6bda7b24d491bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   sprite: {fileID: 1037616612}
   defaultSpriteAlpha: 1
   invisibleSpriteAlpha: 0.6

@@ -6,15 +6,14 @@ using Abilities;
 using gab_roadcasting;
 using UnityEngine.AI;
 using Assets.Scripts.Controller;
+using UnityEngine.InputSystem;
 
 public class SlimeGunAbility : Ability
 {
-    private bool isGrappling = false;
 
     [Header("Configurations")]
-    [SerializeField] private float damageReductionPercent = 40f;
-    [SerializeField] private float grapplingMultiplier = 2f;
     [SerializeField] private float knockStrength = 8f;
+    [SerializeField] private float stunDuration = .5f;
 
 
     [Header("References")]
@@ -28,8 +27,19 @@ public class SlimeGunAbility : Ability
 
         Debug.Log("Casted Puddle");
 
+
+        GameObject puddle = Instantiate(puddlePrefab.gameObject);
+
+        Vector3 pos = owner.transform.position;
+        pos.y = 0;
+        puddle.transform.position = pos;
+
+
         foreach (var enemy in proximityChecker.CollisionList)
         {
+            if(!enemy.GetComponent<EnemyController>().enabled)
+                continue;
+     
             var HealthObject = enemy.GetComponent<HealthObject>();
           
             Vector3 knockDirection = owner.transform.position-enemy.transform.position;
@@ -42,41 +52,17 @@ public class SlimeGunAbility : Ability
             var rb = enemy.GetComponent<Rigidbody>();
             rb.AddForce(knockDirection * knockStrengthMultiplier * knockStrength, ForceMode.Impulse);
 
+            enemy.GetComponent<EnemyStateHandler>().SetStun(stunDuration);
 
-            //temp -- not working
-            var ctrl = enemy.GetComponent<EnemyController>();
-            ctrl.StartCoroutine(ctrl.applySpeedModifier(10, 6));
         }
-
-        GameObject puddle = Instantiate(puddlePrefab.gameObject);
-
-        Vector3 pos = owner.transform.position;
-        pos.y = 0;
-        puddle.transform.position = pos;
 
 
 
         proximityChecker.Clear();
     }
 
-    protected override void Initialize()
-    {
-        EventBroadcasting.AddListener(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, DamageReduction);
-    }
+    protected override void Initialize(){}
 
-    private void DamageReduction(Dictionary<string, object> p)
-    {
-        var damage = p["Damage"] as Wrapper<float>;
-
-        float damageReductionRatio = damageReductionPercent;
-        if (isGrappling) 
-            damageReductionRatio *= grapplingMultiplier;
-        damageReductionRatio = Mathf.Clamp(damageReductionRatio, 0, 100);
-
-        damage.value *= 1 - (damageReductionRatio / 100);
-
-        Debug.Log("Damage Reduced");
-    }
 
 
 }

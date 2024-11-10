@@ -15,7 +15,7 @@ MonoBehaviour:
   secondaryName: Slime Gun
   toolTip: Grappling gun but with slime
   secondaryIcon: {fileID: 0}
-  shotEffect: {fileID: 5082755626913055866, guid: 675bfcc9a9f6cef4882a536c413a0d22,
+  shotEffect: {fileID: 3221118953443387447, guid: e07aadf9230693f41bd72dd14c33178a,
     type: 3}
   secondaryAbility: {fileID: 3824282653499264992, guid: 3b8d55856624e714985117337bee99c7,
     type: 3}

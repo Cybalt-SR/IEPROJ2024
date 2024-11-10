@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3427216975007479839}
   - component: {fileID: 3824282653499264992}
   m_Layer: 0
-  m_Name: SampleAbility
+  m_Name: SlimeGun_Ability
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,10 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   abilityData:
-    abilityID: SampleAbility
-    effectName: Damage Reduction
+    abilityID: SlimeGun_Ability
+    effectName: Slimed Together
     effectIcon: {fileID: 0}
-    cooldown: 0
+    cooldown: 5
     tooltip: 
     passiveDescription: 
     activeDescription: 
@@ -58,9 +58,8 @@ MonoBehaviour:
     AbilityID: 
     maxCooldown: 0
     currentCooldown: 0
-  damageReductionPercent: 100
-  grapplingMultiplier: 2
   knockStrength: 8
+  stunDuration: 4
   proximityChecker: {fileID: 6822011016803589086}
   puddlePrefab: {fileID: 3467994250812642890, guid: 33f68c34a86898544ba4726498cbaf01,
     type: 3}

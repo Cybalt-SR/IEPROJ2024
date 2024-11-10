@@ -34,6 +34,14 @@ namespace Assets.Scripts.Controller
         //input
         private Vector2 late_aimpos;
         private Vector2 screenpos;
+        private PlayerStateHandler stateHandler;
+
+
+        protected override void Start()
+        {
+            base.Start();
+            stateHandler = GetComponent<PlayerStateHandler>();
+        }
 
         protected override void UpdateFinalGun()
         {
@@ -47,6 +55,9 @@ namespace Assets.Scripts.Controller
 
         void IPlayerInputReceiver.Move(InputAction.CallbackContext callback)
         {
+            if (!stateHandler.canMove)
+                return;
+
             if (callback.phase == InputActionPhase.Performed)
                 MoveDir = Vector2.zero;
 
