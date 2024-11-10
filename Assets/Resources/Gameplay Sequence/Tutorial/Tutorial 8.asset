@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968e417edc4b3b942b03b330833cc6b0, type: 3}
   m_Name: Tutorial 8
   m_EditorClassIdentifier: 
+  CharacterSet: {fileID: 11400000, guid: ed2d4ccc2aced324f8c5a16522fe3e93, type: 2}
   message: Press E to open the equipment tab.
+  message_:
+    align: 0
+    name_index: 1
+    text: Press E to open the equipment tab.
+    art_variant: 0

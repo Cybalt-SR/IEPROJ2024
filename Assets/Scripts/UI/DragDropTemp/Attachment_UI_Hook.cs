@@ -76,8 +76,7 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
     {
         IConsistentDataHolder<PlayerEquipmentData>.Data.Equip(PlayerAssigned, index);
 
-        bool received = false;
-        ActionBroadcaster.Broadcast("equip_attachment", null, ref received);
+        ActionWaiter.Broadcast("equip_attachment", null, out _);
     }
 
     public void UnEquip(Attachment.Part part)
