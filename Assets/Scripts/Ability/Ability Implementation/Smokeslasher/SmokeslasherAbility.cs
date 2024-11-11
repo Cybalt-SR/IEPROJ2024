@@ -86,6 +86,7 @@ public class SmokeslasherAbility : Ability
         Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.CLIP_SIZE);
         Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND);
         Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString() + "Temp", GunStatModifierHandler.StatType.CLIP_SIZE);
+        Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.RELOAD_TIME);
     }
 
 
@@ -129,11 +130,16 @@ public class SmokeslasherAbility : Ability
 
             if (!Player.StatModder.BuffExists(gameObject.GetInstanceID().ToString() + "Temp", GunStatModifierHandler.StatType.CLIP_SIZE))
                 Player.StatModder.AddMod(gameObject.GetInstanceID().ToString() + "Temp", GunStatModifierHandler.StatType.CLIP_SIZE, 0, 300);
+
+            if (!Player.StatModder.BuffExists(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.RELOAD_TIME))
+                Player.StatModder.AddMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.RELOAD_TIME, 0, -300);
+            
         }
         else
         {
             Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND);
             Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString() + "Temp", GunStatModifierHandler.StatType.CLIP_SIZE);
+            Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.RELOAD_TIME);
         }
     }
 
