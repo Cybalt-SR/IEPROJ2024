@@ -11,7 +11,7 @@ public class TEMP_Attack_Anim : ProximityChecker
 {
     [SerializeField] private float initialMultiplier = 2f;
 
-    [Range(10f, 100f)]
+    [Range(1f, 20f)]
     [SerializeField] private float scaleSpeed;
     [SerializeField] private float maxScale;
 
@@ -23,10 +23,15 @@ public class TEMP_Attack_Anim : ProximityChecker
 
     private float fadeTimer;
 
+    public Action OnFirstContact;
+    public Action OnEnd;
 
-    //temp
-    public Action doOnEnd;
+    private bool hasEncounteredEnemy = false;
 
+    private void Awake()
+    {
+        OnProximityEntered += DoOnFirstContact;
+    }
 
     private void OnEnable()
     {
@@ -41,6 +46,7 @@ public class TEMP_Attack_Anim : ProximityChecker
         growthSpeed = 1.7f;
         fadeTimer = disableOffset;
 
+        hasEncounteredEnemy = false;
 
         transform.localScale = Vector3.one * initialMultiplier;
         mesh = GetComponent<MeshRenderer>();
@@ -53,6 +59,14 @@ public class TEMP_Attack_Anim : ProximityChecker
 
     }
 
+    private void DoOnFirstContact(GameObject contact)
+    {
+        if (!hasEncounteredEnemy)
+        {
+            OnFirstContact?.Invoke();
+            hasEncounteredEnemy = true;
+        }  
+    }
 
     private void Update()
     {
@@ -61,13 +75,15 @@ public class TEMP_Attack_Anim : ProximityChecker
 
         if (scale.x < maxScale)
         {
-            scale *= 1 + Time.deltaTime * scaleSpeed;
-            scale.y = initialMultiplier;
+            scale *= 1 + Time.deltaTime * growthSpeed;
+            scale.x = Mathf.Min(scale.x, maxScale);
+            scale.y = Mathf.Min(scale.y, maxScale);
+            scale.z = Mathf.Min(scale.z, maxScale);
             transform.localScale = scale;
-
         }
         else
         {
+            mesh.material.DisableKeyword("_EMISSION");
             fadeTimer -= Time.deltaTime;
 
             Color c = mesh.material.color;
@@ -75,7 +91,7 @@ public class TEMP_Attack_Anim : ProximityChecker
             mesh.material.color = c;
             if (mesh.material.color.a == 0f)
             {
-                doOnEnd?.Invoke();
+                OnEnd?.Invoke();
                 collisionList.Clear();
                 gameObject.SetActive(false);
 

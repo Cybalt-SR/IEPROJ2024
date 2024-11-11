@@ -17,6 +17,7 @@ public class Smokeslasher_Shot : Ability
     protected override void Cast()
     {
         attackRange.gameObject.SetActive(true);
+        IncurHealthCost();
     }
 
 
@@ -38,7 +39,7 @@ public class Smokeslasher_Shot : Ability
         var Health = player.GetComponent<OverloadHealthObject>();
 
         healthCost = Mathf.Clamp(healthCost, 0f, 1f);
-        if (Health.Heat / Health.MaxHeat < 0.7f && attackRange.CollisionList.Count > 0)
+        if (Health.Heat / Health.MaxHeat < 0.7f /*&& attackRange.CollisionList.Count > 0*/)
         {
             Action<Wrapper<float>> applyHealthCost = (hp) => hp.value += healthCost * Health.MaxHeat;
             Health.DoOnHealth(applyHealthCost);
@@ -48,7 +49,7 @@ public class Smokeslasher_Shot : Ability
     protected override void Initialize()
     {
         attackRange.OnProximityEntered += AttackEffect;
-        attackRange.doOnEnd += IncurHealthCost;
+        //attackRange.OnFirstContact += IncurHealthCost;
         attackRange.gameObject.SetActive(false);
     }
 }

@@ -21,7 +21,8 @@ public class SmokeslasherAbility : Ability
 
     [Header("Active")]
     [SerializeField] float ability_damage = 5f;
-    [SerializeField] private ProximityChecker areaOfEffect;
+
+    [SerializeField] private TEMP_Attack_Anim areaOfEffect;
     [SerializeField] private float invisbilityDuration = 3f;
 
 
@@ -32,7 +33,7 @@ public class SmokeslasherAbility : Ability
         Action<Wrapper<float>> HalfOverload = (Wrapper<float> health) => health.value -= health.value * overloadRestore;
         health.DoOnHealth(HalfOverload);
 
-
+        /*
         //Deals damage to all nearby enemies
         var damage = new Wrapper<float>(ability_damage);
         var p = new Dictionary<string, object>();
@@ -46,20 +47,25 @@ public class SmokeslasherAbility : Ability
         }
             
         areaOfEffect.Clear();
+        */
 
         //Enter Invisibility
-        var stateManager = owner.GetComponent<PlayerStateHandler>();
-        stateManager.InvokeInvisibility(invisbilityDuration);
+        areaOfEffect.gameObject.SetActive(true);
     }
+
 
     protected override void Initialize()
     {
         EventBroadcasting.AddListener(EventNames.ENEMY_EVENTS.ON_ENEMY_KILLED, OnEnemyKilled);
         EventBroadcasting.AddListener(EventNames.SECONDARY_EVENTS.ON_SECONDARY_SHOT, AmplifySecondaryDamage);
         EventBroadcasting.AddListener(EventNames.SECONDARY_EVENTS.ON_SECONDARY_ABILITY, AmplifySecondaryDamage);
-        //EventBroadcasting.AddListener(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, AmplifyPrimaryFireRate);
-        
-       // Player.AddFireRateMultiplier(gameObject.GetInstanceID() + AbilityData.AbilityID, AmplifyPrimaryFireRate);
+
+        areaOfEffect.OnEnd += () =>
+        {
+            var stateManager = owner.GetComponent<PlayerStateHandler>();
+            stateManager.InvokeInvisibility(invisbilityDuration);
+        };
+
     }
 
     private void OnEnable()
@@ -67,14 +73,19 @@ public class SmokeslasherAbility : Ability
         var Player = PlayerController.GetFirst();
         Player.StatModder.AddMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.PROJECTILES_PER_SHOT, 2f, 0f);
         Player.StatModder.AddMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.CLIP_SIZE, 0f, 50f);
-
+        areaOfEffect.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
         var Player = PlayerController.GetFirst();
+
+        if (Player == null)
+            return;
         Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.PROJECTILES_PER_SHOT);
         Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.CLIP_SIZE);
+        Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND);
+        Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString() + "Temp", GunStatModifierHandler.StatType.CLIP_SIZE);
     }
 
 
@@ -114,11 +125,15 @@ public class SmokeslasherAbility : Ability
         if (isHealthGreaterThanCertainPercentage(0.4f))
         {
             if (!Player.StatModder.BuffExists(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND))
-                Player.StatModder.AddMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND, 0, 40);
+                Player.StatModder.AddMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND, 0, 300);
+
+            if (!Player.StatModder.BuffExists(gameObject.GetInstanceID().ToString() + "Temp", GunStatModifierHandler.StatType.CLIP_SIZE))
+                Player.StatModder.AddMod(gameObject.GetInstanceID().ToString() + "Temp", GunStatModifierHandler.StatType.CLIP_SIZE, 0, 300);
         }
         else
         {
             Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND);
+            Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString() + "Temp", GunStatModifierHandler.StatType.CLIP_SIZE);
         }
     }
 
