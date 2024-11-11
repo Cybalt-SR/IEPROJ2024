@@ -29,8 +29,9 @@ public class SmokeslasherAbility : Ability
     {
         //Removes 70% of current overload
         var health = owner.GetComponent<OverloadHealthObject>();
-        Action<Wrapper<float>> HalfOverload = (Wrapper<float> health) => health.value *= overloadRestore;
+        Action<Wrapper<float>> HalfOverload = (Wrapper<float> health) => health.value -= health.value * overloadRestore;
         health.DoOnHealth(HalfOverload);
+
 
         //Deals damage to all nearby enemies
         var damage = new Wrapper<float>(ability_damage);
@@ -42,13 +43,6 @@ public class SmokeslasherAbility : Ability
         foreach (var enemy in areaOfEffect.CollisionList)
         {
             enemy.GetComponent<HealthObject>().TakeDamage(damage.value, "Player");
-
-            //feedback
-            var rb = enemy.GetComponent<Rigidbody>();
-            Vector3 dir = enemy.transform.position - owner.transform.position;
-            rb.AddForce(dir.normalized * 5f);
-
-
         }
             
         areaOfEffect.Clear();
@@ -63,15 +57,24 @@ public class SmokeslasherAbility : Ability
         EventBroadcasting.AddListener(EventNames.ENEMY_EVENTS.ON_ENEMY_KILLED, OnEnemyKilled);
         EventBroadcasting.AddListener(EventNames.SECONDARY_EVENTS.ON_SECONDARY_SHOT, AmplifySecondaryDamage);
         EventBroadcasting.AddListener(EventNames.SECONDARY_EVENTS.ON_SECONDARY_ABILITY, AmplifySecondaryDamage);
+        //EventBroadcasting.AddListener(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, AmplifyPrimaryFireRate);
+        
+       // Player.AddFireRateMultiplier(gameObject.GetInstanceID() + AbilityData.AbilityID, AmplifyPrimaryFireRate);
+    }
 
+    private void OnEnable()
+    {
         var Player = PlayerController.GetFirst();
-        Player.AddFireRateMultiplier(gameObject.GetInstanceID() + AbilityData.AbilityID, AmplifyPrimaryFireRate);
+        Player.StatModder.AddMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.PROJECTILES_PER_SHOT, 2f, 0f);
+        Player.StatModder.AddMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.CLIP_SIZE, 0f, 50f);
+
     }
 
     private void OnDisable()
     {
         var Player = PlayerController.GetFirst();
-        Player.RemoveFireRateMultiplier(gameObject.GetInstanceID() + AbilityData.AbilityID);
+        Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.PROJECTILES_PER_SHOT);
+        Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.CLIP_SIZE);
     }
 
 
@@ -81,7 +84,6 @@ public class SmokeslasherAbility : Ability
 
         if (source != "Player")
             return;
-
 
         if (++enemiesKilled % decreaseOnKillCount == 0)
         {
@@ -104,15 +106,22 @@ public class SmokeslasherAbility : Ability
         return health.Heat / health.MaxHeat >= hp;
     }
 
-    private void AmplifyPrimaryFireRate(Wrapper<float> shots_per_second)
+    protected override void Update()
     {
+        base.Update();
+
+        var Player = PlayerController.GetFirst();
         if (isHealthGreaterThanCertainPercentage(0.4f))
         {
-            shots_per_second.value *= 1 + primaryFirerateMultiplier;
-            Debug.Log("Increased Fire Rate");
+            if (!Player.StatModder.BuffExists(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND))
+                Player.StatModder.AddMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND, 0, 40);
         }
-           
+        else
+        {
+            Player.StatModder.RemoveMod(gameObject.GetInstanceID().ToString(), GunStatModifierHandler.StatType.SHOTS_PER_SECOND);
+        }
     }
+
 
     private void AmplifySecondaryDamage(Dictionary<string, object> p)
     {

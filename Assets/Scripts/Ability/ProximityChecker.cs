@@ -15,9 +15,9 @@ public class ProximityChecker : MonoBehaviour
     public List<GameObject> CollisionList { get => collisionList; }
 
 
-    [SerializeField] protected Action<GameObject> OnProximityEntered;
-    [SerializeField] protected Action<GameObject> OnProximityExit;
-    [SerializeField] protected Action OnClear;
+    public Action<GameObject> OnProximityEntered;
+    public Action<GameObject> OnProximityExit;
+    public Action OnClear;
 
     private void OnTriggerEnter(Collider other)
     {

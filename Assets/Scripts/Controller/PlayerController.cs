@@ -1,3 +1,4 @@
+using Assets.Scripts.Data;
 using Assets.Scripts.Data.Progression;
 using Assets.Scripts.Input;
 using Assets.Scripts.Library;
@@ -35,7 +36,14 @@ namespace Assets.Scripts.Controller
         private Vector2 late_aimpos;
         private Vector2 screenpos;
         private PlayerStateHandler stateHandler;
+        private GunStatModifierHandler statModder = new();
 
+        public GunStatModifierHandler StatModder { get => statModder; }
+
+        protected override GunData DoOnGet(GunData data)
+        {
+            return statModder.ApplyStatMods(data);
+        }
 
         protected override void Start()
         {
@@ -101,13 +109,17 @@ namespace Assets.Scripts.Controller
         protected override void Update()
         {
             base.Update();
-
+            statModder.Update(Time.deltaTime);
             if ((this as IPlayerInputReceiver).IsFire && EventSystem.current.IsPointerOverGameObject() == false)
             {
                 bool received = false;
                 ActionBroadcaster.Broadcast("player_shoot", this.transform, ref received);
                 base.Fire();
             }
+
+            //Temp
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
+                statModder.DebugStats();
         }
 
         void IPlayerInputReceiver.Pickup(InputAction.CallbackContext callback)
