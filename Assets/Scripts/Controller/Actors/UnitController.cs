@@ -139,25 +139,18 @@ public class UnitController : MonoBehaviour
                 mAudioSource.PlayOneShot(UtilSoundDictionary.Instance.Get(Gun.start_reload_sound_id));
 
             reloading = true;
-            return false;
         }
 
-        var wrapper = new Wrapper<float>(Gun.shots_per_second);
-        //temp
-        foreach (var callback in doOnFirerate)
-            callback.Value?.Invoke(wrapper);
-
-        if (time_last_shot >= 1.0f / wrapper.value)
+        if (time_last_shot >= 1.0f / Gun.shots_per_second) 
         {
             ProjectileManager.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
             mAudioSource.PlayOneShot(ShotSoundDictionary.Instance.Get(Gun.sound_id));
             time_last_shot = 0;
             shots_before_reload--;
-
             return true;
         }
-        else
-            return false;
+
+        return false;
     }
 
     protected virtual void Update()

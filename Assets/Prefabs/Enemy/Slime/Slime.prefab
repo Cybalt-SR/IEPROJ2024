@@ -18,13 +18,15 @@ GameObject:
   - component: {fileID: 5939109299263342653}
   - component: {fileID: 1742625443284175486}
   - component: {fileID: 1605362885978331551}
-  - component: {fileID: -3659257103871336071}
   - component: {fileID: 6704210107015524959}
   - component: {fileID: -7410347523252904920}
   - component: {fileID: 3327197383408709934}
   - component: {fileID: 976831909330655686}
   - component: {fileID: 5952065878958134233}
   - component: {fileID: 7697420975341588612}
+  - component: {fileID: 5744144297518748058}
+  - component: {fileID: 7322503616335652321}
+  - component: {fileID: 5846891715231414123}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Enemy
@@ -119,9 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1641835130275497612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa0fc084f6e62e459d7ccb8940959aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 87e7ebb2f0522584dabbcadc83ee8c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StunDuration: 0
 --- !u!33 &5295001912741678684
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -255,7 +258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1641835130275497612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f6dcd68c07c0c4d9636b5eb513da7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
@@ -268,33 +271,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1641835130275497612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af8360f7778992b49b19b049ae9eaed9, type: 3}
+  m_Script: {fileID: 11500000, guid: 07c6ad1873c91884384b8723e344cd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect_id: default_unit_die
---- !u!114 &-3659257103871336071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641835130275497612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e8bd0b9c90d95f43aa9cccf9aa9015c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drops:
-  - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
-    chance: 0.1
-  - item: {fileID: 11400000, guid: 53322f5c69fd85046ae59f03c8391801, type: 2}
-    chance: 0.1
-  - item: {fileID: 11400000, guid: 67e86fefca7e29b458390a66075d1040, type: 2}
-    chance: 0.1
-  - item: {fileID: 11400000, guid: cddd7a647a5b2464d8fc2854c6fe3f0c, type: 2}
-    chance: 0.1
-  - item: {fileID: 11400000, guid: ee0e8c3f0fefc0449bac9fbe13227236, type: 2}
-    chance: 0.1
+  effect_id: green_die
 --- !u!114 &6704210107015524959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,8 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22eaf8fe224b56941a3cb3e6a8b82349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition_name: enemies_killed
-  condition_threshold: 15
+  _killed_: enemy_slime
 --- !u!114 &-7410347523252904920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +409,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1641835130275497612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad9c4de54cd43842b98664007259604, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c1b776aab3c6d0498b3255d801e1cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audio_hit_id: 
@@ -460,6 +439,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e7ebb2f0522584dabbcadc83ee8c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StunDuration: 0
+--- !u!114 &5744144297518748058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4261a6eb6dee10144bac4df30615eb36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7322503616335652321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+--- !u!114 &5846891715231414123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f3d12b729ed544da6856099db3ff28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
+    chance: 0.02
+  - item: {fileID: 11400000, guid: 53322f5c69fd85046ae59f03c8391801, type: 2}
+    chance: 0.02
+  - item: {fileID: 11400000, guid: cddd7a647a5b2464d8fc2854c6fe3f0c, type: 2}
+    chance: 0.01
 --- !u!1 &3906182589777987327
 GameObject:
   m_ObjectHideFlags: 0
