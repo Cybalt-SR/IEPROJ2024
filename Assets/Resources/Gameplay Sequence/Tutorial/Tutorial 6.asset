@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968e417edc4b3b942b03b330833cc6b0, type: 3}
   m_Name: Tutorial 6
   m_EditorClassIdentifier: 
-  message: Press Q to grab items.
+  CharacterSet: {fileID: 11400000, guid: ed2d4ccc2aced324f8c5a16522fe3e93, type: 2}
+  message: Go near that item I highlighted and press Q to grab it.
+  message_:
+    align: 0
+    name_index: 1
+    text: Go near that item I highlighted and press Q to grab it.
+    art_variant: 0

@@ -12,6 +12,7 @@ namespace Assets.Scripts.Data.ActionRequestTypes
     [CreateAssetMenu(menuName = "Game/ActionRequest/Dialogue")]
     public class DialogueActionRequest : ActionRequest
     {
+        public CharacterSet characterset;
         public Dialogue dialogue;
     }
 }

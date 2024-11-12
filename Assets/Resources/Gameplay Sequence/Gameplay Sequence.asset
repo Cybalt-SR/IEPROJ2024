@@ -16,14 +16,14 @@ MonoBehaviour:
   - trigger_event: see_player
     request: {fileID: 11400000, guid: f350714d48da88543bbb654ba05eeed2, type: 2}
   - trigger_event: player_move
-    request: {fileID: 11400000, guid: 9be51a270bf895f4dae1d2fc32434339, type: 2}
+    request: {fileID: 11400000, guid: 52cc3ae59b2eb314689ddc3e70a33ca3, type: 2}
   - trigger_event: see_enemy
     request: {fileID: 11400000, guid: 03188c8258d86ae4f91461d164725190, type: 2}
   - trigger_event: player_shoot
-    request: {fileID: 11400000, guid: 7e38c898bb4178d41a0ebc690ba2d54a, type: 2}
+    request: {fileID: 11400000, guid: 131959f9503dbe74fb217f3241ce5f6e, type: 2}
   - trigger_event: see_attachment
     request: {fileID: 11400000, guid: 113637ab4bc6ec84fb2bb4701ba84579, type: 2}
   - trigger_event: pickup
     request: {fileID: 11400000, guid: 2345abe2493b7c54cb5a059aff1a9e49, type: 2}
   - trigger_event: equip_attachment
-    request: {fileID: 11400000, guid: 7df173a2d19adab419a728b22233fe49, type: 2}
+    request: {fileID: 11400000, guid: 6ced1fc0119b501468bc06cc6bcc47ce, type: 2}

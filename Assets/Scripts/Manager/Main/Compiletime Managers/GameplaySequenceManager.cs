@@ -39,7 +39,7 @@ public class GameplaySequenceManager : MonoBehaviour, IConsistentDataHolder<Game
             var item = GameplaySequence.Instance.GetKey(i);
             var cur_i = i;
 
-            ActionBroadcaster.RegisterWaiter(item.trigger_event, (Transform reference) =>
+            ActionWaiter.RegisterWaiter(item.trigger_event, (Transform reference) =>
             {
                 if (cur_i != mData.prompt_index)
                     return false;

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968e417edc4b3b942b03b330833cc6b0, type: 3}
   m_Name: Tutorial 1
   m_EditorClassIdentifier: 
-  message: 'Good evening, Ms. Trooper. Looks like we are embarking on another thrilling
-    journey. Oh? I apologize, Ms., but artificial intelligence cannot be held responsible
-    for the compromise. I was simply fulfilling my assigned duty. Perhaps you intentionally
-    activated speaker mode to showcase your professionalism. However, rest assured,
-    I will assist you in resolving this situation. I have composed a tutorial that
-    I trust you will not disregard and publish negative reviews online due to your
-    own negligence. '
+  CharacterSet: {fileID: 11400000, guid: ed2d4ccc2aced324f8c5a16522fe3e93, type: 2}
+  message: Use WASD to navigate.
+  message_:
+    align: 0
+    name_index: 1
+    text: Use WASD to navigate.
+    art_variant: 0

@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968e417edc4b3b942b03b330833cc6b0, type: 3}
   m_Name: Tutorial 4
   m_EditorClassIdentifier: 
-  message: Fire bullets using left click.
+  CharacterSet: {fileID: 11400000, guid: ed2d4ccc2aced324f8c5a16522fe3e93, type: 2}
+  message: 
+  message_:
+    align: 0
+    name_index: 1
+    text: Fire bullets using left click.
+    art_variant: 0

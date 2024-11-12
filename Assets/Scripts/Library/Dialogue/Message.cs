@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace External.Dialogue {
+    [System.Serializable]
     public class Message
     {
         public enum Align { left, right }
@@ -13,6 +14,6 @@ namespace External.Dialogue {
         public int name_index;
         [TextArea] public string text;
         [Header("Art")]
-        public string character_art;
+        public int art_variant;
     }
 }

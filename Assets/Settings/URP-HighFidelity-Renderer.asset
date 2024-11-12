@@ -48,10 +48,9 @@ MonoBehaviour:
   m_Name: cel shading
   m_EditorClassIdentifier: 
   m_Active: 1
-  passMaterial: {fileID: -876546973899608171, guid: a43a0975fff4a5c4cacb67692619f1da,
-    type: 3}
+  passMaterial: {fileID: 2100000, guid: eef1bc4c85690e14eb9dc7bdd414f482, type: 2}
   injectionPoint: 550
-  requirements: 6
+  requirements: 7
   passIndex: 0
 --- !u!114 &11400000
 MonoBehaviour:

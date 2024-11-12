@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Library.ActionBroadcaster;
+using External.Dialogue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Assets.Scripts.Data.ActionRequestTypes
     [CreateAssetMenu(menuName = "Game/ActionRequest/Message")]
     public class MessageActionRequest : ActionRequest
     {
-        [TextArea] public string message;
+        public CharacterSet CharacterSet;
+        public Message message_;
     }
 }
