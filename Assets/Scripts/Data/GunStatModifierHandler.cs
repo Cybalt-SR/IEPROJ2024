@@ -5,18 +5,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+public enum StatType
+{
+    DAMAGE,
+    SHOTS_PER_SECOND,
+    PROJECTILE_SPEED,
+    RELOAD_TIME,
+    PROJECTILES_PER_SHOT,
+    CLIP_SIZE,
+}
+
 public class GunStatModifierHandler 
 {
-    public enum StatType
-    {
-        DAMAGE,
-        SHOTS_PER_SECOND,
-        PROJECTILE_SPEED,
-        RELOAD_TIME,
-        PROJECTILES_PER_SHOT,
-        CLIP_SIZE,
-
-    }
+   
     private class StatMod
     {
         public float flat_effect;
@@ -32,7 +33,6 @@ public class GunStatModifierHandler
     }
 
     private Dictionary<StatType, Dictionary<string, StatMod> > handlers;
-    bool isUpdated = false;
 
 
     public GunStatModifierHandler()
@@ -45,19 +45,17 @@ public class GunStatModifierHandler
 
     public void AddMod(string name, StatType type, float flatAmount, float percentAmount, float duration = Mathf.Infinity)
     {
-        var mod = new StatMod(flatAmount, percentAmount, duration);
-        handlers[type].Add(name, mod);
-        isUpdated = false;
+        if(!BuffExists(name, type))
+        {
+            var mod = new StatMod(flatAmount, percentAmount, duration);
+            handlers[type].Add(name, mod);
+        }
     }
 
     public void RemoveMod(string name, StatType type)
     {
         if (handlers[type].ContainsKey(name))
-        {
             handlers[type].Remove(name);
-            isUpdated = false;
-        }
-            
     }
 
     public void Update(float deltaTime)
@@ -76,18 +74,14 @@ public class GunStatModifierHandler
             }
 
             foreach(var removable in removables)
-            {
-                bool hasRemoved = mod_handler.Value.Remove(removable);
-                if (hasRemoved)
-                    isUpdated = false;
-            }
+                mod_handler.Value.Remove(removable);
+            
         }
        
     }
 
     private float getTotal(float baseValue, StatType type)
     {
-
         Dictionary<string, StatMod> mods = handlers[type];
         float flat = 0;
         float percent = 0;

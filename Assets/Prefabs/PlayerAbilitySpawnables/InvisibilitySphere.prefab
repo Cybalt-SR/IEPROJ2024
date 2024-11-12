@@ -126,4 +126,5 @@ MonoBehaviour:
   scaleSpeed: 20
   maxScale: 30
   expansionOffset: 0.1
-  disableOffset: 2
+  disableOffset: 3
+  willDisableEmission: 1

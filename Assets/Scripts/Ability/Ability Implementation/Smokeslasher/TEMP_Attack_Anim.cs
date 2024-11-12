@@ -18,6 +18,8 @@ public class TEMP_Attack_Anim : ProximityChecker
     [SerializeField] private float expansionOffset = 0.2f;
     [SerializeField] private float disableOffset = 0.5f;
 
+    [SerializeField] private bool willDisableEmission = true;
+
     private MeshRenderer mesh;
     private float growthSpeed;
 
@@ -55,6 +57,8 @@ public class TEMP_Attack_Anim : ProximityChecker
         c.a = 1f;
         mesh.material.color = c;
 
+
+        mesh.material.EnableKeyword("_EMISSION");
         StartCoroutine(DelayedAcceleration());
 
     }
@@ -83,7 +87,9 @@ public class TEMP_Attack_Anim : ProximityChecker
         }
         else
         {
-            mesh.material.DisableKeyword("_EMISSION");
+            if(willDisableEmission)
+                mesh.material.DisableKeyword("_EMISSION");
+
             fadeTimer -= Time.deltaTime;
 
             Color c = mesh.material.color;
