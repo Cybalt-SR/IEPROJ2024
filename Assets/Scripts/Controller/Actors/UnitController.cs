@@ -70,7 +70,7 @@ public class UnitController : MonoBehaviour
     [SerializeField] private string team_id = "";
     public string TeamId => team_id;
     [SerializeField] private bool clip_full_at_start = true;
-    private int shots_before_reload = 0;
+    [SerializeField] private int shots_before_reload = 0;
     public int Shots_before_reload { get { return shots_before_reload; } }
 
     private bool reloading = false; // formerly private
@@ -139,6 +139,8 @@ public class UnitController : MonoBehaviour
                 mAudioSource.PlayOneShot(UtilSoundDictionary.Instance.Get(Gun.start_reload_sound_id));
 
             reloading = true;
+
+            return false;
         }
 
         if (time_last_shot >= 1.0f / Gun.shots_per_second) 
