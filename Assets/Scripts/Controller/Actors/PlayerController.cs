@@ -80,22 +80,6 @@ namespace Assets.Scripts.Controller
         void IPlayerInputReceiver.Aim(InputAction.CallbackContext callback)
         {
             late_aimpos = callback.ReadValue<Vector2>();
-
-            if (aiming_blanket.Raycast(CameraController.Instance.Camera.ScreenPointToRay(late_aimpos), out RaycastHit hitinfo, float.PositiveInfinity))
-            {
-                AimAt(hitinfo.point);
-            }
-            else
-            {
-                screenpos = (Vector2)CameraController.Instance.Camera.WorldToScreenPoint(transform.position);
-
-                var delta2 = late_aimpos - screenpos;
-                var deltaConverted = Vector3.zero;
-                deltaConverted.x = delta2.x;
-                deltaConverted.z = delta2.y;
-
-                AimAt(transform.position + deltaConverted);
-            }
         }
 
         void IPlayerInputReceiver.Look(InputAction.CallbackContext callback)
@@ -114,6 +98,11 @@ namespace Assets.Scripts.Controller
             {
                 if(base.Fire())
                     ActionWaiter.Broadcast("player_shoot", this.transform, out _);
+            }
+
+            if (aiming_blanket.Raycast(CameraController.Instance.Camera.ScreenPointToRay(late_aimpos), out RaycastHit hitinfo, float.PositiveInfinity))
+            {
+                AimAt(hitinfo.point);
             }
 
             //Temp

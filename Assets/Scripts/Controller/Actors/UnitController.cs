@@ -83,6 +83,7 @@ public class UnitController : MonoBehaviour
 
     [SerializeField] private UnityEvent<Vector3> OnMove;
     [SerializeField] private UnityEvent<Vector3> OnAim;
+    [SerializeField] private UnityEvent<Vector3> OnAimAt;
 
     protected virtual void Awake()
     {
@@ -129,6 +130,7 @@ public class UnitController : MonoBehaviour
         true_dir.y = 0;
 
         AimDir = true_dir;
+        OnAimAt.Invoke(pos);
     }
 
     protected bool Fire()

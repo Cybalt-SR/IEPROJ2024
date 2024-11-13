@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequentialresponses:
   - trigger_event: see_player
-    request: {fileID: 11400000, guid: 3ec8d888ba1e8f142809e64c5e5373e7, type: 2}
+    request: {fileID: 11400000, guid: f350714d48da88543bbb654ba05eeed2, type: 2}
   - trigger_event: player_move
     request: {fileID: 11400000, guid: 52cc3ae59b2eb314689ddc3e70a33ca3, type: 2}
   - trigger_event: see_enemy
