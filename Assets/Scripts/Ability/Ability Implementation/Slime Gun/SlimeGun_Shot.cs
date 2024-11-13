@@ -19,6 +19,7 @@ public class SlimeGun_Shot : Ability
     [SerializeField] private Material slimeMaterial;
 
     [Header("Shot Configurations")]
+    [SerializeField] private float pullforce = 40f;
     [SerializeField] private float damageReductionPercent = 40f;
     [SerializeField] private float grapplingMultiplier = 2f;
 
@@ -65,30 +66,20 @@ public class SlimeGun_Shot : Ability
         {
 
             float grapple_duration = 0f;
-            var agent = player.GetComponent<NavMeshAgent>();
 
             SetGrappleState(true);
 
-
-            //Temp
-            Debug.Log("If Player's Nav Mesh Agent's velocity needs to be changed elsewhere, change this");
-            float original_speed = agent.speed;
-            float original_acceleration = agent.acceleration;
-
-            agent.SetDestination(hook.transform.position);
-            agent.speed = 20;
-            agent.acceleration = 100;
-
             //soft lock guard if navmesh's path locks the player in place
-            while(Vector3.Distance(hook.transform.position, player.transform.position) > 3f && grapple_duration < max_grapple_duration)
+            var delta = hook.transform.position - player.transform.position;
+            while (Vector3.SqrMagnitude(delta) > 3f * 3f && grapple_duration < max_grapple_duration)
             {
+                delta = hook.transform.position - player.transform.position;
                 grapple_duration += Time.deltaTime;
+                player.TryGetComponent(out Rigidbody rb);
+                rb.AddForce(delta.normalized * pullforce * Time.deltaTime, ForceMode.VelocityChange);
+
                 yield return null;
             }
-
-            agent.speed = original_speed;
-            agent.acceleration = original_acceleration;
-            agent.velocity = Vector3.zero;
 
             foreach (var enemy in adhesive.CollisionList)
             {
@@ -148,9 +139,6 @@ public class SlimeGun_Shot : Ability
 
         player.GetComponent<PlayerStateHandler>().canMove = !value;
         player.gameObject.layer = LayerMask.NameToLayer(value ? "Ghost" : "Default");
-        
-        
-        player.GetComponent<NavMeshAgent>().isStopped = !value;
     }
 
     private void SwitchPlayerMaterials(bool isHooked)

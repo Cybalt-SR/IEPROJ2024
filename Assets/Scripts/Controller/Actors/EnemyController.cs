@@ -6,10 +6,10 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.Controller
 {
-    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(NavmeshPhysicsAgent))]
     public class EnemyController : UnitController, IOnPlayerNear, IOnLevelLoad
     {
-        private NavMeshAgent mNavMesh;
+        private NavmeshPhysicsAgent mNavMesh;
         [SerializeField] private UnitController target;
         [SerializeField] private float maximum_distance = 6;
         [SerializeField] private float minimum_distance = 3;
@@ -20,17 +20,12 @@ namespace Assets.Scripts.Controller
         private Vector3 random_move_delta;
         private float time_since_last_randomized = 0;
 
-        private Vector3 oldtarget_pos = Vector3.one * Mathf.Infinity;
-        bool recalculate = true;
-
-        private Vector3[] cachedcorners = null;
-
 
         protected override void Awake()
         {
             base.Awake();
 
-            mNavMesh = GetComponent<NavMeshAgent>();
+            mNavMesh = GetComponent<NavmeshPhysicsAgent>();
         }
 
         void IOnPlayerNear.OnPlayerNear(UnitController player)
@@ -47,33 +42,10 @@ namespace Assets.Scripts.Controller
 
             base.AimAt(player.transform.position);
             var absoluteDelta = target.transform.position - this.transform.position;
+            mNavMesh.SetTarget(player.transform.position);
 
-            if ((target.transform.position - oldtarget_pos).sqrMagnitude > 0.25)
-                recalculate = true;
-
-            if (recalculate)
+            if (mNavMesh.HasDirectVision)
             {
-                oldtarget_pos = target.transform.position;
-
-                if (this.gameObject.activeInHierarchy == false)
-                    return;
-                if (mNavMesh.SetDestination(target.transform.position) == false)
-                    return;
-
-                cachedcorners = mNavMesh.path.corners;
-            }
-
-            if (cachedcorners.Length > 2)
-            {
-                var delta = cachedcorners[1] - this.transform.position;
-                delta.y = 0;
-
-                if(delta.sqrMagnitude < 0.25f)
-                    recalculate = true;
-
-                base.MoveDir = delta;
-            }
-            else {
                 bool beyond_max = absoluteDelta.sqrMagnitude > maximum_distance * maximum_distance;
                 bool within_min = absoluteDelta.sqrMagnitude < minimum_distance * minimum_distance;
 
@@ -87,20 +59,9 @@ namespace Assets.Scripts.Controller
                     base.MoveDir = random_move_delta;
                 }
             }
-        }
-
-        private void OnDrawGizmos()
-        {
-
-            if (cachedcorners == null || cachedcorners.Length == 0)
-                return;
-
-            Vector3 previous_pos = cachedcorners[0];
-
-            foreach (var vertex in cachedcorners)
+            else
             {
-                Gizmos.DrawLine(previous_pos, vertex);
-                previous_pos = vertex;
+                base.MoveDir = mNavMesh.CurrentDirection;
             }
         }
 

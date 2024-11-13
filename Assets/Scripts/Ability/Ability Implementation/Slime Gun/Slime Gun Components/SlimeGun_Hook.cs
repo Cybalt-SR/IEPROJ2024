@@ -21,8 +21,6 @@ public class SlimeGun_Hook : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-      
-        rb.velocity = Vector3.zero;
         rb.isKinematic = true;
 
         vectorLock = collision.transform.position;

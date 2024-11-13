@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 5744144297518748058}
   - component: {fileID: 7322503616335652321}
   - component: {fileID: 5846891715231414123}
+  - component: {fileID: 8683398988533595875}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Enemy
@@ -87,6 +88,7 @@ MonoBehaviour:
   aimdir: {x: 0, y: 0, z: 0}
   team_id: enemy
   clip_full_at_start: 1
+  shots_before_reload: 0
   time_last_reload: 0
   OnMove:
     m_PersistentCalls:
@@ -106,6 +108,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnAimAt:
+    m_PersistentCalls:
+      m_Calls: []
   target: {fileID: 0}
   maximum_distance: 6
   minimum_distance: 5
@@ -479,11 +484,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drops:
   - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
-    chance: 0.02
+    chance: 0.05
   - item: {fileID: 11400000, guid: 53322f5c69fd85046ae59f03c8391801, type: 2}
-    chance: 0.02
+    chance: 0.05
   - item: {fileID: 11400000, guid: cddd7a647a5b2464d8fc2854c6fe3f0c, type: 2}
-    chance: 0.01
+    chance: 0.02
+--- !u!114 &8683398988533595875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a02432536147578428de346b922bfd39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {x: 0, y: 0, z: 0}
+  current_direction: {x: 0, y: 0, z: 0}
+  force: 0
 --- !u!1 &3906182589777987327
 GameObject:
   m_ObjectHideFlags: 0

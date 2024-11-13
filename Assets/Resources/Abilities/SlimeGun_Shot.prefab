@@ -64,6 +64,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: -876546973899608171, guid: 87572c13b81394d4bb16d6782d2ff088,
     type: 3}
   slimeMaterial: {fileID: 2100000, guid: 29e8c6e35adf1f64b96fe6a0d5415475, type: 2}
+  pullforce: 80
   damageReductionPercent: 60
   grapplingMultiplier: 1.5
   projectileSpeed: 40

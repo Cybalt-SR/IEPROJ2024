@@ -68,12 +68,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionList: []
   tagWhitelist: []
-  OnProximityEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  OnProximityExit:
-    m_PersistentCalls:
-      m_Calls: []
-  OnClear:
-    m_PersistentCalls:
-      m_Calls: []
+  pulseForce: 5
+  maxStickDuration: 12
+  enemyParent: {fileID: 0}
+  stickOffset: 2
+  defaultMaterial: {fileID: 0}
+  slimeMaterial: {fileID: 0}
