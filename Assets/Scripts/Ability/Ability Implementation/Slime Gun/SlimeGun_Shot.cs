@@ -148,6 +148,8 @@ public class SlimeGun_Shot : Ability
 
         player.GetComponent<PlayerStateHandler>().canMove = !value;
         player.gameObject.layer = LayerMask.NameToLayer(value ? "Ghost" : "Default");
+        
+        
         player.GetComponent<NavMeshAgent>().isStopped = !value;
     }
 

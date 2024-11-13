@@ -15,9 +15,6 @@ public class SlideshowPlayer : MonoBehaviour, IPointerClickHandler
     public List<Sprite> testSlides = new List<Sprite>();
     void Start()
     {
-        if (isActive) this.GetComponent<Canvas>().enabled = true;
-        else this.GetComponent<Canvas>().enabled = false;
-
         mImage = GetComponentInChildren<Image>();
     }
 

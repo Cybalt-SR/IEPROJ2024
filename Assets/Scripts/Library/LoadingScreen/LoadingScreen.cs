@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using UnityEditor.Sprites;
 
 public class LoadingScreen : MonoSingleton<LoadingScreen>
 {

@@ -5,7 +5,6 @@ using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
-using Mono.Cecil.Cil;
 
 public class Slime_Gun_Adhesive : ProximityChecker
 {

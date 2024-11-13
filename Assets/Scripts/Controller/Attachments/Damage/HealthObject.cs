@@ -46,9 +46,6 @@ public class HealthObject : MonoBehaviour
         p.Add("Enemy", gameObject);
         p.Add("Source", source);
         EventBroadcasting.InvokeEvent(EventNames.ENEMY_EVENTS.ON_ENEMY_KILLED, p);
-        
-       
-        
     }
 
 }

@@ -59,6 +59,9 @@ namespace Abilities
 
         public void ReleaseAbility(Ability ability)
         {
+            if (ability == null)
+                return;
+
             ability.SetOwner(null);
             ability.gameObject.SetActive(false);
             ability.transform.parent = transform;

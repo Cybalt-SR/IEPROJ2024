@@ -24,7 +24,8 @@ namespace Assets.Scripts.Controller.Attachments
         {
             mHealthObject.SubscribeOnDie(projectile =>
             {
-                ActionWaiter.Broadcast(projectile.From.BroadcastId + "_killed_" + _killed_, transform);
+                if(projectile != null)
+                    ActionWaiter.Broadcast(projectile.From.BroadcastId + "_killed_" + _killed_, transform);
             });
         }
     }
