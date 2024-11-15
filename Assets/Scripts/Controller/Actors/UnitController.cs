@@ -6,15 +6,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider), typeof(AudioSource))]
+[RequireComponent(typeof(Rigidbody), typeof(Collider), typeof(AudioSource))]
 public class UnitController : MonoBehaviour
 {
     public virtual string BroadcastId => this.name;
 
     protected Rigidbody mRigidbody;
-    private CapsuleCollider mCapsuleCollider;
+    private Collider mCollider;
     private AudioSource mAudioSource;
-    public CapsuleCollider Collider { get { return mCapsuleCollider; } }
+    public Collider Collider { get { return mCollider; } }
 
     [SerializeField] private GunData mBaseGun;
 
@@ -88,7 +88,7 @@ public class UnitController : MonoBehaviour
     protected virtual void Awake()
     {
         mRigidbody = GetComponent<Rigidbody>();
-        mCapsuleCollider = GetComponent<CapsuleCollider>();
+        mCollider = GetComponent<Collider>();
         mAudioSource = GetComponent<AudioSource>();
     }
     protected virtual void Start()

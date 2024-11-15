@@ -16,7 +16,7 @@ public class NavmeshPhysicsAgent : MonoBehaviour
 
     public void SetTarget(Vector3 value) => target = value;
     public Vector3 CurrentDirection => current_direction;
-    public bool HasDirectVision => cachedcorners.Length <= 2;
+    public bool HasDirectVision => cachedcorners == null || cachedcorners.Length <= 2;
     private Vector3[] cachedcorners;
 
     private Vector3 oldtarget_pos;
@@ -44,6 +44,9 @@ public class NavmeshPhysicsAgent : MonoBehaviour
 
             cachedcorners = mNavMesh.path.corners;
         }
+
+        if (cachedcorners == null)
+            return;
 
         if (cachedcorners.Length > 2)
         {
