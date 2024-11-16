@@ -11,6 +11,7 @@ public class Puddle : ProximityChecker
 
     private float timer = 0f;
 
+    UnitController Creator { get; set; }
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class Puddle : ProximityChecker
         foreach(var enemy in collisionList)
         {
             var healthObject = enemy.GetComponent<HealthObject>();
-            healthObject.TakeDamage(damageOverTime);
+            healthObject.TakeDamage(damageOverTime, Creator);
         }
 
         timer = damageInterval;

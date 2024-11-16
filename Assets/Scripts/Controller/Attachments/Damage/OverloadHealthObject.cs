@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using gab_roadcasting;
 
-[RequireComponent(typeof(ProjectileHittable))]
 public class OverloadHealthObject : MonoBehaviour
 {
     [SerializeField] private float heat;
@@ -17,38 +16,14 @@ public class OverloadHealthObject : MonoBehaviour
     public float MaxHeat { get => max_heat; }   
     private ProjectileHittable mProjectileHittable;
 
-    [SerializeField] private UnityEvent<ProjectileController> onDie;
+    [SerializeField] private UnityEvent<UnitController> onDie;
 
     [SerializeField] private UnityEvent<float> OnChangeHeatRatio = new();
     [SerializeField] private UnityEvent<float> OnChangeHeatRatio_reversed = new();
 
-
-   
-
-    public void SubscribeOnDie(Action<ProjectileController> newaction)
+    public void SubscribeOnDie(Action<UnitController> newaction)
     {
         onDie.AddListener(newaction.Invoke);
-    }
-  
-
-    private void Awake()
-    {
-        mProjectileHittable = GetComponent<ProjectileHittable>();
-
-        mProjectileHittable.Subscribe(projectile => {
-
-            var damage = new Wrapper<float>(projectile.Data.damage);
-
-            var p = new Dictionary<string, object>();
-            p.Add("Damage", damage);
-
-            EventBroadcasting.InvokeEvent(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, p);
-
-            heat += damage.value;
-            if (heat >= max_heat && onDie != null)
-                onDie.Invoke(projectile);
-
-        });
     }
 
     private void Update()
@@ -60,6 +35,19 @@ public class OverloadHealthObject : MonoBehaviour
         OnChangeHeatRatio_reversed.Invoke(1.0f - (heat / max_heat));
     }
 
+    public void Damage(float mdamage, UnitController from)
+    {
+        var damage = new Wrapper<float>(mdamage);
+
+        var p = new Dictionary<string, object>();
+        p.Add("Damage", damage);
+
+        EventBroadcasting.InvokeEvent(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, p);
+
+        heat += damage.value;
+        if (heat >= max_heat && onDie != null)
+            onDie.Invoke(from);
+    }
 
     public void DoOnHealth(Action<Wrapper<float>> doer )
     {

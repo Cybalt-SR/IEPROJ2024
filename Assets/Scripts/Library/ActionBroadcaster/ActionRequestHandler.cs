@@ -15,7 +15,7 @@ namespace Assets.Scripts.Library.ActionBroadcaster
 
     public abstract class ActionRequestHandler<T>: ActionRequestHandler_Base where T : ActionRequest
     {
-        private void Awake()
+        private void Start()
         {
             ActionRequestManager.RegisterHandler(typeof(T), this);
         }

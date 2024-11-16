@@ -13,6 +13,7 @@ public class Smokeslasher_Shot : Ability
     [SerializeField] private TEMP_Attack_Anim attackRange;
     [SerializeField] private float damage_per_shot = 1f;
 
+    UnitController Creator { get; set; }
 
     protected override void Cast()
     {
@@ -29,7 +30,7 @@ public class Smokeslasher_Shot : Ability
 
         EventBroadcasting.InvokeEvent(EventNames.SECONDARY_EVENTS.ON_SECONDARY_SHOT, p);
 
-        enemy.GetComponent<HealthObject>().TakeDamage(damage.value, "Player");
+        enemy.GetComponent<HealthObject>().TakeDamage(damage.value, Creator);
     }
 
 

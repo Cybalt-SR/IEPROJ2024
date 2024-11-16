@@ -22,10 +22,10 @@ namespace Assets.Scripts.Controller.Attachments
         // Start is called before the first frame update
         void Start()
         {
-            mHealthObject.SubscribeOnDie(projectile =>
+            mHealthObject.SubscribeOnDie(From =>
             {
-                if(projectile != null)
-                    ActionWaiter.Broadcast(projectile.From.BroadcastId + "_killed_" + _killed_, transform);
+                if(From != null)
+                    ActionWaiter.Broadcast(From.BroadcastId + "_killed_" + _killed_, transform);
             });
         }
     }

@@ -8,16 +8,16 @@ namespace Assets.Scripts.Library.ActionBroadcaster
 {
     public class ActionRequestManager: MonoSingleton<ActionRequestManager>
     {
-        private static Dictionary<System.Type, ActionRequestHandler_Base> handler_list = new();
+        private readonly Dictionary<System.Type, ActionRequestHandler_Base> handler_list = new();
 
         public static void RegisterHandler(System.Type handleType, ActionRequestHandler_Base handler)
         {
-            handler_list.Add(handleType, handler);
+            Instance.handler_list.Add(handleType, handler);
         }
 
         public static bool Request(ActionRequest request)
         {
-            return handler_list[request.GetType()].Request(request);
+            return Instance.handler_list[request.GetType()].Request(request);
         }
     }
 }

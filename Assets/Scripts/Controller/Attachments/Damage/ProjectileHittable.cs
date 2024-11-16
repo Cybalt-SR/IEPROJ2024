@@ -5,6 +5,7 @@ using UnityEngine.Events;
 namespace Assets.Scripts.Controller.Attachments
 {
     [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(UnitController))]
     public class ProjectileHittable : MonoBehaviour
     {
         private Collider mCollider;
@@ -12,7 +13,8 @@ namespace Assets.Scripts.Controller.Attachments
         public string Team => mUnitController == null ? "" : mUnitController.TeamId;
 
         public Collider Collider { get { return mCollider; } }
-        private Action<ProjectileController> onHit;
+        [SerializeField]private UnityEvent<ProjectileController> onHit;
+        [SerializeField]private UnityEvent<float, UnitController> onDamage;
 
         private void Awake()
         {
@@ -22,7 +24,7 @@ namespace Assets.Scripts.Controller.Attachments
 
         public void Subscribe(Action<ProjectileController> newaction)
         {
-            onHit += newaction;
+            onHit.AddListener(newaction.Invoke);
         }
 
         public void GetHit(ProjectileController projectile)
@@ -31,6 +33,7 @@ namespace Assets.Scripts.Controller.Attachments
                 return;
 
             onHit.Invoke(projectile);
+            onDamage.Invoke(projectile.Data.damage, projectile.From);
         }
     }
 }

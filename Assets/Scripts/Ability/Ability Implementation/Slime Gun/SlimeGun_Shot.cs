@@ -85,7 +85,7 @@ public class SlimeGun_Shot : Ability
             {
                 var hp = enemy.GetComponent<HealthObject>();
                 hp.enabled = true;
-                hp.TakeDamage(impact_damage);
+                hp.TakeDamage(impact_damage, player);
             }
 
             EndGrappling();
