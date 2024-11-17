@@ -17,20 +17,26 @@ namespace Assets.Scripts.Controller
         [SerializeField] private float parallel_randomness;
         [SerializeField] private float random_tick_length;
 
+        public UnitController Target { get { return target; } }
+
         private Vector3 random_move_delta;
         private float time_since_last_randomized = 0;
+
 
         private Vector3 oldtarget_pos = Vector3.one * Mathf.Infinity;
         bool recalculate = true;
 
         private Vector3[] cachedcorners = null;
 
-
+        private bool fireReady = false;
+        public bool FireReady { get { return fireReady; } set { fireReady = value; } }
         protected override void Awake()
         {
             base.Awake();
 
             mNavMesh = GetComponent<NavMeshAgent>();
+            fireReady = true;
+            Debug.Log("a");
         }
 
         void IOnPlayerNear.OnPlayerNear(UnitController player)
@@ -61,12 +67,13 @@ namespace Assets.Scripts.Controller
                 var delta = cachedcorners[1] - this.transform.position;
                 delta.y = 0;
 
-                if(delta.sqrMagnitude < 0.25f)
+                if (delta.sqrMagnitude < 0.25f)
                     recalculate = true;
 
                 base.MoveDir = delta;
             }
-            else {
+            else
+            {
                 bool beyond_max = absoluteDelta.sqrMagnitude > maximum_distance * maximum_distance;
                 bool within_min = absoluteDelta.sqrMagnitude < minimum_distance * minimum_distance;
 
@@ -81,7 +88,6 @@ namespace Assets.Scripts.Controller
                 }
             }
         }
-
         private void OnDrawGizmos()
         {
 
@@ -106,7 +112,7 @@ namespace Assets.Scripts.Controller
 
             time_since_last_randomized += Time.deltaTime;
 
-            if(time_since_last_randomized > random_tick_length)
+            if (time_since_last_randomized > random_tick_length)
             {
                 time_since_last_randomized = 0;
                 var random_unit = Random.insideUnitCircle;
@@ -124,13 +130,14 @@ namespace Assets.Scripts.Controller
             bool hit = Physics.Raycast(new Ray(this.transform.position, base.AimDir), out var info, 100);
             var target_distance = Vector3.SqrMagnitude(transform.position - target.transform.position);
 
-            if(!hit) return;
+            if (!hit) return;
             if ((info.distance * info.distance) > target_distance) return;
-            
-            if(info.collider.attachedRigidbody == null) return;
+
+            if (info.collider.attachedRigidbody == null) return;
             if (info.collider.attachedRigidbody.gameObject != target.gameObject) return;
 
-            base.Fire();
+            if (fireReady == true) base.Fire();
+            
         }
     }
 }
