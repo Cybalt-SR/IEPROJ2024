@@ -58,6 +58,10 @@ public class NavmeshPhysicsAgent : MonoBehaviour
 
             current_direction = delta_norm;
         }
+        else if(cachedcorners.Length == 2)
+        {
+            current_direction = cachedcorners[1] - this.transform.position;
+        }
 
         m_rigidbody.AddForce(current_direction * force, ForceMode.VelocityChange);
     }

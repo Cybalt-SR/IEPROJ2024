@@ -81,7 +81,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Slime
+  m_Name: plane
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: x_speed
@@ -129,7 +129,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 31538e23968e5744b8641901608701f1, type: 2}
+  m_Motion: {fileID: 7400000, guid: dfb2a0cc095e95a4c966fcaa3ec71df0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -156,7 +156,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ecf0d9b5e18f7884f8a3117b33a54dbd, type: 2}
+  m_Motion: {fileID: 7400000, guid: 77b841e2411d5834d9ddd2fb5b82b7af, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -183,7 +183,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 31538e23968e5744b8641901608701f1, type: 2}
+  m_Motion: {fileID: 7400000, guid: dfb2a0cc095e95a4c966fcaa3ec71df0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -8,6 +8,8 @@ public class DisableOnUnitNear : MonoBehaviour
 {
     [SerializeField] private List<GameObject> to_disable = new();
 
+    private UnitController latest;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
@@ -19,6 +21,7 @@ public class DisableOnUnitNear : MonoBehaviour
         if (other.attachedRigidbody.gameObject.TryGetComponent(out UnitController player) == false)
             return;
 
+        latest = player;
         to_disable.ForEach(x => x.SetActive(false));
     }
 
@@ -31,6 +34,9 @@ public class DisableOnUnitNear : MonoBehaviour
             return;
 
         if (other.attachedRigidbody.gameObject.TryGetComponent(out UnitController player) == false)
+            return;
+
+        if (latest != player)
             return;
 
         to_disable.ForEach(x => x.SetActive(true));
