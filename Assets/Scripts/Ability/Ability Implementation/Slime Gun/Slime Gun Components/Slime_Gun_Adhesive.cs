@@ -13,7 +13,6 @@ public class Slime_Gun_Adhesive : ProximityChecker
 
     [Header("Stick Info")]
     [SerializeField] private Transform enemyParent = null;
-    [SerializeField] private float stickOffset = 2f;
 
     [Header("Slimed Glow")]
     [SerializeField] private Material defaultMaterial;

@@ -12,7 +12,6 @@ using UnityEngine;
 public class GameplaySequenceManager : MonoBehaviour, IConsistentDataHolder<GameplayProgress>
 {
     [SerializeField] private Transform TutorialPopUp;
-    [SerializeField] private float animation_speed = 20;
 
     [SerializeField] private GameplayProgress mData = new();
 

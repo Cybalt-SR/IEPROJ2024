@@ -5,12 +5,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HealthObject : MonoBehaviour
 {
     [SerializeField] private float health;
     public float Health { get => health; }
 
+    [SerializeField] private UnityEvent additionalDieEvents;
     private Action<UnitController> onDie;
     public void SubscribeOnDie(Action<UnitController> newaction)
     {
@@ -27,8 +29,9 @@ public class HealthObject : MonoBehaviour
             return;
         
         onDie?.Invoke(source);
+        additionalDieEvents?.Invoke();
 
-        
+
         var p = new Dictionary<string, object>();
         p.Add("Enemy", gameObject);
         p.Add("Source", source);

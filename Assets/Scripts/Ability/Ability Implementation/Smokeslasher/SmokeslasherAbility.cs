@@ -16,7 +16,7 @@ public class SmokeslasherAbility : Ability
     [SerializeField] float decreasePercent = 0.16f;
 
     [Header("Passive: Damage Amplification")]
-    [SerializeField] float primaryFirerateMultiplier = 300f;
+    //[SerializeField] float primaryFirerateMultiplier = 300f;
 
     [Header("Active")]
     [SerializeField] private TEMP_Attack_Anim areaOfEffect;
