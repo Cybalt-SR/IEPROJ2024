@@ -15,20 +15,9 @@ public class GameplaySequenceManager : MonoBehaviour, IConsistentDataHolder<Game
 
     [SerializeField] private GameplayProgress mData = new();
 
-    private Transform current_reference = null;
-    private bool dismissed = false;
-
-    private bool currently_displaying_tutorial = false;
-
     private void Awake()
     {
         IConsistentDataHolder<GameplayProgress>.Data = mData;
-    }
-
-    public void DismissPrompt()
-    {
-        dismissed = true;
-        current_reference = null;
     }
 
     private void Start()
