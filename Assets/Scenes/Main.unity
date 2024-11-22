@@ -2916,7 +2916,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialPopUp: {fileID: 1569658499}
-  animation_speed: 10
   mData:
     prompt_index: 0
 --- !u!4 &1458604539
@@ -4316,7 +4315,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &1878664021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5487,6 +5486,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812421166695076328, guid: 738b1f5d6734c11418c6b90d058e3aad,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525869911888154718, guid: 738b1f5d6734c11418c6b90d058e3aad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8221077530608730325, guid: 738b1f5d6734c11418c6b90d058e3aad,
         type: 3}

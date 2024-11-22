@@ -28,8 +28,8 @@ public class HealthObject : MonoBehaviour
         if (health > 0)
             return;
         
-        onDie?.Invoke(source);
         additionalDieEvents?.Invoke();
+        onDie?.Invoke(source);
 
 
         var p = new Dictionary<string, object>();

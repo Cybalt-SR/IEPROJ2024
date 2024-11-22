@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 5846891715231414123}
   - component: {fileID: 8683398988533595875}
   - component: {fileID: 6654406440723155550}
+  - component: {fileID: 1360811094766348780}
   m_Layer: 8
   m_Name: SlimeBoss
   m_TagString: Enemy
@@ -265,22 +266,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 120
+  health: 1
   additionalDieEvents:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8684656946172064671}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1605362885978331551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bff332fd5c6b94888847906fd05ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.05
+  delay: 0.1
 --- !u!114 &5744144297518748058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +507,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   cooldown: 0.5
+--- !u!114 &1360811094766348780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bf265dd8776a746bb379663de47ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toDetach:
+  - {fileID: 8684656946172064671}
 --- !u!1 &3906182589777987327
 GameObject:
   m_ObjectHideFlags: 0
