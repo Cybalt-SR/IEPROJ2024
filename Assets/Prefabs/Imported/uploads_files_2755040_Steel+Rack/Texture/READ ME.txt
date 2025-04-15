@@ -1,0 +1,1 @@
+plug the color to the specular (not roughness) to get more stylized looks :)

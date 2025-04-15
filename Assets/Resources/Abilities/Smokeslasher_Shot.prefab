@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4236222208120013232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7898994237179874245}
+  - component: {fileID: 2268565102919798127}
+  m_Layer: 0
+  m_Name: Smokeslasher_Shot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7898994237179874245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236222208120013232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5983310239260764239}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2268565102919798127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236222208120013232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961ccae765f65f6429b6bbf25ffe14e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  abilityData:
+    abilityID: Smokeslasher_Shot
+    effectName: 
+    effectIcon: {fileID: 0}
+    cooldown: 0
+    tooltip: Consume health to deal damage to nearby enemies
+    passiveDescription: 
+    activeDescription: Charges overload by 20% to deal damage in a moderate AoE centered
+      around Trooper
+  cooldown:
+    AbilityID: 
+    maxCooldown: 0
+    currentCooldown: 0
+  healthCost: 0.2
+  attackRange: {fileID: 6847117270161744204}
+  damage_per_shot: 10
+--- !u!1001 &1923872739833693145
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7898994237179874245}
+    m_Modifications:
+    - target: {fileID: 4018671374118378164, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_Name
+      value: SmokeSlasherEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023520130923405973, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: maxScale
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023520130923405973, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: scaleSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023520130923405973, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: expansionOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023520130923405973, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: initialMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023520130923405973, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: tagWhitelist.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023520130923405973, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: 'tagWhitelist.Array.data[0]'
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 88ce91539b0851940bb9c13211a2a45d, type: 3}
+--- !u!4 &5983310239260764239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5312564097982671766, guid: 88ce91539b0851940bb9c13211a2a45d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1923872739833693145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6847117270161744204 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5023520130923405973, guid: 88ce91539b0851940bb9c13211a2a45d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1923872739833693145}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a924dab6fcd90104bab795a8545f6c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

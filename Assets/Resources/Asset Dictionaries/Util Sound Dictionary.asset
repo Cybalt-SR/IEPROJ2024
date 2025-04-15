@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea2f74a1884ab74bb9ec9375a3f5e9e, type: 3}
+  m_Name: Util Sound Dictionary
+  m_EditorClassIdentifier: 
+  fallback: {fileID: 8300000, guid: 4a74ef721fc750a45966ef5b07608c73, type: 3}
+  dictionary:
+    structs:
+    - Key: reload_start
+      Value: {fileID: 8300000, guid: 5390dff7c56995f40a7f8a98f0da636b, type: 3}
+    - Key: reload_end
+      Value: {fileID: 8300000, guid: 16a85602c5041514090ab0d3b6884451, type: 3}
+    - Key: door_open
+      Value: {fileID: 8300000, guid: e9c26b9c228155d4d9f6d23de780272c, type: 3}
+    - Key: door_close
+      Value: {fileID: 8300000, guid: 2590a4e076eec8c4aa16c092e00edbcb, type: 3}

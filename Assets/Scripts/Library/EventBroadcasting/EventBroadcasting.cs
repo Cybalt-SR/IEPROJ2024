@@ -17,26 +17,26 @@ namespace gab_roadcasting
             }
         }
 
-        private Dictionary<string, List<Action<Dictionary<string, object>>>> registeredListeners;
+        private Dictionary<string, List<Action<Dictionary<string, object>>>> registeredListeners = new();
 
         public static void AddListener(string id, Action<Dictionary<string, object>> action)
         {
-            if (instance.registeredListeners.ContainsKey(id) == false)
+            if (Instance.registeredListeners.ContainsKey(id) == false)
                 Instance.registeredListeners.Add(id, new());
 
             Instance.registeredListeners[id].Add(action);
         }
         public static void InvokeEvent(string id, Dictionary<string, object> parameters)
         {
-            if (instance.registeredListeners.ContainsKey(id) == false)
+            if (Instance.registeredListeners.ContainsKey(id) == false)
                 return;
 
-            instance.registeredListeners[id].RemoveAll(someaction =>
+            Instance.registeredListeners[id].RemoveAll(someaction =>
             {
                 return someaction == null || someaction.Target == null;
             });
 
-            foreach (var action in instance.registeredListeners[id])
+            foreach (var action in Instance.registeredListeners[id])
             {
                 action.Invoke(parameters);
             }
