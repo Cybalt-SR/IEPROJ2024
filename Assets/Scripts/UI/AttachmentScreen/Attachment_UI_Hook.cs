@@ -28,8 +28,7 @@ public class Attachment_UI_Hook : MonoBehaviour, IPlayerSpecificUi
 
 	public Attachment GetEquipped(Attachment.Part part)
 	{
-		var attachmentstorage = IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_equipped_dictionary[part];
-		return Array.FindIndex<Attachment>(attachmentstorage.ToArray(), attachment => attachment == a);
+		return IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_equipped_dictionary.GetOrCreate(PlayerAssigned).GetOrCreate(part);
 	}
 
 	//Hook the below functions up

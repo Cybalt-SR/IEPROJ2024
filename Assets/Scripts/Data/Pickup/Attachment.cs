@@ -21,7 +21,6 @@ namespace Assets.Scripts.Data.Pickup
 
         [Header("Sprite")]
         public Sprite attachment_icon = null;
-        public string attachment_name;
         public bool use_stats_as_desc = true;
         [TextArea(1, 5)]
         [SerializeField] string _attachment_description;

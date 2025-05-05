@@ -58,7 +58,10 @@ namespace Assets.Scripts.Controller
 
             foreach (var item in IConsistentDataHolder<PlayerEquipmentData>.Data.owner_attachments_equipped_dictionary.GetOrCreate(PlayerId))
             {
-                item.Value.ApplyThis(ref mFinalGun);
+                if(item.Value == null)
+					continue;
+
+				item.Value.ApplyThis(ref mFinalGun);
             }
         }
 
@@ -71,6 +74,9 @@ namespace Assets.Scripts.Controller
                 MoveDir = Vector2.zero;
 
             var dir2 = callback.ReadValue<Vector2>();
+
+            if (transform == null)
+                return;
 
             MoveDir = transform.right * dir2.x + transform.forward * dir2.y;
 

@@ -265,6 +265,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
+  additionalDieEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1605362885978331551
 MonoBehaviour:
   m_ObjectHideFlags: 0

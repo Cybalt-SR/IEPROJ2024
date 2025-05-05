@@ -172,14 +172,9 @@ public class SlimeGun_Shot : Ability
             if (hook.isLocked)
                 damageReductionRatio *= grapplingMultiplier;
             damageReductionRatio = Mathf.Clamp(damageReductionRatio, 0, 100);
-
             damage.value *= 1 - (damageReductionRatio / 100);
-
         }
 
         EventBroadcasting.AddListener(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, DamageReduction);
     }
-
-  
-
 }
