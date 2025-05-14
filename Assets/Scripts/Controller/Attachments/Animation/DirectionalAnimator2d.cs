@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DirectionalAnimator : MonoBehaviour
+public class DirectionalAnimator2d : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] string x_name = "x_speed";
