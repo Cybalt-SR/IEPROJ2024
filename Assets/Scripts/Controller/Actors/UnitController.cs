@@ -18,8 +18,6 @@ public class UnitController : MonoBehaviour
 
     [SerializeField] private GunData mBaseGun;
 
-
-
     private bool gunchanged = true;
     public bool GunChanged { get { return gunchanged; } set => gunchanged = value; }
     protected virtual void UpdateFinalGun() { mFinalGun = mBaseGun; }
@@ -93,7 +91,7 @@ public class UnitController : MonoBehaviour
     }
     protected virtual void Start()
     {
-        if (clip_full_at_start)
+		if (clip_full_at_start)
             shots_before_reload = Gun.clip_size;
 
         var shooting_reference_delta = shooting_reference.transform.localPosition;

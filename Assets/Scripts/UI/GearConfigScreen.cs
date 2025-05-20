@@ -32,6 +32,4 @@ public class GearConfigScreen : MonoBehaviour
         currentScreenIndex= index;
         ShowScreen();
     }
-
-
 }

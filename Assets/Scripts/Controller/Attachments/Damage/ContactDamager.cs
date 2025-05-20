@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 using System.Linq;
-using static UnityEditor.Progress;
 
 [RequireComponent(typeof(UnitController))]
 public class ContactDamager : MonoBehaviour
