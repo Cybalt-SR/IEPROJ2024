@@ -1,4 +1,5 @@
 using Assets.Scripts.Gameplay.Manager;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,8 +11,6 @@ namespace AbilityOP
 
     /*
         [TO-DO]
-        - Ownership Handling
-        - Duplicate Handling
         - Hitbox Manager
         - Secondary Handling
         - Recreate Weapons
@@ -39,8 +38,10 @@ namespace AbilityOP
 
             if (ability != null)
             {
-                AbilityHandler handler = new(ability, setActiveByDefault);
-                handler.m_ability.m_owner = owner;
+                if (ContainsAbility(m_abilities[owner], ability.GetType()))
+                    return false;
+
+                AbilityHandler handler = new(ability, owner, setActiveByDefault);
                 m_abilities[owner].Add(handler);
                 m_updatables.Add(handler);
                 return true;
@@ -66,6 +67,31 @@ namespace AbilityOP
             return true;
         }
 
+        private bool ContainsAbility(List<AbilityHandler> handlers, Type Ability)
+        {
+            foreach(AbilityHandler handler in handlers)
+            {
+                if (handler.m_ability.GetType() == Ability)
+                    return true;
+            }
+            return false;
+        }
+
+        public async Task InvokeAbility(GameObject owner, string ability_name)
+        {
+            if (!m_abilities.ContainsKey(owner))
+                return;
+
+            foreach(AbilityHandler handler in m_abilities[owner])
+            {
+                if(handler.m_ability.GetType().Name == ability_name)
+                {
+                    await handler.Activate();
+                    break;
+                }    
+            }
+        }
+
     }
 
     internal class AbilityHandler
@@ -78,14 +104,13 @@ namespace AbilityOP
         internal bool m_is_active;
         internal Task m_execution;
 
-    
-
         //Data
         internal float m_current_cooldown = 0;
 
-        internal AbilityHandler(Ability ability, bool setActiveByDefault = true)
+        internal AbilityHandler(Ability ability, GameObject owner, bool setActiveByDefault = true)
         {
             m_ability = ability;
+            m_ability.m_owner = owner;
             m_is_active = setActiveByDefault;
             m_execution = null;
         }
@@ -97,6 +122,8 @@ namespace AbilityOP
 
             if (m_current_cooldown > 0)
                 m_current_cooldown = Mathf.Max(0, m_current_cooldown - deltaTime);
+
+            m_ability.Update(deltaTime);
         }
 
         internal async Task Activate()
