@@ -26,6 +26,13 @@ namespace gab_roadcasting
 
             Instance.registeredListeners[id].Add(action);
         }
+
+        public static void RemoveListener(string id, Action<Dictionary<string, object>> action)
+        {
+            if(!Instance.registeredListeners.ContainsKey(id)) return;
+            Instance.registeredListeners[id].Remove(action);
+        }
+
         public static void InvokeEvent(string id, Dictionary<string, object> parameters)
         {
             if (Instance.registeredListeners.ContainsKey(id) == false)
