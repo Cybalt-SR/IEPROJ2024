@@ -12,6 +12,7 @@ namespace AbilityOP
         [TO-DO]
         - Ownership Handling
         - Duplicate Handling
+        - Hitbox Manager
         - Secondary Handling
         - Recreate Weapons
     */
@@ -19,22 +20,20 @@ namespace AbilityOP
     public class AbilityManager : Manager_Base<AbilityManager>
     {
         private AbilityFactory m_ability_factory = new();
-        private Dictionary<GameObject, List<AbilityHandler>> m_ability_updatables = new();
+
+        private Dictionary<GameObject, List<AbilityHandler>> m_abilities = new();
+        private List<AbilityHandler> m_updatables = new();
 
         private void Update()
         {
-            foreach (List<AbilityHandler> abilities in m_ability_updatables.Values)
-            {
-                foreach (AbilityHandler ability in abilities)
-                    ability.Update(Time.deltaTime);
-            }
-
+            foreach(AbilityHandler handler in m_updatables)
+                handler.Update(Time.deltaTime);
         }
 
         public bool RequestAbility(GameObject owner, string AbilityName, bool setActiveByDefault = true)
         {
-            if (!m_ability_updatables.ContainsKey(owner))
-                m_ability_updatables[owner] = new();
+            if (!m_abilities.ContainsKey(owner))
+                m_abilities[owner] = new();
 
             Ability ability = m_ability_factory.RequestAbility(AbilityName);
 
@@ -42,7 +41,8 @@ namespace AbilityOP
             {
                 AbilityHandler handler = new(ability, setActiveByDefault);
                 handler.m_ability.m_owner = owner;
-                m_ability_updatables[owner].Add(handler);
+                m_abilities[owner].Add(handler);
+                m_updatables.Add(handler);
                 return true;
             }
 
@@ -51,15 +51,16 @@ namespace AbilityOP
 
         public bool ReleaseAbilities(GameObject owner)
         {
-            if (!m_ability_updatables.ContainsKey(owner))
+            if (!m_abilities.ContainsKey(owner))
                 return false;
 
-            List<AbilityHandler> handlers = m_ability_updatables[owner];
+            List<AbilityHandler> handlers = m_abilities[owner];
 
             while (handlers.Count > 0)
             {
                 m_ability_factory.UnloadAbility(handlers[0].m_ability);
                 handlers.RemoveAt(0);
+                m_updatables.Remove(handlers[0]);
             }
 
             return true;
