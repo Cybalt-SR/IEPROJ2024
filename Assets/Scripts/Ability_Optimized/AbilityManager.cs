@@ -8,7 +8,14 @@ using UnityEngine;
 namespace AbilityOP
 {
 
-    //to-do: Dupplicate Handling
+    /*
+        [TO-DO]
+        - Ownership Handling
+        - Duplicate Handling
+        - Secondary Handling
+        - Recreate Weapons
+    */
+
     public class AbilityManager : Manager_Base<AbilityManager>
     {
         private AbilityFactory m_ability_factory = new();
@@ -21,10 +28,10 @@ namespace AbilityOP
                 foreach (AbilityHandler ability in abilities)
                     ability.Update(Time.deltaTime);
             }
-            
+
         }
 
-        public void RequestAbility(GameObject owner, string AbilityName, bool setActiveByDefault = true)
+        public bool RequestAbility(GameObject owner, string AbilityName, bool setActiveByDefault = true)
         {
             if (!m_ability_updatables.ContainsKey(owner))
                 m_ability_updatables[owner] = new();
@@ -33,17 +40,29 @@ namespace AbilityOP
 
             if (ability != null)
             {
-                AbilityHandler handler = new(ability, owner, setActiveByDefault);
+                AbilityHandler handler = new(ability, setActiveByDefault);
+                handler.m_ability.m_owner = owner;
                 m_ability_updatables[owner].Add(handler);
+                return true;
             }
+
+            return false;
         }
 
-        public void ReleaseAbility(GameObject owner, Ability ability)
+        public bool ReleaseAbilities(GameObject owner)
         {
             if (!m_ability_updatables.ContainsKey(owner))
-                return;
+                return false;
 
+            List<AbilityHandler> handlers = m_ability_updatables[owner];
 
+            while (handlers.Count > 0)
+            {
+                m_ability_factory.UnloadAbility(handlers[0].m_ability);
+                handlers.RemoveAt(0);
+            }
+
+            return true;
         }
 
     }
@@ -51,7 +70,6 @@ namespace AbilityOP
     internal class AbilityHandler
     {
         //References
-        internal GameObject m_owner;
         internal Ability m_ability;
 
         //States
@@ -64,10 +82,9 @@ namespace AbilityOP
         //Data
         internal float m_current_cooldown = 0;
 
-        internal AbilityHandler(Ability ability, GameObject owner, bool setActiveByDefault = true)
+        internal AbilityHandler(Ability ability, bool setActiveByDefault = true)
         {
             m_ability = ability;
-            m_owner = owner;
             m_is_active = setActiveByDefault;
             m_execution = null;
         }

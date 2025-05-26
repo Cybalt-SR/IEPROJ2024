@@ -16,6 +16,7 @@ namespace AbilityOP
 
         [Header("Configurations")]
         public bool StartCooldownOnCast;
+        public bool UpdateTiedToState;
     }
 
 }

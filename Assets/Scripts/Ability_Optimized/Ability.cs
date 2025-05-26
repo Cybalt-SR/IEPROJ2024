@@ -11,6 +11,7 @@ namespace AbilityOP
     public abstract class Ability 
     {
         protected Dictionary<string, Action<Dictionary<string, object>>> m_passive_handler = new();
+        public GameObject m_owner;
 
         protected object m_ability_data;
         public object AbilityData
@@ -54,6 +55,7 @@ namespace AbilityOP
         /// Load passive events in the m_passive_handler attribute here
         /// </summary>
         public virtual void Passive() { }
+        public virtual void Update(float deltaTime) { }
         public abstract Task Cast();
 
     }

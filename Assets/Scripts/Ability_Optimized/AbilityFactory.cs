@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace AbilityOP
 {
+
     public class AbilityFactory
     {
 
@@ -73,6 +74,7 @@ namespace AbilityOP
         public void UnloadAbility(Ability ability)
         {
             ability.Unregister();
+            ability.m_owner = null;
             m_ability_pool[ability.GetType().Name].Add(ability);
         }
 
