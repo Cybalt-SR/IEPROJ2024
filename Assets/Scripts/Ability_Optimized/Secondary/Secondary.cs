@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Assets.Scripts.Data.Pickup;
 
 namespace AbilityOP
 {
     [CreateAssetMenu(fileName = "Secondary", menuName = "Ability Optimized/Secondary", order = 1)]
-    public class Secondary : ScriptableObject
+    public class Secondary : Pickup
     {
         public string secondary_name;
         [TextArea(1, 3)] public string tooltip;
