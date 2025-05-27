@@ -12,15 +12,23 @@ namespace AbilityOP
     public class SecondaryManager : MonoSingleton<SecondaryManager>
     {
         [SerializeField] private Secondary m_equipped;
-        [SerializeField] private UnityEvent OnSecondaryEquip;
+        [SerializeField] private UnityEvent<Secondary> OnSecondaryEquip;
+        [SerializeField] private UnityEvent<Secondary> OnSecondaryUnequip;
 
         private Task m_shot_execution;
         private Task m_ability_execution;
 
-        public void EquipSecondary(Secondary secondary) => m_equipped = secondary;
-        public void UnequipSecondary() => m_equipped = null;
+        public void EquipSecondary(Secondary secondary)
+        {
+            m_equipped = secondary;
+            OnSecondaryEquip?.Invoke(secondary);
+        }
+        public void UnequipSecondary()
+        {
+            OnSecondaryEquip?.Invoke(m_equipped);
+            m_equipped = null;
+        }
        
-
         //Temp - Hook this up with the project's input system
         private void Update()
         {
