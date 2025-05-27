@@ -11,7 +11,6 @@ namespace AbilityOP
 
     /*
         [TO-DO]
-        - Hitbox Manager
         - Secondary Handling
         - Recreate Weapons
     */
