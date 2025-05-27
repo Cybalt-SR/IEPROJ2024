@@ -94,6 +94,7 @@ namespace Assets.Scripts.Controller
 
         void IPlayerInputReceiver.Fire(InputAction.CallbackContext callback)
         {
+            base.Fire();
         }
 
         protected override void Update()

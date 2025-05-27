@@ -19,6 +19,7 @@ public class OverloadHealthObject : MonoBehaviour
     [SerializeField] private UnityEvent<UnitController> onDie;
 
     [SerializeField] private UnityEvent<float> OnChangeHeatRatio = new();
+    [SerializeField] private UnityEvent<float, UnitController> OnGetHit = new();
     [SerializeField] private UnityEvent<float> OnChangeHeatRatio_reversed = new();
 
     public void SubscribeOnDie(Action<UnitController> newaction)
@@ -37,6 +38,8 @@ public class OverloadHealthObject : MonoBehaviour
 
     public void Damage(float mdamage, UnitController from)
     {
+        OnGetHit.Invoke(mdamage, from);
+
         var damage = new Wrapper<float>(mdamage);
 
         var p = new Dictionary<string, object>();
