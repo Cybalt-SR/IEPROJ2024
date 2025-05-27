@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using gab_roadcasting;
 using UnityEngine.EventSystems;
+using AbilityOP;
 
 public class Secondary_DataHolder : MonoBehaviour, IPointerDownHandler
 {
@@ -44,10 +45,10 @@ public class Secondary_DataHolder : MonoBehaviour, IPointerDownHandler
             return;
 
         var attachment_icon = FindComponentInObject<Image>("Image");
-        attachment_icon.sprite = secondaryData.SecondaryIcon.sprite;
+        attachment_icon.sprite = secondaryData.secondary_icon.sprite;
 
         var attachment_name = FindComponentInObject<TextMeshProUGUI>("Title");
-        attachment_name.text = secondaryData.SecondaryName;
+        attachment_name.text = secondaryData.secondary_name;
 
     }
 

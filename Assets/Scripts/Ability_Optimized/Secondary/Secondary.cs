@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Assets.Scripts.Data.Pickup;
+using UnityEngine.UI;
 
 namespace AbilityOP
 {
@@ -12,7 +13,7 @@ namespace AbilityOP
     {
         public string secondary_name;
         [TextArea(1, 3)] public string tooltip;
-        public Texture2D secondary_icon;
+        public Image secondary_icon;
 
         public string shot_effect_type;
         public string secondary_ability_type;

@@ -18,6 +18,9 @@ namespace AbilityOP
         private Task m_shot_execution;
         private Task m_ability_execution;
 
+        public bool hasEquipped { get => m_equipped != null;  }
+        public Secondary currentlyEquipped { get => m_equipped; }
+
         public void EquipSecondary(Secondary secondary)
         {
             m_equipped = secondary;
@@ -32,18 +35,20 @@ namespace AbilityOP
         //Temp - Hook this up with the project's input system
         private void Update()
         {
-            if (m_equipped == null) return;
+            if (!hasEquipped) return;
 
             if (Input.GetMouseButtonDown(1))
             {
-                if(m_shot_execution == null || m_shot_execution.IsCompleted)
-                    m_shot_execution = AbilityManager.Instance.InvokeAbility(PlayerController.GetFirst().gameObject, m_equipped.shot_effect_type);
+                GameObject player = PlayerController.GetFirst().gameObject;
+                if (m_shot_execution == null || m_shot_execution.IsCompleted)
+                    m_shot_execution = AbilityManager.Instance.InvokeAbility(player, m_equipped.shot_effect_type);
             }
 
             if (Input.GetKeyDown(KeyCode.F))
             {
+                GameObject player = PlayerController.GetFirst().gameObject;
                 if (m_ability_execution == null || m_ability_execution.IsCompleted)
-                    m_ability_execution = AbilityManager.Instance.InvokeAbility(PlayerController.GetFirst().gameObject, m_equipped.secondary_ability_type);
+                    m_ability_execution = AbilityManager.Instance.InvokeAbility(player, m_equipped.secondary_ability_type);
             }
         }
 
