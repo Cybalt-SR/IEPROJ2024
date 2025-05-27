@@ -25,7 +25,7 @@ namespace AbilityOP
         }
         public void UnequipSecondary()
         {
-            OnSecondaryEquip?.Invoke(m_equipped);
+            OnSecondaryUnequip?.Invoke(m_equipped);
             m_equipped = null;
         }
        
