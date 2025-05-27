@@ -24,10 +24,9 @@ namespace AbilityOP
         {
             if (GUILayout.Button($"Validate {effect_type}"))
             {
-                Type t = Type.GetType(name);
-                Debug.Log(t);
+                Type t = Type.GetType(type_name);
                 bool isTypeValid = t != null && t.IsSubclassOf(typeof(Ability)) && !t.IsAbstract;
-                Debug.LogWarning($"[DEBUG] \"{type_name}\" is {(isTypeValid ? "" : "not")} a valid Ability.");
+                Debug.LogWarning($"[DEBUG] \"{type_name}\" is {(isTypeValid ? "" : "not ")}a valid Ability.");
             }
         }
 

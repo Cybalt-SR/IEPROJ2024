@@ -11,7 +11,7 @@ namespace AbilityOP
 
     /*
         [TO-DO]
-        - Secondary Handling
+        - Secondary Keybinds and Invoking
         - Recreate Weapons
     */
 
@@ -21,6 +21,21 @@ namespace AbilityOP
 
         private Dictionary<GameObject, List<AbilityHandler>> m_abilities = new();
         private List<AbilityHandler> m_updatables = new();
+
+        public async Task InvokeAbility(GameObject owner, string ability_name)
+        {
+            if (!m_abilities.ContainsKey(owner))
+                return;
+
+            foreach (AbilityHandler handler in m_abilities[owner])
+            {
+                if (handler.m_ability.GetType().Name == ability_name)
+                {
+                    await handler.Activate();
+                    break;
+                }
+            }
+        }
 
         private void Update()
         {
@@ -76,19 +91,24 @@ namespace AbilityOP
             return false;
         }
 
-        public async Task InvokeAbility(GameObject owner, string ability_name)
+
+        public float GetRemainingCooldown(GameObject owner, string ability_name, bool get_percentage = false)
         {
             if (!m_abilities.ContainsKey(owner))
-                return;
+                return 0f;
 
-            foreach(AbilityHandler handler in m_abilities[owner])
+            List<AbilityHandler> handler = m_abilities[owner];
+
+            foreach(AbilityHandler ability in handler)
             {
-                if(handler.m_ability.GetType().Name == ability_name)
+                if(ability.m_ability.GetType().Name == ability_name)
                 {
-                    await handler.Activate();
-                    break;
-                }    
+                    return !get_percentage ? ability.m_current_cooldown: 
+                        ability.m_current_cooldown / (ability.m_ability.AbilityData as AbilityData).Cooldown;
+                }
             }
+
+            return 0f;
         }
 
     }

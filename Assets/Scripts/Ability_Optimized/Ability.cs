@@ -20,7 +20,7 @@ namespace AbilityOP
             set
             {
                 string value_type = value.GetType().Name;
-                string ability_type = value.GetType().Name;
+                string ability_type = this.GetType().Name;
                 string ability_data_type = ability_type + "_data";
 
                 if (!value.GetType().IsSubclassOf(typeof(AbilityData)))
