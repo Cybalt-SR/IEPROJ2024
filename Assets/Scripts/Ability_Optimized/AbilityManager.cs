@@ -77,11 +77,12 @@ namespace AbilityOP
 
             while (handlers.Count > 0)
             {
+                m_updatables.Remove(handlers[0]);
                 m_ability_factory.UnloadAbility(handlers[0].m_ability);
                 handlers.RemoveAt(0);
-                m_updatables.Remove(handlers[0]);
             }
 
+            Debug.LogWarning($"[DEBUG] Released all abilities for {owner.name} successfully.");
             return true;
         }
 

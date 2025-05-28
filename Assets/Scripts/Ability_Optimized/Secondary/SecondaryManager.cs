@@ -32,6 +32,13 @@ namespace AbilityOP
         public void EquipSecondary(Secondary secondary)
         {
 
+            if (secondary == null)
+            {
+                Debug.LogWarning("[WARNING] No Secondary to Equip");
+                return;
+            }
+
+
             GameObject player = PlayerController.GetFirst().gameObject;
 
             bool equipSuccess = false;
@@ -53,6 +60,12 @@ namespace AbilityOP
 
         public void UnequipSecondary()
         {
+            if(m_equipped == null)
+            {
+                Debug.LogWarning("[WARNING] No Secondary to Unequip");
+                return;
+            }
+
             GameObject player = PlayerController.GetFirst().gameObject;
             OnSecondaryUnequip?.Invoke(m_equipped);
             m_equipped = null;
@@ -76,6 +89,11 @@ namespace AbilityOP
                 GameObject player = PlayerController.GetFirst().gameObject;
                 if (m_ability_execution == null || m_ability_execution.IsCompleted)
                     m_ability_execution = AbilityManager.Instance.InvokeAbility(player, m_equipped.secondary_ability_type);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                UnequipSecondary();
             }
         }
 
