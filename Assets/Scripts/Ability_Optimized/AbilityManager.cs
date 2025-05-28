@@ -53,7 +53,11 @@ namespace AbilityOP
             if (ability != null)
             {
                 if (ContainsAbility(m_abilities[owner], ability.GetType()))
+                {
+                    Debug.LogError($"[ERROR] {owner.name} already owns {AbilityName}");
                     return false;
+                }
+                    
 
                 AbilityHandler handler = new(ability, owner, setActiveByDefault);
                 m_abilities[owner].Add(handler);

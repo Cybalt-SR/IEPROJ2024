@@ -19,8 +19,8 @@ public class SecondaryScreen : MonoBehaviour
         Debug.Log("Updating Text");
         var s = SecondaryManager.Instance.currentlyEquipped;
 
-        gunName.text = s.secondary_name;
-        tooltip.text = s.tooltip;
+        //gunName.text = s.secondary_name;
+        //tooltip.text = s.tooltip;
         //shotDescription.text = "[Shot]: " + s.ShotEffect.AbilityData.ActiveDescription;
         //passiveDescription.text = "[Passive]: " + s.SecondaryAbility.AbilityData.PassiveDescription;
         //activeDescription.text = "[Active]: " + s.SecondaryAbility.AbilityData.ActiveDescription;

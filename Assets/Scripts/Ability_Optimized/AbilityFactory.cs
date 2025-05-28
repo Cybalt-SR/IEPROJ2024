@@ -57,7 +57,18 @@ namespace AbilityOP
             if (!m_ability_pool.ContainsKey(ability_name))
                 m_ability_pool[ability_name] = new();
 
+            AbilityData data = Resources.Load("Ability Data/" + ability_name, typeof(AbilityData)) as AbilityData;
+
+            if (data == null)
+            {
+                Debug.LogError($"[ERROR] No \"{ability_name}\" found. Please create one in Resources/Ability Data.");
+                return null;
+            }
+                
+           
             var new_poolable = Activator.CreateInstance(m_ability_types.Find(t => t.Name == ability_name)) as Ability;
+            new_poolable.AbilityData = data;
+
 
             if (Validate(new_poolable))
             {
