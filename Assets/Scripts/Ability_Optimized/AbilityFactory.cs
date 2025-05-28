@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using static UnityEngine.UI.GridLayoutGroup;
 
 namespace AbilityOP
 {
@@ -50,6 +51,7 @@ namespace AbilityOP
                 Ability poolable = m_ability_pool[ability_name][0];
                 m_ability_pool[ability_name].RemoveAt(0);
                 poolable.Register();
+                Debug.LogWarning($"[DEBUG] Retrieved an instance of {ability_name} from the pool");
                 return poolable;
             }
 
@@ -73,6 +75,7 @@ namespace AbilityOP
             if (Validate(new_poolable))
             {
                 new_poolable.Register();
+                Debug.LogWarning($"[DEBUG] Created an instance of {ability_name}");
                 return new_poolable;
             }
 

@@ -8,6 +8,12 @@ using System.Reflection;
 
 namespace AbilityOP
 {
+
+    /// <summary>
+    /// Children of Ability must create a class named "{Ability_Name}_data" that inherits from AbilityData
+    /// AbilityData is automatically set in the AbilityFactory
+    /// </summary>
+    /// 
     public abstract class Ability 
     {
         protected Dictionary<string, Action<Dictionary<string, object>>> m_passive_handler = new();

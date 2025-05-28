@@ -11,7 +11,7 @@ namespace AbilityOP
 
     /*
         [TO-DO]
-        - Secondary Keybinds and Invoking
+        - Do Bugfixing
         - Recreate Weapons
     */
 
@@ -25,16 +25,21 @@ namespace AbilityOP
         public async Task InvokeAbility(GameObject owner, string ability_name)
         {
             if (!m_abilities.ContainsKey(owner))
+            {
+                Debug.LogError($"{owner.name} has no abilities assigned.");
                 return;
-
+            }
+                
             foreach (AbilityHandler handler in m_abilities[owner])
             {
                 if (handler.m_ability.GetType().Name == ability_name)
                 {
                     await handler.Activate();
-                    break;
+                    return;
                 }
             }
+
+            Debug.LogError($"{owner.name} has no such abilities named {ability_name}.");
         }
 
         private void Update()
@@ -100,7 +105,11 @@ namespace AbilityOP
         public float GetRemainingCooldown(GameObject owner, string ability_name, bool get_percentage = false)
         {
             if (!m_abilities.ContainsKey(owner))
+            {
+                Debug.LogError($"[ERROR] {owner.name} does not have abilities.");
                 return 0f;
+            }
+               
 
             List<AbilityHandler> handler = m_abilities[owner];
 
@@ -113,6 +122,8 @@ namespace AbilityOP
                 }
             }
 
+
+            Debug.LogError($"[ERROR] {owner.name} does not own a \"{ability_name}\"");
             return 0f;
         }
 

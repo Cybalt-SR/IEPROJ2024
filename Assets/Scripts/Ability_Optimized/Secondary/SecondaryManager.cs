@@ -70,6 +70,7 @@ namespace AbilityOP
             OnSecondaryUnequip?.Invoke(m_equipped);
             m_equipped = null;
             AbilityManager.Instance.ReleaseAbilities(player);
+
         }
        
         //Temp - Hook this up with the project's input system
