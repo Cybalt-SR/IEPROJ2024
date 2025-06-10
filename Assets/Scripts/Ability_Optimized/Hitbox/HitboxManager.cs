@@ -14,7 +14,7 @@ namespace AbilityOP
 
         public void Notify(string notification, Hitbox notifier)
         {
-            if(notification == Notification.HITBOX_NOTIFICATIONS.RETURN_TO_POOL)
+            if (notification == Notification.HITBOX_NOTIFICATIONS.RETURN_TO_POOL)
             {
                 notifier.gameObject.SetActive(false);
                 m_hitbox_active.Remove(notifier);

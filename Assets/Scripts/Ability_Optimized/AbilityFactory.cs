@@ -88,7 +88,7 @@ namespace AbilityOP
         public void UnloadAbility(Ability ability)
         {
             ability.Unregister();
-            ability.m_owner = null;
+            ability.RemoveOwner();
             m_ability_pool[ability.GetType().Name].Add(ability);
         }
 

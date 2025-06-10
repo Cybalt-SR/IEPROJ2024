@@ -1,36 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace AbilityOP
 {
+
+    [RequireComponent(typeof(Rigidbody))]
     public class Hitbox : MonoBehaviour
     {
-        private Collider m_collider;
-        public IMediator<Hitbox> m_hitbox_mediator;
-        public List<string> m_filters = new();
 
+        public IMediator<Hitbox> m_hitbox_mediator;
+
+        private Collider m_collider;
+
+        public List<string> m_filters = new();
         private List<GameObject> m_collisions = new();
+
+        public UnityEvent<GameObject> OnUnitDetected;
+        public UnityEvent<GameObject> OnUnitRemoved;
 
         private void Awake()
         {
             m_collider = GetComponent<Collider>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             if(m_filters.Count == 0 || m_filters.Contains(other.tag))
+            {
                 m_collisions.Add(other.gameObject);
+                OnUnitDetected?.Invoke(other.gameObject);
+            }
+               
         }
 
-        private void OnTriggerExit(Collider other)
+        protected virtual void OnTriggerExit(Collider other)
         {
             if (m_filters.Count == 0 || m_filters.Contains(other.tag))
+            {
                 m_collisions.Remove(other.gameObject);
+                OnUnitRemoved?.Invoke(other.gameObject);
+            }
+                
         }
 
-        
-        public List<GameObject> CaptureCollisions()
+        public virtual List<GameObject> CaptureCollisions()
         {
             var collisions = new List<GameObject>(m_collisions);
             m_collisions.Clear();

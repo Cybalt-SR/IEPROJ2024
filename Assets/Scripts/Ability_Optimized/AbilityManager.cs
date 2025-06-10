@@ -145,7 +145,7 @@ namespace AbilityOP
         internal AbilityHandler(Ability ability, GameObject owner, bool setActiveByDefault = true)
         {
             m_ability = ability;
-            m_ability.m_owner = owner;
+            m_ability.SetOwner(owner);
             m_is_active = setActiveByDefault;
             m_execution = null;
         }

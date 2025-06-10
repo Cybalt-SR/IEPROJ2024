@@ -13,13 +13,12 @@ namespace AbilityOP
     /// Children of Ability must create a class named "{Ability_Name}_data" that inherits from AbilityData
     /// AbilityData is automatically set in the AbilityFactory
     /// </summary>
-    /// 
-    public abstract class Ability 
+    public abstract class Ability: Ownable
     {
         protected Dictionary<string, Action<Dictionary<string, object>>> m_passive_handler = new();
-        public GameObject m_owner;
-
+       
         protected object m_ability_data;
+
         public object AbilityData
         {
             get => m_ability_data;
@@ -41,6 +40,7 @@ namespace AbilityOP
             }
         }
 
+
         public Ability()
         {
             Passive();
@@ -53,16 +53,19 @@ namespace AbilityOP
         }
         public virtual void Unregister()
         {
+            RemoveOwner();
             foreach (var passive in m_passive_handler)
                 EventBroadcasting.RemoveListener(passive.Key, passive.Value);
         }
 
+       
         /// <summary>
         /// Load passive events in the m_passive_handler attribute here
         /// </summary>
         public virtual void Passive() { }
         public virtual void Update(float deltaTime) { }
         public abstract Task Cast();
+
 
     }
 

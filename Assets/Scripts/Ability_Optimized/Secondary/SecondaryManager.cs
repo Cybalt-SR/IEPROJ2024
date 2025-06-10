@@ -27,6 +27,9 @@ namespace AbilityOP
         private void Start()
         {
             EquipSecondary(debugSecondary);
+
+
+
         }
 
         public void EquipSecondary(Secondary secondary)
