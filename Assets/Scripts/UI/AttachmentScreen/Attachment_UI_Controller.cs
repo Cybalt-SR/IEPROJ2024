@@ -55,6 +55,7 @@ public class Attachment_UI_Controller : MonoBehaviour
 			newslot_image.sprite = item.attachment_icon;
 			newslot_button.onClick.RemoveAllListeners();
 			var index = i; // Capture the current index
+
 			newslot_button.onClick.AddListener(() =>
 			{
 				hook.Equip(index);
