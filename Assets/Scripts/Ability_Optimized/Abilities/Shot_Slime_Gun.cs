@@ -35,37 +35,57 @@ public class Shot_Slime_Gun : Ability
     //private Slime_Gun_Adhesive m_adhesive;
     private Slime_Gun_Hook m_hook;
 
+    bool m_hook_launched = false;
+    bool m_hook_planted = false;
+
     public override void Register()
     {
-
-
-
-        OnOwnerChanged = (old_owner, new_owner) => {
-            if (!m_hook)
-            {
-                var slime_gun_hook_object = new GameObject();
-                m_hook = slime_gun_hook_object.AddComponent<Slime_Gun_Hook>();
-            }
-            m_hook.transform.parent = new_owner.transform;
-            m_hook.gameObject.SetActive(true);
+        OnOwnerSet = o =>{
+            /*
+            m_hook = AssetRequester.Instance.RequestComponent<Slime_Gun_Hook>(o.transform);
+            if (!m_hook.gameObject.GetComponent<Rigidbody>())
+                m_hook.gameObject.AddComponent<Rigidbody>();
+            */
+         
         };
 
         OnOwnerRemoving = o => {
-            m_hook.gameObject.SetActive(false);
+            foreach(Transform ownable in m_ownable_assets)
+            {
+
+            }
+            AssetRequester.Instance.DepositAsset("Slime Gun Hook", m_hook.gameObject);
         };
     
         base.Register();
     }
 
-
-
     public override async Task Cast()
     {
-        await Task.Delay(0);
+        base.Cast().GetAwaiter().GetResult();
+        if (!m_hook_launched)
+           await LaunchHook();   
+        else if(m_hook_planted)
+            await ReelGrappler();
     }
 
     public override void Update(float delta_time)
     {
 
     }
+
+    #region Hook Subroutines
+    private async Task LaunchHook()
+    {
+        float height_offset = Owner.GetComponent<Collider>().bounds.center.y;
+
+    }
+
+    private async Task ReelGrappler()
+    {
+
+    }
+    #endregion
+
+
 }

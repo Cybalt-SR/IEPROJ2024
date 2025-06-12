@@ -76,10 +76,13 @@ namespace AbilityOP
 
         }
        
+        /*
         //Temp - Hook this up with the project's input system
         private void Update()
         {
             if (!hasEquipped) return;
+
+            Task shot =  , ability;
 
             if (Input.GetMouseButtonDown(1))
             {
@@ -99,7 +102,10 @@ namespace AbilityOP
             {
                 UnequipSecondary();
             }
-        }
 
+            if(m_shot_execution != null && m_ability_execution != null)
+                Task.WhenAll(m_shot_execution, m_ability_execution);
+        }
+        */
     }
 }

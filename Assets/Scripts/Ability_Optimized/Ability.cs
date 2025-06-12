@@ -64,7 +64,13 @@ namespace AbilityOP
         /// </summary>
         public virtual void Passive() { }
         public virtual void Update(float deltaTime) { }
-        public abstract Task Cast();
+
+
+        public virtual async Task Cast()
+        {
+            await Task.Yield();
+            if (Owner == null) return;
+        }
 
 
     }

@@ -10,28 +10,17 @@ namespace AbilityOP
 
         private Dictionary<string, List<GameObject>> m_storage = new();
 
-        public T RequestComponent<T>(string name, Transform parent = null) where T : Component
+        public GameObject WithdrawAsset(string name)
         {
-            GameObject go;
-
             if (m_storage.ContainsKey(name) && m_storage[name].Count > 0)
             {
-                go = m_storage[name][0];
-                m_storage[name].Remove(go); 
+                GameObject asset = m_storage[name][0];
+                m_storage[name].RemoveAt(0);
+                return asset;  
             }
-            else go = new GameObject(name); 
-            
-            if (parent)
-                go.transform.SetParent(parent);
-            
-            return go.GetComponent<T>();
-        }
 
-        public GameObject RequestAsset(string name)
-        {
-            return Resources.Load($"weapon/{name}") as GameObject;
+            return null;
         }
-
         public void DepositAsset(string name, GameObject to_deposit)
         {
             List<GameObject> object_storage;
@@ -46,7 +35,9 @@ namespace AbilityOP
             }
 
             object_storage.Add(to_deposit);
+            to_deposit.name = name;
             to_deposit.transform.SetParent(transform, true);
+            to_deposit.SetActive(false);
         }
     }
 }
