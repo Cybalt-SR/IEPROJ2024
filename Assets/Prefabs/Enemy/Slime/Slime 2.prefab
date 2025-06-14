@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 5744144297518748058}
   - component: {fileID: 5846891715231414123}
   - component: {fileID: 8683398988533595875}
+  - component: {fileID: -6943045355814547106}
   m_Layer: 8
   m_Name: Slime 2
   m_TagString: Enemy
@@ -549,7 +550,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -6943045355814547106}
+        m_TargetAssemblyTypeName: DamageIndicator, Assembly-CSharp
+        m_MethodName: changeColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDamage:
     m_PersistentCalls:
       m_Calls:
@@ -599,6 +612,20 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   current_direction: {x: 0, y: 0, z: 0}
   force: 0
+--- !u!114 &-6943045355814547106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637898f9e2c8d6a42a8c2ee61bff0b53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 9010292733563496424}
+  damageMaterial: {fileID: 2100000, guid: c7f29f22f8a218541b02c9892b678d5e, type: 2}
 --- !u!1 &7673579176970084753
 GameObject:
   m_ObjectHideFlags: 0

@@ -320,6 +320,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
+  additionalDieEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  onHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1605362885978331551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,7 +505,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5878507739359368840}
+        m_TargetAssemblyTypeName: DamageIndicatorSprite, Assembly-CSharp
+        m_MethodName: changeColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDamage:
     m_PersistentCalls:
       m_Calls:
@@ -575,6 +593,7 @@ GameObject:
   - component: {fileID: 1280466784933727895}
   - component: {fileID: 2910347595605091307}
   - component: {fileID: 3739083649921604735}
+  - component: {fileID: 5878507739359368840}
   m_Layer: 0
   m_Name: sprite renderer
   m_TagString: Untagged
@@ -691,6 +710,20 @@ MonoBehaviour:
   z_name: z_speed
   zero_threshold: 0.1
   format: 1
+--- !u!114 &5878507739359368840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906182589777987327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25a8d10e892ae64fbe8293fe00be4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 1280466784933727895}
+  DamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &7673579176970084753
 GameObject:
   m_ObjectHideFlags: 0
