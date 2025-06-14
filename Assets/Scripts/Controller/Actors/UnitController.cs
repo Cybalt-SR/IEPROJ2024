@@ -157,6 +157,9 @@ public class UnitController : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (MoveDir != Vector3.zero)
+            OnMove.Invoke(MoveDir);
+
         time_last_shot += Time.deltaTime;
 
         if (reloading)

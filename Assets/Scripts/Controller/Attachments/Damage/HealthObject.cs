@@ -13,6 +13,7 @@ public class HealthObject : MonoBehaviour
     public float Health { get => health; }
 
     [SerializeField] private UnityEvent additionalDieEvents;
+    [SerializeField] private UnityEvent<float, UnitController> onHitEvent;
     private Action<UnitController> onDie;
     public void SubscribeOnDie(Action<UnitController> newaction)
     {
@@ -24,6 +25,8 @@ public class HealthObject : MonoBehaviour
     public void TakeDamage(float damage, UnitController source)
     {
         health -= damage;
+
+        onHitEvent.Invoke(damage, source);
 
         if (health > 0)
             return;
