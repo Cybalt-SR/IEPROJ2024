@@ -28,26 +28,29 @@ namespace Assets.Scripts.Controller
 
         private Vector3[] cachedcorners = null;
 
-        [SerializeField] private GunData mAltGun;
-        bool useBaseGun = true;
+        struct GunSwap
+		{
+			public GunData gun;
+			public int shots;
+		}
+
+		[SerializeField] private List<GunSwap> guns;
+        [SerializeField] private int shoot_index = 0;
+
         protected override void UpdateFinalGun()
         {
-            if (useBaseGun)
+            var aggregated_shots = 0;
+
+            foreach (var gun in guns)
             {
-                base.UpdateFinalGun();
+                aggregated_shots += gun.shots;
+
+                if (aggregated_shots > shoot_index)
+                {
+                    mFinalGun = gun.gun;
+                    return;
+                }
             }
-            else
-            {
-                mFinalGun = mAltGun;
-            }
-        }
-
-
-        public void swapGun()
-        {
-            useBaseGun = !useBaseGun;
-
-            UpdateFinalGun();
         }
         protected override void Awake()
         {
@@ -154,10 +157,10 @@ namespace Assets.Scripts.Controller
             if (info.collider.attachedRigidbody == null) return;
             if (info.collider.attachedRigidbody.gameObject != target.gameObject) return;
 
-            base.Fire();
-
-            if (Reloading) swapGun();
-
+            if (base.Fire())
+            {
+                shoot_index++;
+            }
         }
     }
 }
