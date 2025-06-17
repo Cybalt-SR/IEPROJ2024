@@ -90,10 +90,8 @@ namespace Assets.Scripts.Controller
             }
 
             bool hit = Physics.Raycast(new Ray(this.transform.position, base.AimDir), out var info, 100);
-            var target_distance = Vector3.SqrMagnitude(transform.position - target.transform.position);
 
             if(!hit) return;
-            if ((info.distance * info.distance) > target_distance) return;
             
             if(info.collider.attachedRigidbody == null) return;
             if (info.collider.attachedRigidbody.gameObject != target.gameObject) return;

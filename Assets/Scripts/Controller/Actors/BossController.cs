@@ -28,6 +28,7 @@ namespace Assets.Scripts.Controller
 
         private Vector3[] cachedcorners = null;
 
+        [System.Serializable]
         struct GunSwap
 		{
 			public GunData gun;
@@ -35,12 +36,14 @@ namespace Assets.Scripts.Controller
 		}
 
 		[SerializeField] private List<GunSwap> guns;
+        [SerializeField] private int cur_gun_index = 0;
         [SerializeField] private int shoot_index = 0;
 
         protected override void UpdateFinalGun()
         {
             var aggregated_shots = 0;
 
+            var gun_counter = 0;
             foreach (var gun in guns)
             {
                 aggregated_shots += gun.shots;
@@ -48,9 +51,16 @@ namespace Assets.Scripts.Controller
                 if (aggregated_shots > shoot_index)
                 {
                     mFinalGun = gun.gun;
-                    return;
+					cur_gun_index = gun_counter;
+
+					return;
                 }
-            }
+
+                gun_counter++;
+			}
+
+            shoot_index = 0;
+            UpdateFinalGun();
         }
         protected override void Awake()
         {
@@ -149,17 +159,18 @@ namespace Assets.Scripts.Controller
             }
 
             bool hit = Physics.Raycast(new Ray(this.transform.position, base.AimDir), out var info, 100);
-            var target_distance = Vector3.SqrMagnitude(transform.position - target.transform.position);
+            //var target_distance = Vector3.SqrMagnitude(transform.position - target.transform.position);
 
             if (!hit) return;
-            if ((info.distance * info.distance) > target_distance) return;
+            //if ((info.distance * info.distance) > target_distance) return;
 
             if (info.collider.attachedRigidbody == null) return;
             if (info.collider.attachedRigidbody.gameObject != target.gameObject) return;
 
-            if (base.Fire())
+            if (base.Fire(cur_gun_index))
             {
                 shoot_index++;
+                GunChanged = true;
             }
         }
     }

@@ -82,6 +82,7 @@ public class UnitController : MonoBehaviour
     [SerializeField] private UnityEvent<Vector3> OnMove;
     [SerializeField] private UnityEvent<Vector3> OnAim;
     [SerializeField] private UnityEvent<Vector3> OnAimAt;
+    [SerializeField] private UnityEvent<int> OnShoot;
 
     protected virtual void Awake()
     {
@@ -131,7 +132,7 @@ public class UnitController : MonoBehaviour
         OnAimAt.Invoke(pos);
     }
 
-    protected bool Fire()
+    protected bool Fire(int firetype = 0)
     {
         if (shots_before_reload == 0)
         {
@@ -147,7 +148,10 @@ public class UnitController : MonoBehaviour
         {
             ProjectileManager.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
             mAudioSource.PlayOneShot(ShotSoundDictionary.Instance.Get(Gun.sound_id));
-            time_last_shot = 0;
+
+			OnShoot.Invoke(firetype);
+
+			time_last_shot = 0;
             shots_before_reload--;
             return true;
         }
