@@ -28,25 +28,38 @@ namespace Assets.Scripts.Controller
 
         private Vector3[] cachedcorners = null;
 
-        [SerializeField] private GunData mAltGun;
-        bool useBaseGun = true;
+        [System.Serializable]
+        struct GunSwap
+		{
+			public GunData gun;
+			public int shots;
+		}
+
+		[SerializeField] private List<GunSwap> guns;
+        [SerializeField] private int cur_gun_index = 0;
+        [SerializeField] private int shoot_index = 0;
+
         protected override void UpdateFinalGun()
         {
-            if (useBaseGun)
+            var aggregated_shots = 0;
+
+            var gun_counter = 0;
+            foreach (var gun in guns)
             {
-                base.UpdateFinalGun();
-            }
-            else
-            {
-                mFinalGun = mAltGun;
-            }
-        }
+                aggregated_shots += gun.shots;
 
+                if (aggregated_shots > shoot_index)
+                {
+                    mFinalGun = gun.gun;
+					cur_gun_index = gun_counter;
 
-        public void swapGun()
-        {
-            useBaseGun = !useBaseGun;
+					return;
+                }
 
+                gun_counter++;
+			}
+
+            shoot_index = 0;
             UpdateFinalGun();
         }
         protected override void Awake()
@@ -146,18 +159,19 @@ namespace Assets.Scripts.Controller
             }
 
             bool hit = Physics.Raycast(new Ray(this.transform.position, base.AimDir), out var info, 100);
-            var target_distance = Vector3.SqrMagnitude(transform.position - target.transform.position);
+            //var target_distance = Vector3.SqrMagnitude(transform.position - target.transform.position);
 
             if (!hit) return;
-            if ((info.distance * info.distance) > target_distance) return;
+            //if ((info.distance * info.distance) > target_distance) return;
 
             if (info.collider.attachedRigidbody == null) return;
             if (info.collider.attachedRigidbody.gameObject != target.gameObject) return;
 
-            base.Fire();
-
-            if (Reloading) swapGun();
-
+            if (base.Fire(cur_gun_index))
+            {
+                shoot_index++;
+                GunChanged = true;
+            }
         }
     }
 }
