@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Secondary Ability",
+                    "name": "Secondary_Ability",
                     "type": "Button",
                     "id": "463c28a5-7e41-44ab-99b4-e2d67bbf79fd",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire Secondary",
+                    "name": "Secondary_Fire",
                     "type": "Button",
                     "id": "ec8c74cb-109d-4f41-9421-7026e05e0c89",
                     "expectedControlType": "Button",
@@ -319,7 +319,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Secondary Ability",
+                    "action": "Secondary_Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -330,7 +330,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Fire Secondary",
+                    "action": "Secondary_Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

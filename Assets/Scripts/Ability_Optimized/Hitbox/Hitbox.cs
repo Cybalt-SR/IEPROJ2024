@@ -5,24 +5,24 @@ using UnityEngine.Events;
 
 namespace AbilityOP
 {
-
+    [RequireComponent(typeof(SphereCollider))]
     [RequireComponent(typeof(Rigidbody))]
     public class Hitbox : MonoBehaviour
     {
 
         public IMediator<Hitbox> m_hitbox_mediator;
 
-        private Collider m_collider;
+        protected SphereCollider m_collider;
 
         public List<string> m_filters = new();
-        private List<GameObject> m_collisions = new();
+        protected List<GameObject> m_collisions = new();
 
         public UnityEvent<GameObject> OnUnitDetected;
         public UnityEvent<GameObject> OnUnitRemoved;
 
         private void Awake()
         {
-            m_collider = GetComponent<Collider>();
+            m_collider = GetComponent<SphereCollider>();
         }
 
         protected virtual void OnTriggerEnter(Collider other)

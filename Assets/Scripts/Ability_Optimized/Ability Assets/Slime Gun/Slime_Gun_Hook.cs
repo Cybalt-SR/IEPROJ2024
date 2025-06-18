@@ -4,29 +4,43 @@ using UnityEngine;
 using AbilityOP;
 
 
-public class Slime_Gun_Hook : Hitbox
+public class Slime_Gun_Hook: MonoBehaviour
 {
 
-    public GameObject parent;
+    private Transform m_parent;
 
-    private void Update()
+    private Rigidbody m_rb;
+    private Vector3 m_aim_dir;
+
+    private bool m_hook_locked;
+    private float m_shot_force;
+
+    private Vector3? m_hook_pos = null;
+
+    private void Awake()
     {
-        
+       m_rb = GetComponent<Rigidbody>();
     }
 
-    protected override void OnTriggerEnter(Collider other)
+    public void FireHook(Transform parent, Vector3 dir, float shot_force)
     {
-        base.OnTriggerEnter(other);
+        m_parent = parent;
+        m_aim_dir = dir;
+        m_shot_force = shot_force;
+        gameObject.SetActive(true);
+    }
+   
+    private void FixedUpdate()
+    {
+        Vector3 shot_dir = (m_parent.position - m_aim_dir).normalized;
+        m_rb.AddForce(shot_dir * m_shot_force, ForceMode.VelocityChange);
     }
 
-    protected override void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerExit(other);
+       //if()
     }
 
-    public override List<GameObject> CaptureCollisions()
-    {
-        return null;
-    }
+
 
 }

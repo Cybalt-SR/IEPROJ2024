@@ -5,6 +5,7 @@ using Assets.Scripts.Library;
 using Assets.Scripts.Manager;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
@@ -40,6 +41,10 @@ namespace Assets.Scripts.Controller
         private GunStatModifierHandler statModder = new();
 
         public GunStatModifierHandler StatModder { get => statModder; }
+
+
+        [SerializeField] private UnityEvent<GameObject> OnSecondaryFired;
+        [SerializeField] private UnityEvent<GameObject> OnSecondaryAbilityInvoked;
 
         protected override GunData DoOnGet(GunData data)
         {
@@ -129,6 +134,18 @@ namespace Assets.Scripts.Controller
 
         void IOnLevelLoad.OnLevelExit(GameObject curLevel)
         {
+        }
+
+        void IPlayerInputReceiver.Secondary_Fire(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                OnSecondaryFired?.Invoke(gameObject);
+        }
+
+        void IPlayerInputReceiver.Secondary_Ability(InputAction.CallbackContext context)
+        {
+            if (context.started)
+              OnSecondaryAbilityInvoked?.Invoke(gameObject);
         }
     }
 }

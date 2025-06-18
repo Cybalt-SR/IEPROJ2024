@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class Ownable
+public abstract class Ownable
 {
     protected GameObject m_owner;
-    protected List<Transform> m_ownable_assets;
-
-    protected Action<GameObject> OnOwnerSet;
-    protected Action<GameObject> OnOwnerRemoving;
-    protected Action<GameObject, GameObject> OnOwnerChanged;
-
+    protected List<Transform> m_ownable_assets = new();
     public GameObject Owner
     {
         get => m_owner;
@@ -21,9 +16,9 @@ public class Ownable
         if (owner && owner != m_owner)
         {
             if (m_owner)
-                OnOwnerChanged?.Invoke(m_owner, owner);
+                OnOwnerChanging(m_owner, owner);
             m_owner = owner;
-            OnOwnerSet?.Invoke(owner);
+            OnOwnerSetting(owner);
 
             return true;
         }
@@ -35,12 +30,15 @@ public class Ownable
         if (!m_owner)
             return false;
 
-        OnOwnerRemoving?.Invoke(m_owner);
+        OnOwnerRemoving(m_owner);
         m_owner = null;
 
         return true;
     }
 
+    protected abstract void OnOwnerSetting(GameObject owner);
+    protected abstract void OnOwnerRemoving(GameObject owner);
+    protected virtual void OnOwnerChanging(GameObject old_owner, GameObject new_owner) { }
 
 
 }

@@ -77,6 +77,10 @@ namespace Assets.Scripts.Input
 
             var allMonoBehaviours = FindObjectsByType<MonoBehaviour>(sortMode: FindObjectsSortMode.None);
 
+            /*
+             Retrieves all monobehaviour scripts in the scene and looks of conrerete IInputReceivers and logs
+             a reference of them to dictionary inputReceivers
+            */
             foreach (ReceiverType receiverType in System.Enum.GetValues(typeof(ReceiverType)))
             {
                 if (receiver_mapping.ContainsKey(receiverType) == false)

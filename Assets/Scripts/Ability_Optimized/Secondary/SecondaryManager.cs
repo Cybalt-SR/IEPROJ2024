@@ -27,11 +27,9 @@ namespace AbilityOP
         private void Start()
         {
             EquipSecondary(debugSecondary);
-
-
-
         }
 
+        //modify this to receive a gameobject instead so there's no dependency on the playercontroller class
         public void EquipSecondary(Secondary secondary)
         {
 
@@ -41,10 +39,9 @@ namespace AbilityOP
                 return;
             }
 
-
             GameObject player = PlayerController.GetFirst().gameObject;
 
-            bool equipSuccess = false;
+            bool equipSuccess;
 
             equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.shot_effect_type);
             equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.secondary_ability_type);
@@ -75,37 +72,25 @@ namespace AbilityOP
             AbilityManager.Instance.ReleaseAbilities(player);
 
         }
-       
-        /*
-        //Temp - Hook this up with the project's input system
-        private void Update()
+
+        private void RunAbilityParallel(ref Task execution, GameObject caster, string ability_name )
         {
-            if (!hasEquipped) return;
-
-            Task shot =  , ability;
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                GameObject player = PlayerController.GetFirst().gameObject;
-                if (m_shot_execution == null || m_shot_execution.IsCompleted)
-                    m_shot_execution = AbilityManager.Instance.InvokeAbility(player, m_equipped.shot_effect_type);
-            }
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                GameObject player = PlayerController.GetFirst().gameObject;
-                if (m_ability_execution == null || m_ability_execution.IsCompleted)
-                    m_ability_execution = AbilityManager.Instance.InvokeAbility(player, m_equipped.secondary_ability_type);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Return))
-            {
-                UnequipSecondary();
-            }
-
-            if(m_shot_execution != null && m_ability_execution != null)
-                Task.WhenAll(m_shot_execution, m_ability_execution);
+            if (m_equipped && (execution == null || execution.IsCompleted))
+                execution = Task.Run(async () =>
+                    await AbilityManager.Instance.InvokeAbility(caster, ability_name)
+                );
+            //else Debug.Log("No");
         }
-        */
+
+        public void FireSecondary(GameObject caster)
+        {
+            RunAbilityParallel(ref m_shot_execution, caster, m_equipped.shot_effect_type);
+        }
+
+        public void InvokeSecondaryAbility(GameObject caster)
+        {
+            RunAbilityParallel(ref m_ability_execution, caster, m_equipped.secondary_ability_type);
+        }
+       
     }
 }

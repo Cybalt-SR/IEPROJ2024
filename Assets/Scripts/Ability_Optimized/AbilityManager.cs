@@ -22,24 +22,32 @@ namespace AbilityOP
         private Dictionary<GameObject, List<AbilityHandler>> m_abilities = new();
         private List<AbilityHandler> m_updatables = new();
 
-        public async Task InvokeAbility(GameObject owner, string ability_name)
+        public async Task<bool> InvokeAbility(GameObject owner, string ability_name)
         {
             if (!m_abilities.ContainsKey(owner))
             {
                 Debug.LogError($"{owner.name} has no abilities assigned.");
-                return;
+                return false;
             }
                 
             foreach (AbilityHandler handler in m_abilities[owner])
             {
                 if (handler.m_ability.GetType().Name == ability_name)
                 {
-                    await handler.Activate();
-                    return;
+                    try
+                    {
+                        return await handler.Activate();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogException(ex);
+                        return false;
+                    }
                 }
             }
 
             Debug.LogError($"{owner.name} has no such abilities named {ability_name}.");
+            return false;
         }
 
         private void Update()
@@ -161,10 +169,10 @@ namespace AbilityOP
             m_ability.Update(deltaTime);
         }
 
-        internal async Task Activate()
+        internal async Task<bool> Activate()
         {
             if (!m_is_active || m_is_running || m_current_cooldown > 0 )
-                return;
+                return false;
 
             var data = m_ability.AbilityData as AbilityData;
 
@@ -176,6 +184,8 @@ namespace AbilityOP
 
             if (!data.StartCooldownOnCast)
                 m_current_cooldown = data.Cooldown;
+
+            return true;
         }
 
     }

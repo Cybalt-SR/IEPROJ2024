@@ -5,6 +5,9 @@ using UnityEngine;
 using AbilityOP;
 using System.Threading.Tasks;
 using Assets.Scripts.Controller;
+using static UnityEngine.UI.GridLayoutGroup;
+
+[CreateAssetMenu(fileName = "Shot_Slime_Gun", menuName = "Ability Optimized/Abilities/Slime Gun/Shot", order = 1)]
 
 public class Shot_Slime_Gun_data : AbilityData
 {
@@ -35,56 +38,92 @@ public class Shot_Slime_Gun : Ability
     //private Slime_Gun_Adhesive m_adhesive;
     private Slime_Gun_Hook m_hook;
 
-    bool m_hook_launched = false;
-    bool m_hook_planted = false;
+    private float m_height_offset;
+    private float m_grapple_duration;
+    private Vector3 m_aim_direction;
+    private Vector3 m_delta_pos;
 
-    public override void Register()
-    {
-        OnOwnerSet = o =>{
-            /*
-            m_hook = AssetRequester.Instance.RequestComponent<Slime_Gun_Hook>(o.transform);
-            if (!m_hook.gameObject.GetComponent<Rigidbody>())
-                m_hook.gameObject.AddComponent<Rigidbody>();
-            */
-         
-        };
 
-        OnOwnerRemoving = o => {
-            foreach(Transform ownable in m_ownable_assets)
-            {
+    private bool m_hook_launched = false;
+    private bool m_hook_planted = false;
+    private bool m_is_grappling = false;
 
-            }
-            AssetRequester.Instance.DepositAsset("Slime Gun Hook", m_hook.gameObject);
-        };
     
-        base.Register();
-    }
 
     public override async Task Cast()
     {
-        base.Cast().GetAwaiter().GetResult();
-        if (!m_hook_launched)
-           await LaunchHook();   
-        else if(m_hook_planted)
+        await base.Cast();
+
+        if (!m_hook_launched)    
+            await LaunchHook();
+        else if (m_hook_planted)
             await ReelGrappler();
     }
 
     public override void Update(float delta_time)
     {
+        if (!Owner) return;
+
+        var controller = Owner.GetComponent<UnitController>();
+        m_aim_direction = controller.AimDir;
+
+        if (m_is_grappling)
+        {
+            var ability_data = m_ability_data as Shot_Slime_Gun_data;
+
+            m_delta_pos = m_hook.transform.position - Owner.transform.position;
+            m_grapple_duration += Time.deltaTime;
+            var rb = Owner.GetComponent<Rigidbody>();
+            rb.AddForce(m_delta_pos.normalized * ability_data.pull_force * Time.deltaTime, ForceMode.VelocityChange);
+        }
 
     }
+
+    #region  Owner Handling
+    protected override void OnOwnerSetting(GameObject owner)
+    {
+        AssetRequester.LoadAsset<Slime_Gun_Hook>("Slime Gun Hook", out m_hook);
+        m_height_offset = owner.GetComponent<Collider>().bounds.center.y;
+        base.OnOwnerSetting(owner);
+    }
+    #endregion
 
     #region Hook Subroutines
     private async Task LaunchHook()
     {
-        float height_offset = Owner.GetComponent<Collider>().bounds.center.y;
+        m_hook_launched = true;
 
+        Vector3 norm_aim_dir = m_aim_direction.normalized * 3;
+        norm_aim_dir.y = 0.5f;
+
+        Vector3 hook_spawn_pos = Owner.transform.position + norm_aim_dir;
+        m_hook.gameObject.SetActive(true);
+
+        var ability_data = m_ability_data as Shot_Slime_Gun_data;
+        var hook_rb = m_hook.GetComponent<Rigidbody>();
+        hook_rb.AddForce(m_aim_direction.normalized * ability_data.projectile_speed, ForceMode.Impulse); ;
+
+        await Task.Yield();
     }
 
     private async Task ReelGrappler()
     {
 
+        var ability_data = m_ability_data as Shot_Slime_Gun_data;
+
+        m_grapple_duration = 0;
+        m_delta_pos = m_hook.transform.position - Owner.transform.position;
+        m_is_grappling = true;
+
+        while (Vector3.SqrMagnitude(m_delta_pos) > 3f * 3f && m_grapple_duration < ability_data.max_grapple_duration)
+        {   
+            await Task.Delay(500);
+        }
+
+        m_is_grappling = false;
+
     }
+
     #endregion
 
 

@@ -64,12 +64,26 @@ namespace AbilityOP
         /// </summary>
         public virtual void Passive() { }
         public virtual void Update(float deltaTime) { }
-
-
         public virtual async Task Cast()
         {
             await Task.Yield();
             if (Owner == null) return;
+        }
+
+
+        protected override void OnOwnerSetting(GameObject owner)
+        {
+            foreach (Transform t in m_ownable_assets)
+            {
+                t.parent = Owner.transform;
+            }
+        }
+        protected override void OnOwnerRemoving(GameObject owner)
+        {
+            foreach (Transform ownable in m_ownable_assets)
+            {
+                AssetRequester.DepositAsset(ownable.gameObject.name, ownable.gameObject);
+            }
         }
 
 

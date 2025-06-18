@@ -12,7 +12,11 @@ public class SampleAbility : Ability
 {
     public override async Task Cast()
     {
+        await base.Cast();
         Debug.Log("Sample Ability Invoked");
+        await Task.Delay(5000);
+        Debug.Log("Sample Ability Executed");
+
     }
 
 }

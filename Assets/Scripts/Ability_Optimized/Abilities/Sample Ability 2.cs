@@ -17,6 +17,7 @@ public class SampleAbility2 : Ability
     bool used = false;
     public override async Task Cast()
     {
+        await base.Cast();
         var data = this.m_ability_data as SampleAbility2_data;
         Debug.Log($"Used: {updatable}");
         Debug.Log("Sample Ability 2");
@@ -29,5 +30,6 @@ public class SampleAbility2 : Ability
         if(used)
             updatable++;
     }
+
 }
 

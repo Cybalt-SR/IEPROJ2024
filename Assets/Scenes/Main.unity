@@ -9721,6 +9721,36 @@ MonoBehaviour:
         m_CallState: 2
   playerId: Player1
   aiming_blanket: {fileID: 552938358}
+  OnSecondaryFired:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1604889808}
+        m_TargetAssemblyTypeName: AbilityOP.SecondaryManager, Assembly-CSharp
+        m_MethodName: FireSecondary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnSecondaryAbilityInvoked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1604889808}
+        m_TargetAssemblyTypeName: AbilityOP.SecondaryManager, Assembly-CSharp
+        m_MethodName: InvokeSecondaryAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1878664022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9801,19 +9831,7 @@ MonoBehaviour:
       m_Calls: []
   OnGetHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1193417758}
-        m_TargetAssemblyTypeName: DirectionalAnimator3D, Assembly-CSharp
-        m_MethodName: Shake
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.2
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnChangeHeatRatio_reversed:
     m_PersistentCalls:
       m_Calls:
@@ -11870,7 +11888,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -160.69, y: -47.950058}
+  m_AnchoredPosition: {x: -160.69, y: -47.950073}
   m_SizeDelta: {x: 238, y: -289.70007}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2715247582479758348
