@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class DirectionalAnimator3D : MonoBehaviour
 {
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
     private Vector3 _aimdir;
     private Vector3 _movedir;
     private bool moved_this_frame;
@@ -20,8 +19,11 @@ public class DirectionalAnimator3D : MonoBehaviour
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
-    }
+        var possibleanim = GetComponent<Animator>();
+
+        if(possibleanim != null)
+			_animator = possibleanim;
+	}
 
     private void Update()
     {
@@ -65,6 +67,8 @@ public class DirectionalAnimator3D : MonoBehaviour
 
         if (use_animator)
         {
+            _animator.SetBool("moving", true);
+
             _animator.SetBool("forward", isforward);
             _animator.SetBool("backward", isbackward);
             _animator.SetBool("left", isleft);
@@ -73,10 +77,12 @@ public class DirectionalAnimator3D : MonoBehaviour
     }
 
     private void LateUpdate()
-    {
-        if(moved_this_frame == false && use_animator)
+	{
+		if(moved_this_frame == false && use_animator)
         {
-            _animator.SetBool("forward", false);
+			_animator.SetBool("moving", false);
+
+			_animator.SetBool("forward", false);
             _animator.SetBool("backward", false);
             _animator.SetBool("left", false);
             _animator.SetBool("right", false);
@@ -90,4 +96,10 @@ public class DirectionalAnimator3D : MonoBehaviour
         var camtransdir = Quaternion.AngleAxis(-CameraController.Instance.Camera.transform.eulerAngles.y, Vector3.up) * aimdir;
         _aimdir = camtransdir;
     }
+
+    public void OnShootEvent(int shoottype)
+    {
+        var triggername = "shoot" + shoottype;
+		_animator.SetTrigger(triggername);
+	}
 }

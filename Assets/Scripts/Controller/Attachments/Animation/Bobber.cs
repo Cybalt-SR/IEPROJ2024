@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bobber : MonoBehaviour
 {
+    [SerializeField] float anchor = 0;
     [SerializeField] float bobstrength = 1.0f;
     [SerializeField] float bobspeed = 1.0f;
 
@@ -12,7 +13,7 @@ public class Bobber : MonoBehaviour
     {
         var curlocalpos = this.transform.localPosition;
 
-        curlocalpos.y = Mathf.Sin(Time.time * bobspeed) * bobstrength;
+        curlocalpos.y = anchor + Mathf.Sin(Time.time * bobspeed) * bobstrength;
 
         this.transform.localPosition = curlocalpos;
     }
