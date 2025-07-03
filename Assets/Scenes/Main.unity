@@ -2528,6 +2528,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Panel: {fileID: 1018497589}
   Panel_text: {fileID: 447860169}
+--- !u!1 &966639815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8391222552659086748, guid: f6a6d1ddab6f9de4aa40d44086f99f33,
+    type: 3}
+  m_PrefabInstance: {fileID: 1193417754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &966639818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966639815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f5da24c205bd743996ead21880f64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1018497589
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,6 +3067,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1193417758}
+    - targetCorrespondingSourceObject: {fileID: -8391222552659086748, guid: f6a6d1ddab6f9de4aa40d44086f99f33,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 966639818}
   m_SourcePrefab: {fileID: 100100000, guid: f6a6d1ddab6f9de4aa40d44086f99f33, type: 3}
 --- !u!4 &1193417755 stripped
 Transform:
