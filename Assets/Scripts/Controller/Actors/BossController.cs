@@ -158,7 +158,7 @@ namespace Assets.Scripts.Controller
                 random_move_delta = random_lateral + random_parallel;
             }
 
-            bool hit = Physics.Raycast(new Ray(this.transform.position, base.AimDir), out var info, 100);
+            bool hit = Physics.Raycast(new Ray(this.transform.position, target.transform.position - this.transform.position), out var info, 100);
             //var target_distance = Vector3.SqrMagnitude(transform.position - target.transform.position);
 
             if (!hit) return;

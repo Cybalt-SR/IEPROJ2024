@@ -1301,6 +1301,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1834349069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &491280024 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5760916938661476511, guid: ff2bf9621344eff4bba13099540ff77a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2339463072432944472}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &516600607
 GameObject:
   m_ObjectHideFlags: 0
@@ -9642,7 +9648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heat: 0
-  max_heat: 10
+  max_heat: 10000
   cooldown_speed: 0.1
   onDie:
     m_PersistentCalls:
@@ -11652,6 +11658,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7813226080759807449, guid: ff2bf9621344eff4bba13099540ff77a,
+        type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 491280024}
     - target: {fileID: 7867463022758497776, guid: ff2bf9621344eff4bba13099540ff77a,
         type: 3}
       propertyPath: m_Range
@@ -11684,9 +11695,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8069405994015505236, guid: ff2bf9621344eff4bba13099540ff77a,
         type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1878664021}
+      propertyPath: guns.Array.data[0].gun.reload_time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8069405994015505236, guid: ff2bf9621344eff4bba13099540ff77a,
+        type: 3}
+      propertyPath: guns.Array.data[1].gun.reload_time
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8380582149325146842, guid: ff2bf9621344eff4bba13099540ff77a,
         type: 3}
       propertyPath: m_Range
