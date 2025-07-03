@@ -8,7 +8,7 @@ namespace Assets.Scripts.Controller.Attachments
     [RequireComponent(typeof(HealthObject))]
     [RequireComponent(typeof(EnemyController))]
     [RequireComponent(typeof(CapsuleCollider))]
-    [RequireComponent (typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody))]
     public class DelayedDisablingOnDieLinger : MonoBehaviour
     {
         private HealthObject mHealthObject;
@@ -17,6 +17,9 @@ namespace Assets.Scripts.Controller.Attachments
         private Rigidbody mRigidbody;
 
         [SerializeField] private float delay = 0.2f;
+
+        private bool lerping = false;
+        float vel;
 
         private void Awake()
         {
@@ -39,6 +42,21 @@ namespace Assets.Scripts.Controller.Attachments
             mEnemyController.enabled = false;
             mCapsuleCollider.enabled = false;
             mRigidbody.drag = 1;
+            lerping = true;
         }
+
+        private void Update()
+        {
+            if (lerping)
+            {
+                float newY = Mathf.SmoothDamp(transform.localScale.y, 0.3f, ref vel, 0.1f);
+                this.transform.localScale = new Vector3(transform.localScale.x, newY, transform.localScale.z);
+                if(transform.localScale.y <= 0.305f)
+                {
+                    lerping = false;
+                }
+            }
+        }
+
     }
 }
