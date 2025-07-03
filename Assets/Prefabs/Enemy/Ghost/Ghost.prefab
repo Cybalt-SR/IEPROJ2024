@@ -118,7 +118,7 @@ MonoBehaviour:
     shots_per_second: 2
     clip_size: 3
     reload_time: 3
-    projectile_speed: 8
+    projectile_speed: 9
     error_angle: 20
     projectiles_per_shot: 1
     spread_angle: 45
@@ -130,8 +130,8 @@ MonoBehaviour:
     play_reload: 0
     start_reload_sound_id: 
     end_reload_sound_id: 
-  acceleration: 60
-  speed_base: 3
+  acceleration: 66.6
+  speed_base: 6.06
   movedir: {x: 0, y: 0, z: 0}
   shooting_reference: {fileID: 5395496293833332456}
   aimdir: {x: 0, y: 0, z: 0}
@@ -294,7 +294,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0
+  m_Speed: 3
   m_Acceleration: 0
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -546,11 +546,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drops:
   - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
-    chance: 1
+    chance: 0.2
   - item: {fileID: 11400000, guid: 53322f5c69fd85046ae59f03c8391801, type: 2}
-    chance: 0.05
+    chance: 0.2
   - item: {fileID: 11400000, guid: cddd7a647a5b2464d8fc2854c6fe3f0c, type: 2}
-    chance: 0.02
+    chance: 0.2
 --- !u!114 &8683398988533595875
 MonoBehaviour:
   m_ObjectHideFlags: 0

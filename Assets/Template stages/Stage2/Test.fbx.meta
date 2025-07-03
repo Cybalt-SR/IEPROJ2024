@@ -1,0 +1,332 @@
+fileFormatVersion: 2
+guid: b970113fca4e43a4d85b0de8ed3f1e30
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: DefaultMaterial_Alpha.1001
+    second: {fileID: 2800000, guid: 116e9b500265a4f81949fb56ae1c4f08, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: DefaultMaterial_BaseColor.1001
+    second: {fileID: 2800000, guid: 65a21b7de397442f98b1d91ef3a1a0c1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: DefaultMaterial_Emission.1001
+    second: {fileID: 2800000, guid: f110e341e6db445d9addfa3ef311e430, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: DefaultMaterial_Metallic.1001
+    second: {fileID: 2800000, guid: 98faa78fbf5354e74a82e87991688d1e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: 9dcca6d1dbc1d4614bbbccc942f37b54, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: DefaultMaterial_Roughness.1001
+    second: {fileID: 2800000, guid: ec1008a4abb0c4b6685d738bc13936d8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Red Chair_DefaultMaterial_BaseColor.1001
+    second: {fileID: 2800000, guid: 573dc556374c1459bbffa47cc7d3f032, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Red Chair_DefaultMaterial_Emissive.1001
+    second: {fileID: 2800000, guid: 5b9d78a6495464f6b900b59038936223, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Red Chair_DefaultMaterial_Metallic.1001
+    second: {fileID: 2800000, guid: 26a6c83d925e9419a885d29653d49b5e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Red Chair_DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: ae9fec276634b4bc4aebc7dd5bfb8bb0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Red Chair_DefaultMaterial_Roughness.1001
+    second: {fileID: 2800000, guid: e7ed5400585744055adb8cd3049c9438, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Sandpit_DefaultMaterial_BaseColor.1001
+    second: {fileID: 2800000, guid: 92812d02a032f44e79bdaf604cf981b2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Sandpit_DefaultMaterial_Emissive.1001
+    second: {fileID: 2800000, guid: 3f0fca4fef04d4fe4acbade9e794cf6d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Sandpit_DefaultMaterial_Metallic.1001
+    second: {fileID: 2800000, guid: c37b9f4b70d9f477dae52bbc2eacc483, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Sandpit_DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: 0eb13291ac48f4bd480e1f2e3c29371a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Sandpit_DefaultMaterial_Roughness.1001
+    second: {fileID: 2800000, guid: 81091e14c4e2a4550bd1f4575e8f8378, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Toy Table_DefaultMaterial_BaseColor.1001
+    second: {fileID: 2800000, guid: 714ae223a9083483d8475ca399aec62e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Toy Table_DefaultMaterial_Emissive.1001
+    second: {fileID: 2800000, guid: dea189ef1378f4e7e8ca1e4bdf99ed82, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Toy Table_DefaultMaterial_Metallic.1001
+    second: {fileID: 2800000, guid: fff4018ddb03f4296b7eaa397fb54f16, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Toy Table_DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: 7ffefc36e537d4c91af68e4d34d8825c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2 Toy Table_DefaultMaterial_Roughness.1001
+    second: {fileID: 2800000, guid: f709126ef819740a3bab33406e43226a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2_DefaultMaterial_BaseMap.1001
+    second: {fileID: 2800000, guid: 4402d0baf491444f089c902819909625, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2_DefaultMaterial_Emissive.1001
+    second: {fileID: 2800000, guid: 958d8ac5af2a84fbfa0d2b790a7596a3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2_DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: 33a05f0918ec0403b901bb0a0a5642c7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 2_DefaultMaterial_Specular.1001
+    second: {fileID: 2800000, guid: ffb281a5798f043329dbdea7f83f633a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 3 Accessories_DefaultMaterial_BaseColor.1001
+    second: {fileID: 2800000, guid: 86bae23cc89064aefa7171f3a35482d8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 3 Accessories_DefaultMaterial_Emissive.1001
+    second: {fileID: 2800000, guid: b192a16f7cb6e4af3827ea8ccf3458ec, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 3 Accessories_DefaultMaterial_Metallic.1001
+    second: {fileID: 2800000, guid: b4c868a97772243fe9d4bb86635a18e5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 3 Accessories_DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: 2b5e5840b33044f6ebcdbbc6e51b02da, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stage 3 Accessories_DefaultMaterial_Roughness.1001
+    second: {fileID: 2800000, guid: 631ef02c5304f4dadb2ac53aea74cfbc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Big Shelfobj_DefaultMaterial_BaseColor.1001
+    second: {fileID: 2800000, guid: 3258f5189daa2442da46605a646d27fe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Big Shelfobj_DefaultMaterial_Emissive.1001
+    second: {fileID: 2800000, guid: 41ec3a62377a94572ac2475e54149c3a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Big Shelfobj_DefaultMaterial_Metallic.1001
+    second: {fileID: 2800000, guid: 17a6ee98167084a0dbc8320dfbdc5339, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Big Shelfobj_DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: 5e59042217d244ce19180c016ec468d0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Big Shelfobj_DefaultMaterial_Roughness.1001
+    second: {fileID: 2800000, guid: 1f8feaef9231f4b729684d6d3adc10ec, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Lamp_DefaultMaterial_BaseColor.1001
+    second: {fileID: 2800000, guid: cc579c75151fb49e6bb9aaff7ebcdc17, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Lamp_DefaultMaterial_Emissive.1001
+    second: {fileID: 2800000, guid: b7cebd718fd604e3d9c3ca68554b27bf, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Lamp_DefaultMaterial_Metallic.1001
+    second: {fileID: 2800000, guid: 57fce9692765048f3afeaa1e8b83b783, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Lamp_DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: 8aee3062299fc4507aaf5b796bf483d6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Lamp_DefaultMaterial_Roughness.1001
+    second: {fileID: 2800000, guid: 4b1723634824b4589b30fcd7d53708d7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Props_DefaultMaterial_BaseColor.1001
+    second: {fileID: 2800000, guid: f6557bae7fba04a74b169a395dd5e827, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Props_DefaultMaterial_Emissive.1001
+    second: {fileID: 2800000, guid: 40ea010c6c71d437d8bd52a0a286334c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Props_DefaultMaterial_Metallic.1001
+    second: {fileID: 2800000, guid: 731f182de5a884bec946b55fd94bb9a1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Props_DefaultMaterial_Normal.1001
+    second: {fileID: 2800000, guid: e383c582a1f72487bbfd94a8e40625ba, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Universal Props_DefaultMaterial_Roughness.1001
+    second: {fileID: 2800000, guid: 42f4b12ac7f204332b7c59e18a676903, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
