@@ -31,8 +31,9 @@ namespace Assets.Scripts.Controller.Attachments
         {
             if (onHit == null)
                 return;
-
+            
             onHit.Invoke(projectile);
+            GetComponentInChildren<FlashOnHit>().Flash();
             onDamage.Invoke(projectile.Data.damage, projectile.From);
         }
     }
