@@ -58,6 +58,9 @@ public class UnitController : MonoBehaviour
 
     //Looking
     [SerializeField] protected Transform shooting_reference;
+    public Transform ShootRef { get => shooting_reference;}
+
+
     [SerializeField] private Vector3 aimdir;
     public Vector3 AimDir
     {

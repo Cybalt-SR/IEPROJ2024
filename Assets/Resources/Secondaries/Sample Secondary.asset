@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cbe675855edb724e8180aa6b6501cf5, type: 3}
   m_Name: Sample Secondary
   m_EditorClassIdentifier: 
-  secondary_name: Secondary
+  secondary_name: Circular Gun
   tooltip: 
   secondary_icon: {fileID: 0}
   shot_effect_type: SampleAbility
-  secondary_ability_type: SampleAbility2
+  secondary_ability_type: Shot_Circular_Gun

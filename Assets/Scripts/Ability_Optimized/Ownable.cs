@@ -40,18 +40,16 @@ public abstract class Ownable
 
     protected virtual void OnOwnerSetting(GameObject owner)
     {
-        foreach (Transform t in m_ownable_assets)
-        {
-            t.parent = Owner.transform;
-        }
+ 
     }
 
     protected virtual void OnOwnerRemoving(GameObject owner)
     {
         foreach (Transform ownable in m_ownable_assets)
         {
-            AssetRequester.DepositAsset(ownable.gameObject.name, ownable.gameObject);
+            GameObject.Destroy(ownable.gameObject);
         }
+        m_ownable_assets.Clear();
     }
 
     protected virtual void OnOwnerChanging(GameObject old_owner, GameObject new_owner) 

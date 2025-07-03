@@ -10,23 +10,21 @@ namespace AbilityOP
 
         private Dictionary<string, List<GameObject>> m_storage = new();
 
-        public static void WithdrawAsset(string name, out GameObject to_withdraw, Transform new_parent = null)
+        public static GameObject WithdrawAsset(string name, Transform new_parent = null)
         {
             if (Instance.m_storage.ContainsKey(name) && Instance.m_storage[name].Count > 0)
             {
                 GameObject asset = Instance.m_storage[name][0];
                 Instance.m_storage[name].RemoveAt(0);
-                to_withdraw = asset;
-            }
-            else 
-            {
-                //wtf is this
-                to_withdraw = new GameObject(name);
-                to_withdraw.SetActive(false);
-            }
 
-            if (new_parent)
-                to_withdraw.transform.parent = new_parent;
+
+                if (new_parent)
+                    asset.transform.parent = new_parent;
+
+                return asset;
+            }
+          
+            return null;  
         }
 
         public static bool LoadAsset(string asset_name, out GameObject to_load, Transform new_parent = null) 

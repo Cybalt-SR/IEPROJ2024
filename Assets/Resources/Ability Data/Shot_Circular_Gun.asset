@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Shot_Slime_Gun
-  m_EditorClassIdentifier: Assembly-CSharp::Shot_Slime_Gun_data
+  m_Name: Shot_Circular_Gun
+  m_EditorClassIdentifier: Assembly-CSharp::Shot_Circular_Gun_data
   AbilityName: 
   AbilityDescription: 
   AbilityIcon: {fileID: 0}
   Cooldown: 0
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
-  slime_material: {fileID: 0}
-  damage_multiplier: 0
-  projectile_speed: 0
-  max_tether_distance: 0
-  pull_force: 0
-  grappling_multiplier: 0
-  max_grapple_duration: 0
-  impact_damage: 0
+  toy_spawn_rate: 0
+  toy_spawn_height_offset: 1
+  minimum_toy_collect_proximity: 1.5
+  toy_pickup: {fileID: 1675527137016454536, guid: 4497a7ba5a950124da27e489b5b97ed5,
+    type: 3}

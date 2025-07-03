@@ -19,13 +19,9 @@ namespace AbilityOP
         protected object m_ability_data;
         protected CoroutineWrapper m_ability_coroutine;
 
-        public Ability()
-        {
-            Passive();
-        }
-
         public virtual void Register()
         {
+            Passive();
             foreach (var passive in m_passive_handler)
                 EventBroadcasting.AddListener(passive.Key, passive.Value);
         }

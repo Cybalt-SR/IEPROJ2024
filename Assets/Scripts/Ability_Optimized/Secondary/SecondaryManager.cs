@@ -21,11 +21,11 @@ namespace AbilityOP
 
         private void Start()
         {
-            EquipSecondary(debugSecondary);
+            GameObject player = PlayerController.GetFirst().gameObject;
+            EquipSecondary(debugSecondary, player);
         }
 
-        //modify this to receive a gameobject instead so there's no dependency on the playercontroller class
-        public void EquipSecondary(Secondary secondary)
+        public void EquipSecondary(Secondary secondary, GameObject owner)
         {
 
             if (secondary == null)
@@ -33,18 +33,16 @@ namespace AbilityOP
                 Debug.LogWarning("[WARNING] No Secondary to Equip");
                 return;
             }
-
-            GameObject player = PlayerController.GetFirst().gameObject;
-
+           
             bool equipSuccess;
 
-            equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.shot_effect_type);
-            equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.secondary_ability_type);
+            equipSuccess = AbilityManager.Instance.RequestAbility(owner, secondary.shot_effect_type);
+            equipSuccess = AbilityManager.Instance.RequestAbility(owner, secondary.secondary_ability_type);
 
             if (!equipSuccess)
             {
                 Debug.LogError("[ERROR] Equip Unsuccessful.");
-                AbilityManager.Instance.ReleaseAbilities(player);
+                AbilityManager.Instance.ReleaseAbilities(owner);
                 return;
             }
  
@@ -79,8 +77,6 @@ namespace AbilityOP
            if (m_equipped)
                 AbilityManager.Instance.InvokeAbility(caster, m_equipped.secondary_ability_type);
         }
-
-
 
         public bool hasEquipped { get => m_equipped != null; }
         public Secondary currentlyEquipped { get => m_equipped; }

@@ -9,11 +9,6 @@ using UnityEngine;
 namespace AbilityOP
 {
 
-    /*
-        [TO-DO]
-        - Do Bugfixing
-        - Recreate Weapons
-    */
 
     public class AbilityManager : Manager_Base<AbilityManager>
     {

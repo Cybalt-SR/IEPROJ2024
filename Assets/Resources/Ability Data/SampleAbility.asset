@@ -15,6 +15,6 @@ MonoBehaviour:
   AbilityName: 
   AbilityDescription: 
   AbilityIcon: {fileID: 0}
-  Cooldown: 0
+  Cooldown: 5
   StartCooldownOnCast: 0
   UpdateTiedToState: 0

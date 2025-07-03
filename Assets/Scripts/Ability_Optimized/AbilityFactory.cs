@@ -66,8 +66,7 @@ namespace AbilityOP
                 Debug.LogError($"[ERROR] No \"{ability_name}\" found. Please create one in Resources/Ability Data.");
                 return null;
             }
-                
-           
+
             var new_poolable = Activator.CreateInstance(m_ability_types.Find(t => t.Name == ability_name)) as Ability;
             new_poolable.AbilityData = data;
 
