@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MainCharacters
   m_EditorClassIdentifier: 
   characters:
+  - id: You
+    images:
+    - {fileID: -1324061121, guid: 60c1e77f19dc085419f24cb6b4f434cb, type: 3}
   - id: Detective
     images:
     - {fileID: -270129895, guid: 6aacf98bb3d47764fb4c89eb2bd43b64, type: 3}
-  - id: Robot
-    images:
-    - {fileID: -1324061121, guid: 60c1e77f19dc085419f24cb6b4f434cb, type: 3}
