@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7463049668013972157}
-  - component: {fileID: 2513196109575168261}
   - component: {fileID: 3912584140008959285}
   - component: {fileID: 7819462995174745396}
   m_Layer: 8
@@ -35,28 +34,6 @@ Transform:
   - {fileID: 1104452034098658990}
   m_Father: {fileID: 2747860773812602172}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2513196109575168261
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030750503827340636}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ae456d9c700da2945b4d8ba56dd4d135, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3912584140008959285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b811969814694e94fbde595da5fcd047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  use_animator: 0
+  _animator: {fileID: 4666281782920530128}
+  use_animator: 1
   aimmove_angle: 0
   turn_speed: 10
   time_shaking: 0
@@ -170,8 +147,8 @@ MonoBehaviour:
     play_reload: 0
     start_reload_sound_id: 
     end_reload_sound_id: 
-  acceleration: 60
-  speed_base: 3
+  acceleration: 100
+  speed_base: 5
   movedir: {x: 0, y: 0, z: 0}
   shooting_reference: {fileID: 5395496293833332456}
   aimdir: {x: 0, y: 0, z: 0}
@@ -181,7 +158,19 @@ MonoBehaviour:
   time_last_reload: 0
   OnMove:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3912584140008959285}
+        m_TargetAssemblyTypeName: DirectionalAnimator3D, Assembly-CSharp
+        m_MethodName: OnMoveEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnAim:
     m_PersistentCalls:
       m_Calls:
@@ -358,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 15
   additionalDieEvents:
     m_PersistentCalls:
       m_Calls: []
@@ -586,11 +575,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drops:
   - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
-    chance: 1
+    chance: 0.2
   - item: {fileID: 11400000, guid: 53322f5c69fd85046ae59f03c8391801, type: 2}
-    chance: 0.05
+    chance: 0.5
   - item: {fileID: 11400000, guid: cddd7a647a5b2464d8fc2854c6fe3f0c, type: 2}
-    chance: 0.02
+    chance: 0.2
 --- !u!114 &8683398988533595875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5566,32 +5555,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4172
+      value: 2.498012
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4172
+      value: 2.498012
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4172
+      value: 2.498012
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0039581
+      value: -0.014211
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.14
+      value: -1.704
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.018454
+      value: -0.06626
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
         type: 3}
@@ -5636,8 +5625,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4666281782920530128}
   m_SourcePrefab: {fileID: 100100000, guid: 04108bd3ab4dbb046b6f9f389cb02a2a, type: 3}
+--- !u!1 &295018663790519316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 637668608353573189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4666281782920530128
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295018663790519316}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ae456d9c700da2945b4d8ba56dd4d135, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1104452034098658990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 04108bd3ab4dbb046b6f9f389cb02a2a,
