@@ -147,7 +147,12 @@ public class UnitController : MonoBehaviour
         if (time_last_shot >= 1.0f / Gun.shots_per_second) 
         {
             ProjectileManager.Shoot(shooting_reference.transform.position, AimDir.normalized, this);
-            mAudioSource.PlayOneShot(ShotSoundDictionary.Instance.Get(Gun.sound_id));
+
+            var sound = ShotSoundDictionary.Instance.Get(Gun.sound_id);
+            if (!SoundManager.CheckPlayedRecently(sound))
+            {
+                mAudioSource.PlayOneShot(sound);
+            }
 
 			OnShoot.Invoke(firetype);
 

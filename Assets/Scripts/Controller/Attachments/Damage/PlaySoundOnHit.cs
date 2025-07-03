@@ -22,7 +22,11 @@ public class PlaySoundOnHit : MonoBehaviour
     {
         mProjectileHittable.Subscribe(other =>
         {
-            mAudioSource.PlayOneShot(HitSoundDictionary.Instance.Get(audio_hit_id), volume_scale);
+            var sound = HitSoundDictionary.Instance.Get(audio_hit_id);
+            if (!SoundManager.CheckPlayedRecently(sound))
+            {
+                mAudioSource.PlayOneShot(sound, volume_scale);
+            }
         });
     }
 }
