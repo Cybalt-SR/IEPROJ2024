@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using AbilityOP;
+
 public abstract class Ownable
 {
     protected GameObject m_owner;
@@ -36,9 +38,28 @@ public abstract class Ownable
         return true;
     }
 
-    protected abstract void OnOwnerSetting(GameObject owner);
-    protected abstract void OnOwnerRemoving(GameObject owner);
-    protected virtual void OnOwnerChanging(GameObject old_owner, GameObject new_owner) { }
+    protected virtual void OnOwnerSetting(GameObject owner)
+    {
+        foreach (Transform t in m_ownable_assets)
+        {
+            t.parent = Owner.transform;
+        }
+    }
+
+    protected virtual void OnOwnerRemoving(GameObject owner)
+    {
+        foreach (Transform ownable in m_ownable_assets)
+        {
+            AssetRequester.DepositAsset(ownable.gameObject.name, ownable.gameObject);
+        }
+    }
+
+    protected virtual void OnOwnerChanging(GameObject old_owner, GameObject new_owner) 
+    { 
+
+    }
+
+    public virtual void Update(float deltaTime) { }
 
 
 }

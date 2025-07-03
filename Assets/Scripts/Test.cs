@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
+
+
+    /*
     float time = 0;
     float max_duration = 8;
     bool displayed = false;
@@ -46,5 +49,5 @@ public class Test : MonoBehaviour
             displayed = true;
         }
     }
-
+    */
 }

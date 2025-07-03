@@ -5,7 +5,6 @@ using UnityEngine;
 using AbilityOP;
 using System.Threading.Tasks;
 using Assets.Scripts.Controller;
-using static UnityEngine.UI.GridLayoutGroup;
 
 [CreateAssetMenu(fileName = "Shot_Slime_Gun", menuName = "Ability Optimized/Abilities/Slime Gun/Shot", order = 1)]
 
@@ -29,13 +28,14 @@ public class Shot_Slime_Gun_data : AbilityData
     public float impact_damage;
 
 }
-
+/*
 public class Shot_Slime_Gun : Ability
 {
 
     private Material m_default_material;
 
     //private Slime_Gun_Adhesive m_adhesive;
+    //private Slime_Gun_Line m_line;
     private Slime_Gun_Hook m_hook;
 
     private float m_height_offset;
@@ -43,40 +43,47 @@ public class Shot_Slime_Gun : Ability
     private Vector3 m_aim_direction;
     private Vector3 m_delta_pos;
 
-
     private bool m_hook_launched = false;
     private bool m_hook_planted = false;
     private bool m_is_grappling = false;
 
-    
+ 
 
     public override async Task Cast()
     {
         await base.Cast();
 
-        if (!m_hook_launched)    
-            await LaunchHook();
-        else if (m_hook_planted)
+        if (!m_hook_planted)
+        {
+            if (!m_hook_launched)
+                await LaunchHook();
+        }
+        else
+        {
             await ReelGrappler();
+        }
+     
     }
 
     public override void Update(float delta_time)
     {
         if (!Owner) return;
 
+        var ability_data = m_ability_data as Shot_Slime_Gun_data;
+
         var controller = Owner.GetComponent<UnitController>();
         m_aim_direction = controller.AimDir;
 
         if (m_is_grappling)
-        {
-            var ability_data = m_ability_data as Shot_Slime_Gun_data;
-
+        {  
             m_delta_pos = m_hook.transform.position - Owner.transform.position;
             m_grapple_duration += Time.deltaTime;
             var rb = Owner.GetComponent<Rigidbody>();
             rb.AddForce(m_delta_pos.normalized * ability_data.pull_force * Time.deltaTime, ForceMode.VelocityChange);
         }
 
+        if (!m_is_grappling && Vector3.Distance(Owner.transform.position, m_hook.transform.position) > ability_data.max_tether_distance)
+            EndGrapplerReeling();
     }
 
     #region  Owner Handling
@@ -93,15 +100,13 @@ public class Shot_Slime_Gun : Ability
     {
         m_hook_launched = true;
 
-        Vector3 norm_aim_dir = m_aim_direction.normalized * 3;
-        norm_aim_dir.y = 0.5f;
-
-        Vector3 hook_spawn_pos = Owner.transform.position + norm_aim_dir;
-        m_hook.gameObject.SetActive(true);
-
         var ability_data = m_ability_data as Shot_Slime_Gun_data;
-        var hook_rb = m_hook.GetComponent<Rigidbody>();
-        hook_rb.AddForce(m_aim_direction.normalized * ability_data.projectile_speed, ForceMode.Impulse); ;
+        m_hook.FireHook(m_aim_direction, ability_data.projectile_speed, 
+            () => {
+                m_hook_planted = true;
+                m_hook_launched = false;
+            }
+        );
 
         await Task.Yield();
     }
@@ -113,18 +118,52 @@ public class Shot_Slime_Gun : Ability
 
         m_grapple_duration = 0;
         m_delta_pos = m_hook.transform.position - Owner.transform.position;
-        m_is_grappling = true;
+       
+
+        SetGrapplingState(true);
 
         while (Vector3.SqrMagnitude(m_delta_pos) > 3f * 3f && m_grapple_duration < ability_data.max_grapple_duration)
         {   
             await Task.Delay(500);
         }
 
-        m_is_grappling = false;
+     
+        SetGrapplingState(false);
 
+        /*
+         foreach (var enemy in adhesive.CollisionList)
+         {
+             var hp = enemy.GetComponent<HealthObject>();
+             hp.enabled = true;
+             hp.TakeDamage(impact_damage, player);
+         }
+   
+        EndGrapplerReeling();
+
+    }
+
+    private void SetGrapplingState(bool value)
+    {
+        if (value == m_is_grappling) return;
+
+        m_is_grappling = value;
+        var controller = Owner.GetComponent<UnitController>();
+
+        controller.Unit_State.can_move = !value;
+        controller.Unit_State.can_attack = !value;
+
+        Owner.gameObject.layer = LayerMask.NameToLayer(value ? "Ghost" : "Default");
+    }
+
+    private void EndGrapplerReeling()
+    {
+        SetGrapplingState(false);
+        m_hook.gameObject.SetActive(false);
+        m_hook.RetractHook();
+        //disable adhesive here too
     }
 
     #endregion
 
 
-}
+}*/

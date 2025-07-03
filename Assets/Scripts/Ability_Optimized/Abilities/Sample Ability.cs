@@ -10,11 +10,13 @@ public class SampleAbility_data : AbilityData { }
 
 public class SampleAbility : Ability
 {
-    public override async Task Cast()
+    protected override IEnumerator Active()
     {
-        await base.Cast();
         Debug.Log("Sample Ability Invoked");
-        await Task.Delay(5000);
+
+        Resources.Load("The Debug Cube");
+
+        yield return new WaitForSeconds(5);
         Debug.Log("Sample Ability Executed");
 
     }

@@ -15,5 +15,5 @@ MonoBehaviour:
   secondary_name: Secondary
   tooltip: 
   secondary_icon: {fileID: 0}
-  shot_effect_type: Shot_Slime_Gun
+  shot_effect_type: SampleAbility
   secondary_ability_type: SampleAbility2

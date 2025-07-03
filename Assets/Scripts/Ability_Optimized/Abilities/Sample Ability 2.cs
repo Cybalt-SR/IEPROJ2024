@@ -15,14 +15,14 @@ public class SampleAbility2 : Ability
 
     float updatable = 0;
     bool used = false;
-    public override async Task Cast()
+    protected override IEnumerator Active()
     {
-        await base.Cast();
         var data = this.m_ability_data as SampleAbility2_data;
         Debug.Log($"Used: {updatable}");
         Debug.Log("Sample Ability 2");
         Debug.Log($"Some Value: {data.some_value}");
         used = true;
+        yield return null;
     }
 
     public override void Update(float deltaTime)

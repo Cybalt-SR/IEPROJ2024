@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using Assets.Scripts.Controller;
+using System;
 
 namespace AbilityOP
 {
@@ -14,12 +15,6 @@ namespace AbilityOP
         [SerializeField] private Secondary m_equipped;
         [SerializeField] private UnityEvent<Secondary> OnSecondaryEquip;
         [SerializeField] private UnityEvent<Secondary> OnSecondaryUnequip;
-
-        private Task m_shot_execution;
-        private Task m_ability_execution;
-
-        public bool hasEquipped { get => m_equipped != null;  }
-        public Secondary currentlyEquipped { get => m_equipped; }
 
         [Header("Debug")]
         [SerializeField] private Secondary debugSecondary;
@@ -73,24 +68,22 @@ namespace AbilityOP
 
         }
 
-        private void RunAbilityParallel(ref Task execution, GameObject caster, string ability_name )
-        {
-            if (m_equipped && (execution == null || execution.IsCompleted))
-                execution = Task.Run(async () =>
-                    await AbilityManager.Instance.InvokeAbility(caster, ability_name)
-                );
-            //else Debug.Log("No");
-        }
-
         public void FireSecondary(GameObject caster)
         {
-            RunAbilityParallel(ref m_shot_execution, caster, m_equipped.shot_effect_type);
+            if (m_equipped)
+                AbilityManager.Instance.InvokeAbility(caster, m_equipped.shot_effect_type);
         }
 
         public void InvokeSecondaryAbility(GameObject caster)
         {
-            RunAbilityParallel(ref m_ability_execution, caster, m_equipped.secondary_ability_type);
+           if (m_equipped)
+                AbilityManager.Instance.InvokeAbility(caster, m_equipped.secondary_ability_type);
         }
-       
+
+
+
+        public bool hasEquipped { get => m_equipped != null; }
+        public Secondary currentlyEquipped { get => m_equipped; }
+
     }
 }

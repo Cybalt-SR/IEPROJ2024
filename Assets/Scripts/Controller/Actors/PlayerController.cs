@@ -37,10 +37,12 @@ namespace Assets.Scripts.Controller
         //input
         private Vector2 late_aimpos;
         private Vector2 screenpos;
-        private PlayerStateHandler stateHandler;
+        //private PlayerStateHandler stateHandler;
         private GunStatModifierHandler statModder = new();
 
         public GunStatModifierHandler StatModder { get => statModder; }
+
+
 
 
         [SerializeField] private UnityEvent<GameObject> OnSecondaryFired;
@@ -54,7 +56,7 @@ namespace Assets.Scripts.Controller
         protected override void Start()
         {
             base.Start();
-            stateHandler = GetComponent<PlayerStateHandler>();
+            //stateHandler = GetComponent<PlayerStateHandler>();
         }
 
         protected override void UpdateFinalGun()
@@ -72,7 +74,7 @@ namespace Assets.Scripts.Controller
 
         void IPlayerInputReceiver.Move(InputAction.CallbackContext callback)
         {
-            if (!stateHandler.canMove)
+            if (!m_unit_state.can_move)
                 return;
 
             if (callback.phase == InputActionPhase.Performed)
@@ -99,7 +101,8 @@ namespace Assets.Scripts.Controller
 
         void IPlayerInputReceiver.Fire(InputAction.CallbackContext callback)
         {
-            base.Fire();
+            if(m_unit_state.can_attack)
+                base.Fire();
         }
 
         protected override void Update()
