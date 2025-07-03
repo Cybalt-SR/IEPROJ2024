@@ -546,11 +546,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drops:
   - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
-    chance: 0.2
+    chance: 0.1
   - item: {fileID: 11400000, guid: 53322f5c69fd85046ae59f03c8391801, type: 2}
-    chance: 0.2
+    chance: 0.1
   - item: {fileID: 11400000, guid: cddd7a647a5b2464d8fc2854c6fe3f0c, type: 2}
-    chance: 0.2
+    chance: 0.1
 --- !u!114 &8683398988533595875
 MonoBehaviour:
   m_ObjectHideFlags: 0

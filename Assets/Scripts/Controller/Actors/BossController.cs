@@ -12,6 +12,8 @@ namespace Assets.Scripts.Controller
     [RequireComponent(typeof(NavMeshAgent))]
     public class BossController : UnitController, IOnPlayerNear
     {
+        [SerializeField] DirectionalAnimator3D bossanimator;
+
         private NavMeshAgent mNavMesh;
         [SerializeField] private UnitController target;
         [SerializeField] private float maximum_distance = 6;
@@ -33,35 +35,25 @@ namespace Assets.Scripts.Controller
 		{
 			public GunData gun;
 			public int shots;
+			public float delay;
+			public float waitdelay;
 		}
 
 		[SerializeField] private List<GunSwap> guns;
         [SerializeField] private int cur_gun_index = 0;
         [SerializeField] private int shoot_index = 0;
 
+		[SerializeField] private bool will_shoot = false;
+		[SerializeField] private bool fired_thiswait = false;
+		[SerializeField] private float time_waited = 0;
+
         protected override void UpdateFinalGun()
         {
-            var aggregated_shots = 0;
-
-            var gun_counter = 0;
-            foreach (var gun in guns)
-            {
-                aggregated_shots += gun.shots;
-
-                if (aggregated_shots > shoot_index)
-                {
-                    mFinalGun = gun.gun;
-					cur_gun_index = gun_counter;
-
-					return;
-                }
-
-                gun_counter++;
-			}
-
-            shoot_index = 0;
-            UpdateFinalGun();
+            mFinalGun = guns[cur_gun_index].gun;
+            return;
         }
+
+
         protected override void Awake()
         {
             base.Awake();
@@ -138,6 +130,40 @@ namespace Assets.Scripts.Controller
         {
             base.Update();
 
+            if (will_shoot)
+                time_waited += Time.deltaTime;
+
+            if (!fired_thiswait && time_waited > guns[cur_gun_index].delay)
+            {
+                this.shots_before_reload = 1;
+
+                if (base.Fire(cur_gun_index))
+                {
+                    fired_thiswait = true;
+                }
+            }
+
+            if (time_waited > guns[cur_gun_index].waitdelay)
+            {
+				shoot_index++;
+
+				if (shoot_index > guns[cur_gun_index].shots)
+				{
+					cur_gun_index++;
+					shoot_index = 0;
+				}
+
+				if (cur_gun_index >= guns.Count)
+				{
+					cur_gun_index = 0;
+				}
+
+				GunChanged = true;
+                will_shoot = false;
+				fired_thiswait = false;
+                time_waited = 0;
+            }
+
             if (target == null)
                 return;
 
@@ -167,11 +193,12 @@ namespace Assets.Scripts.Controller
             if (info.collider.attachedRigidbody == null) return;
             if (info.collider.attachedRigidbody.gameObject != target.gameObject) return;
 
-            if (base.Fire(cur_gun_index))
+            if (will_shoot == false)
             {
-                shoot_index++;
-                GunChanged = true;
+                this.bossanimator.OnShootEvent(cur_gun_index);
             }
+
+            will_shoot = true;
         }
     }
 }

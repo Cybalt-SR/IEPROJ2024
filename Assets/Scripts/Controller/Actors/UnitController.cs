@@ -68,7 +68,7 @@ public class UnitController : MonoBehaviour
     [SerializeField] private string team_id = "";
     public string TeamId => team_id;
     [SerializeField] private bool clip_full_at_start = true;
-    [SerializeField] private int shots_before_reload = 0;
+    [SerializeField] protected int shots_before_reload = 0;
     public int Shots_before_reload { get { return shots_before_reload; } }
 
     private bool reloading = false; // formerly private
