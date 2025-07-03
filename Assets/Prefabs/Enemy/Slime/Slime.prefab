@@ -113,10 +113,10 @@ GameObject:
   - component: {fileID: -7410347523252904920}
   - component: {fileID: 3327197383408709934}
   - component: {fileID: 976831909330655686}
-  - component: {fileID: 5952065878958134233}
   - component: {fileID: 5744144297518748058}
   - component: {fileID: 5846891715231414123}
   - component: {fileID: 8683398988533595875}
+  - component: {fileID: 9013320245146569389}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Enemy
@@ -529,19 +529,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio_hit_id: 
   volume_scale: 1
---- !u!114 &5952065878958134233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641835130275497612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9bff332fd5c6b94888847906fd05ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0.05
 --- !u!114 &5744144297518748058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +597,19 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   current_direction: {x: 0, y: 0, z: 0}
   force: 0
+--- !u!114 &9013320245146569389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6b56ae552f92c42844729124c4c474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.2
 --- !u!1 &7673579176970084753
 GameObject:
   m_ObjectHideFlags: 0
