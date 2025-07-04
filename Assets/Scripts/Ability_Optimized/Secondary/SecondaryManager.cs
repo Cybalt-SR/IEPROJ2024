@@ -49,6 +49,11 @@ namespace AbilityOP
                 GameObject.Instantiate(Resources.Load("The Debug Cube") as GameObject).transform.position = Vector3.zero;
                 return;
             }
+
+            if (secondary.gauge != null)
+            {
+               GaugeManager.DisplayGauge(secondary.gauge);
+            }
  
             m_equipped = secondary;
             OnSecondaryEquip?.Invoke(secondary);
@@ -62,7 +67,7 @@ namespace AbilityOP
                 Debug.LogWarning("[WARNING] No Secondary to Unequip");
                 return;
             }
-
+            GaugeManager.RemoveCurrentGauge();
             GameObject player = PlayerController.GetFirst().gameObject;
             OnSecondaryUnequip?.Invoke(m_equipped);
             m_equipped = null;
