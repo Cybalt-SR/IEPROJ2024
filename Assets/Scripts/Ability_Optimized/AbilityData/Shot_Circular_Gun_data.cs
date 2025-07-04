@@ -10,7 +10,10 @@ public class Shot_Circular_Gun_data : AbilityData
     [Header("Gun Stats")]
     public float projectile_damage;
     public float projectile_speed;
-    public float toy_spawn_rate;
+    public float toy_spawn_interval;
+    public int minimum_discs_shot;
+
+    [Header("Limits")]
     public float maximum_toy_spawn_distance;
     public int maximum_extra_projectiles;
     public int maximum_projectile_bounce;
