@@ -38,7 +38,7 @@ public class Ability_CircularGun : Ability
         {
             Debug.Log("Nothing to Awaken");
             yield break;
-        }
+        } 
             
         var indices = Enumerable.Range(0, count).ToList();
 

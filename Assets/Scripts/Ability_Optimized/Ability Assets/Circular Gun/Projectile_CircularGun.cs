@@ -13,13 +13,17 @@ public class Projectile_CircularGun : MonoBehaviour
     //Counters
     private int curr_bounces;
     private Vector3 last_velocity;
+    private List<Collider> ignore_list = new();
 
     //References
     private Rigidbody rb;
+    private Collider coll;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
+        Debug.Log(coll);
     }
 
     private void OnEnable()
@@ -50,17 +54,32 @@ public class Projectile_CircularGun : MonoBehaviour
             if (health != null)
                 health.TakeDamage(bullet_damage, controller);
 
+            Physics.IgnoreCollision(collision.collider, coll);
+            if (collision.rigidbody != null)
+                collision.rigidbody.velocity = Vector3.zero;
+            rb.velocity = last_velocity;
+            ignore_list.Add(collision.collider);
+
+        }
+        else
+        {
+            float curr_speed = last_velocity.magnitude;
+
+            Vector3 dir = Vector3.Reflect(last_velocity.normalized, collision.contacts[0].normal);
+            rb.velocity = dir * Mathf.Max(curr_speed, 0);
+
+            if (collision.rigidbody != null)
+                collision.rigidbody.velocity = Vector3.zero;
+
+            curr_bounces++;
+
+            foreach(var c in ignore_list)
+                Physics.IgnoreCollision(c, coll,false);    
+
+            ignore_list.Clear();
         }
 
-        float curr_speed = last_velocity.magnitude;
-
-        Vector3 dir = Vector3.Reflect(last_velocity.normalized, collision.contacts[0].normal);
-        rb.velocity = dir * Mathf.Max(curr_speed, 0);
-
-        if(collision.rigidbody != null)
-            collision.rigidbody.velocity = Vector3.zero;
-
-        curr_bounces++;
+     
     }
 
 

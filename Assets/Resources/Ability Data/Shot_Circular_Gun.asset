@@ -15,11 +15,20 @@ MonoBehaviour:
   AbilityName: 
   AbilityDescription: 
   AbilityIcon: {fileID: 0}
-  Cooldown: 0
+  Cooldown: 0.4
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
+  projectile_damage: 1
+  projectile_speed: 40
   toy_spawn_rate: 0
+  maximum_toy_spawn_distance: 10
+  maximum_extra_projectiles: 6
+  maximum_projectile_bounce: 5
   toy_spawn_height_offset: 1
   minimum_toy_collect_proximity: 1.5
+  spread_angle: 45
+  firing_reference_offset: 1.5
   toy_pickup: {fileID: 1675527137016454536, guid: 4497a7ba5a950124da27e489b5b97ed5,
+    type: 3}
+  projectile: {fileID: 7126130317050859142, guid: e68a0a9fac8d7ee4581cc4994df3f5e6,
     type: 3}

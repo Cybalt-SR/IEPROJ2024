@@ -5,6 +5,7 @@ using UnityEngine;
 using AbilityOP;
 using gab_roadcasting;
 using System.Runtime.CompilerServices;
+using System;
 
 [CreateAssetMenu(fileName = "Circular Gun Shot", menuName = "Ability Optimized/Abilities/Circular Gun/Shot", order = 1)]
 public class Shot_Circular_Gun_data : AbilityData {
@@ -39,9 +40,8 @@ public class Shot_Circular_Gun : Ability
     {
         var ability_data = m_ability_data as Shot_Circular_Gun_data;
 
-
         //Create Toy Pickups on Nearby Death
-        EventBroadcasting.AddListener(EventNames.ENEMY_EVENTS.ON_ENEMY_KILLED, 
+        Action<Dictionary<string, object>> OnEnemyDeath =
             p => {
                 Vector3 pos = (p["Enemy"] as GameObject).transform.position;
 
@@ -53,16 +53,14 @@ public class Shot_Circular_Gun : Ability
                     toy_pickup.transform.position = pos;
                     toy_pickup.GetComponent<ToyPickup>().minimum_proximity_threshold = ability_data.minimum_toy_collect_proximity;
                 }
-            }
-        );
+            };
 
-        
+
+        m_passive_handler.TryAdd(EventNames.ENEMY_EVENTS.ON_ENEMY_KILLED, OnEnemyDeath);
     }
 
     protected override IEnumerator Active()
     {
-        Debug.Log(m_toy_holder.childCount);
-
         var controller = Owner.GetComponent<UnitController>();
         var ability_data = m_ability_data as Shot_Circular_Gun_data;
 
@@ -89,7 +87,6 @@ public class Shot_Circular_Gun : Ability
             proj.Shoot(final_dir, ability_data.projectile_speed);
         }
        
-
         foreach (Transform t in m_toy_holder)
         {
             GameObject.Destroy( t.gameObject);

@@ -11,10 +11,10 @@ public class ToyPickup : MonoBehaviour, IOnPlayerNear
 
     public void OnPlayerNear(UnitController player)
     {
-     
-        if (SecondaryManager.Instance.currentlyEquipped.secondary_name != "Circular Gun")
+        var currently_equipped = SecondaryManager.Instance.currentlyEquipped;
+
+        if (!currently_equipped || currently_equipped.secondary_name != "Circular Gun") 
             return;
-        
 
         float dist = Vector3.Distance(player.transform.position, transform.position);
 

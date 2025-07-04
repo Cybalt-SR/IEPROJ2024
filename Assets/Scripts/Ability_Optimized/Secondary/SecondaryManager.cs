@@ -21,11 +21,11 @@ namespace AbilityOP
 
         private void Start()
         {
-            GameObject player = PlayerController.GetFirst().gameObject;
-            EquipSecondary(debugSecondary, player);
+         
+            EquipSecondary(debugSecondary);
         }
 
-        public void EquipSecondary(Secondary secondary, GameObject owner)
+        public void EquipSecondary(Secondary secondary)
         {
 
             if (secondary == null)
@@ -33,16 +33,19 @@ namespace AbilityOP
                 Debug.LogWarning("[WARNING] No Secondary to Equip");
                 return;
             }
-           
-            bool equipSuccess;
 
-            equipSuccess = AbilityManager.Instance.RequestAbility(owner, secondary.shot_effect_type);
-            equipSuccess = AbilityManager.Instance.RequestAbility(owner, secondary.secondary_ability_type);
+            if (m_equipped != null)
+                UnequipSecondary();
+            
+            GameObject player = PlayerController.GetFirst().gameObject;
+
+            bool equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.shot_effect_type);
+            equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.secondary_ability_type);
 
             if (!equipSuccess)
             {
                 Debug.LogError("[ERROR] Equip Unsuccessful.");
-                AbilityManager.Instance.ReleaseAbilities(owner);
+                AbilityManager.Instance.ReleaseAbilities(player);
                 return;
             }
  
@@ -80,6 +83,22 @@ namespace AbilityOP
 
         public bool hasEquipped { get => m_equipped != null; }
         public Secondary currentlyEquipped { get => m_equipped; }
+
+
+
+        //debug
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                UnequipSecondary();
+            }
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                EquipSecondary(debugSecondary);
+            }
+        }
 
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3815876970144166887}
   - component: {fileID: 4158663796107317270}
   - component: {fileID: 8222438439028927453}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Toy Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
