@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: ecad3f76aab8e2549a61faee2d8e4ab3, type: 3}
   m_Name: Shot_Circular_Gun
-  m_EditorClassIdentifier: Assembly-CSharp::Shot_Circular_Gun_data
+  m_EditorClassIdentifier: 
   AbilityName: 
   AbilityDescription: 
   AbilityIcon: {fileID: 0}
-  Cooldown: 0.4
+  Cooldown: 0
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
   projectile_damage: 1

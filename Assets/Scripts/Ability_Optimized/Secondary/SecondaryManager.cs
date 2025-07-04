@@ -21,7 +21,7 @@ namespace AbilityOP
 
         private void Start()
         {
-         
+            Debug.developerConsoleVisible = true;
             EquipSecondary(debugSecondary);
         }
 
@@ -46,6 +46,7 @@ namespace AbilityOP
             {
                 Debug.LogError("[ERROR] Equip Unsuccessful.");
                 AbilityManager.Instance.ReleaseAbilities(player);
+                GameObject.Instantiate(Resources.Load("The Debug Cube") as GameObject).transform.position = Vector3.zero;
                 return;
             }
  

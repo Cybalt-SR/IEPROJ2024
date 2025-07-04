@@ -15,5 +15,6 @@ MonoBehaviour:
   secondary_name: Circular Gun
   tooltip: 
   secondary_icon: {fileID: 0}
+  gauge: {fileID: 0}
   shot_effect_type: Shot_Circular_Gun
-  secondary_ability_type: Ability_CircularGun
+  secondary_ability_type: Ability_Circular_Gun
