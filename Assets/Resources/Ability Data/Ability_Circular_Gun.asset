@@ -15,12 +15,20 @@ MonoBehaviour:
   AbilityName: 
   AbilityDescription: 
   AbilityIcon: {fileID: 0}
-  Cooldown: 0
+  Cooldown: 5
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
-  max_spawnable_toys: 5
-  ballerina: {fileID: 1641835130275497612, guid: e906cd62404c332449f47d237ca5dbce,
+  max_spawnable_toys: 4
+  ballerina: {fileID: 5837987112901245293, guid: 5158e481ce59ab94984ece51795803d3,
     type: 3}
-  soldier: {fileID: 1641835130275497612, guid: f2c7e7bee105ada4ea2dc3a8bec6c1fc, type: 3}
-  jack_in_a_box: {fileID: 1641835130275497612, guid: 145fbf7e488b17846abd61032ab972ba,
+  ballerina_lifetime: 8
+  soldier: {fileID: 1187664677191777532, guid: 7fe5ddce63e23d74190fc2b6172e7536, type: 3}
+  soldier_lifetime: 8
+  soldier_shot_damage: 0.3
+  soldier_shots_per_second: 3
+  jack_in_a_box: {fileID: 7745907193725905310, guid: 0106d8dfc1a98e745a1fbe7714755fa4,
     type: 3}
+  jack_detonation_delay: 0.4
+  jack_detonation_trigger_distance: 3
+  jack_knockback_force: 250
+  jack_explosion_damage: 5

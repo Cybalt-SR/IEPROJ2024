@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05b2aa2e64127c0489d7775a15d157aa, type: 3}
-  m_Name: SampleAbility
+  m_Script: {fileID: 11500000, guid: 4cbe675855edb724e8180aa6b6501cf5, type: 3}
+  m_Name: Slime Shot
   m_EditorClassIdentifier: 
-  AbilityName: 
-  AbilityDescription: 
-  AbilityIcon: {fileID: 0}
-  Cooldown: 5
-  StartCooldownOnCast: 0
-  UpdateTiedToState: 0
+  secondary_name: 
+  tooltip: 
+  secondary_icon: {fileID: 0}
+  gauge: {fileID: 0}
+  shot_effect_type: Shot_Slime_Gun
+  secondary_ability_type: Shot_Circular_Gun

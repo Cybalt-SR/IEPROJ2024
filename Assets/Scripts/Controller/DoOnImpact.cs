@@ -14,12 +14,10 @@ public class DoOnImpact : MonoBehaviour
        
         if(exclude_floor && Vector3.Dot(collision.contacts[0].normal, Vector3.down) >  0.8f || tag_filter.Contains(collision.gameObject.tag))
         {
-           Physics.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider>());
-            print($"ignored {collision.gameObject.name}, { Vector3.Dot(collision.contacts[0].normal, Vector3.up)}");
+            Physics.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider>());
         }
         else
         {
-            print(collision.gameObject.name);
             impact_event?.Invoke();
         }
     }

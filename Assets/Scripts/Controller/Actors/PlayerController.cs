@@ -42,9 +42,6 @@ namespace Assets.Scripts.Controller
 
         public GunStatModifierHandler StatModder { get => statModder; }
 
-
-
-
         [SerializeField] private UnityEvent<GameObject> OnSecondaryFired;
         [SerializeField] private UnityEvent<GameObject> OnSecondaryAbilityInvoked;
 

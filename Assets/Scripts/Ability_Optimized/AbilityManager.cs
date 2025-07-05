@@ -159,14 +159,12 @@ namespace AbilityOP
 
             if (!m_is_active || m_current_cooldown > 0)
             {
-                Debug.Log("On Cooldown");
                 yield break;
             }
              
 
             if (m_ability.AbilityCoroutine != null && m_ability.AbilityCoroutine.IsRunning)
             {       
-                Debug.Log("Ability Is Running");
                 yield break;          
             }
 

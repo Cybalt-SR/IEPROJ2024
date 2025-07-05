@@ -15,12 +15,13 @@ MonoBehaviour:
   AbilityName: 
   AbilityDescription: 
   AbilityIcon: {fileID: 0}
-  Cooldown: 0
+  Cooldown: 0.4
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
   projectile_damage: 1
   projectile_speed: 40
-  toy_spawn_rate: 0
+  toy_spawn_interval: 8
+  minimum_discs_shot: 1
   maximum_toy_spawn_distance: 10
   maximum_extra_projectiles: 6
   maximum_projectile_bounce: 5

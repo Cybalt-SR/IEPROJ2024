@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f38a933860395498b477334ab66647, type: 3}
-  m_Name: SampleAbility2
+  m_Script: {fileID: 11500000, guid: 97c36950aecdfb741828da8f540dd56a, type: 3}
+  m_Name: Shot_Slime_Gun
   m_EditorClassIdentifier: 
   AbilityName: 
   AbilityDescription: 
@@ -18,4 +18,13 @@ MonoBehaviour:
   Cooldown: 0
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
-  some_value: 3
+  slime_material: {fileID: 0}
+  damage_multiplier: 0
+  grappling_multiplier: 0
+  impact_damage: 0
+  projectile_speed: 20
+  max_tether_distance: 10
+  pull_force: 250
+  anti_softlock_timer: 8
+  hook: {fileID: 1007084753878736107, guid: 43fbe727b0338fe47bf647ba6a069446, type: 3}
+  adhesive: {fileID: 0}

@@ -25,7 +25,6 @@ public class Projectile_CircularGun : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
-        Debug.Log(coll);
     }
 
     private void OnEnable()
@@ -36,7 +35,6 @@ public class Projectile_CircularGun : MonoBehaviour
     private void LateUpdate()
     {
         last_velocity = rb.velocity.normalized * fixed_speed;
-   
     }
 
     public void Shoot(Vector3 dir, float speed)
