@@ -19,6 +19,7 @@ namespace Assets.Scripts.Controller.Attachments
         [SerializeField] private float delay = 0.2f;
 
         private bool lerping = false;
+        private bool lerping2 = false;
         float vel;
 
         private void Awake()
@@ -54,8 +55,28 @@ namespace Assets.Scripts.Controller.Attachments
                 if(transform.localScale.y <= 0.305f)
                 {
                     lerping = false;
+                    StartCoroutine(Disappear());
                 }
             }
+
+            if (lerping2)
+            {
+                float t = 2.00f;
+                float newX = Mathf.SmoothDamp(transform.localScale.x, 0.0f, ref vel, t);
+                float newZ = Mathf.SmoothDamp(transform.localScale.z, 0.0f, ref vel, t);
+                float newY = Mathf.SmoothDamp(transform.localScale.y, 0.0f, ref vel, t);
+                this.transform.localScale = new Vector3(newX, newY, newZ);
+                if (transform.localScale.x <= 0f || transform.localScale.y <= 0f || transform.localScale.z <= 0f)
+                {
+                    this.gameObject.SetActive(false);
+                }
+            }
+        }
+
+        private IEnumerator Disappear()
+        {
+            yield return new WaitForSeconds(10);
+            lerping2 = true;
         }
 
     }
