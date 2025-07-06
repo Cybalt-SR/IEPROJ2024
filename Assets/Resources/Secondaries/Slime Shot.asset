@@ -17,4 +17,4 @@ MonoBehaviour:
   secondary_icon: {fileID: 0}
   gauge: {fileID: 0}
   shot_effect_type: Shot_Slime_Gun
-  secondary_ability_type: Shot_Circular_Gun
+  secondary_ability_type: Ability_Slime_Gun

@@ -6,16 +6,16 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class DetectionSphere : MonoBehaviour
 {
-    private List<GameObject> inside = new();
+    protected List<GameObject> inside = new();
     public List<string> whitelist = new();
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (whitelist.Contains(other.tag))
             inside.Add(other.gameObject);
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if(inside.Contains(other.gameObject))
             inside.Remove(other.gameObject);

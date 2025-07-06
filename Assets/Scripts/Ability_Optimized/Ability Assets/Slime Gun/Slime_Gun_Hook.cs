@@ -4,14 +4,11 @@ using UnityEngine;
 using AbilityOP;
 using System;
 
-
-//check not on floor collisions
-//lollipopping
-
 public class Slime_Gun_Hook: MonoBehaviour
 {
-
- 
+    public Action on_hook_planted;
+    public Action on_hook_retracted;
+    
     //external
     public Transform firing_reference;
     public Vector3? hook_plant_pos;
@@ -24,11 +21,12 @@ public class Slime_Gun_Hook: MonoBehaviour
     private SphereCollider m_coll;
     private LineRenderer m_lineRenderer;
 
-
+    //Set on fire vars
     private Vector3 m_dir;
     private float m_speed;
     private float m_max_projectile_distance;
 
+    //Others
     private float m_coll_rad;
     private bool m_lollipop = false;
     private bool is_retracting = false;
@@ -74,6 +72,7 @@ public class Slime_Gun_Hook: MonoBehaviour
             }
             gameObject.SetActive(false);
             is_retracting = false;
+            on_hook_retracted?.Invoke();
         }
 
         hook_plant_pos = null;
@@ -127,6 +126,7 @@ public class Slime_Gun_Hook: MonoBehaviour
         {
             m_rb.isKinematic = true;
             hook_plant_pos = transform.position;
+            on_hook_planted?.Invoke();
         }
     }
 

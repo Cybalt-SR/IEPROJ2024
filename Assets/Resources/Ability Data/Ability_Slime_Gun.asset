@@ -18,7 +18,14 @@ MonoBehaviour:
   Cooldown: 0
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
-  impact_damage: 0
-  damage_multiplier: 0
-  grappling_multiplier: 0
-  adhesive: {fileID: 0}
+  impact_damage: 1
+  impact_force: 20
+  unhooked_reduction_multiplier: 0
+  hooked_reduction_multiplier: 0
+  pull_force: 15
+  sliming_distance: 2.5
+  unload_offset: 1.5
+  adhesive: {fileID: 2962615297711133330, guid: facbfc6e06cda6a4dad787f7d38ca828,
+    type: 3}
+  pull_sphere: {fileID: 2644142086725772992, guid: 02e4cd149ac361c4c8cf927e082a464f,
+    type: 3}

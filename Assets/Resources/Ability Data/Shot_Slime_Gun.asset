@@ -18,13 +18,10 @@ MonoBehaviour:
   Cooldown: 0
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
-  slime_material: {fileID: 0}
-  damage_multiplier: 0
-  grappling_multiplier: 0
-  impact_damage: 0
-  projectile_speed: 20
-  max_tether_distance: 10
+  projectile_speed: 40
+  max_tether_distance: 20
+  lollipopping_multiplier: 7
+  retract_speed: 80
   pull_force: 250
   anti_softlock_timer: 8
   hook: {fileID: 1007084753878736107, guid: 43fbe727b0338fe47bf647ba6a069446, type: 3}
-  adhesive: {fileID: 0}
