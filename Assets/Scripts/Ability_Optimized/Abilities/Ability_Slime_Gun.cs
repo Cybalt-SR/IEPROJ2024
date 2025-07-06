@@ -25,7 +25,7 @@ public class Ability_Slime_Gun: Ability
             damage.value *= 1 - (damageReductionRatio / 100);
         }
 
-        m_passive_handler.Add(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, DamageReduction);
+        m_passive_handler.TryAdd(EventNames.PLAYER_EVENTS.ON_OVERLOAD_CHANGED, DamageReduction);
     }
 
 
@@ -82,6 +82,9 @@ public class Ability_Slime_Gun: Ability
 
 
         m_adhesive.on_detonation = enemies_trapped => {
+
+            if (!Owner) return;
+
             var unload_dir = -Owner.transform.forward;
             unload_dir.y = 0;
             var unload_pos = Owner.transform.position + unload_dir * ability_data.unload_offset;

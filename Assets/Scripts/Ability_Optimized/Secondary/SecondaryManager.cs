@@ -18,10 +18,11 @@ namespace AbilityOP
 
         [Header("Debug")]
         [SerializeField] private Secondary debugSecondary;
+        [SerializeField] private List<Secondary> debugs;
+        int index = 0;
 
         private void Start()
         {
-            Debug.developerConsoleVisible = true;
             EquipSecondary(debugSecondary);
         }
 
@@ -92,11 +93,20 @@ namespace AbilityOP
         public Secondary currentlyEquipped { get => m_equipped; }
 
 
+        
 
         //debug
 
         private void Update()
         {
+
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                index = Mathf.Clamp(index + (int)Mathf.Sign(Input.mouseScrollDelta.y), 0, debugs.Count - 1);
+                if (currentlyEquipped != debugs[index]) 
+                    EquipSecondary(debugs[index]);
+            }
+
             if (Input.GetKeyUp(KeyCode.Escape))
             {
                 UnequipSecondary();

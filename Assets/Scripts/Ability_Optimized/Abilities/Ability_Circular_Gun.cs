@@ -10,6 +10,7 @@ public class Ability_Circular_Gun : Ability
 
     private Transform m_toy_holder;
     private Dictionary<string, List<GameObject>> spawnables;
+    private List<string> names = new() { "Ballerina", "Soldier", "Jack In A Box" };
 
     protected override IEnumerator Active()
     {
@@ -76,32 +77,35 @@ public class Ability_Circular_Gun : Ability
         }
 
         m_toy_holder = Owner.transform.Find("Toy Holder");
-     
-
-    }
-
-    protected override void OnOwnerRemoving(GameObject owner)
-    {
-        base.OnOwnerRemoving(owner);
-
-        foreach(var type in spawnables)
-        {
-            foreach(var sentry in type.Value)     
-               GameObject.Destroy(sentry.gameObject);
-        }
-    }
-
-    private GameObject RequestToy(int index)
-    {
-        List<string> names = new() { "Ballerina", "Soldier", "Jack In A Box" };
-        var ability_data = m_ability_data as Ability_Circular_Gun_data;
 
         if (spawnables == null)
         {
             spawnables = new();
-            foreach(var n in names)
-                spawnables.Add(n, new());   
+            foreach (var n in names)
+                spawnables.Add(n, new());
         }
+
+    }
+
+    /*
+    protected override void OnOwnerRemoving(GameObject owner)
+    {
+        base.OnOwnerRemoving(owner);
+
+        if(spawnables != null)
+            foreach(var type in spawnables)
+            {
+                foreach(var sentry in type.Value)     
+                   GameObject.Destroy(sentry.gameObject);
+            }
+    }
+    */
+
+
+    private GameObject RequestToy(int index)
+    {
+       
+        var ability_data = m_ability_data as Ability_Circular_Gun_data;
 
         index = Mathf.Clamp(index, 0, names.Count - 1);
         List<GameObject> pool = spawnables[names[index]];
