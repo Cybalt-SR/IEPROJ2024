@@ -23,3 +23,5 @@ MonoBehaviour:
       Value: {fileID: 8300000, guid: e9c26b9c228155d4d9f6d23de780272c, type: 3}
     - Key: door_close
       Value: {fileID: 8300000, guid: 2590a4e076eec8c4aa16c092e00edbcb, type: 3}
+    - Key: enemy_die
+      Value: {fileID: 8300000, guid: 0245644e16fbd2245bcb6822e6796d1f, type: 3}

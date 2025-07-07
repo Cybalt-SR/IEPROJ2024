@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 7530250779296658426}
   - component: {fileID: 1578904497471098364}
   - component: {fileID: 3797097445789177161}
+  - component: {fileID: 2137037989823019223}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
@@ -169,6 +170,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  bossanimator: {fileID: 0}
   target: {fileID: 0}
   maximum_distance: 6
   minimum_distance: 3
@@ -194,6 +196,8 @@ MonoBehaviour:
       start_reload_sound_id: 
       end_reload_sound_id: 
     shots: 1
+    delay: 0
+    waitdelay: 0
   - gun:
       damage: 3
       shots_per_second: 1
@@ -212,8 +216,13 @@ MonoBehaviour:
       start_reload_sound_id: 
       end_reload_sound_id: 
     shots: 1
+    delay: 0
+    waitdelay: 0
   cur_gun_index: 0
   shoot_index: 0
+  will_shoot: 0
+  fired_thiswait: 0
+  time_waited: 0
 --- !u!114 &2268836578478398154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,6 +634,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   cooldown: 1
+--- !u!114 &2137037989823019223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506382019535757199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4788563cf2928e4e8332b6cbed82b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio_id: enemy_die
+  volume_scale: 1
 --- !u!1 &6776250637940057866
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,3 +19,12 @@ MonoBehaviour:
     - Key: green
       Value: {fileID: 4822724788402965468, guid: e8c831afd9000a34f962c05a1bc632f9,
         type: 3}
+    - Key: fireworks
+      Value: {fileID: 4822724788402965468, guid: 70d5d6c4ae49ab145a97a75127fe5383,
+        type: 3}
+    - Key: ghost
+      Value: {fileID: 4822724788402965468, guid: e4adbf28f2f858d4d99a7fe339c5a5bc,
+        type: 3}
+    - Key: ghost_big
+      Value: {fileID: 4822724788402965468, guid: 92f4735269d38e247a3e8027abfc461a,
+        type: 3}
