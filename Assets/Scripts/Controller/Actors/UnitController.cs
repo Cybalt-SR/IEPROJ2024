@@ -22,6 +22,11 @@ public class UnitController : MonoBehaviour
     public bool GunChanged { get { return gunchanged; } set => gunchanged = value; }
     protected virtual void UpdateFinalGun() { mFinalGun = mBaseGun; }
     protected GunData mFinalGun;
+
+
+    protected UnitState m_unit_state = new();
+    public UnitState Unit_State { get => m_unit_state; }
+
     public GunData Gun
     {
         get
@@ -53,6 +58,9 @@ public class UnitController : MonoBehaviour
 
     //Looking
     [SerializeField] protected Transform shooting_reference;
+    public Transform ShootRef { get => shooting_reference;}
+
+
     [SerializeField] private Vector3 aimdir;
     public Vector3 AimDir
     {

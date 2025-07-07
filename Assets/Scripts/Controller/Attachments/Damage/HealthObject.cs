@@ -24,6 +24,9 @@ public class HealthObject : MonoBehaviour
 
     public void TakeDamage(float damage, UnitController source)
     {
+        if (health <= 0)
+            return;
+
         health -= damage;
 
         onHitEvent.Invoke(damage, source);

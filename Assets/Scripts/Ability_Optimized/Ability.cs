@@ -16,8 +16,39 @@ namespace AbilityOP
     public abstract class Ability: Ownable
     {
         protected Dictionary<string, Action<Dictionary<string, object>>> m_passive_handler = new();
-       
         protected object m_ability_data;
+        protected CoroutineWrapper m_ability_coroutine;
+
+        public virtual void Register()
+        {
+            Passive();
+            foreach (var passive in m_passive_handler)
+                EventBroadcasting.AddListener(passive.Key, passive.Value);
+        }
+        public virtual void Unregister()
+        {
+            RemoveOwner();
+            foreach (var passive in m_passive_handler)
+                EventBroadcasting.RemoveListener(passive.Key, passive.Value);
+        }
+
+
+        /// <summary>
+        /// Load passive events in the m_passive_handler attribute here
+        /// </summary>
+        public virtual void Passive() { }
+
+        protected virtual IEnumerator Active()
+        {
+            yield break;
+        }
+
+        public virtual IEnumerator Cast()
+        {
+            m_ability_coroutine = new CoroutineWrapper(Active());
+            yield return AbilityCoroutine.Run();
+        }
+
 
         public object AbilityData
         {
@@ -40,52 +71,9 @@ namespace AbilityOP
             }
         }
 
-
-        public Ability()
-        {
-            Passive();
+        public CoroutineWrapper AbilityCoroutine { 
+            get => m_ability_coroutine;
         }
-
-        public virtual void Register()
-        {
-            foreach (var passive in m_passive_handler)
-                EventBroadcasting.AddListener(passive.Key, passive.Value);
-        }
-        public virtual void Unregister()
-        {
-            RemoveOwner();
-            foreach (var passive in m_passive_handler)
-                EventBroadcasting.RemoveListener(passive.Key, passive.Value);
-        }
-
-       
-        /// <summary>
-        /// Load passive events in the m_passive_handler attribute here
-        /// </summary>
-        public virtual void Passive() { }
-        public virtual void Update(float deltaTime) { }
-        public virtual async Task Cast()
-        {
-            await Task.Yield();
-            if (Owner == null) return;
-        }
-
-
-        protected override void OnOwnerSetting(GameObject owner)
-        {
-            foreach (Transform t in m_ownable_assets)
-            {
-                t.parent = Owner.transform;
-            }
-        }
-        protected override void OnOwnerRemoving(GameObject owner)
-        {
-            foreach (Transform ownable in m_ownable_assets)
-            {
-                AssetRequester.DepositAsset(ownable.gameObject.name, ownable.gameObject);
-            }
-        }
-
 
     }
 

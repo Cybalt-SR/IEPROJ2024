@@ -9,20 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 97c36950aecdfb741828da8f540dd56a, type: 3}
   m_Name: Shot_Slime_Gun
-  m_EditorClassIdentifier: Assembly-CSharp::Shot_Slime_Gun_data
+  m_EditorClassIdentifier: 
   AbilityName: 
   AbilityDescription: 
   AbilityIcon: {fileID: 0}
   Cooldown: 0
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
-  slime_material: {fileID: 0}
-  damage_multiplier: 0
-  projectile_speed: 0
-  max_tether_distance: 0
-  pull_force: 0
-  grappling_multiplier: 0
-  max_grapple_duration: 0
-  impact_damage: 0
+  projectile_speed: 40
+  max_tether_distance: 20
+  lollipopping_multiplier: 7
+  retract_speed: 80
+  pull_force: 250
+  anti_softlock_timer: 8
+  hook: {fileID: 1007084753878736107, guid: 43fbe727b0338fe47bf647ba6a069446, type: 3}

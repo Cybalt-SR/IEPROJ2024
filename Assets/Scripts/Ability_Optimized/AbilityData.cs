@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AbilityOP
 {
-    public abstract class AbilityData : ScriptableObject
+    public class AbilityData : ScriptableObject
     {
         [Header("Details")]
         public string AbilityName;

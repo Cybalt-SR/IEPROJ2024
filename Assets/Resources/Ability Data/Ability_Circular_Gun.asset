@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e76e222f0904248840166bca41f699, type: 3}
+  m_Name: Ability_Circular_Gun
+  m_EditorClassIdentifier: 
+  AbilityName: 
+  AbilityDescription: 
+  AbilityIcon: {fileID: 0}
+  Cooldown: 5
+  StartCooldownOnCast: 0
+  UpdateTiedToState: 0
+  max_spawnable_toys: 4
+  ballerina: {fileID: 5837987112901245293, guid: 5158e481ce59ab94984ece51795803d3,
+    type: 3}
+  ballerina_lifetime: 8
+  soldier: {fileID: 1187664677191777532, guid: 7fe5ddce63e23d74190fc2b6172e7536, type: 3}
+  soldier_lifetime: 8
+  soldier_shot_damage: 0.3
+  soldier_shots_per_second: 3
+  jack_in_a_box: {fileID: 7745907193725905310, guid: 0106d8dfc1a98e745a1fbe7714755fa4,
+    type: 3}
+  jack_detonation_delay: 0.4
+  jack_detonation_trigger_distance: 3
+  jack_knockback_force: 250
+  jack_explosion_damage: 5

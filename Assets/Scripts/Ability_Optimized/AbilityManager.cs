@@ -9,11 +9,6 @@ using UnityEngine;
 namespace AbilityOP
 {
 
-    /*
-        [TO-DO]
-        - Do Bugfixing
-        - Recreate Weapons
-    */
 
     public class AbilityManager : Manager_Base<AbilityManager>
     {
@@ -22,32 +17,25 @@ namespace AbilityOP
         private Dictionary<GameObject, List<AbilityHandler>> m_abilities = new();
         private List<AbilityHandler> m_updatables = new();
 
-        public async Task<bool> InvokeAbility(GameObject owner, string ability_name)
+        public void InvokeAbility(GameObject owner, string ability_name)
         {
             if (!m_abilities.ContainsKey(owner))
             {
                 Debug.LogError($"{owner.name} has no abilities assigned.");
-                return false;
+                return;
             }
-                
+            
             foreach (AbilityHandler handler in m_abilities[owner])
             {
                 if (handler.m_ability.GetType().Name == ability_name)
                 {
-                    try
-                    {
-                        return await handler.Activate();
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.LogException(ex);
-                        return false;
-                    }
+                    StartCoroutine(handler.Activate());
+                    return;
                 }
             }
-
+       
             Debug.LogError($"{owner.name} has no such abilities named {ability_name}.");
-            return false;
+            return;
         }
 
         private void Update()
@@ -143,9 +131,7 @@ namespace AbilityOP
         internal Ability m_ability;
 
         //States
-        internal bool m_is_running { get => m_execution != null && !m_execution.IsCompleted; }
         internal bool m_is_active;
-        internal Task m_execution;
 
         //Data
         internal float m_current_cooldown = 0;
@@ -155,7 +141,6 @@ namespace AbilityOP
             m_ability = ability;
             m_ability.SetOwner(owner);
             m_is_active = setActiveByDefault;
-            m_execution = null;
         }
 
         internal void Update(float deltaTime)
@@ -169,24 +154,34 @@ namespace AbilityOP
             m_ability.Update(deltaTime);
         }
 
-        internal async Task<bool> Activate()
+        internal IEnumerator Activate()
         {
-            if (!m_is_active || m_is_running || m_current_cooldown > 0 )
-                return false;
+
+            if (!m_is_active || m_current_cooldown > 0)
+            {
+                yield break;
+            }
+             
+
+            if (m_ability.AbilityCoroutine != null && m_ability.AbilityCoroutine.IsRunning)
+            {       
+                yield break;          
+            }
+
 
             var data = m_ability.AbilityData as AbilityData;
 
             if(data.StartCooldownOnCast)
                 m_current_cooldown = data.Cooldown;
 
-            m_execution = m_ability.Cast();
-            await m_execution;
+            yield return m_ability.Cast();
+            
 
             if (!data.StartCooldownOnCast)
                 m_current_cooldown = data.Cooldown;
-
-            return true;
         }
+
+        internal CoroutineWrapper Execution { get => m_ability.AbilityCoroutine; }
 
     }
 

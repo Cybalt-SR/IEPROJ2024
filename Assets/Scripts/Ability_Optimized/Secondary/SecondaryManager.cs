@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using Assets.Scripts.Controller;
+using System;
 
 namespace AbilityOP
 {
@@ -15,21 +16,16 @@ namespace AbilityOP
         [SerializeField] private UnityEvent<Secondary> OnSecondaryEquip;
         [SerializeField] private UnityEvent<Secondary> OnSecondaryUnequip;
 
-        private Task m_shot_execution;
-        private Task m_ability_execution;
-
-        public bool hasEquipped { get => m_equipped != null;  }
-        public Secondary currentlyEquipped { get => m_equipped; }
-
         [Header("Debug")]
         [SerializeField] private Secondary debugSecondary;
+        [SerializeField] private List<Secondary> debugs;
+        int index = 0;
 
         private void Start()
         {
             EquipSecondary(debugSecondary);
         }
 
-        //modify this to receive a gameobject instead so there's no dependency on the playercontroller class
         public void EquipSecondary(Secondary secondary)
         {
 
@@ -39,18 +35,26 @@ namespace AbilityOP
                 return;
             }
 
+            if (m_equipped != null)
+                UnequipSecondary();
+            
             GameObject player = PlayerController.GetFirst().gameObject;
 
-            bool equipSuccess;
-
-            equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.shot_effect_type);
+            bool equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.shot_effect_type);
+            Debug.Log("Equipped shot effect");
             equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.secondary_ability_type);
 
             if (!equipSuccess)
             {
                 Debug.LogError("[ERROR] Equip Unsuccessful.");
                 AbilityManager.Instance.ReleaseAbilities(player);
+                GameObject.Instantiate(Resources.Load("The Debug Cube") as GameObject).transform.position = Vector3.zero;
                 return;
+            }
+
+            if (secondary.gauge != null)
+            {
+               GaugeManager.DisplayGauge(secondary.gauge);
             }
  
             m_equipped = secondary;
@@ -65,7 +69,7 @@ namespace AbilityOP
                 Debug.LogWarning("[WARNING] No Secondary to Unequip");
                 return;
             }
-
+            GaugeManager.RemoveCurrentGauge();
             GameObject player = PlayerController.GetFirst().gameObject;
             OnSecondaryUnequip?.Invoke(m_equipped);
             m_equipped = null;
@@ -73,24 +77,45 @@ namespace AbilityOP
 
         }
 
-        private void RunAbilityParallel(ref Task execution, GameObject caster, string ability_name )
-        {
-            if (m_equipped && (execution == null || execution.IsCompleted))
-                execution = Task.Run(async () =>
-                    await AbilityManager.Instance.InvokeAbility(caster, ability_name)
-                );
-            //else Debug.Log("No");
-        }
-
         public void FireSecondary(GameObject caster)
         {
-            RunAbilityParallel(ref m_shot_execution, caster, m_equipped.shot_effect_type);
+            if (m_equipped)
+                AbilityManager.Instance.InvokeAbility(caster, m_equipped.shot_effect_type);
         }
 
         public void InvokeSecondaryAbility(GameObject caster)
         {
-            RunAbilityParallel(ref m_ability_execution, caster, m_equipped.secondary_ability_type);
+           if (m_equipped)
+                AbilityManager.Instance.InvokeAbility(caster, m_equipped.secondary_ability_type);
         }
-       
+
+        public bool hasEquipped { get => m_equipped != null; }
+        public Secondary currentlyEquipped { get => m_equipped; }
+
+
+        
+
+        //debug
+
+        private void Update()
+        {
+
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                index = Mathf.Clamp(index + (int)Mathf.Sign(Input.mouseScrollDelta.y), 0, debugs.Count - 1);
+                if (currentlyEquipped != debugs[index]) 
+                    EquipSecondary(debugs[index]);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                UnequipSecondary();
+            }
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                EquipSecondary(debugSecondary);
+            }
+        }
+
     }
 }
