@@ -11,14 +11,20 @@ namespace AbilityOP
     [CreateAssetMenu(fileName = "Secondary", menuName = "Ability Optimized/Secondary", order = 1)]
     public class Secondary : Pickup
     {
+        [Header("Secondary Data")]
         public string secondary_name;
         [TextArea(1, 3)] public string tooltip;
         public Image secondary_icon;
 
+        [Header("Assets")]
+        public GameObject gauge;
+
+        [Header("Ability Info")]
         public string shot_effect_type;
         public string secondary_ability_type;
     }
 
+    #if UNITY_EDITOR
     [CustomEditor(typeof(Secondary))]
     public class SecondaryEditor: Editor
     {
@@ -42,5 +48,5 @@ namespace AbilityOP
             RenderValidator("Secondary Ability", secondary.secondary_ability_type);
         }
     }
-
+    #endif
 }

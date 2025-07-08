@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 6174971396269842163}
   - component: {fileID: 2943192160079536373}
   - component: {fileID: 685449744638015552}
+  - component: {fileID: 8955890807427382538}
   m_Layer: 8
   m_Name: Dragon Boss
   m_TagString: Enemy
@@ -305,6 +306,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  bossanimator: {fileID: 0}
   target: {fileID: 0}
   maximum_distance: 6
   minimum_distance: 3
@@ -330,6 +332,8 @@ MonoBehaviour:
       start_reload_sound_id: 
       end_reload_sound_id: 
     shots: 1
+    delay: 0
+    waitdelay: 0
   - gun:
       damage: 2
       shots_per_second: 10
@@ -348,8 +352,13 @@ MonoBehaviour:
       start_reload_sound_id: 
       end_reload_sound_id: 
     shots: 1
+    delay: 0
+    waitdelay: 0
   cur_gun_index: 0
   shoot_index: 0
+  will_shoot: 0
+  fired_thiswait: 0
+  time_waited: 0
 --- !u!114 &2471827704838059971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,6 +770,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   cooldown: 1
+--- !u!114 &8955890807427382538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456407450743452294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4788563cf2928e4e8332b6cbed82b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio_id: enemy_die
+  volume_scale: 1
 --- !u!1001 &8536613755756525179
 PrefabInstance:
   m_ObjectHideFlags: 0

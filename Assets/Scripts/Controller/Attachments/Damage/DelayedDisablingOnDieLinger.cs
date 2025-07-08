@@ -16,8 +16,6 @@ namespace Assets.Scripts.Controller.Attachments
         private CapsuleCollider mCapsuleCollider;
         private Rigidbody mRigidbody;
 
-        [SerializeField] private float delay = 0.2f;
-
         private bool lerping = false;
         private bool lerping2 = false;
         float vel;
@@ -34,7 +32,7 @@ namespace Assets.Scripts.Controller.Attachments
         {
             mHealthObject.SubscribeOnDie(projectile =>
             {
-                Invoke(nameof(DisableThis), delay);
+                DisableThis();
             });
         }
 

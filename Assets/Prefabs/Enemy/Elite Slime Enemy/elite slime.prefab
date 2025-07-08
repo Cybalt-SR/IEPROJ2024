@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5846891715231414123}
   - component: {fileID: 8683398988533595875}
   - component: {fileID: -2984375901033265625}
+  - component: {fileID: 1933131538333620108}
   m_Layer: 8
   m_Name: elite slime
   m_TagString: Enemy
@@ -594,7 +595,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6b56ae552f92c42844729124c4c474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.2
+--- !u!114 &1933131538333620108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641835130275497612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4788563cf2928e4e8332b6cbed82b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio_id: enemy_die
+  volume_scale: 1
 --- !u!1 &5025815062840781210
 GameObject:
   m_ObjectHideFlags: 0

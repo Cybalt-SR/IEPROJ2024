@@ -37,3 +37,6 @@ MonoBehaviour:
     - Key: green_die
       Value: {fileID: 1161053065132040166, guid: 1d1a73ee80c26e443b66220861a5c757,
         type: 3}
+    - Key: white_hit
+      Value: {fileID: 8252033151417013444, guid: 081c0fc387cae6d4896da632960dfb1d,
+        type: 3}

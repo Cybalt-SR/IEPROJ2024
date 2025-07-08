@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecad3f76aab8e2549a61faee2d8e4ab3, type: 3}
+  m_Name: Shot_Circular_Gun
+  m_EditorClassIdentifier: 
+  AbilityName: 
+  AbilityDescription: 
+  AbilityIcon: {fileID: 0}
+  Cooldown: 0.4
+  StartCooldownOnCast: 0
+  UpdateTiedToState: 0
+  projectile_damage: 1
+  projectile_speed: 40
+  toy_spawn_interval: 8
+  minimum_discs_shot: 1
+  maximum_toy_spawn_distance: 10
+  maximum_extra_projectiles: 6
+  maximum_projectile_bounce: 5
+  toy_spawn_height_offset: 1
+  minimum_toy_collect_proximity: 1.5
+  spread_angle: 45
+  firing_reference_offset: 1.5
+  toy_pickup: {fileID: 1675527137016454536, guid: 4497a7ba5a950124da27e489b5b97ed5,
+    type: 3}
+  projectile: {fileID: 7126130317050859142, guid: e68a0a9fac8d7ee4581cc4994df3f5e6,
+    type: 3}

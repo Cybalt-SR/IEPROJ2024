@@ -9,6 +9,8 @@ namespace Assets.Scripts.Controller.Attachments
         [SerializeField] private UnitController triggerer;
         [SerializeField] private List<GameObject> inside;
 
+        public List<GameObject> Within { get => new(inside); }
+
         private void OnTriggerStay(Collider other)
         {
             if (inside.Contains(other.gameObject) == false)

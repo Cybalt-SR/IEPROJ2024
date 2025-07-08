@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cbe675855edb724e8180aa6b6501cf5, type: 3}
+  m_Name: Circular Gun
+  m_EditorClassIdentifier: 
+  secondary_name: Circular Gun
+  tooltip: 
+  secondary_icon: {fileID: 0}
+  gauge: {fileID: 1687147293207454204, guid: d256a0ff2daca384b82233c3e29c8635, type: 3}
+  shot_effect_type: Shot_Circular_Gun
+  secondary_ability_type: Ability_Circular_Gun
