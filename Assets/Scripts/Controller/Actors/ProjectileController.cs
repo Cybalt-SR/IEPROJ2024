@@ -48,9 +48,14 @@ namespace Assets.Scripts.Controller
         {
             while (ignore_list.TryDequeue(out var ignoredCollider))
             {
-                Physics.IgnoreCollision(mSphereCollider, ignoredCollider, false);
+                if (ignoredCollider != null)
+                {
+                    Physics.IgnoreCollision(mSphereCollider, ignoredCollider, false);
+                }
             }
-            IgnoreCollider(from.Collider);
+
+            if (from != null)
+                IgnoreCollider(from.Collider);
         }
 
         public void Shoot(Vector3 dir, UnitController from, ProjectileController parent = null, ProjectileHittable split_from = null)
