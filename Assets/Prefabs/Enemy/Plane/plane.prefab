@@ -164,6 +164,9 @@ MonoBehaviour:
   OnAimAt:
     m_PersistentCalls:
       m_Calls: []
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls: []
   target: {fileID: 0}
   maximum_distance: 0
   minimum_distance: 0
