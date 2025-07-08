@@ -1,3 +1,4 @@
+using AbilityOP;
 using Assets.Scripts.Controller.Attachments;
 using Assets.Scripts.Data;
 using Assets.Scripts.Data.Progression;
@@ -40,6 +41,9 @@ namespace Assets.Scripts.Controller
 		}
 
 		[SerializeField] private List<GunSwap> guns;
+
+        [SerializeField] private SerializableDictionary<int,string> ability_overrides;
+
         [SerializeField] private int cur_gun_index = 0;
         [SerializeField] private int shoot_index = 0;
 
@@ -59,6 +63,16 @@ namespace Assets.Scripts.Controller
             base.Awake();
 
             mNavMesh = GetComponent<NavMeshAgent>();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            foreach(var ability in ability_overrides)
+            {
+                AbilityManager.Instance.RequestAbility(gameObject, ability.Value);
+            }
         }
 
         void IOnPlayerNear.OnPlayerNear(UnitController player)
@@ -137,6 +151,11 @@ namespace Assets.Scripts.Controller
             {
                 this.shots_before_reload = 1;
 
+                if (ability_overrides.ContainsKey(cur_gun_index))
+                {
+                    AbilityManager.Instance.InvokeAbility(gameObject, ability_overrides[cur_gun_index]);
+                }
+                else
                 if (base.Fire(cur_gun_index))
                 {
                     fired_thiswait = true;

@@ -40,6 +40,9 @@ namespace Assets.Scripts.Library
 
         public void OnBeforeSerialize()
         {
+            if (structs == null)
+                return;
+
             structs.Clear();
 
             foreach (var kvp in this)
