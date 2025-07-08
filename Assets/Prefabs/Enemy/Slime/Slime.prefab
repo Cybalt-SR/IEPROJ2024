@@ -167,7 +167,7 @@ MonoBehaviour:
     split_count: 0
     pierce_count: 0
     projectile_id: fireworks
-    sound_id: 
+    sound_id: Enemy_shot1
     play_reload: 0
     start_reload_sound_id: 
     end_reload_sound_id: 
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1b776aab3c6d0498b3255d801e1cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio_hit_id: 
+  audio_hit_id: enemy1
   volume_scale: 1
 --- !u!114 &5744144297518748058
 MonoBehaviour:

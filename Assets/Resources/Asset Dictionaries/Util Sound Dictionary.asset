@@ -16,9 +16,9 @@ MonoBehaviour:
   dictionary:
     structs:
     - Key: reload_start
-      Value: {fileID: 8300000, guid: 5390dff7c56995f40a7f8a98f0da636b, type: 3}
+      Value: {fileID: 8300000, guid: f161849c5a8e772419797ded6029abb1, type: 3}
     - Key: reload_end
-      Value: {fileID: 8300000, guid: 16a85602c5041514090ab0d3b6884451, type: 3}
+      Value: {fileID: 8300000, guid: c659effe9cab00f4b9283fefe0c661dc, type: 3}
     - Key: door_open
       Value: {fileID: 8300000, guid: e9c26b9c228155d4d9f6d23de780272c, type: 3}
     - Key: door_close

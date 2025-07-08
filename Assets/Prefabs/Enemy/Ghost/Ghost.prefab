@@ -127,7 +127,7 @@ MonoBehaviour:
     split_count: 0
     pierce_count: 0
     projectile_id: ghost
-    sound_id: 
+    sound_id: Enemy_shot1
     play_reload: 0
     start_reload_sound_id: 
     end_reload_sound_id: 
