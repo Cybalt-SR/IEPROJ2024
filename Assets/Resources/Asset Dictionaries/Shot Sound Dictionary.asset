@@ -17,3 +17,13 @@ MonoBehaviour:
     structs:
     - Key: lightning
       Value: {fileID: 8300000, guid: 36ea8000dc93cec40b48f91a2edc5243, type: 3}
+    - Key: Mcshot1
+      Value: {fileID: 8300000, guid: 85a67086e10d9694fba292d65b04dfdc, type: 3}
+    - Key: Mcshot2
+      Value: {fileID: 8300000, guid: 828dcc6e8377e2b4ea53210840794437, type: 3}
+    - Key: Mcshot3
+      Value: {fileID: 8300000, guid: b4a40adf2504bec4389d60dd94683685, type: 3}
+    - Key: Enemy_shot1
+      Value: {fileID: 8300000, guid: 252be050a9387844d90e7830b99573dd, type: 3}
+    - Key: Enemy_shot2
+      Value: {fileID: 8300000, guid: 252be050a9387844d90e7830b99573dd, type: 3}
