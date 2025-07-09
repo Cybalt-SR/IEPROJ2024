@@ -21,9 +21,9 @@ namespace Assets.Scripts.Manager
             pickup_prefab = RuntimePrefabsDictionary.Instance.Get("pickup");
         }
 
-        public static void CreatePickup(Pickup pickup, Vector3 position)
+        public static void CreatePickup(Pickup pickup, Vector3 position, GameObject pickup_model_override = null)
         {
-            var newobj = Instantiate(Instance.pickup_prefab, position, Quaternion.identity, PoolParent.Instance.transform);
+            var newobj = Instantiate(pickup_model_override == null ? Instance.pickup_prefab: pickup_model_override, position, Quaternion.identity, PoolParent.Instance.transform);
             newobj.GetComponent<PickupController>().SetPickup(pickup);
         }
 

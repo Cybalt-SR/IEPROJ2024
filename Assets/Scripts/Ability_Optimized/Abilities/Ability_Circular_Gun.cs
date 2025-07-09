@@ -49,7 +49,7 @@ public class Ability_Circular_Gun : Ability
 
             var spawned = RequestToy(rand_index);
             spawned.transform.position = pickup_pos;
-
+            spawned.SetActive(true);
 
 
             near[i].transform.parent = m_toy_holder;
@@ -109,10 +109,10 @@ public class Ability_Circular_Gun : Ability
 
         index = Mathf.Clamp(index, 0, names.Count - 1);
         List<GameObject> pool = spawnables[names[index]];
-        List<GameObject> active_poolables = pool.Where(p => p.activeSelf).ToList(); 
+        List<GameObject> inactive_poolables = pool.Where(p => !p.activeSelf).ToList(); 
 
-        if (pool.Count > 0)
-            return pool[0];
+        if (inactive_poolables.Count > 0)
+            return inactive_poolables[0];
 
         GameObject sentry = null;
         switch (names[index])
@@ -142,7 +142,7 @@ public class Ability_Circular_Gun : Ability
         }
 
         if(sentry)
-            pool.Add(sentry);
+            spawnables[names[index]].Add(sentry);
 
         return sentry;
     }

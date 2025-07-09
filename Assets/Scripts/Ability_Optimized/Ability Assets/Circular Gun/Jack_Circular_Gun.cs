@@ -16,7 +16,11 @@ public class Jack_Circular_Gun : MonoBehaviour
     [SerializeField] private List<EnemyController> enemies = new();
     private float detonation_timer;
 
-
+    private void OnEnable()
+    {
+        ticking_down = false;
+        detonation_timer = 0;
+    }
 
     private void Update()
     {
@@ -37,8 +41,8 @@ public class Jack_Circular_Gun : MonoBehaviour
         }
 
         
-        detonation_timer -= Time.deltaTime;
-        if (detonation_timer > 0)
+        detonation_timer += Time.deltaTime;
+        if (detonation_timer < detonation_delay)
             return;
 
         foreach (var e in enemies)

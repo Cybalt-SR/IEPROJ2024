@@ -1,3 +1,4 @@
+using Assets.Scripts.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,13 +53,17 @@ public class Projectile_CircularGun : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Enemy":
+
+
                 var health = collision.gameObject.GetComponent<HealthObject>();
                 var controller = collision.gameObject.GetComponent<UnitController>();
 
                 if (health != null)
                     health.TakeDamage(bullet_damage, controller);
 
-                goto case "Player";
+                if (collision.gameObject.GetComponent<BossController>() != null)
+                    goto default;
+                else goto case "Player";
 
             case "Player":
 

@@ -21,6 +21,11 @@ public class Nutcracker_Circular_Gun : UnitController
         range_sphere = GetComponentInChildren<DetectionSphere>();
     }
 
+    private void OnEnable()
+    {
+        time_active = 0;
+    }
+
     protected override void Update()
     {
         base.Update();

@@ -10,17 +10,26 @@ public class Ballerina_Circular_Gun : MonoBehaviour
     [SerializeField] private Transform center;
 
     public float lifetime = 8f;
+    private float timer = 0;
+
+    private void OnEnable()
+    {
+        timer = 0;
+    }
 
     private void Update()
     {
-        lifetime -= Time.deltaTime;
-        if (lifetime < 0)
+        timer += Time.deltaTime;
+        if (timer >= lifetime)
             center.gameObject.SetActive(false); 
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<BossController>() != null)
+            return;
+
         var controller = other.GetComponent<EnemyController>();
         if (controller)
         {

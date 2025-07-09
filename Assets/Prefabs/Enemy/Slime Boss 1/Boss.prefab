@@ -310,6 +310,8 @@ MonoBehaviour:
     shots: 1
     delay: 1.6
     waitdelay: 3
+  ability_overrides:
+    structs: []
   cur_gun_index: 0
   shoot_index: 0
   will_shoot: 0
@@ -690,13 +692,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f3d12b729ed544da6856099db3ff28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller_override: {fileID: 2062330120337467932, guid: 3d81215b1c83c044ebf87d5be35e3e95,
+    type: 3}
   drops:
-  - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
+  - item: {fileID: 11400000, guid: dc42547b1973f664098f67c1ebce06b7, type: 2}
     chance: 1
-  - item: {fileID: 11400000, guid: 53322f5c69fd85046ae59f03c8391801, type: 2}
-    chance: 0.05
-  - item: {fileID: 11400000, guid: cddd7a647a5b2464d8fc2854c6fe3f0c, type: 2}
-    chance: 0.02
 --- !u!114 &845684485666162734
 MonoBehaviour:
   m_ObjectHideFlags: 0
