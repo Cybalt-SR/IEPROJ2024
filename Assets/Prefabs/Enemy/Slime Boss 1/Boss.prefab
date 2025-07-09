@@ -633,8 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1b776aab3c6d0498b3255d801e1cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio_hit_id: boss1
-  volume_scale: 1
+  audio_hit_id: boss2
+  volume_scale: 0.4
 --- !u!114 &4764422284632958267
 MonoBehaviour:
   m_ObjectHideFlags: 0
