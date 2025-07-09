@@ -960,7 +960,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.34160146, y: -0.35556364, z: 0.14149596, w: 0.8584066}
-  m_LocalPosition: {x: 20, y: 28.6, z: -20}
+  m_LocalPosition: {x: 4.5, y: 28.6, z: 24.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1138,7 +1138,7 @@ Transform:
   m_GameObject: {fileID: 331328126}
   serializedVersion: 2
   m_LocalRotation: {x: 0.34160146, y: -0.35556364, z: 0.14149596, w: 0.8584066}
-  m_LocalPosition: {x: 20, y: 28.6, z: -20}
+  m_LocalPosition: {x: 4.5, y: 28.6, z: 24.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4285,7 +4285,7 @@ RectTransform:
   m_GameObject: {fileID: 1703477955}
   m_LocalRotation: {x: 0.36974677, y: -0, z: -0, w: 0.9291326}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0007056222, y: 0.0007056222, z: 0.0007056222}
+  m_LocalScale: {x: 0.00035136455, y: 0.00035136455, z: 0.00035136455}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1285650952}
@@ -9727,7 +9727,7 @@ Transform:
   m_GameObject: {fileID: 1878664014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -15.5, y: 0, z: 44.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9982,7 +9982,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.563
   m_Pitch: 1
   Loop: 0
   Mute: 0
