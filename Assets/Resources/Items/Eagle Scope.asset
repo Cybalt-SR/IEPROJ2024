@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Eagle Scope
   m_EditorClassIdentifier: 
   part: 3
-  attachment_icon: {fileID: 21300000, guid: 9de4df649da46ce4bb35ee1f0ef735d7, type: 3}
-  attachment_name: 
+  attachment_icon: {fileID: 21300000, guid: ddce31e6eed605e4286698155d82bcee, type: 3}
   use_stats_as_desc: 1
   _attachment_description: 
   damage_added: 0
