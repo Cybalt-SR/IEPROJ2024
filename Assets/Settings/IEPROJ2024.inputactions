@@ -304,7 +304,7 @@
                 {
                     "name": "",
                     "id": "9e2782c6-2a74-42b5-8ab1-ddbb90bbadcb",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -315,7 +315,7 @@
                 {
                     "name": "",
                     "id": "63bbab4d-42ee-4b1d-ac8a-dfd1096d5f4a",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
