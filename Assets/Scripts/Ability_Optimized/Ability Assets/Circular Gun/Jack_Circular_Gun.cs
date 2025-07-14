@@ -20,6 +20,7 @@ public class Jack_Circular_Gun : MonoBehaviour
     {
         ticking_down = false;
         detonation_timer = 0;
+        GetComponent<MeshRenderer>().material.color = Color.black;
     }
 
     private void Update()

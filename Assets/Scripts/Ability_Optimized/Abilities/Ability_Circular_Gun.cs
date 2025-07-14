@@ -48,6 +48,7 @@ public class Ability_Circular_Gun : Ability
             int rand_index = UnityEngine.Random.Range(0, 3);
 
             var spawned = RequestToy(rand_index);
+            pickup_pos.y = Owner.transform.position.y;
             spawned.transform.position = pickup_pos;
             spawned.SetActive(true);
 

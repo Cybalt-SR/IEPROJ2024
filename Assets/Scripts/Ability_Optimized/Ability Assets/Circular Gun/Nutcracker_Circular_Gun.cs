@@ -15,6 +15,8 @@ public class Nutcracker_Circular_Gun : UnitController
 
     private DetectionSphere range_sphere;
 
+    [SerializeField] private Transform body;
+
     protected override void Start()
     {
         base.Start();
@@ -48,6 +50,11 @@ public class Nutcracker_Circular_Gun : UnitController
             return;
 
         base.AimAt(currentTarget.transform.position);
+
+        var target_pos = currentTarget.transform.position;
+        target_pos.y = transform.position.y;
+        transform.LookAt(target_pos);
+   
         base.Fire();
     }
 

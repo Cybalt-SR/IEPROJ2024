@@ -15,7 +15,7 @@ MonoBehaviour:
   AbilityName: 
   AbilityDescription: 
   AbilityIcon: {fileID: 0}
-  Cooldown: 5
+  Cooldown: 0
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
   max_spawnable_toys: 4
@@ -30,5 +30,5 @@ MonoBehaviour:
     type: 3}
   jack_detonation_delay: 0.4
   jack_detonation_trigger_distance: 3
-  jack_knockback_force: 250
+  jack_knockback_force: 20
   jack_explosion_damage: 5
