@@ -10,7 +10,7 @@ public class Nutcracker_Circular_Gun : UnitController
     public float shot_damage = 1f;
     public int shots_per_second = 2;
 
-    private EnemyController currentTarget;
+    private UnitController currentTarget;
     private float time_active = 0;
 
     private DetectionSphere range_sphere;
@@ -43,7 +43,11 @@ public class Nutcracker_Circular_Gun : UnitController
         {
             var enemies = range_sphere.Within;
             if (enemies.Count == 0) return;
-            currentTarget = enemies[UnityEngine.Random.Range(0, enemies.Count)].GetComponent<EnemyController>();
+
+            int rand = UnityEngine.Random.Range(0, enemies.Count);
+
+            currentTarget = enemies[rand].GetComponent<BossController>();
+            if(!currentTarget) currentTarget = enemies[rand].GetComponent<EnemyController>();
         }
 
         if (currentTarget == null || !currentTarget.gameObject.activeSelf)

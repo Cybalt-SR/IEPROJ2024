@@ -20,7 +20,7 @@ public class Boss_Swarm_Toymaker : Ability
 
             for(int i =0; i < to_spawn; i++)
             {
-                int spawnable_index = UnityEngine.Random.Range(0, spawnables.Count - 1);
+                int spawnable_index = UnityEngine.Random.Range(0, spawnables.Count);
                 var spawned_unit = GameObject.Instantiate(spawnables[spawnable_index]);
                 enemies_spawned.Add(spawned_unit);
                 var owner_pos = Owner.transform.position;

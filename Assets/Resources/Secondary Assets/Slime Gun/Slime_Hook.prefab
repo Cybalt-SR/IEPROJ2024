@@ -63,7 +63,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.17
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1007084753878736107
 MonoBehaviour:
@@ -78,6 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firing_reference: {fileID: 0}
+  lollipop_multiplier: 0
+  max_tether_distance: 0
+  retract_speed: 0
 --- !u!120 &1751899526561484867
 LineRenderer:
   serializedVersion: 2

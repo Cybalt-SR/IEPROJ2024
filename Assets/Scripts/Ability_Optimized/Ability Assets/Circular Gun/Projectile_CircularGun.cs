@@ -40,7 +40,7 @@ public class Projectile_CircularGun : MonoBehaviour
 
     public void Shoot(Vector3 dir, float speed)
     {
-        rb.AddForce(dir * speed, ForceMode.Impulse);
+        rb.velocity = dir * speed;
         fixed_speed = speed;
     }
 
