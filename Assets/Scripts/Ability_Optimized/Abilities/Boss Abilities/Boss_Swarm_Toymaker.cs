@@ -35,6 +35,7 @@ public class Boss_Swarm_Toymaker : Ability
 
 
             yield return new WaitForSeconds(ability_data.spawn_interval);
+            wave_count++;
         }
 
 

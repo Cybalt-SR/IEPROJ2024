@@ -10,6 +10,10 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.Controller
 {
+
+
+
+
     [RequireComponent(typeof(NavMeshAgent))]
     public class BossController : UnitController, IOnPlayerNear
     {
@@ -35,14 +39,13 @@ namespace Assets.Scripts.Controller
         struct GunSwap
 		{
 			public GunData gun;
+            public string ability_invoke;
 			public int shots;
 			public float delay;
 			public float waitdelay;
 		}
 
 		[SerializeField] private List<GunSwap> guns;
-
-        [SerializeField] private SerializableDictionary<int,string> ability_overrides;
 
         [SerializeField] private int cur_gun_index = 0;
         [SerializeField] private int shoot_index = 0;
@@ -71,9 +74,9 @@ namespace Assets.Scripts.Controller
         {
             base.Start();
 
-            foreach(var ability in ability_overrides)
+            foreach(var gun in guns)
             {
-                AbilityManager.Instance.RequestAbility(gameObject, ability.Value);
+                AbilityManager.Instance.RequestAbility(gameObject, gun.ability_invoke);
             }
         }
 
@@ -153,15 +156,16 @@ namespace Assets.Scripts.Controller
             {
                 this.shots_before_reload = 1;
 
-                if (ability_overrides.ContainsKey(cur_gun_index))
-                {
-                    AbilityManager.Instance.InvokeAbility(gameObject, ability_overrides[cur_gun_index]);
-                }
-                else
                 if (base.Fire(cur_gun_index))
                 {
-                    fired_thiswait = true;
+                    fired_thiswait = true;  
                 }
+
+                if (!string.IsNullOrEmpty(guns[cur_gun_index].ability_invoke))
+                {
+                    AbilityManager.Instance.InvokeAbility(gameObject, guns[cur_gun_index].ability_invoke);
+                }
+                  
             }
 
             if (time_waited > guns[cur_gun_index].waitdelay)
