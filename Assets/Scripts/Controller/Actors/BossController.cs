@@ -51,6 +51,8 @@ namespace Assets.Scripts.Controller
 		[SerializeField] private bool fired_thiswait = false;
 		[SerializeField] private float time_waited = 0;
 
+        [SerializeField] private bool duels_player = true;
+
         protected override void UpdateFinalGun()
         {
             mFinalGun = guns[cur_gun_index].gun;
@@ -79,7 +81,7 @@ namespace Assets.Scripts.Controller
         {
             target = player;
 
-            if (target == null)
+            if (target == null || !duels_player)
                 return;
 
             base.AimAt(player.transform.position);
