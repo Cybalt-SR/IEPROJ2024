@@ -19,7 +19,7 @@ public class Jack_Circular_Gun : MonoBehaviour
     [Header("Visuals")]
     [SerializeField] private GameObject ticker;
     [SerializeField] private float tick_interval;
-
+    [SerializeField] private Effect_Explode explosion;
     private float tick_timer = 0;
 
     private void OnEnable()
@@ -91,8 +91,10 @@ public class Jack_Circular_Gun : MonoBehaviour
             on_impact.tag_filter = new() { "Enemy", "Item" };
             */
         }
-
+        Instantiate(explosion).transform.position = transform.position;
+        
         gameObject.SetActive(false);
+
         Debug.Log("Kaboom");
 
     }

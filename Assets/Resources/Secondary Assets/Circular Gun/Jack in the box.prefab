@@ -162,7 +162,8 @@ MonoBehaviour:
   enemies: []
   ticker: {fileID: 4418130272225646419}
   tick_interval: 0.25
-  tick_timer: 0
+  explosion: {fileID: 7509554072156921416, guid: 1ae0779134f0f8a4db41d2907b4f74c5,
+    type: 3}
 --- !u!1 &7858798214682282819
 GameObject:
   m_ObjectHideFlags: 0

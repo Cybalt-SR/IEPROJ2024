@@ -28,7 +28,7 @@ MonoBehaviour:
   soldier_shots_per_second: 3
   jack_in_a_box: {fileID: 7745907193725905310, guid: 0106d8dfc1a98e745a1fbe7714755fa4,
     type: 3}
-  jack_detonation_delay: 0.4
-  jack_detonation_trigger_distance: 3
-  jack_knockback_force: 20
-  jack_explosion_damage: 5
+  jack_detonation_delay: 3
+  jack_detonation_trigger_distance: 5
+  jack_knockback_force: 50
+  jack_explosion_damage: 8
