@@ -84,10 +84,19 @@ namespace Assets.Scripts.Controller
         {
             target = player;
 
-            if (target == null || !duels_player)
+            if (target == null)
                 return;
 
             base.AimAt(player.transform.position);
+            
+
+            if (!duels_player)
+            {
+                 return;
+            }
+               
+
+
             var absoluteDelta = target.transform.position - this.transform.position;
 
             if ((target.transform.position - oldtarget_pos).sqrMagnitude > 0.25)
