@@ -41,7 +41,6 @@ namespace AbilityOP
             GameObject player = PlayerController.GetFirst().gameObject;
 
             bool equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.shot_effect_type);
-            Debug.Log("Equipped shot effect");
             equipSuccess = AbilityManager.Instance.RequestAbility(player, secondary.secondary_ability_type);
 
             if (!equipSuccess)

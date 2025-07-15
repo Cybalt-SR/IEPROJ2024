@@ -76,7 +76,8 @@ namespace Assets.Scripts.Controller
 
             foreach(var gun in guns)
             {
-                AbilityManager.Instance.RequestAbility(gameObject, gun.ability_invoke);
+                if(!string.IsNullOrEmpty(gun.ability_invoke))
+                    AbilityManager.Instance.RequestAbility(gameObject, gun.ability_invoke);
             }
         }
 
