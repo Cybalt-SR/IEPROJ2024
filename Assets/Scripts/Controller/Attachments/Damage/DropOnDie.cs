@@ -10,6 +10,7 @@ namespace Assets.Scripts.Controller.Attachments
     [RequireComponent(typeof(HealthObject))]
     public class DropOnDie : MonoBehaviour
     {
+        [SerializeField] private GameObject controller_override = null;
         private HealthObject mHealthObject;
 
         [Serializable]
@@ -39,7 +40,7 @@ namespace Assets.Scripts.Controller.Attachments
                     if (chance > dropChance.chance)
                         continue;
 
-                    PickupManager.CreatePickup(dropChance.item, transform.position);
+                    PickupManager.CreatePickup(dropChance.item, transform.position, controller_override);
                 }
             });
         }

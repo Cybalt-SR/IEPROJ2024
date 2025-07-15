@@ -18,7 +18,7 @@ public class Slime_Gun_Adhesive : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if(other.tag == "Enemy" && other.GetComponent<BossController>() == null)
         {
             enemies_trapped.Add(other.GetComponent<UnitController>());
         }

@@ -122,12 +122,13 @@ public class Slime_Gun_Hook: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Wall") 
-        {
+        Debug.Log(other.name);
+       if (other.tag == "Wall") 
+       {
             m_rb.isKinematic = true;
             hook_plant_pos = transform.position;
             on_hook_planted?.Invoke();
-        }
+       }
     }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbilityOP;
 using gab_roadcasting;
+using Assets.Scripts.Controller;
 
 public class Ability_Slime_Gun: Ability
 {
@@ -90,6 +91,8 @@ public class Ability_Slime_Gun: Ability
             var unload_pos = Owner.transform.position + unload_dir * ability_data.unload_offset;
             foreach (var e in enemies_trapped)
             {
+                if (e.GetComponent<BossController>() != null) return;
+
                 var rb = e.GetComponent<Rigidbody>();
                 var health = e.GetComponent<HealthObject>();
 

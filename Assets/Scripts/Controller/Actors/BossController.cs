@@ -1,3 +1,4 @@
+using AbilityOP;
 using Assets.Scripts.Controller.Attachments;
 using Assets.Scripts.Data;
 using Assets.Scripts.Data.Progression;
@@ -9,6 +10,10 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.Controller
 {
+
+
+
+
     [RequireComponent(typeof(NavMeshAgent))]
     public class BossController : UnitController, IOnPlayerNear
     {
@@ -34,18 +39,22 @@ namespace Assets.Scripts.Controller
         struct GunSwap
 		{
 			public GunData gun;
+            public string ability_invoke;
 			public int shots;
 			public float delay;
 			public float waitdelay;
 		}
 
 		[SerializeField] private List<GunSwap> guns;
+
         [SerializeField] private int cur_gun_index = 0;
         [SerializeField] private int shoot_index = 0;
 
 		[SerializeField] private bool will_shoot = false;
 		[SerializeField] private bool fired_thiswait = false;
 		[SerializeField] private float time_waited = 0;
+
+        [SerializeField] private bool duels_player = true;
 
         protected override void UpdateFinalGun()
         {
@@ -61,6 +70,17 @@ namespace Assets.Scripts.Controller
             mNavMesh = GetComponent<NavMeshAgent>();
         }
 
+        protected override void Start()
+        {
+            base.Start();
+
+            foreach(var gun in guns)
+            {
+                if(!string.IsNullOrEmpty(gun.ability_invoke))
+                    AbilityManager.Instance.RequestAbility(gameObject, gun.ability_invoke);
+            }
+        }
+
         void IOnPlayerNear.OnPlayerNear(UnitController player)
         {
             target = player;
@@ -69,6 +89,15 @@ namespace Assets.Scripts.Controller
                 return;
 
             base.AimAt(player.transform.position);
+            
+
+            if (!duels_player)
+            {
+                 return;
+            }
+               
+
+
             var absoluteDelta = target.transform.position - this.transform.position;
 
             if ((target.transform.position - oldtarget_pos).sqrMagnitude > 0.25)
@@ -139,8 +168,14 @@ namespace Assets.Scripts.Controller
 
                 if (base.Fire(cur_gun_index))
                 {
-                    fired_thiswait = true;
+                    fired_thiswait = true;  
                 }
+
+                if (!string.IsNullOrEmpty(guns[cur_gun_index].ability_invoke))
+                {
+                    AbilityManager.Instance.InvokeAbility(gameObject, guns[cur_gun_index].ability_invoke);
+                }
+                  
             }
 
             if (time_waited > guns[cur_gun_index].waitdelay)
