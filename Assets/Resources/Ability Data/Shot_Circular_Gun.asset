@@ -29,7 +29,7 @@ MonoBehaviour:
   minimum_toy_collect_proximity: 1.5
   spread_angle: 45
   firing_reference_offset: 1.5
-  toy_pickup: {fileID: 1675527137016454536, guid: 4497a7ba5a950124da27e489b5b97ed5,
+  toy_pickup: {fileID: 7053184701325090747, guid: 3382225334724c64199579d4adfaa5e5,
     type: 3}
   projectile: {fileID: 7126130317050859142, guid: e68a0a9fac8d7ee4581cc4994df3f5e6,
     type: 3}

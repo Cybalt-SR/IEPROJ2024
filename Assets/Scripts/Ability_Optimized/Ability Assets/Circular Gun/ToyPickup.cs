@@ -12,7 +12,7 @@ public class ToyPickup : MonoBehaviour, IOnPlayerNear
     private void Start()
     {
         var rb = GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.one * 1.5f, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * 2f, ForceMode.Impulse);
     }
 
     public void OnPlayerNear(UnitController player)

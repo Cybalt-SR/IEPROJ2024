@@ -120,15 +120,19 @@ public class Slime_Gun_Hook: MonoBehaviour
             m_rb.velocity = m_dir * m_speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(other.name);
-       if (other.tag == "Wall") 
-       {
+        if (collision.gameObject.tag != "Player")
+        {
             m_rb.isKinematic = true;
             hook_plant_pos = transform.position;
             on_hook_planted?.Invoke();
-       }
+        }
+        else
+        {
+            var rb = collision.gameObject.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+        }
     }
 
 
