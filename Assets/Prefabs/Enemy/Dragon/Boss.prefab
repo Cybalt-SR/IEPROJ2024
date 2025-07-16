@@ -75,7 +75,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6506382019535757199}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -3.4058113, y: 0, z: 34.04571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -113,8 +113,8 @@ MonoBehaviour:
     play_reload: 0
     start_reload_sound_id: 
     end_reload_sound_id: 
-  acceleration: 40
-  speed_base: 1
+  acceleration: 30
+  speed_base: 4
   movedir: {x: -0, y: 0, z: 0}
   shooting_reference: {fileID: 1873670397485485468}
   aimdir: {x: -1.5647405, y: 0, z: 5.731821}
@@ -195,6 +195,7 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
+    ability_invoke: 
     shots: 1
     delay: 0
     waitdelay: 0
@@ -215,6 +216,7 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
+    ability_invoke: 
     shots: 1
     delay: 0
     waitdelay: 0
@@ -223,6 +225,7 @@ MonoBehaviour:
   will_shoot: 0
   fired_thiswait: 0
   time_waited: 0
+  duels_player: 1
 --- !u!114 &2268836578478398154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f3d12b729ed544da6856099db3ff28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller_override: {fileID: 0}
   drops:
   - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
     chance: 1
