@@ -7,6 +7,7 @@ namespace gab_roadcasting
     public class EventBroadcasting
     {
         private static EventBroadcasting instance;
+    
         private EventBroadcasting()
         {
             SceneManager.sceneUnloaded += s => {

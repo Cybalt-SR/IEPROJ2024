@@ -306,6 +306,7 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
+    ability_invoke: Boss_Swarm_ToyMaker
     shots: 1
     delay: 1.2
     waitdelay: 2
@@ -326,6 +327,7 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
+    ability_invoke: 
     shots: 5
     delay: 0.5
     waitdelay: 2
@@ -346,18 +348,16 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
+    ability_invoke: 
     shots: 1
     delay: 1.6
     waitdelay: 3
-  ability_overrides:
-    structs:
-    - Key: 0
-      Value: Boss_Swarm_Toymaker
   cur_gun_index: 0
   shoot_index: 0
   will_shoot: 0
   fired_thiswait: 0
   time_waited: 0
+  duels_player: 1
 --- !u!114 &6975715167643747395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.86
+  m_Radius: 2.57
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}

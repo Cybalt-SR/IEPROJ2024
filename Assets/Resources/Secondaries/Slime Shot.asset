@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cbe675855edb724e8180aa6b6501cf5, type: 3}
   m_Name: Slime Shot
   m_EditorClassIdentifier: 
-  secondary_name: 
-  tooltip: 
+  secondary_name: Slime Shots
+  tooltip: Stick and grapple enemies with slime
   secondary_icon: {fileID: 0}
   gauge: {fileID: 0}
   shot_effect_type: Shot_Slime_Gun
