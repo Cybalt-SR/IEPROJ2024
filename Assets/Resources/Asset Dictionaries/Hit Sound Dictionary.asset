@@ -17,3 +17,13 @@ MonoBehaviour:
     structs:
     - Key: flesh
       Value: {fileID: 8300000, guid: b04dbecf3c32513499dde2991981d1d5, type: 3}
+    - Key: enemy1
+      Value: {fileID: 8300000, guid: 22b42ea558c77f34188533dc4d4ac3b2, type: 3}
+    - Key: enemy2
+      Value: {fileID: 8300000, guid: b6f687eaccea30e448ef69ba47c7d675, type: 3}
+    - Key: enemy3
+      Value: {fileID: 8300000, guid: b9ba0fc5dee07044fac1541ff685f189, type: 3}
+    - Key: boss1
+      Value: {fileID: 8300000, guid: 12ea4dbaf44aaed4e80684ef22806cb9, type: 3}
+    - Key: boss2
+      Value: {fileID: 8300000, guid: 3f9bee59db7f98040bad98443b520e06, type: 3}

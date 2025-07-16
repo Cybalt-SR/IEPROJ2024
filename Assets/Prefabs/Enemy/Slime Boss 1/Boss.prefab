@@ -193,7 +193,7 @@ MonoBehaviour:
     split_count: 0
     pierce_count: 0
     projectile_id: 
-    sound_id: 
+    sound_id: Lightning
     play_reload: 0
     start_reload_sound_id: 
     end_reload_sound_id: 
@@ -636,7 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio_hit_id: 
-  volume_scale: 1
+  volume_scale: 0.4
 --- !u!114 &4764422284632958267
 MonoBehaviour:
   m_ObjectHideFlags: 0
