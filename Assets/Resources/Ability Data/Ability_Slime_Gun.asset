@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Ability_Slime_Gun
   m_EditorClassIdentifier: 
   AbilityName: 
-  AbilityDescription: 
+  AbilityDescription: Pulls enemies towards you and summons a corrosive slime puddle
+    that burns enemies.
   AbilityIcon: {fileID: 0}
-  Cooldown: 0
+  Cooldown: 1.5
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
-  impact_damage: 1
+  impact_damage: 4
   impact_force: 20
   unhooked_reduction_multiplier: 40
   hooked_reduction_multiplier: 100

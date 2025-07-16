@@ -123,6 +123,30 @@ namespace AbilityOP
             return 0f;
         }
 
+        //ermm
+        public AbilityData GetAbilityData(GameObject owner, string ability_name)
+        {
+            if (!m_abilities.ContainsKey(owner))
+            {
+                Debug.LogError($"[ERROR] {owner.name} does not have abilities.");
+                return null;
+            }
+
+            List<AbilityHandler> handler = m_abilities[owner];
+
+
+            foreach (AbilityHandler ability in handler)
+            {
+                if (ability.m_ability.GetType().Name == ability_name)
+                {
+                    return ability.m_ability.AbilityData as AbilityData;
+                }
+            }
+
+            Debug.LogError($"[ERROR] {owner.name} does not own a \"{ability_name}\"");
+            return null;
+        }
+
     }
 
     internal class AbilityHandler

@@ -8,7 +8,7 @@ namespace AbilityOP
     {
         [Header("Details")]
         public string AbilityName;
-        public string AbilityDescription;
+        [TextArea(2,10)] public string AbilityDescription;
         public Texture2D AbilityIcon;
 
         [Header("Stats")]

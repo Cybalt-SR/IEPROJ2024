@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Shot_Circular_Gun
   m_EditorClassIdentifier: 
   AbilityName: 
-  AbilityDescription: 
+  AbilityDescription: Shoots discs that ricochet off terrain, piercing through enemies.
+    Picking up toys to increases the shot count by 1, up to a total of 7 discs in
+    single shot.
   AbilityIcon: {fileID: 0}
   Cooldown: 0.4
   StartCooldownOnCast: 0

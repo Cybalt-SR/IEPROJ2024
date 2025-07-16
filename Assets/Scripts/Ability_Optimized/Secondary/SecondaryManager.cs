@@ -16,16 +16,6 @@ namespace AbilityOP
         [SerializeField] private UnityEvent<Secondary> OnSecondaryEquip;
         [SerializeField] private UnityEvent<Secondary> OnSecondaryUnequip;
 
-        [Header("Debug")]
-        [SerializeField] private Secondary debugSecondary;
-        [SerializeField] private List<Secondary> debugs;
-        int index = 0;
-
-        private void Start()
-        {
-            EquipSecondary(debugSecondary);
-        }
-         
         public void EquipSecondary(Secondary secondary)
         {
 
@@ -75,6 +65,14 @@ namespace AbilityOP
 
         }
 
+
+        public AbilityData GetData(string ability_name)
+        {
+            GameObject player = PlayerController.GetFirst().gameObject;
+            return AbilityManager.Instance.GetAbilityData(player, ability_name);
+        }
+
+
         public void FireSecondary(GameObject caster)
         {
             if (m_equipped)
@@ -90,30 +88,6 @@ namespace AbilityOP
         public bool hasEquipped { get => m_equipped != null; }
         public Secondary currentlyEquipped { get => m_equipped; }
 
-
-        
-
-        //debug
-
-        private void Update()
-        {
-
-            if (Input.mouseScrollDelta.y != 0)
-            {
-                index = Mathf.Clamp(index + (int)Mathf.Sign(Input.mouseScrollDelta.y), 0, debugs.Count - 1);
-                if (currentlyEquipped != debugs[index]) 
-                    EquipSecondary(debugs[index]);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                UnequipSecondary();
-            }
-            if (Input.GetKeyUp(KeyCode.Return))
-            {
-                EquipSecondary(debugSecondary);
-            }
-        }
 
     }
 }
