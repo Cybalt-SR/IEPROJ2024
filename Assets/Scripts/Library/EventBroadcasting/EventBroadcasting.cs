@@ -1,11 +1,18 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 namespace gab_roadcasting
 {
     public class EventBroadcasting
     {
         private static EventBroadcasting instance;
+        private EventBroadcasting()
+        {
+            SceneManager.sceneUnloaded += s => {
+                registeredListeners.Clear();
+            };
+        }
         private static EventBroadcasting Instance
         {
             get

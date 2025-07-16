@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Circular Gun
   m_EditorClassIdentifier: 
   secondary_name: Circular Gun
-  tooltip: Shoots Discs that Ricochet off Walls and Bring Toys to Life
+  tooltip: Shoots Discs that bounce off Walls and spawn Ally toys
   secondary_icon: {fileID: 0}
   gauge: {fileID: 7323643631137359274, guid: d256a0ff2daca384b82233c3e29c8635, type: 3}
   shot_effect_type: Shot_Circular_Gun
