@@ -248,8 +248,8 @@ MonoBehaviour:
     play_reload: 0
     start_reload_sound_id: 
     end_reload_sound_id: 
-  acceleration: 40
-  speed_base: 1
+  acceleration: 0
+  speed_base: 0
   movedir: {x: -0, y: 0, z: 0}
   shooting_reference: {fileID: 3767312601505709148}
   aimdir: {x: -1.5647405, y: 0, z: 5.731821}
@@ -306,7 +306,7 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
-    ability_invoke: Boss_Swarm_ToyMaker
+    ability_invoke: Boss_Swarm_Toymaker
     shots: 1
     delay: 1.2
     waitdelay: 2

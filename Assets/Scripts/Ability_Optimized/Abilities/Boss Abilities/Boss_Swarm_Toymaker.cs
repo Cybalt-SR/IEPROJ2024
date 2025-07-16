@@ -30,7 +30,10 @@ public class Boss_Swarm_Toymaker : Ability
                 pos.y = Owner.transform.position.y;
                 pos.z = Owner.transform.position.z + UnityEngine.Random.Range(-ability_data.offset, ability_data.offset);
 
-                spawned_unit.transform.position = pos;  
+                spawned_unit.transform.position = pos;
+
+                var rb = spawned_unit.GetComponent<Rigidbody>();
+                rb.AddForce(Vector3.up * 3, ForceMode.Impulse);
             }
 
 
