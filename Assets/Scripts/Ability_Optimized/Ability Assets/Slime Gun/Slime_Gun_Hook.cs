@@ -26,6 +26,7 @@ public class Slime_Gun_Hook: MonoBehaviour
     private float m_speed;
     private float m_max_projectile_distance;
 
+
     //Others
     private float m_coll_rad;
     private bool m_lollipop = false;
@@ -55,6 +56,8 @@ public class Slime_Gun_Hook: MonoBehaviour
         m_coll.enabled = true;
         m_coll.radius = m_coll_rad;
         m_lollipop = false;
+
+        Physics.IgnoreCollision(firing_reference.parent.GetComponent<Collider>(), m_coll);
     }
 
     public void RetractHook()
@@ -120,15 +123,20 @@ public class Slime_Gun_Hook: MonoBehaviour
             m_rb.velocity = m_dir * m_speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(other.name);
-       if (other.tag == "Wall") 
-       {
+        if (collision.gameObject.tag == "Wall")
+        {
             m_rb.isKinematic = true;
             hook_plant_pos = transform.position;
             on_hook_planted?.Invoke();
-       }
+        }
+        else
+        {
+            var rb = collision.gameObject.GetComponent<Rigidbody>();
+            if(rb) rb.velocity = Vector3.zero;
+            Physics.IgnoreCollision(collision.collider, m_coll);
+        }
     }
 
 

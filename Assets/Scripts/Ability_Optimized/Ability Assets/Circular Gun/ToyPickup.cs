@@ -9,6 +9,12 @@ public class ToyPickup : MonoBehaviour, IOnPlayerNear
 
     [HideInInspector] public float minimum_proximity_threshold = 1f;
 
+    private void Start()
+    {
+        var rb = GetComponent<Rigidbody>();
+        rb.AddForce(Vector3.up * 2f, ForceMode.Impulse);
+    }
+
     public void OnPlayerNear(UnitController player)
     {
         var currently_equipped = SecondaryManager.Instance.currentlyEquipped;

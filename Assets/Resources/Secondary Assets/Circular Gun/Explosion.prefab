@@ -185,6 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartScale: {x: 1, y: 1, z: 1}
-  TargetScale: {x: 12, y: 12, z: 12}
-  ExplosionSpeed: 200
-  DestroyDelay: 1
+  TargetScale: {x: 13, y: 13, z: 13}
+  ExplosionSpeed: 180
+  DestroyDelay: 1.5
