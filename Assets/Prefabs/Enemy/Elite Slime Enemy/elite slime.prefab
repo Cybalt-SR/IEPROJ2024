@@ -144,7 +144,7 @@ MonoBehaviour:
     split_count: 0
     pierce_count: 0
     projectile_id: 
-    sound_id: 
+    sound_id: Enemy_shot2
     play_reload: 0
     start_reload_sound_id: 
     end_reload_sound_id: 
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
+  health: 5
   additionalDieEvents:
     m_PersistentCalls:
       m_Calls: []
