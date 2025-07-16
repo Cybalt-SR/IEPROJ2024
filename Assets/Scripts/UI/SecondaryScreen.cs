@@ -10,6 +10,7 @@ public class SecondaryScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gunName;
     [SerializeField] private TextMeshProUGUI tooltip;
     [SerializeField] private TextMeshProUGUI shotDescription;
+    [SerializeField] private TextMeshProUGUI passiveDescription;
     [SerializeField] private TextMeshProUGUI activeDescription;
 
 
@@ -18,28 +19,12 @@ public class SecondaryScreen : MonoBehaviour
         Debug.Log("Updating Text");
         var s = SecondaryManager.Instance.currentlyEquipped;
 
-        if (s)
-        {
-            gunName.text = s.secondary_name;
-            tooltip.text = s.tooltip;
-
-            var shot_data = SecondaryManager.Instance.GetData(s.shot_effect_type);
-            var ability_data = SecondaryManager.Instance.GetData(s.secondary_ability_type);
-
-            shotDescription.text = "Shot:\n" + shot_data.AbilityDescription;
-            activeDescription.text = "Ability:\n" + ability_data.AbilityDescription;
-        }
-        else
-        {
-            gunName.text =  "[No Equipped Secondaries]";
-            tooltip.text = "";
-            shotDescription.text = "";
-            activeDescription.text = "";
-        }
-
-
+        //gunName.text = s.secondary_name;
+        //tooltip.text = s.tooltip;
+        //shotDescription.text = "[Shot]: " + s.ShotEffect.AbilityData.ActiveDescription;
+        //passiveDescription.text = "[Passive]: " + s.SecondaryAbility.AbilityData.PassiveDescription;
+        //activeDescription.text = "[Active]: " + s.SecondaryAbility.AbilityData.ActiveDescription;
     }
 
    
 }
- 

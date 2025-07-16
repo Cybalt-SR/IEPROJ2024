@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: Ability_Circular_Gun
   m_EditorClassIdentifier: 
   AbilityName: 
-  AbilityDescription: Spawns toys randomly and when you defeat enemies. Brings Toys
-    to life, transforming them into a Soldier, a Charming Ballerina, or an Explosive
-    Jack-in-a-Box.
+  AbilityDescription: 
   AbilityIcon: {fileID: 0}
-  Cooldown: 5
+  Cooldown: 0
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
   max_spawnable_toys: 4

@@ -5,8 +5,6 @@ using Assets.Scripts.Library;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using AbilityOP;
-
 
 namespace Assets.Scripts.Manager
 {
@@ -48,13 +46,8 @@ namespace Assets.Scripts.Manager
                 return;
 
             if (pickup is Attachment attachment)
-            {
                 if (EquipmentManager.PickupAttachment(player, attachment) == false)
                     return;
-            }else if (pickup is Secondary secondary)
-            {
-                SecondaryManager.Instance.EquipSecondary(secondary);
-            }
 
             ActionWaiter.Broadcast("pickup", null, out _);
 

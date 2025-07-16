@@ -13,13 +13,7 @@ MonoBehaviour:
   m_Name: Shot_Slime_Gun
   m_EditorClassIdentifier: 
   AbilityName: 
-  AbilityDescription: 'You passively take less damage. Fires a patch of slime that
-    attaches to the first wall it encounters. Enemies you touch while slimed get
-    stuck in you.
-
-
-    Fire it again to pull yourself towards the wall, bashing
-    enemies stuck to you into the wall.'
+  AbilityDescription: 
   AbilityIcon: {fileID: 0}
   Cooldown: 0
   StartCooldownOnCast: 0
