@@ -67,12 +67,12 @@ public class DirectionalAnimator3D : MonoBehaviour
 
         if (use_animator)
         {
-            _animator.SetBool("moving", true);
+            //_animator.SetBool("moving", true);
 
-            _animator.SetBool("forward", isforward);
-            _animator.SetBool("backward", isbackward);
-            _animator.SetBool("left", isleft);
-            _animator.SetBool("right", isright);
+           // _animator.SetBool("forward", isforward);
+            //_animator.SetBool("backward", isbackward);
+           // _animator.SetBool("left", isleft);
+            //_animator.SetBool("right", isright);
         }
     }
 
@@ -80,12 +80,12 @@ public class DirectionalAnimator3D : MonoBehaviour
 	{
 		if(moved_this_frame == false && use_animator)
         {
-			_animator.SetBool("moving", false);
+			//_animator.SetBool("moving", false);
 
-			_animator.SetBool("forward", false);
-            _animator.SetBool("backward", false);
-            _animator.SetBool("left", false);
-            _animator.SetBool("right", false);
+			//_animator.SetBool("forward", false);
+            //_animator.SetBool("backward", false);
+            //_animator.SetBool("left", false);
+            //_animator.SetBool("right", false);
         }
     }
 

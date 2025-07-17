@@ -30,6 +30,7 @@ public class NavmeshPhysicsAgent : MonoBehaviour
 
     void FixedUpdate()
     {
+
         if ((target - oldtarget_pos).sqrMagnitude > 0.25)
             recalculate = true;
 
