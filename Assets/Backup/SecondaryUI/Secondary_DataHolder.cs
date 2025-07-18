@@ -45,7 +45,7 @@ public class Secondary_DataHolder : MonoBehaviour, IPointerDownHandler
             return;
 
         var attachment_icon = FindComponentInObject<Image>("Image");
-        attachment_icon.sprite = secondaryData.secondary_icon.sprite;
+        attachment_icon.sprite = Sprite.Create(secondaryData.secondary_icon, new Rect(0, 0, secondaryData.secondary_icon.width, secondaryData.secondary_icon.height), Vector2.zero);
 
         var attachment_name = FindComponentInObject<TextMeshProUGUI>("Title");
         attachment_name.text = secondaryData.secondary_name;

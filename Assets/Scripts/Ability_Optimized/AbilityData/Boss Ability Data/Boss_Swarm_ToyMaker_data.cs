@@ -12,8 +12,6 @@ public class Boss_Swarm_Toymaker_data : AbilityData
     [Header("Spawning")]
     public int minimum_spawn_count;
     public int maximum_spawn;
-    public int waves;
-    public float spawn_interval;
 
     [Header("Assets")]
     public List<GameObject> spawnables;

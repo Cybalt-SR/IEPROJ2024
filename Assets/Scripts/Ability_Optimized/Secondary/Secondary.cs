@@ -14,7 +14,7 @@ namespace AbilityOP
         [Header("Secondary Data")]
         public string secondary_name;
         [TextArea(1, 3)] public string tooltip;
-        public Image secondary_icon;
+        public Texture2D secondary_icon;
 
         [Header("Assets")]
         public GameObject gauge;

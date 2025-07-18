@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondary_name: Slime Shots
   tooltip: Stick and grapple enemies with slime
-  secondary_icon: {fileID: 0}
+  secondary_icon: {fileID: 2800000, guid: a4bb3faed8d17a346a365b03fd47ceae, type: 3}
   gauge: {fileID: 0}
   shot_effect_type: Shot_Slime_Gun
   secondary_ability_type: Ability_Slime_Gun

@@ -24,7 +24,7 @@ public class Boss_Swarm_Toymaker : Ability
             spawned_unit.GetComponent<EnemyController>().enabled = false;
             spawned_unit.GetComponent<NavmeshPhysicsAgent>().enabled = false;
             spawned_unit.GetComponent<NavMeshAgent>().enabled = false;
-            spawnable_templates.Add(spawnable);
+            spawnable_templates.Add(spawned_unit);
         }
     }
 
@@ -36,41 +36,36 @@ public class Boss_Swarm_Toymaker : Ability
 
     protected override IEnumerator Active()
     {
-        Debug.Log("Activate");
+  
         var ability_data = m_ability_data as Boss_Swarm_Toymaker_data;
-        int wave_count = 0;
-     
-        while(wave_count < ability_data.waves)
+
+        int to_spawn = ability_data.minimum_spawn_count + UnityEngine.Random.Range(0, ability_data.maximum_spawn);
+
+        for (int i = 0; i < to_spawn; i++)
         {
-            int to_spawn = ability_data.minimum_spawn_count + UnityEngine.Random.Range(0, ability_data.maximum_spawn);
+            int spawnable_index = UnityEngine.Random.Range(0, spawnable_templates.Count);
+            var spawned_unit = GameObject.Instantiate(spawnable_templates[spawnable_index]);
+            spawned_unit.SetActive(true);
 
-            Debug.Log("Owner Pos: " + Owner.transform.position + " To Spawn: " + to_spawn);
-            for(int i =0; i < to_spawn; i++)
-            {
-                int spawnable_index = UnityEngine.Random.Range(0, spawnable_templates.Count);
-                var spawned_unit = GameObject.Instantiate(spawnable_templates[spawnable_index]);
-                enemies_spawned.Add(spawned_unit);
+            enemies_spawned.Add(spawned_unit);
 
-                var owner_pos = Owner.transform.position;
-                var pos = new Vector3();
-                pos.x = Owner.transform.position.x + UnityEngine.Random.Range(-ability_data.offset, ability_data.offset) * 1.5f;
-                pos.y = Owner.transform.position.y;
-                pos.z = Owner.transform.position.z + UnityEngine.Random.Range(-ability_data.offset, ability_data.offset) * 1.5f;
+            var owner_pos = Owner.transform.position;
+            var pos = new Vector3();
+            pos.x = Owner.transform.position.x + UnityEngine.Random.Range(-ability_data.offset, ability_data.offset);
+            pos.y = Owner.transform.position.y;
+            pos.z = Owner.transform.position.z + UnityEngine.Random.Range(-ability_data.offset, ability_data.offset);
 
-                spawned_unit.transform.position = pos;
+            spawned_unit.transform.position = pos;
 
-                spawned_unit.GetComponent<MonoBehaviour>().StartCoroutine(Delay(1.5f, () => {
-                    spawned_unit.GetComponent<EnemyController>().enabled = true;
-                    spawned_unit.GetComponent<NavmeshPhysicsAgent>().enabled = true;
-                    spawned_unit.GetComponent<NavMeshAgent>().enabled = true;
-                }));
+            spawned_unit.GetComponent<MonoBehaviour>().StartCoroutine(Delay(1.5f, () => {
+                spawned_unit.GetComponent<EnemyController>().enabled = true;
+                spawned_unit.GetComponent<NavmeshPhysicsAgent>().enabled = true;
+                spawned_unit.GetComponent<NavMeshAgent>().enabled = true;
+            }));
 
-            }
-
-
-            yield return new WaitForSeconds(ability_data.spawn_interval);
-            wave_count++;
         }
+
+        yield return null;
 
 
     }

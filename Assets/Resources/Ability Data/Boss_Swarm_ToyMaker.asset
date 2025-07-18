@@ -20,9 +20,6 @@ MonoBehaviour:
   UpdateTiedToState: 0
   minimum_spawn_count: 3
   maximum_spawn: 5
-  waves: 1
-  spawn_interval: 0
   spawnables:
-  - {fileID: 1641835130275497612, guid: b862aa16182835d4797f77cbffaa09c3, type: 3}
   - {fileID: 1641835130275497612, guid: 91909a4c145349341bba69ade670c037, type: 3}
   offset: 4
