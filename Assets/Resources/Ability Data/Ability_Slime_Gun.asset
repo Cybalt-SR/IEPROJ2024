@@ -23,7 +23,7 @@ MonoBehaviour:
   Cooldown: 1.5
   StartCooldownOnCast: 0
   UpdateTiedToState: 0
-  impact_damage: 4
+  impact_damage: 20
   impact_force: 20
   unhooked_reduction_multiplier: 40
   hooked_reduction_multiplier: 100
