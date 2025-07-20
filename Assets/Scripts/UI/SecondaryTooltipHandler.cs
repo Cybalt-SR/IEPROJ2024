@@ -1,3 +1,5 @@
+using AbilityOP;
+using Assets.Scripts.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,23 +9,52 @@ using UnityEngine.InputSystem;
 public class SecondaryTooltipHandler : MonoBehaviour
 {
 
+    private static SecondaryTooltipHandler handler;
+ 
+    [SerializeField] private TextMeshProUGUI tooltip_title;
     [SerializeField] private TextMeshProUGUI tooltip_text;
-
-    private void Update()
+    [SerializeField] private RectTransform tooltip;
+    private void Awake()
     {
-        var rt = transform as RectTransform;
-        rt.anchoredPosition = Mouse.current.position.value;
+        if (handler == null)
+            handler = this;
+
+        DisableTooltip();
     }
 
-    public void RequestTooltip(string message)
+    public static void RequestTooltip(RectTransform requester, string title)
     {
-        gameObject.SetActive(true);
-        tooltip_text.text = message;
+        var pos = handler.tooltip.anchoredPosition;
+        pos.y = requester.anchoredPosition.y;
+        handler.tooltip.anchoredPosition = pos;
+
+
+        handler.tooltip_title.text = title;
+
+        var curr = SecondaryManager.Instance.currentlyEquipped;
+
+        //ermm
+        switch (title)
+        {
+            case "Secondary":
+                handler.tooltip_text.text = curr.tooltip;
+                break;
+            case "Shot":
+                var shot_data = AbilityManager.Instance.GetAbilityData(PlayerController.GetFirst().gameObject, curr.shot_effect_type) as AbilityData;
+                handler.tooltip_text.text = shot_data.AbilityDescription;
+                break;
+            case "Ability":
+                var ability_data = AbilityManager.Instance.GetAbilityData(PlayerController.GetFirst().gameObject, curr.secondary_ability_type) as AbilityData;
+                handler.tooltip_text.text = ability_data.AbilityDescription;
+                break;
+        }
+
+        handler.tooltip.gameObject.SetActive(true);
     }
 
-    public void DisableTooltip()
+    public static void DisableTooltip()
     {
-        gameObject.SetActive(false);
+        handler.tooltip.gameObject.SetActive(false);
     }
 
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Circular Gun
   m_EditorClassIdentifier: 
   secondary_name: Circular Gun
-  tooltip: Shoots Discs that bounce off Walls and spawn Ally toys
+  tooltip: Shoots Discs that bounce off Walls. Spawn Sentient Toys to assist you.
   secondary_icon: {fileID: 2800000, guid: ede54e361c536414abcfcc349d7bc267, type: 3}
   gauge: {fileID: 7323643631137359274, guid: d256a0ff2daca384b82233c3e29c8635, type: 3}
   shot_effect_type: Shot_Circular_Gun

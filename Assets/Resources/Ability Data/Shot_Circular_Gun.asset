@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: 
   AbilityDescription: Shoots discs that ricochet off terrain, piercing through enemies.
-    Picking up toys to increases the shot count by 1, up to a total of 7 discs in
-    single shot.
+    Picking up Gifts increases the count of the next shot by 1.
   AbilityIcon: {fileID: 0}
   Cooldown: 0.4
   StartCooldownOnCast: 0

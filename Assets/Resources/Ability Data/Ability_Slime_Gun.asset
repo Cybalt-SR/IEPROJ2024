@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Ability_Slime_Gun
   m_EditorClassIdentifier: 
   AbilityName: 
-  AbilityDescription: Pulls enemies towards you and summons a corrosive slime puddle
-    that burns enemies.
+  AbilityDescription: '[Passive] You take less damage. While a line of slime is active,
+    you take even less damage and nearby enemies get stuck to you.
+
+
+    [Active]
+    Pulls enemies towards you and summons a corrosive slime puddle that burns enemies.'
   AbilityIcon: {fileID: 0}
   Cooldown: 1.5
   StartCooldownOnCast: 0
