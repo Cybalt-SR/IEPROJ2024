@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SecondaryTooltipHandler : MonoBehaviour
 {
@@ -14,11 +15,11 @@ public class SecondaryTooltipHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tooltip_title;
     [SerializeField] private TextMeshProUGUI tooltip_text;
     [SerializeField] private RectTransform tooltip;
+
     private void Awake()
     {
         if (handler == null)
             handler = this;
-
         DisableTooltip();
     }
 
@@ -49,7 +50,24 @@ public class SecondaryTooltipHandler : MonoBehaviour
                 break;
         }
 
+
+
         handler.tooltip.gameObject.SetActive(true);
+    }
+
+    private void LateUpdate()
+    {
+      
+        handler.tooltip_text.ForceMeshUpdate(true, true);
+        handler.tooltip_text.ForceMeshUpdate(true, true);
+
+        var layout_group = handler.tooltip.GetComponentInChildren<VerticalLayoutGroup>();
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(layout_group.GetComponent<RectTransform>());
+
+        float height = layout_group.padding.top + layout_group.padding.bottom + handler.tooltip_text.preferredHeight + handler.tooltip_title.preferredHeight + layout_group.spacing;
+        handler.tooltip.sizeDelta = new Vector2(handler.tooltip.sizeDelta.x, height);
+  
     }
 
     public static void DisableTooltip()

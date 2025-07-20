@@ -96,8 +96,6 @@ public class Ability_Slime_Gun: Ability
                 var rb = e.GetComponent<Rigidbody>();
                 var health = e.GetComponent<HealthObject>();
 
-                Debug.Log("Kaboom");
-
                 e.enabled = false;
                 e.transform.position = unload_pos;
                 health.TakeDamage(ability_data.impact_damage, Owner.GetComponent<UnitController>());

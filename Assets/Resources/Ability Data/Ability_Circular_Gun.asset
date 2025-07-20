@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Ability_Circular_Gun
   m_EditorClassIdentifier: 
   AbilityName: 
-  AbilityDescription: "<color=\"green\">[Passive]</color> Spawns Gifts randomly and
-    when you defeat enemies. \n\n<color=\"green\">[Active]</color> Brings Gifts to
-    life, transforming them into one of three Sentient Toys."
+  AbilityDescription: "<color=\"yellow\">[Passive]</color> Spawns Gifts randomly
+    and when you defeat enemies. \n\n<color=\"yellow\">[Active]</color> Brings Gifts
+    to life, transforming them into one of three Sentient Toys."
   AbilityIcon: {fileID: 0}
   Cooldown: 5
   StartCooldownOnCast: 0
