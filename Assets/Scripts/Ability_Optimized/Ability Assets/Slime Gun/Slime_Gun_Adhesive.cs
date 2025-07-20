@@ -50,6 +50,10 @@ public class Slime_Gun_Adhesive : MonoBehaviour
         var controller = go.GetComponent<UnitController>();
         var coll = go.GetComponent<Collider>();
         var rb = go.GetComponent<Rigidbody>();
+        var health_object = go.GetComponent<HealthObject>();
+
+        if (health_object.Health <= 0 && value)
+            return;
 
         go.transform.parent = value ? null : transform;
         controller.enabled = value;
