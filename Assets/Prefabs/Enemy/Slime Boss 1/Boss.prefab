@@ -267,6 +267,7 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
+    ability_invoke: 
     shots: 1
     delay: 1.2
     waitdelay: 2
@@ -287,6 +288,7 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
+    ability_invoke: 
     shots: 5
     delay: 0.5
     waitdelay: 2
@@ -307,16 +309,16 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
+    ability_invoke: 
     shots: 1
     delay: 1.6
     waitdelay: 3
-  ability_overrides:
-    structs: []
   cur_gun_index: 0
   shoot_index: 0
   will_shoot: 0
   fired_thiswait: 0
   time_waited: 0
+  duels_player: 1
 --- !u!114 &83767468633808664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,7 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 80
+  health: 30
   additionalDieEvents:
     m_PersistentCalls:
       m_Calls: []
