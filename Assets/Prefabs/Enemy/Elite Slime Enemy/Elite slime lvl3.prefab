@@ -132,11 +132,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mBaseGun:
-    damage: 1
+    damage: 2
     shots_per_second: 10
     clip_size: 12
-    reload_time: 5
-    projectile_speed: 8
+    reload_time: 6
+    projectile_speed: 9
     error_angle: 6
     projectiles_per_shot: 1
     spread_angle: 45
@@ -561,6 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f3d12b729ed544da6856099db3ff28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller_override: {fileID: 0}
   drops:
   - item: {fileID: 11400000, guid: 1f9972dea23d5e84b9f642d4133c7653, type: 2}
     chance: 0.2
