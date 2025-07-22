@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mBaseGun:
-    damage: 2
+    damage: 1
     shots_per_second: 2
     clip_size: 3
     reload_time: 3
@@ -133,7 +133,7 @@ MonoBehaviour:
     start_reload_sound_id: 
     end_reload_sound_id: 
   acceleration: 66.6
-  speed_base: 9
+  speed_base: 8
   movedir: {x: 0, y: 0, z: 0}
   shooting_reference: {fileID: 5395496293833332456}
   aimdir: {x: 0, y: 0, z: 0}
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 4
   additionalDieEvents:
     m_PersistentCalls:
       m_Calls: []
