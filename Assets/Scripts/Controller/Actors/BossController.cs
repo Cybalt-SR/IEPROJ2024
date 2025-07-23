@@ -56,6 +56,7 @@ namespace Assets.Scripts.Controller
 
         [SerializeField] private bool duels_player = true;
 
+        private bool invoked_this_shot = false;
         protected override void UpdateFinalGun()
         {
             mFinalGun = guns[cur_gun_index].gun;
@@ -171,11 +172,12 @@ namespace Assets.Scripts.Controller
                     fired_thiswait = true;  
                 }
 
-                if (!string.IsNullOrEmpty(guns[cur_gun_index].ability_invoke))
+                if (!invoked_this_shot && !string.IsNullOrEmpty(guns[cur_gun_index].ability_invoke))
                 {
                     AbilityManager.Instance.InvokeAbility(gameObject, guns[cur_gun_index].ability_invoke);
+                    invoked_this_shot = true;
                 }
-                  
+
             }
 
             if (time_waited > guns[cur_gun_index].waitdelay)
@@ -185,6 +187,7 @@ namespace Assets.Scripts.Controller
 				if (shoot_index > guns[cur_gun_index].shots)
 				{
 					cur_gun_index++;
+                    invoked_this_shot = false;
 					shoot_index = 0;
 				}
 

@@ -161,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 7950846146482055849}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000005364418, y: 1.25, z: 1.4000006}
+  m_LocalPosition: {x: 0, y: 1, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -210,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8823664104018506826}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.6690388, z: -0, w: 0.7432275}
+  m_LocalRotation: {x: 0, y: 0.6690398, z: 0, w: 0.7432266}
   m_LocalPosition: {x: -8.6, y: 0, z: -0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -262,19 +262,7 @@ MonoBehaviour:
       m_Calls: []
   OnAim:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 424684999760262290}
-        m_TargetAssemblyTypeName: DirectionalAnimator3D, Assembly-CSharp
-        m_MethodName: OnAimEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnAimAt:
     m_PersistentCalls:
       m_Calls: []
@@ -306,22 +294,22 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
-    ability_invoke: Boss_Swarm_Toymaker
+    ability_invoke: 
     shots: 1
     delay: 1.2
     waitdelay: 2
   - gun:
       damage: 1
-      shots_per_second: 5
+      shots_per_second: 100
       clip_size: 1
-      reload_time: 2
+      reload_time: 0
       projectile_speed: 20
       error_angle: 0
       projectiles_per_shot: 1
-      spread_angle: 180
+      spread_angle: 45
       bounce_count: 0
       split_count: 0
-      pierce_count: 3
+      pierce_count: 0
       projectile_id: ghost_big
       sound_id: 
       play_reload: 0
@@ -339,7 +327,7 @@ MonoBehaviour:
       projectile_speed: 4
       error_angle: 0
       projectiles_per_shot: 15
-      spread_angle: 180
+      spread_angle: 360
       bounce_count: 2
       split_count: 0
       pierce_count: 0
@@ -348,7 +336,7 @@ MonoBehaviour:
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
-    ability_invoke: 
+    ability_invoke: Boss_Swarm_Toymaker
     shots: 1
     delay: 1.6
     waitdelay: 3
@@ -357,7 +345,7 @@ MonoBehaviour:
   will_shoot: 0
   fired_thiswait: 0
   time_waited: 0
-  duels_player: 1
+  duels_player: 0
 --- !u!114 &6975715167643747395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,7 +457,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
@@ -507,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 80
+  health: 70
   additionalDieEvents:
     m_PersistentCalls:
       m_Calls: []
@@ -838,6 +826,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7573252147346246638}
+    - targetCorrespondingSourceObject: {fileID: 6985224813436280229, guid: f0e37c35227e38048929a1f387072402,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 270695840141106783}
   m_SourcePrefab: {fileID: 100100000, guid: f0e37c35227e38048929a1f387072402, type: 3}
 --- !u!4 &3730348128178296356 stripped
 Transform:
@@ -873,3 +865,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6106566993609763946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6985224813436280229, guid: f0e37c35227e38048929a1f387072402,
+    type: 3}
+  m_PrefabInstance: {fileID: 3769058406516732367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &270695840141106783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106566993609763946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f5da24c205bd743996ead21880f64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

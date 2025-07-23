@@ -39,7 +39,7 @@ public class Boss_Swarm_Toymaker : Ability
   
         var ability_data = m_ability_data as Boss_Swarm_Toymaker_data;
 
-        int to_spawn = ability_data.minimum_spawn_count + UnityEngine.Random.Range(0, ability_data.maximum_spawn);
+        int to_spawn =  UnityEngine.Random.Range(ability_data.minimum_spawn_count, ability_data.maximum_spawn);
 
         for (int i = 0; i < to_spawn; i++)
         {
