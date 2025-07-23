@@ -32,7 +32,7 @@ namespace Assets.Scripts.Controller
           
         void IUiInputReceiver.Toggle_Attachement(InputAction.CallbackContext callback)
         {
-            if (callback.performed)
+            if (callback.performed && !Pause_screen.activeSelf)
                 GearConfig_screen.SetActive(!GearConfig_screen.activeSelf);
                 //Attachment_screen.SetActive(!Attachment_screen.activeSelf);
         }
@@ -40,13 +40,18 @@ namespace Assets.Scripts.Controller
         private void Start()
         {
             GearConfig_screen.SetActive(false);
+            Pause_screen.SetActive(false);
             //Attachment_screen.SetActive(false);
         }
 
         public void Toggle_Pause(InputAction.CallbackContext callback)
         {
             if (callback.performed)
+            {
+                GearConfig_screen.SetActive(false);
                 Pause_screen.SetActive(!Pause_screen.activeSelf);
+            }
+              
         }
     }
 }
