@@ -29,7 +29,7 @@ namespace Assets.Scripts.Controller
 
             PropagateOwnership(this.transform);
         }
-
+          
         void IUiInputReceiver.Toggle_Attachement(InputAction.CallbackContext callback)
         {
             if (callback.performed)
