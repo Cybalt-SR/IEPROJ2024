@@ -157,20 +157,8 @@ MonoBehaviour:
       m_Calls: []
   OnShoot:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5853159453375176752}
-        m_TargetAssemblyTypeName: DirectionalAnimator3D, Assembly-CSharp
-        m_MethodName: OnShootEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  bossanimator: {fileID: 0}
+      m_Calls: []
+  bossanimator: {fileID: 5853159453375176752}
   target: {fileID: 0}
   maximum_distance: 6
   minimum_distance: 3
@@ -188,7 +176,7 @@ MonoBehaviour:
       projectiles_per_shot: 1
       spread_angle: 0
       bounce_count: 2
-      split_count: 3
+      split_count: 5
       pierce_count: 1
       projectile_id: 
       sound_id: 
@@ -196,7 +184,7 @@ MonoBehaviour:
       start_reload_sound_id: 
       end_reload_sound_id: 
     ability_invoke: 
-    shots: 1
+    shots: 2
     delay: 0
     waitdelay: 0
   - gun:
@@ -206,9 +194,9 @@ MonoBehaviour:
       reload_time: 0
       projectile_speed: 8
       error_angle: 0
-      projectiles_per_shot: 6
+      projectiles_per_shot: 8
       spread_angle: 180
-      bounce_count: 0
+      bounce_count: 1
       split_count: 0
       pierce_count: 0
       projectile_id: 

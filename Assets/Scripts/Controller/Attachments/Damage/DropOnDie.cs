@@ -40,7 +40,7 @@ namespace Assets.Scripts.Controller.Attachments
                     if (chance > dropChance.chance)
                         continue;
 
-                    PickupManager.CreatePickup(dropChance.item, transform.position, controller_override);
+                    PickupManager.CreatePickup(dropChance.item, new Vector3 (transform.position.x,transform.position.y+1,transform.position.z), controller_override);
                 }
             });
         }
