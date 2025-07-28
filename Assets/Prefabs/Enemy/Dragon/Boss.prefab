@@ -175,39 +175,39 @@ MonoBehaviour:
       error_angle: 0
       projectiles_per_shot: 1
       spread_angle: 0
-      bounce_count: 2
-      split_count: 5
-      pierce_count: 1
-      projectile_id: 
-      sound_id: 
-      play_reload: 0
-      start_reload_sound_id: 
-      end_reload_sound_id: 
-    ability_invoke: 
-    shots: 2
-    delay: 0
-    waitdelay: 0
-  - gun:
-      damage: 3
-      shots_per_second: 1
-      clip_size: 1
-      reload_time: 0
-      projectile_speed: 8
-      error_angle: 0
-      projectiles_per_shot: 8
-      spread_angle: 180
-      bounce_count: 1
+      bounce_count: 0
       split_count: 0
-      pierce_count: 0
-      projectile_id: 
+      pierce_count: 1
+      projectile_id: ghost_big
       sound_id: 
       play_reload: 0
       start_reload_sound_id: 
       end_reload_sound_id: 
     ability_invoke: 
     shots: 1
-    delay: 0
-    waitdelay: 0
+    delay: 0.5
+    waitdelay: 0.6
+  - gun:
+      damage: 2
+      shots_per_second: 1
+      clip_size: 1
+      reload_time: 0
+      projectile_speed: 13
+      error_angle: 0
+      projectiles_per_shot: 8
+      spread_angle: 180
+      bounce_count: 1
+      split_count: 0
+      pierce_count: 0
+      projectile_id: ghost
+      sound_id: 
+      play_reload: 0
+      start_reload_sound_id: 
+      end_reload_sound_id: 
+    ability_invoke: 
+    shots: 1
+    delay: 0.8
+    waitdelay: 1
   cur_gun_index: 0
   shoot_index: 0
   will_shoot: 0
@@ -1299,6 +1299,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3407327436363602385}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d08596a7cb2d94b05b3593b16ffad6cc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5934850626605909546}
   m_SourcePrefab: {fileID: 100100000, guid: d08596a7cb2d94b05b3593b16ffad6cc, type: 3}
 --- !u!1 &5154503647283963427 stripped
 GameObject:
@@ -1328,6 +1332,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5934850626605909546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5154503647283963427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f5da24c205bd743996ead21880f64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5531451054893350041 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d08596a7cb2d94b05b3593b16ffad6cc,
